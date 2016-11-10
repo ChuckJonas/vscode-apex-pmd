@@ -2,7 +2,7 @@
     "name": "apex-pmd",
     "displayName": "Apex PMD",
     "description": "PMD static anyalsis for Salesforce Apex",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "chuckjonas",
     "author": {
         "name": "Charlie Jonas",
@@ -38,11 +38,13 @@
         "commands": [
             {
                 "command": "extension.apex-pmd.runWorkspace",
-                "title": "Run Apex Static Anaylsis On Workspace"
+                "title": "On Workspace",
+                "category": "Apex Static Anaylsis"
             },
             {
                 "command": "extension.apex-pmd.runFile",
-                "title": "Run Apex Static Anaylsis On File"
+                "title": "On File",
+                "category": "Apex Static Anaylsis"
             }
         ],
         "configuration": {
@@ -55,6 +57,22 @@
                     "description": "absolute path to pmd `bin` folder.  Should contain run.sh or pmd.bat"
                 }
             }
+        },
+        "menus": {
+            "explorer/context": [
+                {
+                    "when": "resourceLangId == 'apex'",
+                    "command": "extension.apex-pmd.runFile",
+                    "group": "apex-pmd"
+                }
+            ],
+            "editor/context": [
+                {
+                    "when": "resourceLangId == 'apex'",
+                    "command": "extension.apex-pmd.runFile",
+                    "group": "apex-pmd"
+                }
+            ]
         }
     },
     "scripts": {

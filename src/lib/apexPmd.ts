@@ -15,7 +15,7 @@ export class ApexPmd{
 
         let cmd = this.createPMDCommand(targetPath);
         console.log(cmd);
-        vscode.window.showInformationMessage('Running Static Anaylsis on Workspace...');
+        vscode.window.showInformationMessage(`Running Static Anaylsis on ${targetPath}...`);
 
         console.log(`Start: ${new Date()}`);
         ChildProcess.exec(cmd, (error, stdout, stderr) => {
