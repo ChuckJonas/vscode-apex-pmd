@@ -11,11 +11,19 @@ This extension allows you to run [Apex Static Anaylsis](http://pmd.sourceforge.n
 
 ### TODO
 
+* Add support for windows
 * Run Anaylsis on save/open
 
-## Requirements
+## Installation
 
-Must have `java` installed and in path
+1. Must have `JDK >=1.4` installed and in path
+2. Install `PMD >= 5.6` "bin" release from [here](https://sourceforge.net/projects/pmd/files/pmd/)
+3. unzip to location of choice
+4. In VScode, Open `User Preferences` and set `apexPMD.pmdPath` to the `bin` folder where pmd was installed in step 3 (should contain `run.sh`):
+
+``` javascript
+ "apexPMD.pmdPath": "/Users/jonas/pmd/bin"
+```
 
 ## Extension Settings
 

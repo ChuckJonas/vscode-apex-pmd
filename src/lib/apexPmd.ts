@@ -1,43 +1,47 @@
 import * as vscode from 'vscode';
 import * as ChildProcess from 'child_process'
+import * as fs from 'fs';
 
 export class ApexPmd{
     private _pmdPath: string;
 
-    public constructor(pmdPath: string){
-        this._pmdPath = pmdPath;
+    public constructor(){
+        let config = vscode.workspace.getConfiguration('apexPMD');
+        this._pmdPath = config.get('pmdPath').toString();
     }
 
     public run(targetPath: string, collection: vscode.DiagnosticCollection){
-            let cmd = this.createPMDCommand(targetPath);
-            console.log(cmd);
-            vscode.window.showInformationMessage('Running Static Anaylsis on Workspace...');
+        if(!this.checkPmdPath()) return;
 
-            console.log(`Start: ${new Date()}`);
-            ChildProcess.exec(cmd, (error, stdout, stderr) => {
-                console.log(`End: ${new Date()}`);
-                let lines = stdout.split('\n');
+        let cmd = this.createPMDCommand(targetPath);
+        console.log(cmd);
+        vscode.window.showInformationMessage('Running Static Anaylsis on Workspace...');
 
-                let problemsMap = new Map<string,Array<vscode.Diagnostic>>();
-                for(let i = 0; i < lines.length; i++){
-                    try{
-                        let file = this.getFilePath(lines[i]);
-                        let problem = this.createDiagonistic(lines[i]);
-                        if(!problem) continue;
+        console.log(`Start: ${new Date()}`);
+        ChildProcess.exec(cmd, (error, stdout, stderr) => {
+            console.log(`End: ${new Date()}`);
+            let lines = stdout.split('\n');
 
-                        if(problemsMap.has(file)){
-                            problemsMap.get(file).push(problem);
-                        }else{
-                            problemsMap.set(file,[problem]);
-                        }
-                    }catch(ex){}
-                }
-                problemsMap.forEach(function(value, key){
-                    collection.set(vscode.Uri.file(key) , value);
-                });
+            let problemsMap = new Map<string,Array<vscode.Diagnostic>>();
+            for(let i = 0; i < lines.length; i++){
+                try{
+                    let file = this.getFilePath(lines[i]);
+                    let problem = this.createDiagonistic(lines[i]);
+                    if(!problem) continue;
 
-                vscode.window.showInformationMessage('Static Anaylsis Done!');
+                    if(problemsMap.has(file)){
+                        problemsMap.get(file).push(problem);
+                    }else{
+                        problemsMap.set(file,[problem]);
+                    }
+                }catch(ex){}
+            }
+            problemsMap.forEach(function(value, key){
+                collection.set(vscode.Uri.file(key) , value);
             });
+
+            vscode.window.showInformationMessage('Static Anaylsis Done!');
+        });
     }
 
     createDiagonistic(line: String): vscode.Diagnostic{
@@ -61,7 +65,26 @@ export class ApexPmd{
     }
 
     createPMDCommand(targetPath: String) : string{
-        return `${this._pmdPath} pmd -d ${targetPath} -f csv -R apex-style,apex-apexunit,apex-complexity,apex-performance`;
+        return `${this._pmdPath}/run.sh pmd -d ${targetPath} -f csv -R apex-style,apex-apexunit,apex-complexity,apex-performance`;
+    }
+
+    checkPmdPath(): boolean{
+        if(this.fileExists(`${this._pmdPath}/run.sh`)){
+            return true;
+        }
+        vscode.window.showErrorMessage('PMD Path not set. Please see Installation Instructions.');
+        return false;
+    }
+
+    fileExists(filePath){
+        try{
+            let stat = fs.statSync(filePath);
+            return stat.isFile();
+        }catch (err){
+            return false;
+        }
     }
 }
+
+
 
