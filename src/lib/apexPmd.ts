@@ -65,11 +65,13 @@ export class ApexPmd{
     }
 
     createPMDCommand(targetPath: String) : string{
-        return `${this._pmdPath}/run.sh pmd -d ${targetPath} -f csv -R apex-style,apex-apexunit,apex-complexity,apex-performance`;
+        return `java -cp '${this._pmdPath}/lib/*' net.sourceforge.pmd.PMD -d ${targetPath} -f csv -R apex-style,apex-apexunit,apex-complexity,apex-performance`;
+
+        // return `${this._pmdPath}/run.sh pmd -d ${targetPath} -f csv -R apex-style,apex-apexunit,apex-complexity,apex-performance`;
     }
 
     checkPmdPath(): boolean{
-        if(this.fileExists(`${this._pmdPath}/run.sh`)){
+        if(this.fileExists(this._pmdPath)){
             return true;
         }
         vscode.window.showErrorMessage('PMD Path not set. Please see Installation Instructions.');
@@ -79,7 +81,7 @@ export class ApexPmd{
     fileExists(filePath){
         try{
             let stat = fs.statSync(filePath);
-            return stat.isFile();
+            return stat.isDirectory();
         }catch (err){
             return false;
         }

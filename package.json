@@ -2,7 +2,7 @@
     "name": "apex-pmd",
     "displayName": "Apex PMD",
     "description": "PMD static anyalsis for Salesforce Apex",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publisher": "chuckjonas",
     "author": {
         "name": "Charlie Jonas",
@@ -53,8 +53,8 @@
             "properties": {
                 "apexPMD.pmdPath": {
                     "type": "string",
-                    "default": "/Users/johndoe/pmd/bin/",
-                    "description": "absolute path to pmd `bin` folder.  Should contain run.sh or pmd.bat"
+                    "default": "/Users/johndoe/pmd",
+                    "description": "absolute path to where PMD was installed"
                 }
             }
         },
