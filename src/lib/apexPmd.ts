@@ -89,7 +89,7 @@ export class ApexPmd{
         if(this.fileExists(this._rulesetPath)){
             return true;
         }
-        vscode.window.showErrorMessage('Specified Ruleset not found. Make sure configuration is referencing a file or change back to the default.');
+        vscode.window.showErrorMessage(`No Ruleset not found at ${this._rulesetPath}. Ensure configuration correct or change back to the default.`);
         return false;
     }
 

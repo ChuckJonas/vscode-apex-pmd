@@ -7,7 +7,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     //setup config
     let config = vscode.workspace.getConfiguration('apexPMD');
-    let rulesetPath = context.asAbsolutePath('src/lib/rulesets/apex_ruleset.xml');
+    let rulesetPath = context.asAbsolutePath('rulesets/apex_ruleset.xml');
     if(!config.get('useDefaultRuleset') as boolean){
         rulesetPath = config.get('rulesetPath') as string;
     }

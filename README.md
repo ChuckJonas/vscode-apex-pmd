@@ -48,7 +48,7 @@ This extension allows you to run [Apex Static Anaylsis](http://pmd.sourceforge.n
 
 ## Defining your own "Ruleset"
 
-I recommend you use the [default ruleset](https://github.com/ChuckJonas/vscode-apex-pmd/blob/master/src/lib/rulesets/apex_ruleset.xml) as a starting point.
+I recommend you use the [default ruleset](https://github.com/ChuckJonas/vscode-apex-pmd/blob/master/rulesets/apex_ruleset.xml) as a starting point.
 
 Set `"apexPMD.useDefaultRuleset": "false"` and update `apexPMD.rulesetPath` to reference your custom ruleset.
 
