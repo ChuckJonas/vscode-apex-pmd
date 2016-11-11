@@ -2,22 +2,19 @@
 
 import * as vscode from 'vscode';
 import {ApexPmd} from './lib/apexPmd';
+import {Config} from './lib/config';
 
 export function activate(context: vscode.ExtensionContext) {
 
     //setup config
-    let config = vscode.workspace.getConfiguration('apexPMD');
-    let rulesetPath = context.asAbsolutePath('rulesets/apex_ruleset.xml');
-    if(!config.get('useDefaultRuleset') as boolean){
-        rulesetPath = config.get('rulesetPath') as string;
+    let config = new Config();
+    if(config.useDefaultRuleset){
+        config.rulesetPath = context.asAbsolutePath('rulesets/apex_ruleset.xml');
     }
-    let pmdPath = config.get('pmdPath') as string;
-    let priorityErrorLevel = config.get('priorityErrorThreshold') as number;
-    let warningErrorLevel = config.get('priorityWarnThreshold') as number;
 
     //setup instance vars
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd');
-    const pmd = new ApexPmd(pmdPath, rulesetPath, priorityErrorLevel, warningErrorLevel);
+    const pmd = new ApexPmd(config.pmdPath, config.rulesetPath, config.priorityErrorThreshold, config.priorityWarnThreshold);
 
     //setup commands
     context.subscriptions.push(
@@ -36,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     //setup listeners
-    if(config.get('runOnFileOpen') as boolean){
+    if(config.runOnFileOpen){
         vscode.workspace.onDidSaveTextDocument((textDocument) => {
             if(textDocument.languageId == 'apex'){
                 return vscode.commands.executeCommand('apex-pmd.runFile', textDocument.fileName);
@@ -44,7 +41,7 @@ export function activate(context: vscode.ExtensionContext) {
         });
     }
 
-    if(config.get('runOnFileSave') as boolean){
+    if(config.runOnFileSave){
         vscode.workspace.onDidOpenTextDocument((textDocument) => {
             if(textDocument.languageId == 'apex'){
                 return vscode.commands.executeCommand('apex-pmd.runFile', textDocument.fileName);

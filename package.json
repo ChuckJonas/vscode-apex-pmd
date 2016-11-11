@@ -2,7 +2,7 @@
     "name": "apex-pmd",
     "displayName": "Apex PMD",
     "description": "PMD static analysis for Salesforce Apex",
-    "version": "0.0.11",
+    "version": "0.0.12",
     "publisher": "chuckjonas",
     "author": {
         "name": "Charlie Jonas",
@@ -26,7 +26,7 @@
     "keywords": [
         "Salesforce",
         "Apex",
-        "Static Anyalsis",
+        "Static Analysis",
         "PMD"
     ],
     "activationEvents": [
