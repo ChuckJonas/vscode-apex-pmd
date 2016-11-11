@@ -1,6 +1,6 @@
 # apex-pmd
 
-This extension allows you to run [Apex Static Anaylsis](http://pmd.sourceforge.net/snapshot/pmd-apex/) directly in vscode.
+Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd-apex/) directly in vscode.
 
 ## Features
 
@@ -17,7 +17,7 @@ This extension allows you to run [Apex Static Anaylsis](http://pmd.sourceforge.n
 ## Installation
 
 1. Must have `JDK >=1.4` installed and in path
-2. Download ["bin" release](https://sourceforge.net/projects/pmd/files/pmd/) (`>= 5.6`)
+2. Download a [PMD "bin" release](https://sourceforge.net/projects/pmd/files/pmd/) (`>= 5.6`)
 3. unzip to location of choice
 4. In VScode, Open `Preferences: User Settings` and set `apexPMD.pmdPath` to folder where pmd was unzipped in step 3
 
