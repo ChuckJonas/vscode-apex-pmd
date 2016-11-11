@@ -11,7 +11,9 @@ This extension allows you to run [Apex Static Anaylsis](http://pmd.sourceforge.n
 
 **TODO**
 
-* Run Anaylsis on save/open
+* Run Anaylsis on save/open (w/ configuration)
+* Add additional rulesets
+* Add ability to specify which rules to run
 
 ## Installation
 
@@ -24,9 +26,3 @@ This extension allows you to run [Apex Static Anaylsis](http://pmd.sourceforge.n
  "apexPMD.pmdPath": "/Users/jonas/pmd"
 ```
 
-## Extension Settings
-
-**TODO**
-
-* Add ability to specify which rules to run
-* Ability to specify if Anaylsis should run on file open/save

@@ -4,18 +4,18 @@ import * as fs from 'fs';
 
 export class ApexPmd{
     private _pmdPath: string;
+    private _rulesetPath: string;
 
-    public constructor(){
-        let config = vscode.workspace.getConfiguration('apexPMD');
-        this._pmdPath = config.get('pmdPath').toString();
+    public constructor(pmdPath: string, defaultRuleset: string){
+        this._rulesetPath = defaultRuleset;
+        this._pmdPath = pmdPath;
     }
 
     public run(targetPath: string, collection: vscode.DiagnosticCollection){
-        if(!this.checkPmdPath()) return;
+        if(!this.checkPmdPath() || !this.checkRulesetPath()) return;
 
         let cmd = this.createPMDCommand(targetPath);
         console.log(cmd);
-        vscode.window.showInformationMessage(`Running Static Anaylsis on ${targetPath}...`);
 
         console.log(`Start: ${new Date()}`);
         ChildProcess.exec(cmd, (error, stdout, stderr) => {
@@ -39,13 +39,11 @@ export class ApexPmd{
             problemsMap.forEach(function(value, key){
                 collection.set(vscode.Uri.file(key) , value);
             });
-
-            vscode.window.showInformationMessage('Static Anaylsis Done!');
         });
     }
 
     createDiagonistic(line: String): vscode.Diagnostic{
-        //"Problem","Package","File","Priority","Line","Description","Rule set","Rule"
+        //format: "Problem","Package","File","Priority","Line","Description","Ruleset","Rule"
         let parts = line.split(',');
         let lineNum = parseInt(JSON.parse(parts[4])) - 1;
         let msg = JSON.parse(parts[5]);
@@ -59,26 +57,41 @@ export class ApexPmd{
     }
 
     getFilePath(line: String): string{
-        //"Problem","Package","File","Priority","Line","Description","Rule set","Rule"
         let parts = line.split(',');
         return JSON.parse(parts[2]);
     }
 
     createPMDCommand(targetPath: String) : string{
-        return `java -cp '${this._pmdPath}/lib/*' net.sourceforge.pmd.PMD -d ${targetPath} -f csv -R apex-style,apex-apexunit,apex-complexity,apex-performance`;
-
-        // return `${this._pmdPath}/run.sh pmd -d ${targetPath} -f csv -R apex-style,apex-apexunit,apex-complexity,apex-performance`;
+        return `java -cp '${this._pmdPath}/lib/*' net.sourceforge.pmd.PMD -d ${targetPath} -f csv -R ${this._rulesetPath}`;
     }
 
     checkPmdPath(): boolean{
-        if(this.fileExists(this._pmdPath)){
+        if(this.dirExists(this._pmdPath)){
             return true;
         }
         vscode.window.showErrorMessage('PMD Path not set. Please see Installation Instructions.');
         return false;
     }
 
+    checkRulesetPath(): boolean{
+        if(this.fileExists(this._rulesetPath)){
+            return true;
+        }
+        vscode.window.showErrorMessage('Specified Ruleset not found. Make sure configuration is referencing a file or change back to the default.');
+        return false;
+    }
+
+    //=== Util ===
     fileExists(filePath){
+        try{
+            let stat = fs.statSync(filePath);
+            return stat.isFile();
+        }catch (err){
+            return false;
+        }
+    }
+
+    dirExists(filePath){
         try{
             let stat = fs.statSync(filePath);
             return stat.isDirectory();

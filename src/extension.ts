@@ -1,36 +1,60 @@
 'use strict';
 
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import {ApexPmd} from './lib/apexPmd';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+
 export function activate(context: vscode.ExtensionContext) {
 
+    //setup config
+    let config = vscode.workspace.getConfiguration('apexPMD');
+    let rulesetPath = context.asAbsolutePath('src/lib/rulesets/apex_ruleset.xml');
+    if(!config.get('useDefaultRuleset') as boolean){
+        rulesetPath = config.get('rulesetPath') as string;
+    }
+    let pmdPath = config.get('pmdPath') as string;
+
+    //setup instance vars
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd');
+    const pmd = new ApexPmd(pmdPath, rulesetPath);
 
+    //setup commands
     context.subscriptions.push(
-        vscode.commands.registerCommand('extension.apex-pmd.runWorkspace', () => {
-            const pmd = new ApexPmd();
-            let path = vscode.workspace.rootPath;
-            pmd.run(path, collection);
+        vscode.commands.registerCommand('apex-pmd.runWorkspace', () => {
+            pmd.run(vscode.workspace.rootPath, collection);
         })
     );
 
     context.subscriptions.push(
-        vscode.commands.registerCommand('extension.apex-pmd.runFile', () => {
-            const pmd = new ApexPmd();
-            let path = vscode.window.activeTextEditor.document.fileName;
-            pmd.run(path, collection);
+        vscode.commands.registerCommand('apex-pmd.runFile', (fileName: string) => {
+            if(!fileName){
+                fileName = vscode.window.activeTextEditor.document.fileName;
+            }
+            pmd.run(fileName, collection);
         })
     );
 
+    //setup listeners
+    if(config.get('runOnFileOpen') as boolean){
+        vscode.workspace.onDidSaveTextDocument((textDocument) => {
+            if(textDocument.languageId == 'apex'){
+                return vscode.commands.executeCommand('apex-pmd.runFile', textDocument.fileName);
+            }
+        });
+    }
+
+    if(config.get('runOnFileSave') as boolean){
+        vscode.workspace.onDidOpenTextDocument((textDocument) => {
+            if(textDocument.languageId == 'apex'){
+                return vscode.commands.executeCommand('apex-pmd.runFile', textDocument.fileName);
+            }
+        });
+    }
+
+    vscode.workspace.onDidCloseTextDocument((textDocument) => {
+        collection.delete(textDocument.uri);
+    });
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {}
-
-//===Helpers===
 

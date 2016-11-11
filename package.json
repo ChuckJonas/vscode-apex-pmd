@@ -1,8 +1,8 @@
 {
     "name": "apex-pmd",
     "displayName": "Apex PMD",
-    "description": "PMD static anyalsis for Salesforce Apex",
-    "version": "0.0.3",
+    "description": "PMD static analysis for Salesforce Apex",
+    "version": "0.0.5",
     "publisher": "chuckjonas",
     "author": {
         "name": "Charlie Jonas",
@@ -30,21 +30,32 @@
         "PMD"
     ],
     "activationEvents": [
-        "onCommand:extension.apex-pmd.runWorkspace",
-        "onCommand:extension.apex-pmd.runFile"
+        "*"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.apex-pmd.runWorkspace",
+                "command": "apex-pmd.runWorkspace",
                 "title": "On Workspace",
-                "category": "Apex Static Anaylsis"
+                "category": "Apex Static Analysis"
             },
             {
-                "command": "extension.apex-pmd.runFile",
+                "command": "apex-pmd.runFile",
                 "title": "On File",
-                "category": "Apex Static Anaylsis"
+                "category": "Apex Static Analysis"
+            }
+        ],
+        "languages": [
+            {
+                "id": "apex",
+                "extensions": [
+                    ".cls",
+                    ".trigger"
+                ],
+                "aliases": [
+                    "Apex"
+                ]
             }
         ],
         "configuration": {
@@ -55,6 +66,26 @@
                     "type": "string",
                     "default": "/Users/johndoe/pmd",
                     "description": "absolute path to where PMD was installed"
+                },
+                "apexPMD.useDefaultRuleset": {
+                    "type": "boolean",
+                    "default": "true",
+                    "description": "Set to false to use you own ruleset (set path)"
+                },
+                "apexPMD.rulesetPath": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Absolute path to ruleset xml file.  Must also set `useDefaultRuleset:false`."
+                },
+                "apexPMD.runOnFileOpen": {
+                    "type": "boolean",
+                    "default": "true",
+                    "description": "Will run static analysis every time a file is opened"
+                },
+                "apexPMD.runOnFileSave": {
+                    "type": "boolean",
+                    "default": "true",
+                    "description": "Will run static analysis every time a file is saved"
                 }
             }
         },
@@ -62,14 +93,14 @@
             "explorer/context": [
                 {
                     "when": "resourceLangId == 'apex'",
-                    "command": "extension.apex-pmd.runFile",
+                    "command": "apex-pmd.runFile",
                     "group": "apex-pmd"
                 }
             ],
             "editor/context": [
                 {
                     "when": "resourceLangId == 'apex'",
-                    "command": "extension.apex-pmd.runFile",
+                    "command": "apex-pmd.runFile",
                     "group": "apex-pmd"
                 }
             ]
