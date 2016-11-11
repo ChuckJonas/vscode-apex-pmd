@@ -62,7 +62,7 @@ export class ApexPmd{
     }
 
     createPMDCommand(targetPath: String) : string{
-        return `java -cp '${this._pmdPath}/lib/*' net.sourceforge.pmd.PMD -d ${targetPath} -f csv -R ${this._rulesetPath}`;
+        return `java -cp '${this._pmdPath}/lib/*' net.sourceforge.pmd.PMD -d '${targetPath}' -f csv -R '${this._rulesetPath}'`;
     }
 
     checkPmdPath(): boolean{
