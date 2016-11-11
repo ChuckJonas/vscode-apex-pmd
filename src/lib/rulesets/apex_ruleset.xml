@@ -6,8 +6,45 @@
     	 xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
 
 	<description>
-		Default ruleset used by the Code Climate Engine for Salesforce.com Apex
+		Default ruleset used by vscode-apex-pmd (modified from Code Climate)
 	</description>
+
+
+	<rule ref="rulesets/apex/apexunit.xml/ApexUnitTestClassShouldHaveAsserts" message="Apex unit tests should include at least one assertion.  This makes the tests more robust, and using assert
+        with messages provide the developer a clearer idea of what the test does.">
+		<priority>3</priority>
+
+		<properties>
+        	<!-- relevant for Code Climate output only -->
+        	<property name="cc_categories" value="Bug Risk"/>
+        	<property name="cc_remediation_points_multiplier" value="100"/>
+        	<property name="cc_block_highlighting" value="false"/>
+    	</properties>
+	</rule>
+
+	<rule ref="rulesets/apex/apexunit.xml/ApexUnitTestShouldNotUseSeeAllDataTrue" message="Apex unit tests should not use @isTest(seeAllData=true) because it opens up the existing database data for unexpected modification by tests.">
+		<priority>3</priority>
+
+		<properties>
+        	<!-- relevant for Code Climate output only -->
+        	<property name="cc_categories" value="Bug Risk"/>
+        	<property name="cc_remediation_points_multiplier" value="100"/>
+        	<property name="cc_block_highlighting" value="false"/>
+    	</properties>
+	</rule>
+
+	<rule ref="rulesets/apex/complexity.xml/ExcessiveClassLength" message="Avoid really long classes (lines of code)">
+		<priority>3</priority>
+
+		<properties>
+        	<property name="minimum" value="1000"/>
+
+        	<!-- relevant for Code Climate output only -->
+        	<property name="cc_categories" value="Complexity"/>
+        	<property name="cc_remediation_points_multiplier" value="150"/>
+        	<property name="cc_block_highlighting" value="false"/>
+    	</properties>
+	</rule>
 
 	<rule ref="rulesets/apex/complexity.xml/ExcessiveClassLength" message="Avoid really long classes (lines of code)">
 		<priority>3</priority>
@@ -125,8 +162,20 @@
     	</properties>
 	</rule>
 
+
 	<rule ref="rulesets/apex/performance.xml/AvoidSoqlInLoops" message="Avoid Soql queries inside loops">
-		<priority>3</priority>
+		<priority>1</priority>
+
+        <properties>
+	       	<!-- relevant for Code Climate output only -->
+	       	<property name="cc_categories" value="Performance"/>
+	       	<property name="cc_remediation_points_multiplier" value="150"/>
+        	<property name="cc_block_highlighting" value="false"/>
+       	</properties>
+	</rule>
+
+	<rule ref="rulesets/apex/performance.xml/AvoidDmlStatementsInLoops" message="Avoid Soql queries inside loops">
+		<priority>1</priority>
 
         <properties>
 	       	<!-- relevant for Code Climate output only -->

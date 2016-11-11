@@ -2,7 +2,7 @@
     "name": "apex-pmd",
     "displayName": "Apex PMD",
     "description": "PMD static analysis for Salesforce Apex",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "publisher": "chuckjonas",
     "author": {
         "name": "Charlie Jonas",
@@ -86,6 +86,16 @@
                     "type": "boolean",
                     "default": "true",
                     "description": "Will run static analysis every time a file is saved"
+                },
+                "apexPMD.priorityErrorThreshold": {
+                    "type": "number",
+                    "default": "1",
+                    "description": "Determines at what priority level 'errors' will be added. Anything less will be a warning or hint"
+                },
+                "apexPMD.priorityWarnThreshold": {
+                    "type": "number",
+                    "default": "3",
+                    "description": "Determines at what priority level 'warnings' will be added. Anything less will be a hint"
                 }
             }
         },

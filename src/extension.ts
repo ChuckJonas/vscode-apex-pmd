@@ -3,7 +3,6 @@
 import * as vscode from 'vscode';
 import {ApexPmd} from './lib/apexPmd';
 
-
 export function activate(context: vscode.ExtensionContext) {
 
     //setup config
@@ -13,10 +12,12 @@ export function activate(context: vscode.ExtensionContext) {
         rulesetPath = config.get('rulesetPath') as string;
     }
     let pmdPath = config.get('pmdPath') as string;
+    let priorityErrorLevel = config.get('priorityErrorThreshold') as number;
+    let warningErrorLevel = config.get('priorityWarnThreshold') as number;
 
     //setup instance vars
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd');
-    const pmd = new ApexPmd(pmdPath, rulesetPath);
+    const pmd = new ApexPmd(pmdPath, rulesetPath, priorityErrorLevel, warningErrorLevel);
 
     //setup commands
     context.subscriptions.push(

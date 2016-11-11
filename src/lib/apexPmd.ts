@@ -5,10 +5,14 @@ import * as fs from 'fs';
 export class ApexPmd{
     private _pmdPath: string;
     private _rulesetPath: string;
+    private _errorThreshold: number;
+    private _warningThreshold: number;
 
-    public constructor(pmdPath: string, defaultRuleset: string){
+    public constructor(pmdPath: string, defaultRuleset: string, errorThreshold: number, warningThreshold: number){
         this._rulesetPath = defaultRuleset;
         this._pmdPath = pmdPath;
+        this._errorThreshold = errorThreshold;
+        this._warningThreshold = warningThreshold;
     }
 
     public run(targetPath: string, collection: vscode.DiagnosticCollection){
@@ -17,11 +21,8 @@ export class ApexPmd{
         let cmd = this.createPMDCommand(targetPath);
         console.log(cmd);
 
-        console.log(`Start: ${new Date()}`);
         ChildProcess.exec(cmd, (error, stdout, stderr) => {
-            console.log(`End: ${new Date()}`);
             let lines = stdout.split('\n');
-
             let problemsMap = new Map<string,Array<vscode.Diagnostic>>();
             for(let i = 0; i < lines.length; i++){
                 try{
@@ -47,11 +48,22 @@ export class ApexPmd{
         let parts = line.split(',');
         let lineNum = parseInt(JSON.parse(parts[4])) - 1;
         let msg = JSON.parse(parts[5]);
+        let priority = parseInt(JSON.parse(parts[3]));
         if(isNaN(lineNum)){return null;}
+
+        let level: vscode.DiagnosticSeverity;
+        if(priority <= this._errorThreshold){
+            level = vscode.DiagnosticSeverity.Error;
+        }else if(priority <= this._warningThreshold){
+            level = vscode.DiagnosticSeverity.Warning;
+        }else{
+            level = vscode.DiagnosticSeverity.Hint;
+        }
+
         let problem = new vscode.Diagnostic(
             new vscode.Range(new vscode.Position(lineNum,0),new vscode.Position(lineNum,100)),
             msg,
-            vscode.DiagnosticSeverity.Warning
+            level
         );
         return problem;
     }
