@@ -3,7 +3,7 @@
 This extension allows you to run [Apex Static Anaylsis](http://pmd.sourceforge.net/snapshot/pmd-apex/) directly in vscode.
 
 ## Features
-![Apex PMD](https://github.com/ChuckJonas/raw/master/images/apex-pmd.gif)
+![Apex PMD](https://raw.githubusercontent.com/ChuckJonas/vscode-apex-pmd/master/images/apex-pmd.gif)
 
 ### Current actions Supported
 
