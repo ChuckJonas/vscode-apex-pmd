@@ -27,6 +27,7 @@ export class ApexPmd{
             for(let i = 0; i < lines.length; i++){
                 try{
                     let file = this.getFilePath(lines[i]);
+
                     let problem = this.createDiagonistic(lines[i]);
                     if(!problem) continue;
 
@@ -38,8 +39,24 @@ export class ApexPmd{
                 }catch(ex){}
             }
             problemsMap.forEach(function(value, key){
-                collection.delete(vscode.Uri.file(key));
-                collection.set(vscode.Uri.file(key) , value);
+                let uri = vscode.Uri.file(key);
+                vscode.workspace.openTextDocument(uri).then(doc => {
+                    //fix ranges to not include whitespace
+                    for(let i = 0; i < value.length; i++){
+                        let prob = value[i];
+                        let line = doc.lineAt(prob.range.start.line);
+                        prob.range = new vscode.Range(
+                                        new vscode.Position(line.range.start.line, line.firstNonWhitespaceCharacterIndex),
+                                        line.range.end
+                                    );
+                    }
+                    collection.delete(uri);
+                    collection.set(uri , value);
+                }, reason => {
+                    console.log(reason);
+                });
+
+
             });
         });
     }
