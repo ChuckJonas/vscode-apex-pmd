@@ -38,6 +38,7 @@ export class ApexPmd{
                 }catch(ex){}
             }
             problemsMap.forEach(function(value, key){
+                collection.delete(vscode.Uri.file(key));
                 collection.set(vscode.Uri.file(key) , value);
             });
         });

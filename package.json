@@ -2,7 +2,7 @@
     "name": "apex-pmd",
     "displayName": "Apex PMD",
     "description": "PMD static analysis for Salesforce Apex",
-    "version": "0.0.12",
+    "version": "0.0.14",
     "publisher": "chuckjonas",
     "author": {
         "name": "Charlie Jonas",
@@ -21,7 +21,7 @@
     },
     "icon": "images/apex-pmd-icon.png",
     "categories": [
-        "Other"
+        "Linters"
     ],
     "keywords": [
         "Salesforce",
