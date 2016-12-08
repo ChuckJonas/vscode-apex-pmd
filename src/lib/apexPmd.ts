@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as ChildProcess from 'child_process'
 import * as fs from 'fs';
+import * as path from 'path';
 
 export class ApexPmd{
     private _pmdPath: string;
@@ -92,7 +93,7 @@ export class ApexPmd{
     }
 
     createPMDCommand(targetPath: String) : string{
-        return `java -cp '${this._pmdPath}/lib/*' net.sourceforge.pmd.PMD -d '${targetPath}' -f csv -R '${this._rulesetPath}'`;
+        return `java -cp '${path.join(this._pmdPath,'lib','*')}' net.sourceforge.pmd.PMD -d '${targetPath}' -f csv -R '${this._rulesetPath}'`;
     }
 
     checkPmdPath(): boolean{

@@ -3,13 +3,14 @@
 import * as vscode from 'vscode';
 import {ApexPmd} from './lib/apexPmd';
 import {Config} from './lib/config';
+import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
 
     //setup config
     let config = new Config();
     if(config.useDefaultRuleset){
-        config.rulesetPath = context.asAbsolutePath('rulesets/apex_ruleset.xml');
+        config.rulesetPath = context.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
     }
 
     //setup instance vars
