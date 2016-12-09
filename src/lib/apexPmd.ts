@@ -74,9 +74,9 @@ export class ApexPmd{
     createDiagonistic(line: String): vscode.Diagnostic{
         //format: "Problem","Package","File","Priority","Line","Description","Ruleset","Rule"
         let parts = line.split(',');
-        let lineNum = parseInt(JSON.parse(parts[4])) - 1;
-        let msg = JSON.parse(parts[5]);
-        let priority = parseInt(JSON.parse(parts[3]));
+        let lineNum = parseInt(this.stripQuotes(parts[4])) - 1;
+        let msg = this.stripQuotes(parts[5]);
+        let priority = parseInt(this.stripQuotes(parts[3]));
         if(isNaN(lineNum)){return null;}
 
         let level: vscode.DiagnosticSeverity;
@@ -98,7 +98,7 @@ export class ApexPmd{
 
     getFilePath(line: String): string{
         let parts = line.split(',');
-        return JSON.parse(parts[2]);
+        return this.stripQuotes(parts[2]);
     }
 
     createPMDCommand(targetPath: String) : string{
@@ -139,6 +139,10 @@ export class ApexPmd{
         }catch (err){
             return false;
         }
+    }
+
+    stripQuotes(s : string): string{
+        return s.substr(1, s.length-2);
     }
 }
 
