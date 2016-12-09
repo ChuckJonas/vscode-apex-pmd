@@ -2,7 +2,7 @@
     "name": "apex-pmd",
     "displayName": "Apex PMD",
     "description": "PMD static analysis for Salesforce Apex",
-    "version": "0.0.15",
+    "version": "0.0.17",
     "publisher": "chuckjonas",
     "author": {
         "name": "Charlie Jonas",
@@ -43,6 +43,11 @@
             {
                 "command": "apex-pmd.runFile",
                 "title": "On File",
+                "category": "Apex Static Analysis"
+            },
+            {
+                "command": "apex-pmd.showOutput",
+                "title": "Show Debug Output",
                 "category": "Apex Static Analysis"
             }
         ],

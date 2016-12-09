@@ -8,21 +8,27 @@ export class ApexPmd{
     private _rulesetPath: string;
     private _errorThreshold: number;
     private _warningThreshold: number;
+    private _outputChannel: vscode.OutputChannel;
 
-    public constructor(pmdPath: string, defaultRuleset: string, errorThreshold: number, warningThreshold: number){
+    public constructor(outputChannel: vscode.OutputChannel, pmdPath: string, defaultRuleset: string, errorThreshold: number, warningThreshold: number){
         this._rulesetPath = defaultRuleset;
         this._pmdPath = pmdPath;
         this._errorThreshold = errorThreshold;
         this._warningThreshold = warningThreshold;
+        this._outputChannel = outputChannel;
     }
 
     public run(targetPath: string, collection: vscode.DiagnosticCollection){
         if(!this.checkPmdPath() || !this.checkRulesetPath()) return;
 
         let cmd = this.createPMDCommand(targetPath);
-        console.log(cmd);
+        this._outputChannel.appendLine('PMD Command: ' + cmd);
 
         ChildProcess.exec(cmd, (error, stdout, stderr) => {
+            this._outputChannel.appendLine('error:' +  error);
+            this._outputChannel.appendLine('stdout:' +  stdout);
+            this._outputChannel.appendLine('stderr:' +  stderr);
+
             let lines = stdout.split('\n');
             let problemsMap = new Map<string,Array<vscode.Diagnostic>>();
             for(let i = 0; i < lines.length; i++){
@@ -37,7 +43,9 @@ export class ApexPmd{
                     }else{
                         problemsMap.set(file,[problem]);
                     }
-                }catch(ex){}
+                }catch(ex){
+                    this._outputChannel.appendLine(ex);
+                }
             }
             problemsMap.forEach(function(value, key){
                 let uri = vscode.Uri.file(key);
@@ -55,6 +63,7 @@ export class ApexPmd{
                     collection.set(uri , value);
                 }, reason => {
                     console.log(reason);
+                    this._outputChannel.appendLine(reason);
                 });
 
 
@@ -100,6 +109,7 @@ export class ApexPmd{
         if(this.dirExists(this._pmdPath)){
             return true;
         }
+        this._outputChannel.appendLine(this._pmdPath);
         vscode.window.showErrorMessage('PMD Path not set. Please see Installation Instructions.');
         return false;
     }

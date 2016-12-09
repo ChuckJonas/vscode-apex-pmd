@@ -15,7 +15,16 @@ export function activate(context: vscode.ExtensionContext) {
 
     //setup instance vars
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd');
-    const pmd = new ApexPmd(config.pmdPath, config.rulesetPath, config.priorityErrorThreshold, config.priorityWarnThreshold);
+    const outputchannel = vscode.window.createOutputChannel('Apex PMD');
+
+    //setup commands
+    context.subscriptions.push(
+         vscode.commands.registerCommand('apex-pmd.showOutput', () => {
+            outputchannel.show();
+        })
+    );
+
+    const pmd = new ApexPmd(outputchannel, config.pmdPath, config.rulesetPath, config.priorityErrorThreshold, config.priorityWarnThreshold);
 
     //setup commands
     context.subscriptions.push(
