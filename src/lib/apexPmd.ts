@@ -33,6 +33,7 @@ export class ApexPmd{
             let problemsMap = new Map<string,Array<vscode.Diagnostic>>();
             for(let i = 0; i < lines.length; i++){
                 try{
+                    if(!lines[i]) continue;
                     let file = this.getFilePath(lines[i]);
 
                     let problem = this.createDiagonistic(lines[i]);
@@ -47,27 +48,29 @@ export class ApexPmd{
                     this._outputChannel.appendLine(ex);
                 }
             }
-            problemsMap.forEach(function(value, key){
-                let uri = vscode.Uri.file(key);
-                vscode.workspace.openTextDocument(uri).then(doc => {
-                    //fix ranges to not include whitespace
-                    for(let i = 0; i < value.length; i++){
-                        let prob = value[i];
-                        let line = doc.lineAt(prob.range.start.line);
-                        prob.range = new vscode.Range(
-                                        new vscode.Position(line.range.start.line, line.firstNonWhitespaceCharacterIndex),
-                                        line.range.end
-                                    );
-                    }
-                    collection.delete(uri);
-                    collection.set(uri , value);
-                }, reason => {
-                    console.log(reason);
-                    this._outputChannel.appendLine(reason);
+            if(problemsMap.size > 0){
+                problemsMap.forEach(function(value, key){
+                    let uri = vscode.Uri.file(key);
+                    vscode.workspace.openTextDocument(uri).then(doc => {
+                        //fix ranges to not include whitespace
+                        for(let i = 0; i < value.length; i++){
+                            let prob = value[i];
+                            let line = doc.lineAt(prob.range.start.line);
+                            prob.range = new vscode.Range(
+                                            new vscode.Position(line.range.start.line, line.firstNonWhitespaceCharacterIndex),
+                                            line.range.end
+                                        );
+                        }
+                        collection.delete(uri);
+                        collection.set(uri , value);
+                    }, reason => {
+                        this._outputChannel.appendLine(reason);
+                    });
                 });
-
-
-            });
+            } else {
+                let uri = vscode.Uri.file(targetPath);
+                collection.delete(uri);
+            }
         });
     }
 
@@ -145,6 +148,3 @@ export class ApexPmd{
         return s.substr(1, s.length-2);
     }
 }
-
-
-
