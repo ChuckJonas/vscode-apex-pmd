@@ -9,13 +9,19 @@ export class ApexPmd{
     private _errorThreshold: number;
     private _warningThreshold: number;
     private _outputChannel: vscode.OutputChannel;
+    private _showErrors : boolean;
+    private _showStdOut : boolean;
+    private _showStdErr : boolean;
 
-    public constructor(outputChannel: vscode.OutputChannel, pmdPath: string, defaultRuleset: string, errorThreshold: number, warningThreshold: number){
+    public constructor(outputChannel: vscode.OutputChannel, pmdPath: string, defaultRuleset: string, errorThreshold: number, warningThreshold: number, showErrors : boolean, showStdOut : boolean, showStdErr : boolean){
         this._rulesetPath = defaultRuleset;
         this._pmdPath = pmdPath;
         this._errorThreshold = errorThreshold;
         this._warningThreshold = warningThreshold;
         this._outputChannel = outputChannel;
+        this._showErrors = showErrors;
+        this._showStdOut = showStdOut;
+        this._showStdErr = showStdErr;
     }
 
     public run(targetPath: string, collection: vscode.DiagnosticCollection){
@@ -25,9 +31,9 @@ export class ApexPmd{
         this._outputChannel.appendLine('PMD Command: ' + cmd);
 
         ChildProcess.exec(cmd, (error, stdout, stderr) => {
-            this._outputChannel.appendLine('error:' +  error);
-            this._outputChannel.appendLine('stdout:' +  stdout);
-            this._outputChannel.appendLine('stderr:' +  stderr);
+            if(this._showErrors) this._outputChannel.appendLine('error:' +  error);
+            if(this._showStdOut) this._outputChannel.appendLine('stdout:' +  stdout);
+            if(this._showStdErr) this._outputChannel.appendLine('stderr:' +  stderr);
 
             let lines = stdout.split('\n');
             let problemsMap = new Map<string,Array<vscode.Diagnostic>>();
