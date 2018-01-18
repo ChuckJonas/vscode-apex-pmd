@@ -28,7 +28,7 @@ export class ApexPmd{
         if(!this.checkPmdPath() || !this.checkRulesetPath()) return;
 
         let cmd = this.createPMDCommand(targetPath);
-        this._outputChannel.appendLine('PMD Command: ' + cmd);
+        if(this._showStdOut) this._outputChannel.appendLine('PMD Command: ' + cmd);
 
         ChildProcess.exec(cmd, (error, stdout, stderr) => {
             if(this._showErrors) this._outputChannel.appendLine('error:' +  error);
@@ -50,7 +50,7 @@ export class ApexPmd{
                         problemsMap.set(file,[problem]);
                     }
                 }catch(ex){
-                    this._outputChannel.appendLine(ex);
+                    if(this._showErrors) this._outputChannel.appendLine(ex);
                 }
             }
             problemsMap.forEach(function(value, key){
@@ -69,7 +69,7 @@ export class ApexPmd{
                     collection.set(uri , value);
                 }, reason => {
                     console.log(reason);
-                    this._outputChannel.appendLine(reason);
+                    if(this._showStdOut) this._outputChannel.appendLine(reason);
                 });
 
 
