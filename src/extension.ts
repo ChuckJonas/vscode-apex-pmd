@@ -11,6 +11,10 @@ export function activate(context: vscode.ExtensionContext) {
     let config = new Config();
     if(config.useDefaultRuleset){
         config.rulesetPath = context.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
+    } else {
+        if (!path.isAbsolute(config.rulesetPath) && vscode.workspace.rootPath) {
+            config.rulesetPath = path.join(vscode.workspace.rootPath, config.rulesetPath);
+        }
     }
 
     //setup instance vars
