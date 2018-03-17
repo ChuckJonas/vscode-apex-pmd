@@ -9,6 +9,9 @@ export class Config{
     public priorityWarnThreshold: number;
     public runOnFileOpen: boolean;
     public runOnFileSave: boolean;
+    public showErrors : boolean;
+    public showStdOut : boolean;
+    public showStdErr : boolean;
 
     public constructor(){
         let config = vscode.workspace.getConfiguration('apexPMD');
@@ -19,5 +22,8 @@ export class Config{
         this.priorityWarnThreshold = config.get('priorityWarnThreshold') as number;
         this.runOnFileOpen = config.get('runOnFileOpen') as boolean;
         this.runOnFileSave = config.get('runOnFileSave') as boolean;
+        this.showErrors = config.get('showErrors') as boolean;
+        this.showStdOut = config.get('showStdOut') as boolean;
+        this.showStdErr = config.get('showStdErr') as boolean;
     }
 }

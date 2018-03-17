@@ -6,5 +6,14 @@
     "search.exclude": {
         "out": true // set this to false to include "out" folder in search results
     },
-    "typescript.tsdk": "./node_modules/typescript/lib" // we want to use the TS server from our node_modules folder to control its version
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "terminal.integrated.env.osx": {
+        "SFDX_SET_CLIENT_IDS": "sfdx-vscode"
+    },
+    "terminal.integrated.env.linux": {
+        "SFDX_SET_CLIENT_IDS": "sfdx-vscode"
+    },
+    "terminal.integrated.env.windows": {
+        "SFDX_SET_CLIENT_IDS": "sfdx-vscode"
+    } // we want to use the TS server from our node_modules folder to control its version
 }

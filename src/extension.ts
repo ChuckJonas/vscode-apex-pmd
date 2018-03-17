@@ -28,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
         })
     );
 
-    const pmd = new ApexPmd(outputchannel, config.pmdPath, config.rulesetPath, config.priorityErrorThreshold, config.priorityWarnThreshold);
+    const pmd = new ApexPmd(outputchannel, config.pmdPath, config.rulesetPath, config.priorityErrorThreshold, config.priorityWarnThreshold, config.showErrors, config.showStdOut, config.showStdErr);
 
     //setup commands
     context.subscriptions.push(
