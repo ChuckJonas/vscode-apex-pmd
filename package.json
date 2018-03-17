@@ -55,6 +55,7 @@
             {
                 "id": "apex",
                 "extensions": [
+                    ".apxc",
                     ".cls",
                     ".trigger"
                 ],
