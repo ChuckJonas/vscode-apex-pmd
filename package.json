@@ -75,7 +75,7 @@
                 },
                 "apexPMD.useDefaultRuleset": {
                     "type": "boolean",
-                    "default": "true",
+                    "default": true,
                     "description": "Set to false to use you own ruleset (set path)"
                 },
                 "apexPMD.rulesetPath": {
@@ -85,37 +85,37 @@
                 },
                 "apexPMD.runOnFileOpen": {
                     "type": "boolean",
-                    "default": "true",
+                    "default": true,
                     "description": "Will run static analysis every time a file is opened"
                 },
                 "apexPMD.runOnFileSave": {
                     "type": "boolean",
-                    "default": "true",
+                    "default": true,
                     "description": "Will run static analysis every time a file is saved"
                 },
                 "apexPMD.priorityErrorThreshold": {
                     "type": "number",
-                    "default": "1",
+                    "default": 1,
                     "description": "Determines at what priority level 'errors' will be added. Anything less will be a warning or hint"
                 },
                 "apexPMD.priorityWarnThreshold": {
                     "type": "number",
-                    "default": "3",
+                    "default": 3,
                     "description": "Determines at what priority level 'warnings' will be added. Anything less will be a hint"
                 },
                 "apexPMD.showErrors": {
                     "type": "boolean",
-                    "default": "true",
+                    "default": true,
                     "description": "Show errors in output window"
                 },
                 "apexPMD.showStdOut": {
                     "type": "boolean",
-                    "default": "true",
+                    "default": true,
                     "description": "Show showStdOut in output window"
                 },
                 "apexPMD.showStdErr": {
                     "type": "boolean",
-                    "default": "true",
+                    "default": true,
                     "description": "Show showStdErr in output window"
                 }
             }
