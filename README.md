@@ -30,7 +30,8 @@ Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd
     // Set to false to use you own ruleset (set path)
     "apexPMD.useDefaultRuleset": true,
 
-    // Absolute path to ruleset xml file.  Must also set `useDefaultRuleset:false`.
+    // Path to ruleset xml file.  Must also set `useDefaultRuleset:false`.
+    // If relative - current workspace root dir is used as a starting point
     "apexPMD.rulesetPath": "",
 
     // Will run static analysis every time a file is opened
