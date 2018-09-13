@@ -132,7 +132,7 @@ export class ApexPmd{
     }
 
     //=== Util ===
-    fileExists(filePath){
+    fileExists(filePath: string){
         try{
             let stat = fs.statSync(filePath);
             return stat.isFile();
@@ -141,7 +141,7 @@ export class ApexPmd{
         }
     }
 
-    dirExists(filePath){
+    dirExists(filePath: string){
         try{
             let stat = fs.statSync(filePath);
             return stat.isDirectory();
