@@ -18,6 +18,8 @@ Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd
 
 1. Must have `JDK >=1.4` installed and in path
 
+*Note: PMD binaries now comes bundled in this extension.  If you experience issues, try clearing the `apexPMD.pmdPath` custom setting.*
+
 ## Configuration
 
 ``` javascript
