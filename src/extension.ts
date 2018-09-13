@@ -1,8 +1,8 @@
 'use strict';
 
 import * as vscode from 'vscode';
-import {ApexPmd} from './lib/apexPmd';
-import {Config} from './lib/config';
+import { ApexPmd } from './lib/apexPmd';
+import { Config } from './lib/config';
 import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -17,18 +17,22 @@ export function activate(context: vscode.ExtensionContext) {
         }
     }
 
+    if(!config.pmdPath){
+        config.pmdPath = context.asAbsolutePath(path.join('out', 'pmd'));
+    }
+
     //setup instance vars
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd');
-    const outputchannel = vscode.window.createOutputChannel('Apex PMD');
+    const outputChannel = vscode.window.createOutputChannel('Apex PMD');
 
     //setup commands
     context.subscriptions.push(
          vscode.commands.registerCommand('apex-pmd.showOutput', () => {
-            outputchannel.show();
+            outputChannel.show();
         })
     );
 
-    const pmd = new ApexPmd(outputchannel, config.pmdPath, config.rulesetPath, config.priorityErrorThreshold, config.priorityWarnThreshold, config.showErrors, config.showStdOut, config.showStdErr);
+    const pmd = new ApexPmd(outputChannel, config.pmdPath, config.rulesetPath, config.priorityErrorThreshold, config.priorityWarnThreshold, config.showErrors, config.showStdOut, config.showStdErr);
 
     //setup commands
     context.subscriptions.push(
@@ -47,7 +51,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     //setup listeners
-    if(config.runOnFileOpen){
+    if(config.runOnFileSave){
         vscode.workspace.onDidSaveTextDocument((textDocument) => {
             if(textDocument.languageId == 'apex'){
                 return vscode.commands.executeCommand('apex-pmd.runFile', textDocument.fileName);
@@ -55,7 +59,7 @@ export function activate(context: vscode.ExtensionContext) {
         });
     }
 
-    if(config.runOnFileSave){
+    if(config.runOnFileOpen){
         vscode.workspace.onDidOpenTextDocument((textDocument) => {
             if(textDocument.languageId == 'apex'){
                 return vscode.commands.executeCommand('apex-pmd.runFile', textDocument.fileName);
