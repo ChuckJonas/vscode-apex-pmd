@@ -9,7 +9,7 @@
         "email": "charlie@callawaycloudconsulting.com"
     },
     "engines": {
-        "vscode": "^1.5.0",
+        "vscode": "^1.22.0",
         "node": "^5.10.0"
     },
     "repository": {
@@ -46,8 +46,8 @@
                 "category": "Apex Static Analysis"
             },
             {
-                "command": "apex-pmd.showOutput",
-                "title": "Show Debug Output",
+                "command": "apex-pmd.clearProblems",
+                "title": "Clear Problems",
                 "category": "Apex Static Analysis"
             }
         ],
@@ -73,19 +73,14 @@
                     "default": "",
                     "description": "(Optional) path to where PMD was installed"
                 },
-                "apexPMD.useDefaultRuleset": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Set to false to use you own ruleset (set path)"
-                },
                 "apexPMD.rulesetPath": {
                     "type": "string",
                     "default": "",
-                    "description": "Absolute path to ruleset xml file.  Must also set `useDefaultRuleset:false`."
+                    "description": "path to ruleset xml file.  Must also set `useDefaultRuleset:false`."
                 },
                 "apexPMD.runOnFileOpen": {
                     "type": "boolean",
-                    "default": true,
+                    "default": false,
                     "description": "Will run static analysis every time a file is opened"
                 },
                 "apexPMD.runOnFileSave": {
@@ -110,12 +105,12 @@
                 },
                 "apexPMD.showStdOut": {
                     "type": "boolean",
-                    "default": true,
+                    "default": false,
                     "description": "Show showStdOut in output window"
                 },
                 "apexPMD.showStdErr": {
                     "type": "boolean",
-                    "default": true,
+                    "default": false,
                     "description": "Show showStdErr in output window"
                 }
             }
@@ -139,15 +134,14 @@
     },
     "scripts": {
         "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install"
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
+        "@types/mocha": "^5.2.5",
         "@types/node": "^10.9.4",
         "mocha": "^5.2.0",
         "typescript": "^3.0.3",
-        "vscode": "^1.0.0"
-    },
-    "dependencies": {
-        "@types/mocha": "^5.2.5"
+        "vscode": "^1.1.17"
     }
 }

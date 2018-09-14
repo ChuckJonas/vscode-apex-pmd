@@ -5,19 +5,21 @@ import { ApexPmd } from './lib/apexPmd';
 import { Config } from './lib/config';
 import * as path from 'path';
 
+export { ApexPmd };
+
 export function activate(context: vscode.ExtensionContext) {
 
     //setup config
     let config = new Config();
-    if(config.useDefaultRuleset){
+
+    if(!config.rulesetPath){
         config.rulesetPath = context.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
-    } else {
-        if (!path.isAbsolute(config.rulesetPath) && vscode.workspace.rootPath) {
-            config.rulesetPath = path.join(vscode.workspace.rootPath, config.rulesetPath);
-        }
+    }else if (!path.isAbsolute(config.rulesetPath) && vscode.workspace.rootPath) {
+        //convert relative path to absolute
+        config.rulesetPath = path.join(vscode.workspace.rootPath, config.rulesetPath);
     }
 
-    if(!config.pmdPath){
+    if (!config.pmdPath) {
         config.pmdPath = context.asAbsolutePath(path.join('out', 'pmd'));
     }
 
@@ -25,25 +27,31 @@ export function activate(context: vscode.ExtensionContext) {
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd');
     const outputChannel = vscode.window.createOutputChannel('Apex PMD');
 
-    //setup commands
+    const pmd = new ApexPmd(outputChannel, config.pmdPath, config.rulesetPath, config.priorityErrorThreshold, config.priorityWarnThreshold, config.showErrors, config.showStdOut, config.showStdErr);
+
     context.subscriptions.push(
-         vscode.commands.registerCommand('apex-pmd.showOutput', () => {
-            outputChannel.show();
+        vscode.commands.registerCommand('apex-pmd.clearProblems', () => {
+            collection.clear();
         })
     );
-
-    const pmd = new ApexPmd(outputChannel, config.pmdPath, config.rulesetPath, config.priorityErrorThreshold, config.priorityWarnThreshold, config.showErrors, config.showStdOut, config.showStdErr);
 
     //setup commands
     context.subscriptions.push(
         vscode.commands.registerCommand('apex-pmd.runWorkspace', () => {
-            pmd.run(vscode.workspace.rootPath, collection);
+            vscode.window.withProgress({
+                location: vscode.ProgressLocation.Notification,
+                title: "Running Static Analysis on workspace",
+                cancellable: true
+            }, (progress, token) => {
+                progress.report({ increment: 0 });
+                return pmd.run(vscode.workspace.rootPath, collection, progress, token);
+            });
         })
     );
 
     context.subscriptions.push(
         vscode.commands.registerCommand('apex-pmd.runFile', (fileName: string) => {
-            if(!fileName){
+            if (!fileName) {
                 fileName = vscode.window.activeTextEditor.document.fileName;
             }
             pmd.run(fileName, collection);
@@ -51,18 +59,18 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     //setup listeners
-    if(config.runOnFileSave){
+    if (config.runOnFileSave) {
         vscode.workspace.onDidSaveTextDocument((textDocument) => {
-            if(textDocument.languageId == 'apex'){
+            if (textDocument.languageId == 'apex') {
                 return vscode.commands.executeCommand('apex-pmd.runFile', textDocument.fileName);
             }
         });
     }
 
-    if(config.runOnFileOpen){
-        vscode.workspace.onDidOpenTextDocument((textDocument) => {
-            if(textDocument.languageId == 'apex'){
-                return vscode.commands.executeCommand('apex-pmd.runFile', textDocument.fileName);
+    if (config.runOnFileOpen) {
+        vscode.window.onDidChangeActiveTextEditor((editor) => {
+            if (editor.document.languageId == 'apex') {
+                return vscode.commands.executeCommand('apex-pmd.runFile', editor.document.fileName);
             }
         });
     }
@@ -72,5 +80,5 @@ export function activate(context: vscode.ExtensionContext) {
     });
 }
 
-export function deactivate() {}
+export function deactivate() { }
 

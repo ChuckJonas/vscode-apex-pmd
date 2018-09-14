@@ -22,35 +22,18 @@ Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd
 
 ## Configuration
 
-``` javascript
-    // Set to false to use you own ruleset (set path)
-    "apexPMD.useDefaultRuleset": true,
-
-    // Path to ruleset xml file.  Must also set `useDefaultRuleset:false`.
-    // If relative - current workspace root dir is used as a starting point
-    "apexPMD.rulesetPath": "",
-
-    // Will run static analysis every time a file is opened
-    "apexPMD.runOnFileOpen": true,
-
-    // Will run static analysis every time a file is saved
-    "apexPMD.runOnFileSave": true,
-
-    // Determines at what priority level 'errors' will be added. Anything less will be a warning or hint
-    "apexPMD.priorityErrorThreshold": 1,
-
-    // Determines at what priority level 'warnings' will be added. Anything less will be a hint
-    "apexPMD.priorityWarnThreshold": 3
-
-    // optionally override PMD (set to extracted path of bin)
-    "apexPMD.pmdPath": "",
-```
+`rulesetPath`: set to override default ruleset (see "Defining your own ruleset" for more details)
+`runOnFileOpen`: run every time a file is opened in vscode
+`runOnFileSave`: run everytime a file is saved
+`priorityErrorThreshold`: Determines at what priority level 'errors' will be added. Anything less will be a warning or hint
+`priorityWarnThreshold`: Determines at what priority level 'warnings' will be added. Anything less will be a hint
+`pmdPath`: set to override the default pmd binaries
 
 ### Defining your own "Ruleset"
 
 I recommend you use the [default ruleset](https://github.com/ChuckJonas/vscode-apex-pmd/blob/master/rulesets/apex_ruleset.xml) as a starting point.
 
-Set `"apexPMD.useDefaultRuleset": false` and update `apexPMD.rulesetPath` to reference your custom ruleset.
+Set `apexPMD.rulesetPath` to reference your custom ruleset.  You can either use the absolute path, or a relative path from your workspace (EG `my-apex-rules.xml`).
 
 [Apex Ruleset Reference](http://pmd.sourceforge.net/snapshot/pmd-apex/rules/index.html#Default_ruleset_used_by_the_CodeClimate_Engine_for_Salesforce.com_Apex)
 
