@@ -252,4 +252,12 @@
        	</properties>
 	</rule>
 
+	<rule ref="category/vf/security.xml/VfCsrf" >
+		<priority>3</priority>
+	</rule>
+
+	<rule ref="category/vf/security.xml/VfUnescapeEl" >
+		<priority>3</priority>
+	</rule>
+
 </ruleset>
