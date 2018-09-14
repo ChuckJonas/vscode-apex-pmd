@@ -4,7 +4,21 @@ All notable changes to the "Apex PMD" extension will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.2.0] - 2018-9-14
+### Added
+
+- Extension now includes PMD binaries by default
+- Progress UI for run on workspace with ability to cancel
+- Ability to clear all "problems"
+
+### Changed
+- Fixed bug with `runOnSave` & `runOnOpen` being switched
+- Fixed bug with `runOnOpen` causing pmd to run twice
+- Updated default ruleset to latest
+- Removed `Show Apex PMD Output` as vscode natively supports switching channels
+- removed `use defualt ruleset` setting in favor be just looking for a empty ruleset config
+- Cleaned up output and updated setting defaults
+- Refactored code and added simple test coverage
 
 ## [0.1.0] - 2018-3-20
 ### Added
