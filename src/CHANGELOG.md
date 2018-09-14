@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Extension now includes PMD binaries by default
 - Progress UI for run on workspace with ability to cancel
 - Ability to clear all "problems"
+- Added support for visualforce
 
 ### Changed
 - Fixed bug with `runOnSave` & `runOnOpen` being switched
