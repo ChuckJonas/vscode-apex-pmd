@@ -13,7 +13,7 @@ import * as path from 'path';
 import {ApexPmd} from '../src/extension';
 
 
-const PMD_PATH = path.join(__dirname, '..', 'pmd');
+const PMD_PATH = path.join(__dirname, '..', '..', 'bin', 'pmd');
 const RULESET_PATH = path.join(__dirname, '..', '..', 'rulesets', 'apex_ruleset.xml');
 const TEST_APEX_PATH = path.join(__dirname, '..', '..', 'test', 'assets', 'test.cls');
 

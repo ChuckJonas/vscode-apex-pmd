@@ -23,7 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
 
     if (!config.pmdPath) {
-        config.pmdPath = context.asAbsolutePath(path.join('out', 'pmd'));
+        config.pmdPath = context.asAbsolutePath(path.join('bin', 'pmd'));
     }
 
     //setup instance vars
