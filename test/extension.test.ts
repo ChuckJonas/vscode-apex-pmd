@@ -33,8 +33,6 @@ suite("Extension Tests", () => {
             false
         );
 
-        console.log(PMD_PATH)
-        console.log(RULESET_PATH)
         assert.equal(pmd.checkPmdPath(), true);
         assert.equal(pmd.checkRulesetPath(), true);
     });
