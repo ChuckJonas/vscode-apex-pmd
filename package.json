@@ -62,6 +62,17 @@
                 "aliases": [
                     "Apex"
                 ]
+            },
+            {
+                "id": "visualforce",
+                "extensions": [
+                    ".page",
+                    ".component"
+                ],
+                "aliases": [
+                    "VisualForce",
+                    "Visualforce"
+                ]
             }
         ],
         "configuration": {
