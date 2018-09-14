@@ -7,6 +7,9 @@ import * as path from 'path';
 
 export { ApexPmd };
 
+const supportedLanguageCodes = ['apex', 'visualforce']
+const isSupportedLanguage = (langCode) => 0 <= supportedLanguageCodes.indexOf(langCode)
+
 export function activate(context: vscode.ExtensionContext) {
 
     //setup config
@@ -61,15 +64,15 @@ export function activate(context: vscode.ExtensionContext) {
     //setup listeners
     if (config.runOnFileSave) {
         vscode.workspace.onDidSaveTextDocument((textDocument) => {
-            if (textDocument.languageId == 'apex') {
-                return vscode.commands.executeCommand('apex-pmd.runFile', textDocument.fileName);
+            if(isSupportedLanguage(textDocument.languageId)){
+              return vscode.commands.executeCommand('apex-pmd.runFile', textDocument.fileName);
             }
         });
     }
 
     if (config.runOnFileOpen) {
         vscode.window.onDidChangeActiveTextEditor((editor) => {
-            if (editor.document.languageId == 'apex') {
+            if(isSupportedLanguage(textDocument.languageId)){
                 return vscode.commands.executeCommand('apex-pmd.runFile', editor.document.fileName);
             }
         });
