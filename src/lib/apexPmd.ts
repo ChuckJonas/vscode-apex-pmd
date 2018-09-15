@@ -3,7 +3,7 @@ import * as ChildProcess from 'child_process'
 import * as fs from 'fs';
 import * as path from 'path';
 import * as parser from 'csv-parse/lib/sync'
-import {EOL} from 'os'
+import { EOL } from 'os'
 
 const PMD_COLUMNS: (keyof PmdResult)[] = [
     'problem',
@@ -39,7 +39,7 @@ export class ApexPmd {
 
     public async run(targetPath: string, collection: vscode.DiagnosticCollection, progress?: vscode.Progress<{ message?: string; increment?: number; }>, token?: vscode.CancellationToken): Promise<void> {
         this._outputChannel.appendLine(`Analysing ${targetPath}`);
-        
+
         let canceled = false;
         token && token.onCancellationRequested(() => {
             canceled = true;
@@ -47,42 +47,47 @@ export class ApexPmd {
 
         if (!this.checkPmdPath() || !this.checkRulesetPath()) return;
 
-        let data = await this.executeCmd(targetPath, token);
-        let problemsMap = this.parseProblems(data);
+        try {
+            let data = await this.executeCmd(targetPath, token);
+            let problemsMap = this.parseProblems(data);
 
-        if (problemsMap.size > 0) {
-            progress && progress.report({ message: `Processing ${problemsMap.size} file(s)`});
-            
-            let increment = 1 / problemsMap.size * 100;
+            if (problemsMap.size > 0) {
+                progress && progress.report({ message: `Processing ${problemsMap.size} file(s)` });
 
-            for (var [path, issues] of problemsMap) {
-                if (canceled) {
-                    return;
+                let increment = 1 / problemsMap.size * 100;
+
+                for (var [path, issues] of problemsMap) {
+                    if (canceled) {
+                        return;
+                    }
+
+                    progress && progress.report({ increment });
+
+                    try {
+                        let uri = vscode.Uri.file(path);
+                        let doc = await vscode.workspace.openTextDocument(uri);
+                        //fix ranges to not include whitespace
+                        issues.forEach(issue => {
+                            let line = doc.lineAt(issue.range.start.line);
+                            issue.range = new vscode.Range(
+                                new vscode.Position(line.range.start.line, line.firstNonWhitespaceCharacterIndex),
+                                line.range.end
+                            );
+                        });
+
+                        collection.set(uri, issues);
+                    } catch (e) {
+                        this._outputChannel.appendLine(e);
+                    }
                 }
-                
-                progress && progress.report({increment});
-
-                try {
-                    let uri = vscode.Uri.file(path);
-                    let doc = await vscode.workspace.openTextDocument(uri);
-                    //fix ranges to not include whitespace
-                    issues.forEach(issue => {
-                        let line = doc.lineAt(issue.range.start.line);
-                        issue.range = new vscode.Range(
-                            new vscode.Position(line.range.start.line, line.firstNonWhitespaceCharacterIndex),
-                            line.range.end
-                        );
-                    });
-
-                    collection.set(uri, issues);
-                } catch (e) {
-                    this._outputChannel.appendLine(e);
-                }
+            } else {
+                let uri = vscode.Uri.file(targetPath);
+                collection.delete(uri);
             }
-        } else {
-            let uri = vscode.Uri.file(targetPath);
-            collection.delete(uri);
+        } catch (e) {
+            vscode.window.showErrorMessage(`Static Anaylsis Failed. Error Details: ${e}`);
         }
+
     }
 
     async executeCmd(targetPath: string, token?: vscode.CancellationToken): Promise<string> {
@@ -90,11 +95,11 @@ export class ApexPmd {
         if (this._showStdOut) this._outputChannel.appendLine('PMD Command: ' + cmd);
 
         let pmdCmd = ChildProcess.exec(cmd);
-        
+
         token && token.onCancellationRequested(() => {
             pmdCmd.kill();
         });
-        
+
         let stdout = '';
         let pmdPromise = new Promise<string>(
             (resolve, reject) => {
@@ -102,7 +107,12 @@ export class ApexPmd {
                     if (this._showErrors) this._outputChannel.appendLine('error:' + e);
                     reject(e);
                 });
-                pmdCmd.addListener("exit", () => { resolve(stdout) });
+                pmdCmd.addListener("exit", (e) => {
+                    if (e === 1) {
+                        reject('PMD Command Failed.  Enable "Show StdErr" setting for more info.')
+                    }
+                    resolve(stdout);
+                });
                 pmdCmd.stdout.on('data', (m: string) => {
                     if (this._showStdOut) this._outputChannel.appendLine('stdout:' + m);
                     stdout += m;
@@ -116,11 +126,11 @@ export class ApexPmd {
     }
 
     parseProblems(csv: string): Map<string, Array<vscode.Diagnostic>> {
-        
+
         let results: PmdResult[] = parser(csv, {
             columns: PMD_COLUMNS
         });
-        
+
         let problemsMap = new Map<string, Array<vscode.Diagnostic>>();
         let problemCount = 0;
 
@@ -128,10 +138,10 @@ export class ApexPmd {
             try {
                 let result = results[i];
                 if (!results[i]) continue;
-    
+
                 let problem = this.createDiagonistic(result);
                 if (!problem) continue;
-                
+
                 problemCount++;
                 if (problemsMap.has(result.file)) {
                     problemsMap.get(result.file).push(problem);
@@ -160,7 +170,7 @@ export class ApexPmd {
         } else {
             level = vscode.DiagnosticSeverity.Hint;
         }
-        
+
         let problem = new vscode.Diagnostic(
             new vscode.Range(new vscode.Position(lineNum, 0), new vscode.Position(lineNum, 100)),
             msg,
