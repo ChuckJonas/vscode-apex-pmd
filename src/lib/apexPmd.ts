@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as ChildProcess from 'child_process'
 import * as fs from 'fs';
 import * as path from 'path';
+import { AppStatus } from './appStatus'
 
 export class ApexPmd {
     private _pmdPath: string;
@@ -27,7 +28,8 @@ export class ApexPmd {
 
     public async run(targetPath: string, collection: vscode.DiagnosticCollection, progress?: vscode.Progress<{ message?: string; increment?: number; }>, token?: vscode.CancellationToken): Promise<void> {
         this._outputChannel.appendLine(`Analysing ${targetPath}`);
-        
+        AppStatus.getInstance().thinking();
+
         let canceled = false;
         token && token.onCancellationRequested(() => {
             canceled = true;
@@ -39,6 +41,7 @@ export class ApexPmd {
         let problemsMap = this.parseProblems(data);
 
         if (problemsMap.size > 0) {
+            AppStatus.getInstance().errors();
             progress && progress.report({ message: `Processing ${problemsMap.size} file(s)`});
             
             let increment = 1 / problemsMap.size * 100;
@@ -70,6 +73,7 @@ export class ApexPmd {
         } else {
             let uri = vscode.Uri.file(targetPath);
             collection.delete(uri);
+            AppStatus.getInstance().ok();
         }
     }
 

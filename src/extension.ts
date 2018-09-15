@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import { ApexPmd } from './lib/apexPmd';
 import { Config } from './lib/config';
 import * as path from 'path';
+import { AppStatus } from './lib/appStatus'
 
 export { ApexPmd };
 
@@ -31,6 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
     const outputChannel = vscode.window.createOutputChannel('Apex PMD');
 
     const pmd = new ApexPmd(outputChannel, config.pmdPath, config.rulesetPath, config.priorityErrorThreshold, config.priorityWarnThreshold, config.showErrors, config.showStdOut, config.showStdErr);
+    AppStatus.getInstance().ok();
 
     context.subscriptions.push(
         vscode.commands.registerCommand('apex-pmd.clearProblems', () => {
