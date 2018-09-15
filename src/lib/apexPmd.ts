@@ -105,25 +105,28 @@ export class ApexPmd {
 
     parseProblems(csv: string): Map<string, Array<vscode.Diagnostic>> {
         let lines = csv.split('\n');
-        this._outputChannel.appendLine(`${lines.length-2} issue(s) found`);
+        
         let problemsMap = new Map<string, Array<vscode.Diagnostic>>();
-        for (let i = 0; i < lines.length; i++) {
+        let problemCount = 0;
+        for (let i = 1; i < lines.length; i++) {
             try {
                 if (!lines[i]) continue;
                 let file = this.getFilePath(lines[i]);
 
                 let problem = this.createDiagonistic(lines[i]);
                 if (!problem) continue;
-
+                
+                problemCount++;
                 if (problemsMap.has(file)) {
                     problemsMap.get(file).push(problem);
                 } else {
                     problemsMap.set(file, [problem]);
                 }
             } catch (ex) {
-                if (this._showErrors) this._outputChannel.appendLine(ex);
+                this._outputChannel.appendLine(ex);
             }
         }
+        this._outputChannel.appendLine(`${problemCount} issue(s) found`);
         return problemsMap;
     }
 
