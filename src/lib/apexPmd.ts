@@ -2,6 +2,19 @@ import * as vscode from 'vscode';
 import * as ChildProcess from 'child_process'
 import * as fs from 'fs';
 import * as path from 'path';
+import * as parser from 'csv-parse/lib/sync'
+import {EOL} from 'os'
+
+const PMD_COLUMNS: (keyof PmdResult)[] = [
+    'problem',
+    'package',
+    'file',
+    'priority',
+    'line',
+    'description',
+    'ruleSet',
+    'rule'
+];
 
 export class ApexPmd {
     private _pmdPath: string;
@@ -23,7 +36,6 @@ export class ApexPmd {
         this._showStdOut = showStdOut;
         this._showStdErr = showStdErr;
     }
-
 
     public async run(targetPath: string, collection: vscode.DiagnosticCollection, progress?: vscode.Progress<{ message?: string; increment?: number; }>, token?: vscode.CancellationToken): Promise<void> {
         this._outputChannel.appendLine(`Analysing ${targetPath}`);
@@ -104,23 +116,27 @@ export class ApexPmd {
     }
 
     parseProblems(csv: string): Map<string, Array<vscode.Diagnostic>> {
-        let lines = csv.split('\n');
+        
+        let results: PmdResult[] = parser(csv, {
+            columns: PMD_COLUMNS
+        });
         
         let problemsMap = new Map<string, Array<vscode.Diagnostic>>();
         let problemCount = 0;
-        for (let i = 1; i < lines.length; i++) {
-            try {
-                if (!lines[i]) continue;
-                let file = this.getFilePath(lines[i]);
 
-                let problem = this.createDiagonistic(lines[i]);
+        for (let i = 1; i < results.length; i++) {
+            try {
+                let result = results[i];
+                if (!results[i]) continue;
+    
+                let problem = this.createDiagonistic(result);
                 if (!problem) continue;
                 
                 problemCount++;
-                if (problemsMap.has(file)) {
-                    problemsMap.get(file).push(problem);
+                if (problemsMap.has(result.file)) {
+                    problemsMap.get(result.file).push(problem);
                 } else {
-                    problemsMap.set(file, [problem]);
+                    problemsMap.set(result.file, [problem]);
                 }
             } catch (ex) {
                 this._outputChannel.appendLine(ex);
@@ -130,12 +146,10 @@ export class ApexPmd {
         return problemsMap;
     }
 
-    //format: "Problem","Package","File","Priority","Line","Description","Ruleset","Rule"
-    createDiagonistic(line: String): vscode.Diagnostic {
-        let parts = line.split(',');
-        let lineNum = parseInt(this.stripQuotes(parts[4])) - 1;
-        let msg = this.stripQuotes(parts[5]);
-        let priority = parseInt(this.stripQuotes(parts[3]));
+    createDiagonistic(result: PmdResult): vscode.Diagnostic {
+        let lineNum = parseInt(result.line) - 1;
+        let msg = result.description;
+        let priority = parseInt(result.priority);
         if (isNaN(lineNum)) { return null; }
 
         let level: vscode.DiagnosticSeverity;
@@ -146,18 +160,14 @@ export class ApexPmd {
         } else {
             level = vscode.DiagnosticSeverity.Hint;
         }
-
+        
         let problem = new vscode.Diagnostic(
             new vscode.Range(new vscode.Position(lineNum, 0), new vscode.Position(lineNum, 100)),
             msg,
             level
         );
+        problem.source = 'apex pmd';
         return problem;
-    }
-
-    getFilePath(line: String): string {
-        let parts = line.split(',');
-        return this.stripQuotes(parts[2]);
     }
 
     checkPmdPath(): boolean {

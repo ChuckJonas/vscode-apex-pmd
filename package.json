@@ -154,6 +154,10 @@
         "@types/node": "^10.9.4",
         "mocha": "^5.2.0",
         "typescript": "^3.0.3",
-        "vscode": "^1.1.17"
+        "vscode": "^1.1.17",
+        "@types/csv-parse": "^1.1.11"
+    },
+    "dependencies": {
+        "csv-parse": "^3.0.0"
     }
 }
