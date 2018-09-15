@@ -148,7 +148,7 @@ export class ApexPmd {
 
     createDiagonistic(result: PmdResult): vscode.Diagnostic {
         let lineNum = parseInt(result.line) - 1;
-        let msg = result.description;
+        let msg = `${result.description} ${EOL} see: ${this.getRuleLink(result)}`;
         let priority = parseInt(result.priority);
         if (isNaN(lineNum)) { return null; }
 
@@ -168,6 +168,11 @@ export class ApexPmd {
         );
         problem.source = 'apex pmd';
         return problem;
+    }
+
+    getRuleLink(result: PmdResult): string{
+        let ruleset = result.ruleSet.toLowerCase().split(' ').join('');
+        return `https://github.com/pmd/pmd/blob/master/docs/pages/pmd/rules/apex/${ruleset}.md#${result.rule.toLowerCase()}`
     }
 
     checkPmdPath(): boolean {
