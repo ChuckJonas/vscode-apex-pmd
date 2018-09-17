@@ -14,11 +14,9 @@ Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd
 * Run analysis on single file
 * Ability to define your own ruleset
 
-## Installation
+## System Requirements
 
 1. Must have `JDK >=1.4` installed and in path
-
-*Note: PMD binaries now comes bundled in this extension.  If you experience issues, try clearing the `apexPMD.pmdPath` custom setting.*
 
 ## Configuration
 
@@ -27,7 +25,7 @@ Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd
 `runOnFileSave`: run everytime a file is saved
 `priorityErrorThreshold`: Determines at what priority level 'errors' will be added. Anything less will be a warning or hint
 `priorityWarnThreshold`: Determines at what priority level 'warnings' will be added. Anything less will be a hint
-`pmdPath`: set to override the default pmd binaries
+`pmdBinPath`: set to override the default pmd binaries.  Previously named `pmdPath`.
 
 ### Defining your own "Ruleset"
 

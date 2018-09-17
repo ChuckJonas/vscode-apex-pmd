@@ -24,15 +24,15 @@ export function activate(context: vscode.ExtensionContext) {
         config.rulesetPath = path.join(vscode.workspace.rootPath, config.rulesetPath);
     }
 
-    if (!config.pmdPath) {
-        config.pmdPath = context.asAbsolutePath(path.join('bin', 'pmd'));
+    if (!config.pmdBinPath) {
+        config.pmdBinPath = context.asAbsolutePath(path.join('bin', 'pmd'));
     }
 
     //setup instance vars
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd');
     const outputChannel = vscode.window.createOutputChannel(appName);
 
-    const pmd = new ApexPmd(outputChannel, config.pmdPath, config.rulesetPath, config.priorityErrorThreshold, config.priorityWarnThreshold, config.showErrors, config.showStdOut, config.showStdErr);
+    const pmd = new ApexPmd(outputChannel, config.pmdBinPath, config.rulesetPath, config.priorityErrorThreshold, config.priorityWarnThreshold, config.showErrors, config.showStdOut, config.showStdErr);
     AppStatus.setAppName(appName);
     AppStatus.getInstance().ok();
 
