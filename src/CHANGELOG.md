@@ -4,21 +4,25 @@ All notable changes to the "Apex PMD" extension will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [0.2.0] - 2018-9-15
+## [0.2.0] - 2018-9-18
 ### Added
 
+- Added support for visualforce
 - Extension now includes PMD binaries by default
 - Progress UI for run on workspace with ability to cancel
 - Ability to clear all "problems"
-- Added support for visualforce
+- Test Coverage
+- Status Bar
 
 ### Changed
+
 - Fixed bug with `runOnSave` & `runOnOpen` being switched
 - Fixed bug with `runOnOpen` causing pmd to run twice
+- Fixed bug with csv escaping
+- renamed `pmdPath` setting to `pmdBinPath`
 - Updated default ruleset to latest
 - Removed `Show Apex PMD Output` as vscode natively supports switching channels
-- removed `use defualt ruleset` setting in favor be just looking for a empty ruleset config
-- Renamed `pmdPath` setting to `pmdBinPath` to default everyone to packaged binaries
+- removed `use default ruleset` setting in favor be just looking for a empty ruleset config
 - Cleaned up output and updated setting defaults
 - Refactored code and added simple test coverage
 
