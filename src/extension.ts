@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import { ApexPmd } from './lib/apexPmd';
 import { Config } from './lib/config';
 import * as path from 'path';
+import { AppStatus } from './lib/appStatus'
 
 export { ApexPmd };
 
@@ -13,7 +14,8 @@ const isSupportedLanguage = (langCode: string) => 0 <= supportedLanguageCodes.in
 export function activate(context: vscode.ExtensionContext) {
 
     //setup config
-    let config = new Config();
+    const config = new Config();
+    const appName = 'Apex PMD';
 
     if(!config.rulesetPath){
         config.rulesetPath = context.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
@@ -28,9 +30,11 @@ export function activate(context: vscode.ExtensionContext) {
 
     //setup instance vars
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd');
-    const outputChannel = vscode.window.createOutputChannel('Apex PMD');
+    const outputChannel = vscode.window.createOutputChannel(appName);
 
     const pmd = new ApexPmd(outputChannel, config.pmdPath, config.rulesetPath, config.priorityErrorThreshold, config.priorityWarnThreshold, config.showErrors, config.showStdOut, config.showStdErr);
+    AppStatus.setAppName(appName);
+    AppStatus.getInstance().ok();
 
     context.subscriptions.push(
         vscode.commands.registerCommand('apex-pmd.clearProblems', () => {
@@ -77,6 +81,15 @@ export function activate(context: vscode.ExtensionContext) {
             }
         });
     }
+
+    context.subscriptions.push(vscode.window.onDidChangeVisibleTextEditors(editors => {
+        const isStatusNeeded = editors.some((e) => e.document && isSupportedLanguage(e.document.languageId))
+        if (isStatusNeeded) {
+            AppStatus.getInstance().show();
+        } else {
+            AppStatus.getInstance().hide();
+        }
+    }));
 
     vscode.workspace.onDidCloseTextDocument((textDocument) => {
         collection.delete(textDocument.uri);
