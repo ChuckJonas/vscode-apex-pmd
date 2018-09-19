@@ -1,6 +1,8 @@
-# apex-pmd
+# vscode Apex Pmd
 
-Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd-apex/) directly in vscode.
+[![Build Status](https://travis-ci.org/ChuckJonas/vscode-apex-pmd.svg?branch=master)](https://travis-ci.org/ChuckJonas/vscode-apex-pmd)
+
+Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd-apex/) directly in vscode on apex & visualforce files.
 
 ## Features
 
@@ -20,12 +22,12 @@ Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd
 
 ## Configuration
 
-`rulesetPath`: set to override default ruleset (see "Defining your own ruleset" for more details)
-`runOnFileOpen`: run every time a file is opened in vscode
-`runOnFileSave`: run everytime a file is saved
-`priorityErrorThreshold`: Determines at what priority level 'errors' will be added. Anything less will be a warning or hint
-`priorityWarnThreshold`: Determines at what priority level 'warnings' will be added. Anything less will be a hint
-`pmdBinPath`: set to override the default pmd binaries.  Previously named `pmdPath`.
+- `rulesetPath`: set to override default ruleset (see "Defining your own ruleset" for more details)
+- `runOnFileOpen`: run every time a file is opened in vscode
+- `runOnFileSave`: run everytime a file is saved
+- `priorityErrorThreshold`: Determines at what priority level 'errors' will be added. Anything less will be a warning or hint
+- `priorityWarnThreshold`: Determines at what priority level 'warnings' will be added. Anything less will be a hint
+- `pmdBinPath`: set to override the default pmd binaries.  Previously named `pmdPath`.
 
 ### Defining your own "Ruleset"
 
@@ -37,8 +39,6 @@ Set `apexPMD.rulesetPath` to reference your custom ruleset.  You can either use 
 
 
 ## Legal Stuff
-
-To make configuration easier, this package now includes the PMD binaries.
 
 ```
 Copyright (c) 2003-2009, InfoEther, LLC
@@ -60,4 +60,4 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
 
-The full license (BSD-style) can be found @ `/out/pmd/license`
+The full license (BSD-style) can be found in the [PMD repo](https://github.com/pmd/pmd/blob/master/LICENSE)
