@@ -27,8 +27,8 @@ export class ApexPmd {
     private _showStdOut: boolean;
     private _showStdErr: boolean;
 
-    public constructor(outputChannel: vscode.OutputChannel, pmdPath: string, defaultRuleset: string, errorThreshold: number, warningThreshold: number, showErrors: boolean, showStdOut: boolean, showStdErr: boolean) {
-        this._rulesetPath = defaultRuleset;
+    public constructor(outputChannel: vscode.OutputChannel, pmdPath: string, rulesetPath: string, errorThreshold: number, warningThreshold: number, showErrors: boolean, showStdOut: boolean, showStdErr: boolean) {
+        this._rulesetPath = rulesetPath;
         this._pmdPath = pmdPath;
         this._errorThreshold = errorThreshold;
         this._warningThreshold = warningThreshold;

@@ -87,7 +87,7 @@
                 "apexPMD.rulesetPath": {
                     "type": "string",
                     "default": "",
-                    "description": "path to ruleset xml file.  Must also set `useDefaultRuleset:false`."
+                    "description": "path to ruleset xml file."
                 },
                 "apexPMD.runOnFileOpen": {
                     "type": "boolean",

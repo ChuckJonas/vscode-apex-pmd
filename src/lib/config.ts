@@ -2,7 +2,6 @@
 import * as vscode from 'vscode';
 
 export class Config{
-    public useDefaultRuleset: boolean;
     public rulesetPath: string;
     public pmdBinPath: string;
     public priorityErrorThreshold: number;
@@ -15,7 +14,6 @@ export class Config{
 
     public constructor(){
         let config = vscode.workspace.getConfiguration('apexPMD');
-        this.useDefaultRuleset = config.get('useDefaultRuleset') as boolean;
         this.rulesetPath = config.get('rulesetPath') as string;
         this.pmdBinPath = config.get('pmdBinPath') as string;
         this.priorityErrorThreshold = config.get('priorityErrorThreshold') as number;
