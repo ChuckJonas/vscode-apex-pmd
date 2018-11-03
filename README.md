@@ -10,11 +10,11 @@ Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd
 
 ### Current actions Supported
 
-* Run analysis on file open
-* Run analysis on file save
-* Run analysis on entire workspace
-* Run analysis on single file
-* Ability to define your own ruleset
+- Run analysis on file open
+- Run analysis on file save
+- Run analysis on entire workspace
+- Run analysis on single file
+- Ability to define your own ruleset
 
 ## System Requirements
 
@@ -27,16 +27,15 @@ Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd
 - `runOnFileSave`: run everytime a file is saved
 - `priorityErrorThreshold`: Determines at what priority level 'errors' will be added. Anything less will be a warning or hint
 - `priorityWarnThreshold`: Determines at what priority level 'warnings' will be added. Anything less will be a hint
-- `pmdBinPath`: set to override the default pmd binaries.  Previously named `pmdPath`.
+- `pmdBinPath`: set to override the default pmd binaries. Previously named `pmdPath`.
 
 ### Defining your own "Ruleset"
 
 I recommend you use the [default ruleset](https://github.com/ChuckJonas/vscode-apex-pmd/blob/master/rulesets/apex_ruleset.xml) as a starting point.
 
-Set `apexPMD.rulesetPath` to reference your custom ruleset.  You can either use the absolute path, or a relative path from your workspace (EG `my-apex-rules.xml`).
+Set `apexPMD.rulesetPath` to reference your custom ruleset. You can either use the absolute path, or a relative path from your workspace (EG `my-apex-rules.xml`).
 
-[Apex Ruleset Reference](http://pmd.sourceforge.net/snapshot/pmd-apex/rules/index.html#Default_ruleset_used_by_the_CodeClimate_Engine_for_Salesforce.com_Apex)
-
+[Apex Ruleset Reference](https://pmd.github.io/pmd-5.5.7/pmd-apex/rules/index.html)
 
 ## Legal Stuff
 
