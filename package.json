@@ -84,11 +84,6 @@
                     "default": "",
                     "description": "(Optional) path to where PMD was installed"
                 },
-                "apexPMD.rulesetPath": {
-                    "type": "string",
-                    "default": "",
-                    "description": "(DEPRECATED use 'apexPMD.rulesets') Path to ruleset xml file."
-                },
                 "apexPMD.rulesets": {
                     "type": "string[]",
                     "default": [],
