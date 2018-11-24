@@ -95,12 +95,16 @@ export class ApexPmd {
 
     }
 
+    getRulesets() {
+        return this._rulesets;
+    }
+
     private getValidRulesetPaths(rulesets: string[]) {
         const validRulesets = rulesets.filter((p) => this.checkRulesetPath(p));
         return validRulesets;
     }
 
-    private hasAtLeastOneValidRuleset() {
+    hasAtLeastOneValidRuleset() {
         if (this._rulesets.length) {
             return true;
         }
@@ -209,7 +213,7 @@ export class ApexPmd {
         return false;
     }
 
-    checkRulesetPath(rulesetPath: string): boolean {
+    private checkRulesetPath(rulesetPath: string): boolean {
         if (this.fileExists(rulesetPath)) {
             return true;
         }

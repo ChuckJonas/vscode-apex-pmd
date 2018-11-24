@@ -15,6 +15,7 @@ import {ApexPmd} from '../src/extension';
 
 const PMD_PATH = path.join(__dirname, '..', '..', 'bin', 'pmd');
 const RULESET_PATH = path.join(__dirname, '..', '..', 'rulesets', 'apex_ruleset.xml');
+const INVALID_RULESET_PATH = path.join(__dirname, '..', '..', 'rulesets', 'apex_ruleset_invalid.xml');
 const TEST_APEX_PATH = path.join(__dirname, '..', '..', 'test', 'assets', 'test.cls');
 
 suite("Extension Tests", () => {
@@ -25,7 +26,7 @@ suite("Extension Tests", () => {
         const pmd = new ApexPmd(
             outputChannel, 
             PMD_PATH, 
-            RULESET_PATH, 
+            [RULESET_PATH, INVALID_RULESET_PATH], 
             3, 
             1, 
             false, 
@@ -34,7 +35,9 @@ suite("Extension Tests", () => {
         );
 
         assert.equal(pmd.checkPmdPath(), true);
-        assert.equal(pmd.checkRulesetPath(), true);
+        assert.equal(pmd.getRulesets()[0], RULESET_PATH);
+        assert.equal(pmd.getRulesets().length, 1);
+        assert.equal(pmd.hasAtLeastOneValidRuleset(), true);
     });
 
     // Defines a Mocha unit test
@@ -47,7 +50,7 @@ suite("Extension Tests", () => {
         const pmd = new ApexPmd(
             outputChannel, 
             PMD_PATH, 
-            RULESET_PATH, 
+            [RULESET_PATH], 
             3, 
             1, 
             false, 
