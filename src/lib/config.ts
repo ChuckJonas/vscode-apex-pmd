@@ -16,6 +16,7 @@ export class Config{
 
     public constructor(ctx: vscode.ExtensionContext){
         let config = vscode.workspace.getConfiguration('apexPMD');
+        // deprecated setting is left for backward compatibility
         this._rulesetPath = config.get('rulesetPath') as string;
         this.rulesets = config.get("rulesets") as string[];
         this.pmdBinPath = config.get('pmdBinPath') as string;
@@ -37,21 +38,25 @@ export class Config{
         if (this.rulesets.length) {
             this.rulesets = this.rulesets.map((p) => {
                 let res = p;
-                if (!path.isAbsolute(res) && vscode.workspace.rootPath) {
+                if ('default' === res.toLowerCase()) {
+                    res = context.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
+                } else if (!path.isAbsolute(res) && vscode.workspace.rootPath) {
                     res = path.join(vscode.workspace.rootPath, res);
                 }
                 return res;
             });
         }
 
-        if(!this._rulesetPath) {
+        if(!this._rulesetPath && !this.rulesets.length) {
             this._rulesetPath = context.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
-        } else if (!path.isAbsolute(this._rulesetPath) && vscode.workspace.rootPath) {
+        } else if (this._rulesetPath && !path.isAbsolute(this._rulesetPath) && vscode.workspace.rootPath) {
             //convert relative path to absolute
             this._rulesetPath = path.join(vscode.workspace.rootPath, this._rulesetPath);
         }
 
-        this.rulesets.push(this._rulesetPath);
+        if (this._rulesetPath) {
+            this.rulesets.push(this._rulesetPath);
+        }
 
         if (!this.pmdBinPath) {
             this.pmdBinPath = context.asAbsolutePath(path.join('bin', 'pmd'));
