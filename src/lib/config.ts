@@ -10,9 +10,9 @@ export class Config{
     public priorityWarnThreshold: number;
     public runOnFileOpen: boolean;
     public runOnFileSave: boolean;
-    public showErrors : boolean;
-    public showStdOut : boolean;
-    public showStdErr : boolean;
+    public showErrors: boolean;
+    public showStdOut: boolean;
+    public showStdErr: boolean;
 
     public constructor(ctx: vscode.ExtensionContext){
         let config = vscode.workspace.getConfiguration('apexPMD');
