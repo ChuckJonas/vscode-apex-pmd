@@ -22,7 +22,7 @@ Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd
 
 ## Configuration
 
-- `rulesetPath`: set to override default ruleset (see "Defining your own ruleset" for more details)
+- `rulesets`: set to override default ruleset (see "Defining your own ruleset" for more details)
 - `runOnFileOpen`: run every time a file is opened in vscode
 - `runOnFileSave`: run everytime a file is saved
 - `priorityErrorThreshold`: Determines at what priority level 'errors' will be added. Anything less will be a warning or hint
@@ -33,7 +33,9 @@ Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd
 
 I recommend you use the [default ruleset](https://github.com/ChuckJonas/vscode-apex-pmd/blob/master/rulesets/apex_ruleset.xml) as a starting point.
 
-Set `apexPMD.rulesetPath` to reference your custom ruleset. You can either use the absolute path, or a relative path from your workspace (EG `my-apex-rules.xml`).
+Set `apexPMD.rulesets` string array to reference your custom rulesets. You can either use the absolute paths, or a relative paths from your workspace (EG `my-apex-rules.xml`).
+
+You can also mention the default ruleset in `apexPMD.rulesets`. To do this add `default` value to the array.
 
 [Apex Ruleset Reference](https://pmd.github.io/pmd-5.5.7/pmd-apex/rules/index.html)
 

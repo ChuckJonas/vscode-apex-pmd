@@ -84,10 +84,13 @@
                     "default": "",
                     "description": "(Optional) path to where PMD was installed"
                 },
-                "apexPMD.rulesetPath": {
-                    "type": "string",
-                    "default": "",
-                    "description": "path to ruleset xml file."
+                "apexPMD.rulesets": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [],
+                    "description": "Paths to rulesets' xml files."
                 },
                 "apexPMD.runOnFileOpen": {
                     "type": "boolean",

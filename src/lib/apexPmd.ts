@@ -19,7 +19,7 @@ const PMD_COLUMNS: (keyof PmdResult)[] = [
 
 export class ApexPmd {
     private _pmdPath: string;
-    private _rulesetPath: string;
+    private _rulesets: string[];
     private _errorThreshold: number;
     private _warningThreshold: number;
     private _outputChannel: vscode.OutputChannel;
@@ -27,8 +27,8 @@ export class ApexPmd {
     private _showStdOut: boolean;
     private _showStdErr: boolean;
 
-    public constructor(outputChannel: vscode.OutputChannel, pmdPath: string, rulesetPath: string, errorThreshold: number, warningThreshold: number, showErrors: boolean, showStdOut: boolean, showStdErr: boolean) {
-        this._rulesetPath = rulesetPath;
+    public constructor(outputChannel: vscode.OutputChannel, pmdPath: string, rulesets: string[], errorThreshold: number, warningThreshold: number, showErrors: boolean, showStdOut: boolean, showStdErr: boolean) {
+        this._rulesets = this.getValidRulesetPaths(rulesets);
         this._pmdPath = pmdPath;
         this._errorThreshold = errorThreshold;
         this._warningThreshold = warningThreshold;
@@ -47,7 +47,7 @@ export class ApexPmd {
             canceled = true;
         });
 
-        if (!this.checkPmdPath() || !this.checkRulesetPath()) return;
+        if (!this.checkPmdPath() || !this.hasAtLeastOneValidRuleset()) return;
 
         try {
             let data = await this.executeCmd(targetPath, token);
@@ -95,8 +95,27 @@ export class ApexPmd {
 
     }
 
+    getRulesets() {
+        return this._rulesets;
+    }
+
+    private getValidRulesetPaths(rulesets: string[]) {
+        const validRulesets = rulesets.filter((p) => this.checkRulesetPath(p));
+        return validRulesets;
+    }
+
+    hasAtLeastOneValidRuleset() {
+        if (this._rulesets.length) {
+            return true;
+        }
+        vscode.window.showErrorMessage(`No valid Ruleset paths found in "apexPMD.rulesets". Ensure configuration correct or change back to the default.`);
+        return false;
+    }
+
     async executeCmd(targetPath: string, token?: vscode.CancellationToken): Promise<string> {
-        let cmd = `java -cp "${path.join(this._pmdPath, 'lib', '*')}" net.sourceforge.pmd.PMD -d "${targetPath}" -f csv -R "${this._rulesetPath}"`;
+        // -R Comma-separated list of ruleset or rule references.
+        const rulesetsArg = this._rulesets.join(',');
+        let cmd = `java -cp "${path.join(this._pmdPath, 'lib', '*')}" net.sourceforge.pmd.PMD -d "${targetPath}" -f csv -R "${rulesetsArg}"`;
         if (this._showStdOut) this._outputChannel.appendLine('PMD Command: ' + cmd);
 
         let pmdCmd = ChildProcess.exec(cmd);
@@ -194,11 +213,11 @@ export class ApexPmd {
         return false;
     }
 
-    checkRulesetPath(): boolean {
-        if (this.fileExists(this._rulesetPath)) {
+    private checkRulesetPath(rulesetPath: string): boolean {
+        if (this.fileExists(rulesetPath)) {
             return true;
         }
-        vscode.window.showErrorMessage(`No Ruleset not found at ${this._rulesetPath}. Ensure configuration correct or change back to the default.`);
+        vscode.window.showErrorMessage(`No Ruleset not found at ${rulesetPath}. Ensure configuration correct or change back to the default.`);
         return false;
     }
 

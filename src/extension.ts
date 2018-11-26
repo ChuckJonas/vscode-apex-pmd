@@ -3,7 +3,6 @@
 import * as vscode from 'vscode';
 import { ApexPmd } from './lib/apexPmd';
 import { Config } from './lib/config';
-import * as path from 'path';
 import { AppStatus } from './lib/appStatus'
 
 export { ApexPmd };
@@ -14,25 +13,14 @@ const isSupportedLanguage = (langCode: string) => 0 <= supportedLanguageCodes.in
 export function activate(context: vscode.ExtensionContext) {
 
     //setup config
-    const config = new Config();
+    const config = new Config(context);
     const appName = 'Apex PMD';
-
-    if(!config.rulesetPath){
-        config.rulesetPath = context.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
-    }else if (!path.isAbsolute(config.rulesetPath) && vscode.workspace.rootPath) {
-        //convert relative path to absolute
-        config.rulesetPath = path.join(vscode.workspace.rootPath, config.rulesetPath);
-    }
-
-    if (!config.pmdBinPath) {
-        config.pmdBinPath = context.asAbsolutePath(path.join('bin', 'pmd'));
-    }
 
     //setup instance vars
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd');
     const outputChannel = vscode.window.createOutputChannel(appName);
 
-    const pmd = new ApexPmd(outputChannel, config.pmdBinPath, config.rulesetPath, config.priorityErrorThreshold, config.priorityWarnThreshold, config.showErrors, config.showStdOut, config.showStdErr);
+    const pmd = new ApexPmd(outputChannel, config.pmdBinPath, config.rulesets, config.priorityErrorThreshold, config.priorityWarnThreshold, config.showErrors, config.showStdOut, config.showStdErr);
     AppStatus.setAppName(appName);
     AppStatus.getInstance().ok();
 
