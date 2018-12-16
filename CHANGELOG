@@ -9,3 +9,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New setting `apexPMD.rulesets`. This is a replacement for the deprecated `apexPMD.rulesetPath` setting. You can specify a list of rulesets you need to analyze your code against.
 ### Removed
 - `apexPMD.rulesetPath` setting is now deprecated. It still works for backward compatibility but consider moving to a newer setting `apexPMD.rulesets`.
+### Changed
+- `apexPMD.pmdBinPath` description is updated to reduce confusion over this setting.

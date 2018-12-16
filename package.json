@@ -82,7 +82,7 @@
                 "apexPMD.pmdBinPath": {
                     "type": "string",
                     "default": "",
-                    "description": "(Optional) path to where PMD was installed"
+                    "description": "(Optional) Path to where PMD was installed"
                 },
                 "apexPMD.rulesets": {
                     "type": "array",
@@ -90,7 +90,7 @@
                         "type": "string"
                     },
                     "default": [],
-                    "description": "Paths to rulesets' xml files."
+                    "description": "(Optional) Paths to rulesets' xml files."
                 },
                 "apexPMD.runOnFileOpen": {
                     "type": "boolean",
