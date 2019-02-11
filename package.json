@@ -8,7 +8,6 @@
         "name": "Charlie Jonas",
         "email": "charlie@callawaycloudconsulting.com"
     },
-    "license": "MIT",
     "engines": {
         "vscode": "^1.22.0",
         "node": "^5.10.0"
