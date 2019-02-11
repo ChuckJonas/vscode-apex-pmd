@@ -22,12 +22,12 @@ Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd
 
 ## Configuration
 
-- `rulesets`: set to override default ruleset (see "Defining your own ruleset" for more details)
+- `rulesets` (optional): set to override default ruleset (see "Defining your own ruleset" for more details)
 - `runOnFileOpen`: run every time a file is opened in vscode
 - `runOnFileSave`: run everytime a file is saved
 - `priorityErrorThreshold`: Determines at what priority level 'errors' will be added. Anything less will be a warning or hint
 - `priorityWarnThreshold`: Determines at what priority level 'warnings' will be added. Anything less will be a hint
-- `pmdBinPath`: set to override the default pmd binaries. Previously named `pmdPath`.
+- `pmdBinPath` (prev. `pmdPath`) (optional): set to override the default pmd binaries. This should point to the PMD folder which contains folders `lib` and `bin`. Most likely it is called `libexec`.
 
 ### Defining your own "Ruleset"
 
