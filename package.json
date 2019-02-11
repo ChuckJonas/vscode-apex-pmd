@@ -2,12 +2,13 @@
     "name": "apex-pmd",
     "displayName": "Apex PMD",
     "description": "PMD static analysis for Salesforce Apex",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "publisher": "chuckjonas",
     "author": {
         "name": "Charlie Jonas",
         "email": "charlie@callawaycloudconsulting.com"
     },
+    "license": "MIT",
     "engines": {
         "vscode": "^1.22.0",
         "node": "^5.10.0"
