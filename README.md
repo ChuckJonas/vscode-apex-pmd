@@ -37,7 +37,7 @@ Set `apexPMD.rulesets` string array to reference your custom rulesets. You can e
 
 You can also mention the default ruleset in `apexPMD.rulesets`. To do this add `default` value to the array.
 
-[Apex Ruleset Reference](https://pmd.github.io/pmd-5.5.7/pmd-apex/rules/index.html)
+[Apex Ruleset Reference](https://pmd.github.io/pmd-6.11.0/pmd_rules_apex.html)
 
 ## Legal Stuff
 
