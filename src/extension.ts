@@ -20,7 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd');
     const outputChannel = vscode.window.createOutputChannel(appName);
 
-    const pmd = new ApexPmd(outputChannel, config.pmdBinPath, config.rulesets, config.priorityErrorThreshold, config.priorityWarnThreshold, config.showErrors, config.showStdOut, config.showStdErr);
+    const pmd = new ApexPmd(outputChannel, config);
     AppStatus.setAppName(appName);
     AppStatus.getInstance().ok();
 

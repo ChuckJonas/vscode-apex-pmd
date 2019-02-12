@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Change
 - Upgraded csv parsing package
 - Improved recovery handling of bad csv data
-- ignore problems in .sfdx generated files
+- Ignore problems in .sfdx generated files
+- Ability to enable PMD caching for a faster analysis
 
 
 ## [0.3.1]

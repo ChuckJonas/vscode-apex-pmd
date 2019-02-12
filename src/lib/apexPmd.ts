@@ -3,6 +3,7 @@ import * as ChildProcess from 'child_process'
 import * as fs from 'fs';
 import * as path from 'path';
 import * as parser from 'csv-parse/lib/sync'
+import { Config } from './config'
 import { AppStatus } from './appStatus'
 import { EOL } from 'os'
 
@@ -26,16 +27,18 @@ export class ApexPmd {
     private _showErrors: boolean;
     private _showStdOut: boolean;
     private _showStdErr: boolean;
+    private _enableCache: boolean;
 
-    public constructor(outputChannel: vscode.OutputChannel, pmdPath: string, rulesets: string[], errorThreshold: number, warningThreshold: number, showErrors: boolean, showStdOut: boolean, showStdErr: boolean) {
-        this._rulesets = this.getValidRulesetPaths(rulesets);
-        this._pmdPath = pmdPath;
-        this._errorThreshold = errorThreshold;
-        this._warningThreshold = warningThreshold;
+    public constructor(outputChannel: vscode.OutputChannel, config: Config) {
+        this._rulesets = this.getValidRulesetPaths(config.rulesets);
+        this._pmdPath = config.pmdBinPath;
+        this._errorThreshold = config.priorityErrorThreshold;
+        this._warningThreshold = config.priorityWarnThreshold;
         this._outputChannel = outputChannel;
-        this._showErrors = showErrors;
-        this._showStdOut = showStdOut;
-        this._showStdErr = showStdErr;
+        this._showErrors = config.showErrors;
+        this._showStdOut = config.showStdOut;
+        this._showStdErr = config.showStdErr;
+        this._enableCache = config.enableCache;
     }
 
     public async run(targetPath: string, collection: vscode.DiagnosticCollection, progress?: vscode.Progress<{ message?: string; increment?: number; }>, token?: vscode.CancellationToken): Promise<void> {
@@ -114,8 +117,17 @@ export class ApexPmd {
 
     async executeCmd(targetPath: string, token?: vscode.CancellationToken): Promise<string> {
         // -R Comma-separated list of ruleset or rule references.
+        const cachePath = `${vscode.workspace.rootPath}/.pmdCache`;
         const rulesetsArg = this._rulesets.join(',');
-        let cmd = `java -cp "${path.join(this._pmdPath, 'lib', '*')}" net.sourceforge.pmd.PMD -d "${targetPath}" -f csv -R "${rulesetsArg}"`;
+
+        const cacheKey = this._enableCache ? `-cache ${cachePath}` : '-no-cache';
+        const formatKey = `-f csv`;
+        const targetPathKey = `-d "${targetPath}"`;
+        const rulesetsKey = `-R "${rulesetsArg}"`;
+
+        const pmdKeys = `${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`
+
+        const cmd = `java -cp "${path.join(this._pmdPath, 'lib', '*')}" net.sourceforge.pmd.PMD ${pmdKeys}`;
         if (this._showStdOut) this._outputChannel.appendLine('PMD Command: ' + cmd);
 
         let pmdCmd = ChildProcess.exec(cmd);

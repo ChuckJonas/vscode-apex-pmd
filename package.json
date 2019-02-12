@@ -126,6 +126,11 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Show showStdErr in output window"
+                },
+                "apexPMD.enableCache": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Creates a cache file for PMD to run faster. Will create a .pmdCache file in your workspace"
                 }
             }
         },
