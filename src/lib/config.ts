@@ -15,21 +15,25 @@ export class Config{
     public showStdErr: boolean;
     public enableCache: boolean;
 
-    public constructor(ctx: vscode.ExtensionContext){
-        let config = vscode.workspace.getConfiguration('apexPMD');
-        // deprecated setting is left for backward compatibility
-        this._rulesetPath = config.get('rulesetPath') as string;
-        this.rulesets = config.get("rulesets") as string[];
-        this.pmdBinPath = config.get('pmdBinPath') as string;
-        this.priorityErrorThreshold = config.get('priorityErrorThreshold') as number;
-        this.priorityWarnThreshold = config.get('priorityWarnThreshold') as number;
-        this.runOnFileOpen = config.get('runOnFileOpen') as boolean;
-        this.runOnFileSave = config.get('runOnFileSave') as boolean;
-        this.showErrors = config.get('showErrors') as boolean;
-        this.showStdOut = config.get('showStdOut') as boolean;
-        this.showStdErr = config.get('showStdErr') as boolean;
-        this.enableCache = config.get('enableCache') as boolean;
-        this.fixPaths(ctx);
+    public constructor(ctx?: vscode.ExtensionContext){
+        if (ctx) {
+            let config = vscode.workspace.getConfiguration('apexPMD');
+            // deprecated setting is left for backward compatibility
+            this._rulesetPath = config.get('rulesetPath') as string;
+            this.rulesets = config.get("rulesets") as string[];
+            this.pmdBinPath = config.get('pmdBinPath') as string;
+            this.priorityErrorThreshold = config.get('priorityErrorThreshold') as number;
+            this.priorityWarnThreshold = config.get('priorityWarnThreshold') as number;
+            this.runOnFileOpen = config.get('runOnFileOpen') as boolean;
+            this.runOnFileSave = config.get('runOnFileSave') as boolean;
+            this.showErrors = config.get('showErrors') as boolean;
+            this.showStdOut = config.get('showStdOut') as boolean;
+            this.showStdErr = config.get('showStdErr') as boolean;
+            this.enableCache = config.get('enableCache') as boolean;
+            this.fixPaths(ctx);
+        } else {
+            console.warn('VSCode ApexPMD missing configuration')
+        }
     }
 
     private fixPaths(context: vscode.ExtensionContext) {
