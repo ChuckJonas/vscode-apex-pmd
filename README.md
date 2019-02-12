@@ -40,6 +40,10 @@ You can also mention the default ruleset in `apexPMD.rulesets`. To do this add `
 
 [Apex Ruleset Reference](https://pmd.github.io/pmd-6.11.0/pmd_rules_apex.html)
 
+NOTE: If you are move alway from the "default result" in an sfdx project, make sure to exclude the `.sfdx` generated classes by keeping this line:
+
+`<exclude-pattern>.*/.sfdx/.*</exclude-pattern>`
+
 ## Legal Stuff
 
 ```
