@@ -151,17 +151,36 @@ export class ApexPmd {
 
     parseProblems(csv: string): Map<string, Array<vscode.Diagnostic>> {
 
-        let results: PmdResult[] = parser(csv, {
-            columns: PMD_COLUMNS
-        });
+        let results: PmdResult[];
+        try{
+            results = parser(csv, {
+                columns: PMD_COLUMNS,
+                relax_column_count: true
+            });
+        }catch(e){
+            //try to recover parsing... remove last ln and try again
+            let lines = csv.split(EOL);
+            lines.pop();
+            csv = lines.join(EOL);
+            results = parser(csv, {
+                columns: PMD_COLUMNS,
+                relax_column_count: true
+            });
+        }
 
         let problemsMap = new Map<string, Array<vscode.Diagnostic>>();
         let problemCount = 0;
 
         for (let i = 1; i < results.length; i++) {
             try {
+
                 let result = results[i];
                 if (!results[i]) continue;
+
+                //skip .sfdx files
+                if(result.file.includes('.sfdx')){
+                    continue;
+                }
 
                 let problem = this.createDiagonistic(result);
                 if (!problem) continue;
