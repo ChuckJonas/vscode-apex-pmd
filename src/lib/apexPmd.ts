@@ -114,8 +114,14 @@ export class ApexPmd {
 
     async executeCmd(targetPath: string, token?: vscode.CancellationToken): Promise<string> {
         // -R Comma-separated list of ruleset or rule references.
+        const cachePath = `${vscode.workspace.rootPath}/.pmdCache`
         const rulesetsArg = this._rulesets.join(',');
-        let cmd = `java -cp "${path.join(this._pmdPath, 'lib', '*')}" net.sourceforge.pmd.PMD -d "${targetPath}" -f csv -R "${rulesetsArg}"`;
+
+        const pmdKeys = `-f csv -cache ${cachePath}`
+        const targetPathKey = `-d "${targetPath}"`
+        const rulesetsKey = `-R "${rulesetsArg}"`
+
+        const cmd = `java -cp "${path.join(this._pmdPath, 'lib', '*')}" net.sourceforge.pmd.PMD ${pmdKeys} ${targetPathKey} ${rulesetsKey}`;
         if (this._showStdOut) this._outputChannel.appendLine('PMD Command: ' + cmd);
 
         let pmdCmd = ChildProcess.exec(cmd);
