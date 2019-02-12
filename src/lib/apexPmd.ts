@@ -6,6 +6,7 @@ import * as parser from 'csv-parse/lib/sync'
 import { Config } from './config'
 import { AppStatus } from './appStatus'
 import { EOL } from 'os'
+import { Options } from 'csv-parse';
 
 const PMD_COLUMNS: (keyof PmdResult)[] = [
     'problem',
@@ -42,7 +43,7 @@ export class ApexPmd {
     }
 
     public async run(targetPath: string, collection: vscode.DiagnosticCollection, progress?: vscode.Progress<{ message?: string; increment?: number; }>, token?: vscode.CancellationToken): Promise<void> {
-        this._outputChannel.appendLine(`Analysing ${targetPath}`);
+        this._outputChannel.appendLine(`Analyzing ${targetPath}`);
         AppStatus.getInstance().thinking();
 
         let canceled = false;
@@ -93,7 +94,7 @@ export class ApexPmd {
             }
         } catch (e) {
             AppStatus.getInstance().errors();
-            vscode.window.showErrorMessage(`Static Anaylsis Failed. Error Details: ${e}`);
+            vscode.window.showErrorMessage(`Static Analysis Failed. Error Details: ${e}`);
         }
 
     }
@@ -144,8 +145,11 @@ export class ApexPmd {
                     reject(e);
                 });
                 pmdCmd.addListener("exit", (e) => {
-                    if (e === 1) {
-                        reject('PMD Command Failed.  Enable "Show StdErr" setting for more info.')
+                    if (e !== 0 && e !== 4) {
+                        this._outputChannel.appendLine(`Failed Exit Code: ${e}`);
+                        if(!stdout){
+                            reject('PMD Command Failed!  Enable "Show StdErr" setting for more info.')
+                        }
                     }
                     resolve(stdout);
                 });
@@ -164,20 +168,23 @@ export class ApexPmd {
     parseProblems(csv: string): Map<string, Array<vscode.Diagnostic>> {
 
         let results: PmdResult[];
+        let parseOpts: Options = {
+            columns: PMD_COLUMNS,
+            relax_column_count: true
+        }
         try{
-            results = parser(csv, {
-                columns: PMD_COLUMNS,
-                relax_column_count: true
-            });
+            results = parser(csv, parseOpts);
         }catch(e){
             //try to recover parsing... remove last ln and try again
             let lines = csv.split(EOL);
             lines.pop();
             csv = lines.join(EOL);
-            results = parser(csv, {
-                columns: PMD_COLUMNS,
-                relax_column_count: true
-            });
+            try{
+                results = parser(csv, parseOpts);
+            }catch(e){
+                throw new Error('Failed to parse PMD Results.  Enable please logging (STDOUT & STDERROR) and submit an issue if this problem persists.');
+            }
+            vscode.window.showWarningMessage('Failed to read all PMD problems!');
         }
 
         let problemsMap = new Map<string, Array<vscode.Diagnostic>>();
@@ -194,7 +201,7 @@ export class ApexPmd {
                     continue;
                 }
 
-                let problem = this.createDiagonistic(result);
+                let problem = this.createDiagnostic(result);
                 if (!problem) continue;
 
                 problemCount++;
@@ -211,7 +218,7 @@ export class ApexPmd {
         return problemsMap;
     }
 
-    createDiagonistic(result: PmdResult): vscode.Diagnostic {
+    createDiagnostic(result: PmdResult): vscode.Diagnostic {
         let lineNum = parseInt(result.line) - 1;
         let msg = result.description;
         let priority = parseInt(result.priority);
