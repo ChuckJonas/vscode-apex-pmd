@@ -13,6 +13,7 @@ export class Config{
     public showErrors: boolean;
     public showStdOut: boolean;
     public showStdErr: boolean;
+    public enableCache: boolean;
 
     public constructor(ctx: vscode.ExtensionContext){
         let config = vscode.workspace.getConfiguration('apexPMD');
@@ -27,6 +28,7 @@ export class Config{
         this.showErrors = config.get('showErrors') as boolean;
         this.showStdOut = config.get('showStdOut') as boolean;
         this.showStdErr = config.get('showStdErr') as boolean;
+        this.enableCache = config.get('enableCache') as boolean;
         this.fixPaths(ctx);
     }
 
