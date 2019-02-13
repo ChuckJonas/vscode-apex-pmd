@@ -10,7 +10,8 @@ import * as assert from 'assert';
 // as well as import your extension to test it
 import * as vscode from 'vscode';
 import * as path from 'path';
-import {ApexPmd} from '../src/extension';
+import { ApexPmd } from '../src/extension';
+import { Config } from '../src/lib/config'
 
 
 const PMD_PATH = path.join(__dirname, '..', '..', 'bin', 'pmd');
@@ -23,15 +24,18 @@ suite("Extension Tests", () => {
     test("check default paths", () => {
         const outputChannel = vscode.window.createOutputChannel('Apex PMD');
         
+        const config = new Config();
+        config.pmdBinPath = PMD_PATH;
+        config.rulesets = [RULESET_PATH, INVALID_RULESET_PATH];
+        config.priorityErrorThreshold = 3;
+        config.priorityWarnThreshold = 1;
+        config.showErrors = false;
+        config.showStdOut = false;
+        config.showStdErr = false;
+
         const pmd = new ApexPmd(
             outputChannel, 
-            PMD_PATH, 
-            [RULESET_PATH, INVALID_RULESET_PATH], 
-            3, 
-            1, 
-            false, 
-            false, 
-            false
+            config
         );
 
         assert.equal(pmd.checkPmdPath(), true);
@@ -46,16 +50,19 @@ suite("Extension Tests", () => {
         
         const collection = vscode.languages.createDiagnosticCollection('apex-pmd-test');
         const outputChannel = vscode.window.createOutputChannel('Apex PMD');
+
+        const config = new Config();
+        config.pmdBinPath = PMD_PATH;
+        config.rulesets = [RULESET_PATH];
+        config.priorityErrorThreshold = 3;
+        config.priorityWarnThreshold = 1;
+        config.showErrors = false;
+        config.showStdOut = false;
+        config.showStdErr = false;
         
         const pmd = new ApexPmd(
             outputChannel, 
-            PMD_PATH, 
-            [RULESET_PATH], 
-            3, 
-            1, 
-            false, 
-            false, 
-            false
+            config
         );
 
         let testApexUri = vscode.Uri.file(TEST_APEX_PATH);

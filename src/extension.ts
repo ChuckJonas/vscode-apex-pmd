@@ -10,17 +10,18 @@ export { ApexPmd };
 const supportedLanguageCodes = ['apex', 'visualforce']
 const isSupportedLanguage = (langCode: string) => 0 <= supportedLanguageCodes.indexOf(langCode)
 
+const appName = 'Apex PMD';
+const settingsNamespace = 'apexPMD';
+const collection = vscode.languages.createDiagnosticCollection('apex-pmd');
+const outputChannel = vscode.window.createOutputChannel(appName);
+
 export function activate(context: vscode.ExtensionContext) {
 
     //setup config
     const config = new Config(context);
-    const appName = 'Apex PMD';
 
     //setup instance vars
-    const collection = vscode.languages.createDiagnosticCollection('apex-pmd');
-    const outputChannel = vscode.window.createOutputChannel(appName);
-
-    const pmd = new ApexPmd(outputChannel, config.pmdBinPath, config.rulesets, config.priorityErrorThreshold, config.priorityWarnThreshold, config.showErrors, config.showStdOut, config.showStdErr);
+    const pmd = new ApexPmd(outputChannel, config);
     AppStatus.setAppName(appName);
     AppStatus.getInstance().ok();
 
@@ -69,6 +70,13 @@ export function activate(context: vscode.ExtensionContext) {
             }
         });
     }
+
+    vscode.workspace.onDidChangeConfiguration((configChange: vscode.ConfigurationChangeEvent) => {
+        if(configChange.affectsConfiguration(settingsNamespace)) {
+            config.init();
+            return pmd.updateConfiguration(config);
+        }
+    });
 
     context.subscriptions.push(vscode.window.onDidChangeVisibleTextEditors(editors => {
         const isStatusNeeded = editors.some((e) => e.document && isSupportedLanguage(e.document.languageId))

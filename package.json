@@ -2,7 +2,7 @@
     "name": "apex-pmd",
     "displayName": "Apex PMD",
     "description": "PMD static analysis for Salesforce Apex",
-    "version": "0.3.1",
+    "version": "0.4.0",
     "publisher": "chuckjonas",
     "author": {
         "name": "Charlie Jonas",
@@ -126,6 +126,11 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Show showStdErr in output window"
+                },
+                "apexPMD.enableCache": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Creates a cache file for PMD to run faster. Will create a .pmdCache file in your workspace"
                 }
             }
         },
@@ -153,14 +158,14 @@
         "test": "node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
+        "@types/csv-parse": "^1.1.11",
         "@types/mocha": "^5.2.5",
         "@types/node": "^10.9.4",
         "mocha": "^5.2.0",
         "typescript": "^3.0.3",
-        "vscode": "^1.1.29",
-        "@types/csv-parse": "^1.1.11"
+        "vscode": "^1.1.29"
     },
     "dependencies": {
-        "csv-parse": "^3.0.0"
+        "csv-parse": "^4.3.1"
     }
 }

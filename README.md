@@ -18,15 +18,17 @@ Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd
 
 ## System Requirements
 
-1. Must have `JDK >=1.4` installed and in path
+- Must have JRE >= 1.7 installed and in path
+- See [PMD System Requirements](https://pmd.github.io/pmd-6.11.0/pmd_userdocs_installation.html#requirements) for more details
 
 ## Configuration
 
 - `rulesets` (optional): set to override default ruleset (see "Defining your own ruleset" for more details)
 - `runOnFileOpen`: run every time a file is opened in vscode
-- `runOnFileSave`: run everytime a file is saved
+- `runOnFileSave`: run every time a file is saved
 - `priorityErrorThreshold`: Determines at what priority level 'errors' will be added. Anything less will be a warning or hint
 - `priorityWarnThreshold`: Determines at what priority level 'warnings' will be added. Anything less will be a hint
+- `enableCache`: Creates a cache file for PMD to run faster. Will create a .pmdCache file in your workspace
 - `pmdBinPath` (prev. `pmdPath`) (optional): set to override the default pmd binaries. This should point to the PMD folder which contains folders `lib` and `bin`. Most likely it is called `libexec`.
 
 ### Defining your own "Ruleset"
@@ -38,6 +40,10 @@ Set `apexPMD.rulesets` string array to reference your custom rulesets. You can e
 You can also mention the default ruleset in `apexPMD.rulesets`. To do this add `default` value to the array.
 
 [Apex Ruleset Reference](https://pmd.github.io/pmd-6.11.0/pmd_rules_apex.html)
+
+NOTE: If you are move alway from the "default result" in an sfdx project, make sure to exclude the `.sfdx` generated classes by keeping this line:
+
+`<exclude-pattern>.*/.sfdx/.*</exclude-pattern>`
 
 ## Legal Stuff
 

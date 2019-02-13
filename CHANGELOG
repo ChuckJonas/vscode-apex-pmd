@@ -4,6 +4,16 @@ All notable changes to the VS Code Apex PMD will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.2]
+### Added
+- Ability to enable PMD caching for a faster analysis
+### Change
+- Upgraded csv parsing package
+- Improved recovery handling of bad csv data
+- Ignore problems in .sfdx generated files
+- Settings auto-load on change. If you change settings you no longer need to reload VSCode
+
+
 ## [0.3.1]
 ### Change
 - Upgrade package to fix security issues

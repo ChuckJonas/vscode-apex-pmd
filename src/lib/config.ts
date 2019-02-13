@@ -13,8 +13,20 @@ export class Config{
     public showErrors: boolean;
     public showStdOut: boolean;
     public showStdErr: boolean;
+    public enableCache: boolean;
 
-    public constructor(ctx: vscode.ExtensionContext){
+    private _ctx: vscode.ExtensionContext;
+
+    public constructor(ctx?: vscode.ExtensionContext){
+        if (ctx) {
+            this._ctx = ctx;
+            this.init();
+        } else {
+            console.warn('VSCode ApexPMD missing configuration')
+        }
+    }
+
+    public init() {
         let config = vscode.workspace.getConfiguration('apexPMD');
         // deprecated setting is left for backward compatibility
         this._rulesetPath = config.get('rulesetPath') as string;
@@ -27,10 +39,11 @@ export class Config{
         this.showErrors = config.get('showErrors') as boolean;
         this.showStdOut = config.get('showStdOut') as boolean;
         this.showStdErr = config.get('showStdErr') as boolean;
-        this.fixPaths(ctx);
+        this.enableCache = config.get('enableCache') as boolean;
+        this.resolvePaths();
     }
 
-    private fixPaths(context: vscode.ExtensionContext) {
+    private resolvePaths() {
         if (!this.rulesets) {
             this.rulesets = [];
         }
@@ -39,7 +52,7 @@ export class Config{
             this.rulesets = this.rulesets.map((p) => {
                 let res = p;
                 if ('default' === res.toLowerCase()) {
-                    res = context.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
+                    res = this._ctx.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
                 } else if (!path.isAbsolute(res) && vscode.workspace.rootPath) {
                     res = path.join(vscode.workspace.rootPath, res);
                 }
@@ -48,7 +61,7 @@ export class Config{
         }
 
         if(!this._rulesetPath && !this.rulesets.length) {
-            this._rulesetPath = context.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
+            this._rulesetPath = this._ctx.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
         } else if (this._rulesetPath && !path.isAbsolute(this._rulesetPath) && vscode.workspace.rootPath) {
             //convert relative path to absolute
             this._rulesetPath = path.join(vscode.workspace.rootPath, this._rulesetPath);
@@ -59,7 +72,7 @@ export class Config{
         }
 
         if (!this.pmdBinPath) {
-            this.pmdBinPath = context.asAbsolutePath(path.join('bin', 'pmd'));
+            this.pmdBinPath = this._ctx.asAbsolutePath(path.join('bin', 'pmd'));
         }
     }
 }

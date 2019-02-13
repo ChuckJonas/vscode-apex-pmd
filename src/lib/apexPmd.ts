@@ -3,8 +3,10 @@ import * as ChildProcess from 'child_process'
 import * as fs from 'fs';
 import * as path from 'path';
 import * as parser from 'csv-parse/lib/sync'
+import { Config } from './config'
 import { AppStatus } from './appStatus'
 import { EOL } from 'os'
+import { Options } from 'csv-parse';
 
 const PMD_COLUMNS: (keyof PmdResult)[] = [
     'problem',
@@ -26,20 +28,33 @@ export class ApexPmd {
     private _showErrors: boolean;
     private _showStdOut: boolean;
     private _showStdErr: boolean;
+    private _enableCache: boolean;
 
-    public constructor(outputChannel: vscode.OutputChannel, pmdPath: string, rulesets: string[], errorThreshold: number, warningThreshold: number, showErrors: boolean, showStdOut: boolean, showStdErr: boolean) {
-        this._rulesets = this.getValidRulesetPaths(rulesets);
-        this._pmdPath = pmdPath;
-        this._errorThreshold = errorThreshold;
-        this._warningThreshold = warningThreshold;
+    public constructor(outputChannel: vscode.OutputChannel, config: Config) {
+        this._rulesets = this.getValidRulesetPaths(config.rulesets);
+        this._pmdPath = config.pmdBinPath;
+        this._errorThreshold = config.priorityErrorThreshold;
+        this._warningThreshold = config.priorityWarnThreshold;
         this._outputChannel = outputChannel;
-        this._showErrors = showErrors;
-        this._showStdOut = showStdOut;
-        this._showStdErr = showStdErr;
+        this._showErrors = config.showErrors;
+        this._showStdOut = config.showStdOut;
+        this._showStdErr = config.showStdErr;
+        this._enableCache = config.enableCache;
+    }
+
+    public updateConfiguration(config: Config) {
+        this._rulesets = this.getValidRulesetPaths(config.rulesets);
+        this._pmdPath = config.pmdBinPath;
+        this._errorThreshold = config.priorityErrorThreshold;
+        this._warningThreshold = config.priorityWarnThreshold;
+        this._showErrors = config.showErrors;
+        this._showStdOut = config.showStdOut;
+        this._showStdErr = config.showStdErr;
+        this._enableCache = config.enableCache;
     }
 
     public async run(targetPath: string, collection: vscode.DiagnosticCollection, progress?: vscode.Progress<{ message?: string; increment?: number; }>, token?: vscode.CancellationToken): Promise<void> {
-        this._outputChannel.appendLine(`Analysing ${targetPath}`);
+        this._outputChannel.appendLine(`Analyzing ${targetPath}`);
         AppStatus.getInstance().thinking();
 
         let canceled = false;
@@ -90,7 +105,7 @@ export class ApexPmd {
             }
         } catch (e) {
             AppStatus.getInstance().errors();
-            vscode.window.showErrorMessage(`Static Anaylsis Failed. Error Details: ${e}`);
+            vscode.window.showErrorMessage(`Static Analysis Failed. Error Details: ${e}`);
         }
 
     }
@@ -114,8 +129,17 @@ export class ApexPmd {
 
     async executeCmd(targetPath: string, token?: vscode.CancellationToken): Promise<string> {
         // -R Comma-separated list of ruleset or rule references.
+        const cachePath = `${vscode.workspace.rootPath}/.pmdCache`;
         const rulesetsArg = this._rulesets.join(',');
-        let cmd = `java -cp "${path.join(this._pmdPath, 'lib', '*')}" net.sourceforge.pmd.PMD -d "${targetPath}" -f csv -R "${rulesetsArg}"`;
+
+        const cacheKey = this._enableCache ? `-cache ${cachePath}` : '-no-cache';
+        const formatKey = `-f csv`;
+        const targetPathKey = `-d "${targetPath}"`;
+        const rulesetsKey = `-R "${rulesetsArg}"`;
+
+        const pmdKeys = `${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`
+
+        const cmd = `java -cp "${path.join(this._pmdPath, 'lib', '*')}" net.sourceforge.pmd.PMD ${pmdKeys}`;
         if (this._showStdOut) this._outputChannel.appendLine('PMD Command: ' + cmd);
 
         let pmdCmd = ChildProcess.exec(cmd);
@@ -132,8 +156,11 @@ export class ApexPmd {
                     reject(e);
                 });
                 pmdCmd.addListener("exit", (e) => {
-                    if (e === 1) {
-                        reject('PMD Command Failed.  Enable "Show StdErr" setting for more info.')
+                    if (e !== 0 && e !== 4) {
+                        this._outputChannel.appendLine(`Failed Exit Code: ${e}`);
+                        if(!stdout){
+                            reject('PMD Command Failed!  Enable "Show StdErr" setting for more info.')
+                        }
                     }
                     resolve(stdout);
                 });
@@ -151,19 +178,41 @@ export class ApexPmd {
 
     parseProblems(csv: string): Map<string, Array<vscode.Diagnostic>> {
 
-        let results: PmdResult[] = parser(csv, {
-            columns: PMD_COLUMNS
-        });
+        let results: PmdResult[];
+        let parseOpts: Options = {
+            columns: PMD_COLUMNS,
+            relax_column_count: true
+        }
+        try{
+            results = parser(csv, parseOpts);
+        }catch(e){
+            //try to recover parsing... remove last ln and try again
+            let lines = csv.split(EOL);
+            lines.pop();
+            csv = lines.join(EOL);
+            try{
+                results = parser(csv, parseOpts);
+            }catch(e){
+                throw new Error('Failed to parse PMD Results.  Enable please logging (STDOUT & STDERROR) and submit an issue if this problem persists.');
+            }
+            vscode.window.showWarningMessage('Failed to read all PMD problems!');
+        }
 
         let problemsMap = new Map<string, Array<vscode.Diagnostic>>();
         let problemCount = 0;
 
         for (let i = 1; i < results.length; i++) {
             try {
+
                 let result = results[i];
                 if (!results[i]) continue;
 
-                let problem = this.createDiagonistic(result);
+                //skip .sfdx files
+                if(result.file.includes('.sfdx')){
+                    continue;
+                }
+
+                let problem = this.createDiagnostic(result);
                 if (!problem) continue;
 
                 problemCount++;
@@ -180,7 +229,7 @@ export class ApexPmd {
         return problemsMap;
     }
 
-    createDiagonistic(result: PmdResult): vscode.Diagnostic {
+    createDiagnostic(result: PmdResult): vscode.Diagnostic {
         let lineNum = parseInt(result.line) - 1;
         let msg = result.description;
         let priority = parseInt(result.priority);
