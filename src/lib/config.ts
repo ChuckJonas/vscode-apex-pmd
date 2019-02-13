@@ -15,28 +15,35 @@ export class Config{
     public showStdErr: boolean;
     public enableCache: boolean;
 
+    private _ctx: vscode.ExtensionContext;
+
     public constructor(ctx?: vscode.ExtensionContext){
         if (ctx) {
-            let config = vscode.workspace.getConfiguration('apexPMD');
-            // deprecated setting is left for backward compatibility
-            this._rulesetPath = config.get('rulesetPath') as string;
-            this.rulesets = config.get("rulesets") as string[];
-            this.pmdBinPath = config.get('pmdBinPath') as string;
-            this.priorityErrorThreshold = config.get('priorityErrorThreshold') as number;
-            this.priorityWarnThreshold = config.get('priorityWarnThreshold') as number;
-            this.runOnFileOpen = config.get('runOnFileOpen') as boolean;
-            this.runOnFileSave = config.get('runOnFileSave') as boolean;
-            this.showErrors = config.get('showErrors') as boolean;
-            this.showStdOut = config.get('showStdOut') as boolean;
-            this.showStdErr = config.get('showStdErr') as boolean;
-            this.enableCache = config.get('enableCache') as boolean;
-            this.fixPaths(ctx);
+            this._ctx = ctx;
+            this.init();
         } else {
             console.warn('VSCode ApexPMD missing configuration')
         }
     }
 
-    private fixPaths(context: vscode.ExtensionContext) {
+    public init() {
+        let config = vscode.workspace.getConfiguration('apexPMD');
+        // deprecated setting is left for backward compatibility
+        this._rulesetPath = config.get('rulesetPath') as string;
+        this.rulesets = config.get("rulesets") as string[];
+        this.pmdBinPath = config.get('pmdBinPath') as string;
+        this.priorityErrorThreshold = config.get('priorityErrorThreshold') as number;
+        this.priorityWarnThreshold = config.get('priorityWarnThreshold') as number;
+        this.runOnFileOpen = config.get('runOnFileOpen') as boolean;
+        this.runOnFileSave = config.get('runOnFileSave') as boolean;
+        this.showErrors = config.get('showErrors') as boolean;
+        this.showStdOut = config.get('showStdOut') as boolean;
+        this.showStdErr = config.get('showStdErr') as boolean;
+        this.enableCache = config.get('enableCache') as boolean;
+        this.resolvePaths();
+    }
+
+    private resolvePaths() {
         if (!this.rulesets) {
             this.rulesets = [];
         }
@@ -45,7 +52,7 @@ export class Config{
             this.rulesets = this.rulesets.map((p) => {
                 let res = p;
                 if ('default' === res.toLowerCase()) {
-                    res = context.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
+                    res = this._ctx.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
                 } else if (!path.isAbsolute(res) && vscode.workspace.rootPath) {
                     res = path.join(vscode.workspace.rootPath, res);
                 }
@@ -54,7 +61,7 @@ export class Config{
         }
 
         if(!this._rulesetPath && !this.rulesets.length) {
-            this._rulesetPath = context.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
+            this._rulesetPath = this._ctx.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
         } else if (this._rulesetPath && !path.isAbsolute(this._rulesetPath) && vscode.workspace.rootPath) {
             //convert relative path to absolute
             this._rulesetPath = path.join(vscode.workspace.rootPath, this._rulesetPath);
@@ -65,7 +72,7 @@ export class Config{
         }
 
         if (!this.pmdBinPath) {
-            this.pmdBinPath = context.asAbsolutePath(path.join('bin', 'pmd'));
+            this.pmdBinPath = this._ctx.asAbsolutePath(path.join('bin', 'pmd'));
         }
     }
 }
