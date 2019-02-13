@@ -42,6 +42,17 @@ export class ApexPmd {
         this._enableCache = config.enableCache;
     }
 
+    public updateConfiguration(config: Config) {
+        this._rulesets = this.getValidRulesetPaths(config.rulesets);
+        this._pmdPath = config.pmdBinPath;
+        this._errorThreshold = config.priorityErrorThreshold;
+        this._warningThreshold = config.priorityWarnThreshold;
+        this._showErrors = config.showErrors;
+        this._showStdOut = config.showStdOut;
+        this._showStdErr = config.showStdErr;
+        this._enableCache = config.enableCache;
+    }
+
     public async run(targetPath: string, collection: vscode.DiagnosticCollection, progress?: vscode.Progress<{ message?: string; increment?: number; }>, token?: vscode.CancellationToken): Promise<void> {
         this._outputChannel.appendLine(`Analyzing ${targetPath}`);
         AppStatus.getInstance().thinking();
