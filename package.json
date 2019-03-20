@@ -1,9 +1,9 @@
 {
     "name": "apex-pmd",
-    "displayName": "Apex PMD",
+    "displayName": "Apex PMD (Sage People)",
     "description": "PMD static analysis for Salesforce Apex",
-    "version": "0.4.1",
-    "publisher": "chuckjonas",
+    "version": "0.1.0",
+    "publisher": "sagepeople",
     "author": {
         "name": "Charlie Jonas",
         "email": "charlie@callawaycloudconsulting.com"
