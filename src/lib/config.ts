@@ -14,6 +14,7 @@ export class Config{
     public showStdOut: boolean;
     public showStdErr: boolean;
     public enableCache: boolean;
+    public additionalClassPaths: string[];
 
     private _ctx: vscode.ExtensionContext;
 
@@ -40,6 +41,7 @@ export class Config{
         this.showStdOut = config.get('showStdOut') as boolean;
         this.showStdErr = config.get('showStdErr') as boolean;
         this.enableCache = config.get('enableCache') as boolean;
+        this.additionalClassPaths = config.get('additionalClassPaths') as string[];
         this.resolvePaths();
     }
 
@@ -73,6 +75,20 @@ export class Config{
 
         if (!this.pmdBinPath) {
             this.pmdBinPath = this._ctx.asAbsolutePath(path.join('bin', 'pmd'));
+        }
+
+        if (!this.additionalClassPaths) {
+            this.additionalClassPaths = [];
+        }
+
+        if (this.additionalClassPaths.length) {
+            this.additionalClassPaths = this.additionalClassPaths.map((unresolvedPath) => {
+                let resolvedPath = unresolvedPath
+                if (!path.isAbsolute(unresolvedPath) && vscode.workspace.rootPath) {
+                    resolvedPath = path.join(vscode.workspace.rootPath, unresolvedPath);
+                }
+                return resolvedPath        
+            })
         }
     }
 }

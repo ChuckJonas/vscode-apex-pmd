@@ -30,6 +30,7 @@ Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd
 - `priorityWarnThreshold`: Determines at what priority level 'warnings' will be added. Anything less will be a hint
 - `enableCache`: Creates a cache file for PMD to run faster. Will create a .pmdCache file in your workspace
 - `pmdBinPath` (prev. `pmdPath`) (optional): set to override the default pmd binaries. This should point to the PMD folder which contains folders `lib` and `bin`. Most likely it is called `libexec`.
+- `additionalClassPaths` (optional): set of paths to be appended to classpath. Used to find custom rule definitions. Can be absolute or relative to workspace.
 
 ### Defining your own "Ruleset"
 
