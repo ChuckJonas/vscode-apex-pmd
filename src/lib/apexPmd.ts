@@ -241,7 +241,7 @@ export class ApexPmd {
         } else if (priority <= this._warningThreshold) {
             level = vscode.DiagnosticSeverity.Warning;
         } else {
-            level = vscode.DiagnosticSeverity.Hint;
+            level = vscode.DiagnosticSeverity.Information;
         }
 
         let problem = new vscode.Diagnostic(
