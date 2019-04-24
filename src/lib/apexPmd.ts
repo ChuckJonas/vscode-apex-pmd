@@ -144,7 +144,7 @@ export class ApexPmd {
 
         const classPath = `${path.join(vscode.workspace.rootPath,'*')};${path.join(this._pmdPath, 'lib', '*')};${this._additionalClassPaths.join(';')}`
 
-        const cmd = `java -cp ${classPath} net.sourceforge.pmd.PMD ${pmdKeys}`;
+        const cmd = `java -cp "${classPath}" net.sourceforge.pmd.PMD ${pmdKeys}`;
         if (this._showStdOut) this._outputChannel.appendLine('PMD Command: ' + cmd);
 
         let pmdCmd = ChildProcess.exec(cmd);
