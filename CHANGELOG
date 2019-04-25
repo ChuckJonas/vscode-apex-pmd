@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgraded PMD bin to [6.13.0](https://pmd.github.io/pmd-6.13.0/pmd_release_notes.html)
 - Updated default ruleset with new rules
 
+### Added
+- Ability to specify additional class paths to run custom rule jars (thanks @andrewgilbertsagecom)
 
 ## [0.4.1]
 ### Change
