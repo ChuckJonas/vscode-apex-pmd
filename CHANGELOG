@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Ability to specify additional class paths to run custom rule jars (thanks @andrewgilbertsagecom)
+- Can specify custom XPath rules (via 6.13.0)
 
 ## [0.4.1]
 ### Change
