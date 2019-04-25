@@ -138,7 +138,7 @@
                         "type": "string"
                     },
                     "default": [],
-                    "description": "(Optional) paths to be appended to classpath. Used to find custom rule definitions. Can be absolute or relative to workspace."
+                    "description": "(Optional) paths to be appended to classpath. Used to find jar files containing custom rule definitions. Can be absolute or relative to workspace."
                 }
             }
         },

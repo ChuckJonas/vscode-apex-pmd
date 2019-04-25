@@ -30,7 +30,7 @@ Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd
 - `priorityWarnThreshold`: Determines at what priority level 'warnings' will be added. Anything less will be a hint
 - `enableCache`: Creates a cache file for PMD to run faster. Will create a .pmdCache file in your workspace
 - `pmdBinPath` (prev. `pmdPath`) (optional): set to override the default pmd binaries. This should point to the PMD folder which contains folders `lib` and `bin`. Most likely it is called `libexec`.
-- `additionalClassPaths` (optional): set of paths to be appended to classpath. Used to find custom rule definitions. Can be absolute or relative to workspace.
+- `additionalClassPaths` (optional): set of paths to be appended to classpath. Used to find jar files containing custom rule definitions. Can be absolute or relative to workspace.
 
 ### Defining your own "Ruleset"
 
@@ -42,9 +42,13 @@ You can also mention the default ruleset in `apexPMD.rulesets`. To do this add `
 
 [Apex Ruleset Reference](https://pmd.github.io/pmd-6.11.0/pmd_rules_apex.html)
 
-NOTE: If you are move alway from the "default result" in an sfdx project, make sure to exclude the `.sfdx` generated classes by keeping this line:
+NOTE: If you move away from the default ruleset in an sfdx project, make sure to exclude the `.sfdx` generated classes by keeping this line:
 
 `<exclude-pattern>.*/.sfdx/.*</exclude-pattern>`
+
+### Using custom rules written in Java
+
+If you want to use your own [custom rules](https://pmd.github.io/latest/pmd_userdocs_extending_writing_pmd_rules.html) from a jar file, then the jar file must be on the classpath. By default, the PMD folder and the workspace root folder are included in the classpath. You can add further folders using the `additionalClassPaths` setting.
 
 ## Legal Stuff
 
