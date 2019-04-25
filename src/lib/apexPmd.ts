@@ -140,9 +140,9 @@ export class ApexPmd {
         const targetPathKey = `-d "${targetPath}"`;
         const rulesetsKey = `-R "${rulesetsArg}"`;
 
-        const pmdKeys = `${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`
+        const pmdKeys = `${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`;
 
-        const classPath = `${path.join(vscode.workspace.rootPath,'*')};${path.join(this._pmdPath, 'lib', '*')};${this._additionalClassPaths.join(';')}`
+        const classPath = `${path.join(vscode.workspace.rootPath,'*')};${path.join(this._pmdPath, 'lib', '*')};${this._additionalClassPaths.join(';')}`;
 
         const cmd = `java -cp "${classPath}" net.sourceforge.pmd.PMD ${pmdKeys}`;
         if (this._showStdOut) this._outputChannel.appendLine('PMD Command: ' + cmd);

@@ -83,12 +83,12 @@ export class Config{
 
         if (this.additionalClassPaths.length) {
             this.additionalClassPaths = this.additionalClassPaths.map((unresolvedPath) => {
-                let resolvedPath = unresolvedPath
+                let resolvedPath = unresolvedPath;
                 if (!path.isAbsolute(unresolvedPath) && vscode.workspace.rootPath) {
                     resolvedPath = path.join(vscode.workspace.rootPath, unresolvedPath);
                 }
-                return resolvedPath        
-            })
+                return resolvedPath;
+            });
         }
     }
 }
