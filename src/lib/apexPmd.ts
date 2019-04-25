@@ -5,8 +5,10 @@ import * as path from 'path';
 import * as parser from 'csv-parse/lib/sync'
 import { Config } from './config'
 import { AppStatus } from './appStatus'
-import { EOL } from 'os'
+import * as os from 'os'
 import { Options } from 'csv-parse';
+
+
 
 const PMD_COLUMNS: (keyof PmdResult)[] = [
     'problem',
@@ -18,6 +20,10 @@ const PMD_COLUMNS: (keyof PmdResult)[] = [
     'ruleSet',
     'rule'
 ];
+
+//setup OS constants
+const EOL = os.EOL;
+const CLASSPATH_DELM = os.platform() === 'win32' ? ';' : ':';
 
 export class ApexPmd {
     private _pmdPath: string;
@@ -142,9 +148,14 @@ export class ApexPmd {
 
         const pmdKeys = `${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`;
 
-        const classPath = `${path.join(vscode.workspace.rootPath,'*')};${path.join(this._pmdPath, 'lib', '*')};${this._additionalClassPaths.join(';')}`;
+        const classPath = [
+            path.join(this._pmdPath, 'lib', '*'),
+            path.join(vscode.workspace.rootPath,'*'),
+            ...this._additionalClassPaths
+        ].join(CLASSPATH_DELM);
 
-        const cmd = `java -cp "${classPath}" net.sourceforge.pmd.PMD ${pmdKeys}`;
+        const cmd = `java -cp '${classPath}' net.sourceforge.pmd.PMD ${pmdKeys}`;
+
         if (this._showStdOut) this._outputChannel.appendLine('PMD Command: ' + cmd);
 
         let pmdCmd = ChildProcess.exec(cmd);
