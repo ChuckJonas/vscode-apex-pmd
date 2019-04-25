@@ -131,6 +131,14 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Creates a cache file for PMD to run faster. Will create a .pmdCache file in your workspace"
+                },
+                "apexPMD.additionalClassPaths": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [],
+                    "description": "(Optional) paths to be appended to classpath. Used to find jar files containing custom rule definitions. Can be absolute or relative to workspace."
                 }
             }
         },

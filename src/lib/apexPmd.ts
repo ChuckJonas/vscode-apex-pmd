@@ -29,6 +29,7 @@ export class ApexPmd {
     private _showStdOut: boolean;
     private _showStdErr: boolean;
     private _enableCache: boolean;
+    private _additionalClassPaths: string[];
 
     public constructor(outputChannel: vscode.OutputChannel, config: Config) {
         this._rulesets = this.getValidRulesetPaths(config.rulesets);
@@ -40,6 +41,7 @@ export class ApexPmd {
         this._showStdOut = config.showStdOut;
         this._showStdErr = config.showStdErr;
         this._enableCache = config.enableCache;
+        this._additionalClassPaths = config.additionalClassPaths;
     }
 
     public updateConfiguration(config: Config) {
@@ -51,6 +53,7 @@ export class ApexPmd {
         this._showStdOut = config.showStdOut;
         this._showStdErr = config.showStdErr;
         this._enableCache = config.enableCache;
+        this._additionalClassPaths = config.additionalClassPaths;
     }
 
     public async run(targetPath: string, collection: vscode.DiagnosticCollection, progress?: vscode.Progress<{ message?: string; increment?: number; }>, token?: vscode.CancellationToken): Promise<void> {
@@ -137,9 +140,11 @@ export class ApexPmd {
         const targetPathKey = `-d "${targetPath}"`;
         const rulesetsKey = `-R "${rulesetsArg}"`;
 
-        const pmdKeys = `${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`
+        const pmdKeys = `${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`;
 
-        const cmd = `java -cp "${path.join(this._pmdPath, 'lib', '*')}" net.sourceforge.pmd.PMD ${pmdKeys}`;
+        const classPath = `${path.join(vscode.workspace.rootPath,'*')};${path.join(this._pmdPath, 'lib', '*')};${this._additionalClassPaths.join(';')}`;
+
+        const cmd = `java -cp "${classPath}" net.sourceforge.pmd.PMD ${pmdKeys}`;
         if (this._showStdOut) this._outputChannel.appendLine('PMD Command: ' + cmd);
 
         let pmdCmd = ChildProcess.exec(cmd);
