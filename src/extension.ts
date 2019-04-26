@@ -2,7 +2,7 @@
 
 import * as vscode from 'vscode';
 import { ApexPmd } from './lib/apexPmd';
-import { Config } from './lib/config';
+import { Config, getRootWorkspacePath } from './lib/config';
 import { AppStatus } from './lib/appStatus'
 
 export { ApexPmd };
@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
                 cancellable: true
             }, (progress, token) => {
                 progress.report({ increment: 0 });
-                return pmd.run(vscode.workspace.rootPath, collection, progress, token);
+                return pmd.run(getRootWorkspacePath(), collection, progress, token);
             });
         })
     );

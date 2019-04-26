@@ -36,9 +36,11 @@ export class ApexPmd {
     private _showStdErr: boolean;
     private _enableCache: boolean;
     private _additionalClassPaths: string[];
+    private _workspaceRootPath: string;
 
     public constructor(outputChannel: vscode.OutputChannel, config: Config) {
         this._rulesets = this.getValidRulesetPaths(config.rulesets);
+        this._workspaceRootPath = config.workspaceRootPath;
         this._pmdPath = config.pmdBinPath;
         this._errorThreshold = config.priorityErrorThreshold;
         this._warningThreshold = config.priorityWarnThreshold;
@@ -52,6 +54,7 @@ export class ApexPmd {
 
     public updateConfiguration(config: Config) {
         this._rulesets = this.getValidRulesetPaths(config.rulesets);
+        this._workspaceRootPath = config.workspaceRootPath;
         this._pmdPath = config.pmdBinPath;
         this._errorThreshold = config.priorityErrorThreshold;
         this._warningThreshold = config.priorityWarnThreshold;
@@ -115,6 +118,7 @@ export class ApexPmd {
         } catch (e) {
             AppStatus.getInstance().errors();
             vscode.window.showErrorMessage(`Static Analysis Failed. Error Details: ${e}`);
+            // should this throw e for promise catch?
         }
 
     }
@@ -138,7 +142,7 @@ export class ApexPmd {
 
     async executeCmd(targetPath: string, token?: vscode.CancellationToken): Promise<string> {
         // -R Comma-separated list of ruleset or rule references.
-        const cachePath = `${vscode.workspace.rootPath}/.pmdCache`;
+        const cachePath = `${this._workspaceRootPath}/.pmdCache`;
         const rulesetsArg = this._rulesets.join(',');
 
         const cacheKey = this._enableCache ? `-cache ${cachePath}` : '-no-cache';
@@ -150,7 +154,7 @@ export class ApexPmd {
 
         const classPath = [
             path.join(this._pmdPath, 'lib', '*'),
-            path.join(vscode.workspace.rootPath,'*'),
+            path.join(this._workspaceRootPath,'*'),
             ...this._additionalClassPaths
         ].join(CLASSPATH_DELM);
 

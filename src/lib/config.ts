@@ -2,8 +2,9 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 
-export class Config{
+export class Config {
     private _rulesetPath: string;
+    public workspaceRootPath: string;
     public rulesets: string[];
     public pmdBinPath: string;
     public priorityErrorThreshold: number;
@@ -18,7 +19,7 @@ export class Config{
 
     private _ctx: vscode.ExtensionContext;
 
-    public constructor(ctx?: vscode.ExtensionContext){
+    public constructor(ctx?: vscode.ExtensionContext) {
         if (ctx) {
             this._ctx = ctx;
             this.init();
@@ -31,6 +32,7 @@ export class Config{
         let config = vscode.workspace.getConfiguration('apexPMD');
         // deprecated setting is left for backward compatibility
         this._rulesetPath = config.get('rulesetPath') as string;
+        this.workspaceRootPath = getRootWorkspacePath();
         this.rulesets = config.get("rulesets") as string[];
         this.pmdBinPath = config.get('pmdBinPath') as string;
         this.priorityErrorThreshold = config.get('priorityErrorThreshold') as number;
@@ -55,18 +57,18 @@ export class Config{
                 let res = p;
                 if ('default' === res.toLowerCase()) {
                     res = this._ctx.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
-                } else if (!path.isAbsolute(res) && vscode.workspace.rootPath) {
-                    res = path.join(vscode.workspace.rootPath, res);
+                } else if (!path.isAbsolute(res) && this.workspaceRootPath) {
+                    res = path.join(this.workspaceRootPath, res);
                 }
                 return res;
             });
         }
 
-        if(!this._rulesetPath && !this.rulesets.length) {
+        if (!this._rulesetPath && !this.rulesets.length) {
             this._rulesetPath = this._ctx.asAbsolutePath(path.join('rulesets', 'apex_ruleset.xml'));
-        } else if (this._rulesetPath && !path.isAbsolute(this._rulesetPath) && vscode.workspace.rootPath) {
+        } else if (this._rulesetPath && !path.isAbsolute(this._rulesetPath) && this.workspaceRootPath) {
             //convert relative path to absolute
-            this._rulesetPath = path.join(vscode.workspace.rootPath, this._rulesetPath);
+            this._rulesetPath = path.join(this.workspaceRootPath, this._rulesetPath);
         }
 
         if (this._rulesetPath) {
@@ -84,11 +86,19 @@ export class Config{
         if (this.additionalClassPaths.length) {
             this.additionalClassPaths = this.additionalClassPaths.map((unresolvedPath) => {
                 let resolvedPath = unresolvedPath;
-                if (!path.isAbsolute(unresolvedPath) && vscode.workspace.rootPath) {
-                    resolvedPath = path.join(vscode.workspace.rootPath, unresolvedPath);
+                if (!path.isAbsolute(unresolvedPath) && this.workspaceRootPath) {
+                    resolvedPath = path.join(this.workspaceRootPath, unresolvedPath);
                 }
                 return resolvedPath;
             });
         }
     }
+}
+
+export function getRootWorkspacePath(): string {
+    let ws = vscode.workspace;
+    let hasWorkspaceRoot = ws && ws.workspaceFolders && ws.workspaceFolders.length > 0;
+    return hasWorkspaceRoot
+        ? vscode.workspace.workspaceFolders![0].uri.fsPath
+        : '';
 }

@@ -23,7 +23,7 @@ suite("Extension Tests", () => {
 
     test("check default paths", () => {
         const outputChannel = vscode.window.createOutputChannel('Apex PMD');
-        
+
         const config = new Config();
         config.pmdBinPath = PMD_PATH;
         config.rulesets = [RULESET_PATH, INVALID_RULESET_PATH];
@@ -32,9 +32,10 @@ suite("Extension Tests", () => {
         config.showErrors = false;
         config.showStdOut = false;
         config.showStdErr = false;
+        config.additionalClassPaths = [];
 
         const pmd = new ApexPmd(
-            outputChannel, 
+            outputChannel,
             config
         );
 
@@ -47,7 +48,7 @@ suite("Extension Tests", () => {
     // Defines a Mocha unit test
     test("test diagnostic warning", function(done) {
         this.timeout(10000);
-        
+
         const collection = vscode.languages.createDiagnosticCollection('apex-pmd-test');
         const outputChannel = vscode.window.createOutputChannel('Apex PMD');
 
@@ -59,9 +60,11 @@ suite("Extension Tests", () => {
         config.showErrors = false;
         config.showStdOut = false;
         config.showStdErr = false;
-        
+        config.workspaceRootPath = ''
+        config.additionalClassPaths = [];
+
         const pmd = new ApexPmd(
-            outputChannel, 
+            outputChannel,
             config
         );
 
