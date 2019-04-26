@@ -11,7 +11,7 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 import * as path from 'path';
 import { ApexPmd } from '../src/extension';
-import { Config } from '../src/lib/config'
+import { Config } from '../src/lib/config';
 
 
 const PMD_PATH = path.join(__dirname, '..', '..', 'bin', 'pmd');
@@ -60,7 +60,7 @@ suite("Extension Tests", () => {
         config.showErrors = false;
         config.showStdOut = false;
         config.showStdErr = false;
-        config.workspaceRootPath = ''
+        config.workspaceRootPath = '';
         config.additionalClassPaths = [];
 
         const pmd = new ApexPmd(

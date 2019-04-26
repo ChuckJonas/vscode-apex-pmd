@@ -1,11 +1,11 @@
 import * as vscode from 'vscode';
-import * as ChildProcess from 'child_process'
+import * as ChildProcess from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as parser from 'csv-parse/lib/sync'
-import { Config } from './config'
-import { AppStatus } from './appStatus'
-import * as os from 'os'
+import * as parser from 'csv-parse/lib/sync';
+import { Config } from './config';
+import { AppStatus } from './appStatus';
+import * as os from 'os';
 import { Options } from 'csv-parse';
 
 
@@ -179,7 +179,7 @@ export class ApexPmd {
                     if (e !== 0 && e !== 4) {
                         this._outputChannel.appendLine(`Failed Exit Code: ${e}`);
                         if(!stdout){
-                            reject('PMD Command Failed!  Enable "Show StdErr" setting for more info.')
+                            reject('PMD Command Failed!  Enable "Show StdErr" setting for more info.');
                         }
                     }
                     resolve(stdout);
@@ -192,7 +192,7 @@ export class ApexPmd {
                     if (this._showStdErr) this._outputChannel.appendLine('stderr:' + m);
                 });
             }
-        )
+        );
         return pmdPromise;
     }
 
@@ -202,7 +202,7 @@ export class ApexPmd {
         let parseOpts: Options = {
             columns: PMD_COLUMNS,
             relax_column_count: true
-        }
+        };
         try{
             results = parser(csv, parseOpts);
         }catch(e){

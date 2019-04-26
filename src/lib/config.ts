@@ -24,12 +24,12 @@ export class Config {
             this._ctx = ctx;
             this.init();
         } else {
-            console.warn('VSCode ApexPMD missing configuration')
+            console.warn('VSCode ApexPMD missing configuration');
         }
     }
 
     public init() {
-        let config = vscode.workspace.getConfiguration('apexPMD');
+    let config = vscode.workspace.getConfiguration('apexPMD');
         // deprecated setting is left for backward compatibility
         this._rulesetPath = config.get('rulesetPath') as string;
         this.workspaceRootPath = getRootWorkspacePath();

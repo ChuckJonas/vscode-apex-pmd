@@ -3,12 +3,12 @@
 import * as vscode from 'vscode';
 import { ApexPmd } from './lib/apexPmd';
 import { Config, getRootWorkspacePath } from './lib/config';
-import { AppStatus } from './lib/appStatus'
+import { AppStatus } from './lib/appStatus';
 
 export { ApexPmd };
 
-const supportedLanguageCodes = ['apex', 'visualforce']
-const isSupportedLanguage = (langCode: string) => 0 <= supportedLanguageCodes.indexOf(langCode)
+const supportedLanguageCodes = ['apex', 'visualforce'];
+const isSupportedLanguage = (langCode: string) => 0 <= supportedLanguageCodes.indexOf(langCode);
 
 const appName = 'Apex PMD';
 const settingsNamespace = 'apexPMD';
@@ -79,7 +79,7 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     context.subscriptions.push(vscode.window.onDidChangeVisibleTextEditors(editors => {
-        const isStatusNeeded = editors.some((e) => e.document && isSupportedLanguage(e.document.languageId))
+        const isStatusNeeded = editors.some((e) => e.document && isSupportedLanguage(e.document.languageId));
         if (isStatusNeeded) {
             AppStatus.getInstance().show();
         } else {
