@@ -2,13 +2,13 @@
 
 import * as vscode from 'vscode';
 import { ApexPmd } from './lib/apexPmd';
-import { Config } from './lib/config';
-import { AppStatus } from './lib/appStatus'
+import { Config, getRootWorkspacePath } from './lib/config';
+import { AppStatus } from './lib/appStatus';
 
 export { ApexPmd };
 
-const supportedLanguageCodes = ['apex', 'visualforce']
-const isSupportedLanguage = (langCode: string) => 0 <= supportedLanguageCodes.indexOf(langCode)
+const supportedLanguageCodes = ['apex', 'visualforce'];
+const isSupportedLanguage = (langCode: string) => 0 <= supportedLanguageCodes.indexOf(langCode);
 
 const appName = 'Apex PMD';
 const settingsNamespace = 'apexPMD';
@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
                 cancellable: true
             }, (progress, token) => {
                 progress.report({ increment: 0 });
-                return pmd.run(vscode.workspace.rootPath, collection, progress, token);
+                return pmd.run(getRootWorkspacePath(), collection, progress, token);
             });
         })
     );
@@ -79,7 +79,7 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     context.subscriptions.push(vscode.window.onDidChangeVisibleTextEditors(editors => {
-        const isStatusNeeded = editors.some((e) => e.document && isSupportedLanguage(e.document.languageId))
+        const isStatusNeeded = editors.some((e) => e.document && isSupportedLanguage(e.document.languageId));
         if (isStatusNeeded) {
             AppStatus.getInstance().show();
         } else {

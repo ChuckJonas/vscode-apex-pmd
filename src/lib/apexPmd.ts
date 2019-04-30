@@ -1,12 +1,14 @@
 import * as vscode from 'vscode';
-import * as ChildProcess from 'child_process'
+import * as ChildProcess from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as parser from 'csv-parse/lib/sync'
-import { Config } from './config'
-import { AppStatus } from './appStatus'
-import { EOL } from 'os'
+import * as parser from 'csv-parse/lib/sync';
+import { Config } from './config';
+import { AppStatus } from './appStatus';
+import * as os from 'os';
 import { Options } from 'csv-parse';
+
+
 
 const PMD_COLUMNS: (keyof PmdResult)[] = [
     'problem',
@@ -19,6 +21,10 @@ const PMD_COLUMNS: (keyof PmdResult)[] = [
     'rule'
 ];
 
+//setup OS constants
+const EOL = os.EOL;
+const CLASSPATH_DELM = os.platform() === 'win32' ? ';' : ':';
+
 export class ApexPmd {
     private _pmdPath: string;
     private _rulesets: string[];
@@ -29,9 +35,12 @@ export class ApexPmd {
     private _showStdOut: boolean;
     private _showStdErr: boolean;
     private _enableCache: boolean;
+    private _additionalClassPaths: string[];
+    private _workspaceRootPath: string;
 
     public constructor(outputChannel: vscode.OutputChannel, config: Config) {
         this._rulesets = this.getValidRulesetPaths(config.rulesets);
+        this._workspaceRootPath = config.workspaceRootPath;
         this._pmdPath = config.pmdBinPath;
         this._errorThreshold = config.priorityErrorThreshold;
         this._warningThreshold = config.priorityWarnThreshold;
@@ -40,10 +49,12 @@ export class ApexPmd {
         this._showStdOut = config.showStdOut;
         this._showStdErr = config.showStdErr;
         this._enableCache = config.enableCache;
+        this._additionalClassPaths = config.additionalClassPaths;
     }
 
     public updateConfiguration(config: Config) {
         this._rulesets = this.getValidRulesetPaths(config.rulesets);
+        this._workspaceRootPath = config.workspaceRootPath;
         this._pmdPath = config.pmdBinPath;
         this._errorThreshold = config.priorityErrorThreshold;
         this._warningThreshold = config.priorityWarnThreshold;
@@ -51,6 +62,7 @@ export class ApexPmd {
         this._showStdOut = config.showStdOut;
         this._showStdErr = config.showStdErr;
         this._enableCache = config.enableCache;
+        this._additionalClassPaths = config.additionalClassPaths;
     }
 
     public async run(targetPath: string, collection: vscode.DiagnosticCollection, progress?: vscode.Progress<{ message?: string; increment?: number; }>, token?: vscode.CancellationToken): Promise<void> {
@@ -106,6 +118,7 @@ export class ApexPmd {
         } catch (e) {
             AppStatus.getInstance().errors();
             vscode.window.showErrorMessage(`Static Analysis Failed. Error Details: ${e}`);
+            // should this throw e for promise catch?
         }
 
     }
@@ -129,7 +142,7 @@ export class ApexPmd {
 
     async executeCmd(targetPath: string, token?: vscode.CancellationToken): Promise<string> {
         // -R Comma-separated list of ruleset or rule references.
-        const cachePath = `${vscode.workspace.rootPath}/.pmdCache`;
+        const cachePath = `${this._workspaceRootPath}/.pmdCache`;
         const rulesetsArg = this._rulesets.join(',');
 
         const cacheKey = this._enableCache ? `-cache ${cachePath}` : '-no-cache';
@@ -137,9 +150,16 @@ export class ApexPmd {
         const targetPathKey = `-d "${targetPath}"`;
         const rulesetsKey = `-R "${rulesetsArg}"`;
 
-        const pmdKeys = `${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`
+        const pmdKeys = `${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`;
 
-        const cmd = `java -cp "${path.join(this._pmdPath, 'lib', '*')}" net.sourceforge.pmd.PMD ${pmdKeys}`;
+        const classPath = [
+            path.join(this._pmdPath, 'lib', '*'),
+            path.join(this._workspaceRootPath,'*'),
+            ...this._additionalClassPaths
+        ].join(CLASSPATH_DELM);
+
+        const cmd = `java -cp "${classPath}" net.sourceforge.pmd.PMD ${pmdKeys}`;
+
         if (this._showStdOut) this._outputChannel.appendLine('PMD Command: ' + cmd);
 
         let pmdCmd = ChildProcess.exec(cmd);
@@ -159,7 +179,7 @@ export class ApexPmd {
                     if (e !== 0 && e !== 4) {
                         this._outputChannel.appendLine(`Failed Exit Code: ${e}`);
                         if(!stdout){
-                            reject('PMD Command Failed!  Enable "Show StdErr" setting for more info.')
+                            reject('PMD Command Failed!  Enable "Show StdErr" setting for more info.');
                         }
                     }
                     resolve(stdout);
@@ -172,7 +192,7 @@ export class ApexPmd {
                     if (this._showStdErr) this._outputChannel.appendLine('stderr:' + m);
                 });
             }
-        )
+        );
         return pmdPromise;
     }
 
@@ -182,7 +202,7 @@ export class ApexPmd {
         let parseOpts: Options = {
             columns: PMD_COLUMNS,
             relax_column_count: true
-        }
+        };
         try{
             results = parser(csv, parseOpts);
         }catch(e){
@@ -241,7 +261,7 @@ export class ApexPmd {
         } else if (priority <= this._warningThreshold) {
             level = vscode.DiagnosticSeverity.Warning;
         } else {
-            level = vscode.DiagnosticSeverity.Hint;
+            level = vscode.DiagnosticSeverity.Information;
         }
 
         let problem = new vscode.Diagnostic(
