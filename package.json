@@ -2,7 +2,7 @@
     "name": "apex-pmd",
     "displayName": "Apex PMD",
     "description": "PMD static analysis for Salesforce Apex",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "publisher": "chuckjonas",
     "author": {
         "name": "Charlie Jonas",
@@ -139,6 +139,11 @@
                     },
                     "default": [],
                     "description": "(Optional) paths to be appended to classpath. Used to find jar files containing custom rule definitions. Can be absolute or relative to workspace."
+                },
+                "apexPMD.commandBufferSize": {
+                    "type": "number",
+                    "default": "64",
+                    "description": "Size of buffer used to collect PMD command output (MB), may need to be increased for very large projects"
                 }
             }
         },

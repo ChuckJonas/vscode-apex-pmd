@@ -37,6 +37,7 @@ export class ApexPmd {
     private _enableCache: boolean;
     private _additionalClassPaths: string[];
     private _workspaceRootPath: string;
+    private _commandBufferSize: number;
 
     public constructor(outputChannel: vscode.OutputChannel, config: Config) {
         this._rulesets = this.getValidRulesetPaths(config.rulesets);
@@ -50,6 +51,7 @@ export class ApexPmd {
         this._showStdErr = config.showStdErr;
         this._enableCache = config.enableCache;
         this._additionalClassPaths = config.additionalClassPaths;
+        this._commandBufferSize = config.commandBufferSize;
     }
 
     public updateConfiguration(config: Config) {
@@ -162,7 +164,8 @@ export class ApexPmd {
 
         if (this._showStdOut) this._outputChannel.appendLine('PMD Command: ' + cmd);
 
-        let pmdCmd = ChildProcess.exec(cmd);
+        let pmdCmd = ChildProcess.exec(cmd, 
+            {maxBuffer: Math.max(this._commandBufferSize, 1) * 1024 * 1024});
 
         token && token.onCancellationRequested(() => {
             pmdCmd.kill();
