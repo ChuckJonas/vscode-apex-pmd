@@ -16,6 +16,7 @@ export class Config {
     public showStdErr: boolean;
     public enableCache: boolean;
     public additionalClassPaths: string[];
+    public commandBufferSize: number;
 
     private _ctx: vscode.ExtensionContext;
 
@@ -44,6 +45,7 @@ export class Config {
         this.showStdErr = config.get('showStdErr') as boolean;
         this.enableCache = config.get('enableCache') as boolean;
         this.additionalClassPaths = config.get('additionalClassPaths') as string[];
+        this.commandBufferSize = config.get('commandBufferSize') as number;
         this.resolvePaths();
     }
 

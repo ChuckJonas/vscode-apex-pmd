@@ -139,6 +139,11 @@
                     },
                     "default": [],
                     "description": "(Optional) paths to be appended to classpath. Used to find jar files containing custom rule definitions. Can be absolute or relative to workspace."
+                },
+                "apexPMD.commandBufferSize": {
+                    "type": "number",
+                    "default": "64",
+                    "description": "Size of buffer used to collect PMD command output (MB), may need to be increased for very large projects"
                 }
             }
         },
