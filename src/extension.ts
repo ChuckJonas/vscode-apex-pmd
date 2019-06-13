@@ -86,10 +86,6 @@ export function activate(context: vscode.ExtensionContext) {
             AppStatus.getInstance().hide();
         }
     }));
-
-    vscode.workspace.onDidCloseTextDocument((textDocument) => {
-        collection.delete(textDocument.uri);
-    });
 }
 
 export function deactivate() { }
