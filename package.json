@@ -19,7 +19,7 @@
     "bugs": {
         "url": "https://github.com/ChuckJonas/vscode-apex-pmd/issues"
     },
-    "icon": "images/vscode-apex-pmd.svg",
+    "icon": "images/vscode-apex-pmd.png",
     "categories": [
         "Linters"
     ],
