@@ -2,7 +2,7 @@
     "name": "apex-pmd",
     "displayName": "Apex PMD",
     "description": "PMD static analysis for Salesforce Apex",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "publisher": "chuckjonas",
     "author": {
         "name": "Charlie Jonas",
@@ -19,7 +19,7 @@
     "bugs": {
         "url": "https://github.com/ChuckJonas/vscode-apex-pmd/issues"
     },
-    "icon": "images/apex-pmd-icon.png",
+    "icon": "images/vscode-apex-pmd.svg",
     "categories": [
         "Linters"
     ],

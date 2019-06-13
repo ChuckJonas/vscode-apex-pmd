@@ -47,7 +47,7 @@ suite("Extension Tests", () => {
 
     // Defines a Mocha unit test
     test("test diagnostic warning", function(done) {
-        this.timeout(10000);
+        this.timeout(100000);
 
         const collection = vscode.languages.createDiagnosticCollection('apex-pmd-test');
         const outputChannel = vscode.window.createOutputChannel('Apex PMD');
@@ -62,6 +62,7 @@ suite("Extension Tests", () => {
         config.showStdErr = false;
         config.workspaceRootPath = '';
         config.additionalClassPaths = [];
+        config.commandBufferSize = 64000000;
 
         const pmd = new ApexPmd(
             outputChannel,
