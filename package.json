@@ -124,7 +124,7 @@
                 },
                 "apexPMD.showStdErr": {
                     "type": "boolean",
-                    "default": false,
+                    "default": true,
                     "description": "Show showStdErr in output window"
                 },
                 "apexPMD.enableCache": {
