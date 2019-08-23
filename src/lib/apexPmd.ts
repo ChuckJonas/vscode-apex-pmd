@@ -255,7 +255,7 @@ export class ApexPmd {
     createDiagnostic(result: PmdResult): vscode.Diagnostic {
         let lineNum = parseInt(result.line) - 1;
 
-        let uri = `https://pmd.github.io/latest/pmd_rules_apex_${result.ruleSet}.html#${result.rule}`;
+        let uri = `https://pmd.github.io/latest/pmd_rules_apex_${result.ruleSet.toLowerCase()}.html#${result.rule.toLowerCase()}`;
         let msg = `${result.description} (rule: ${result.ruleSet}-${result.rule}) \n   See: ${uri}`;
 
         let priority = parseInt(result.priority);
