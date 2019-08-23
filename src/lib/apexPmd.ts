@@ -156,7 +156,7 @@ export class ApexPmd {
 
         const classPath = [
             path.join(this._pmdPath, 'lib', '*'),
-            path.join(this._workspaceRootPath,'*'),
+            path.join(this._workspaceRootPath, '*'),
             ...this._additionalClassPaths
         ].join(CLASSPATH_DELM);
 
@@ -164,8 +164,8 @@ export class ApexPmd {
 
         if (this._showStdOut) this._outputChannel.appendLine('PMD Command: ' + cmd);
 
-        let pmdCmd = ChildProcess.exec(cmd, 
-            {maxBuffer: Math.max(this._commandBufferSize, 1) * 1024 * 1024});
+        let pmdCmd = ChildProcess.exec(cmd,
+            { maxBuffer: Math.max(this._commandBufferSize, 1) * 1024 * 1024 });
 
         token && token.onCancellationRequested(() => {
             pmdCmd.kill();
@@ -181,7 +181,7 @@ export class ApexPmd {
                 pmdCmd.addListener("exit", (e) => {
                     if (e !== 0 && e !== 4) {
                         this._outputChannel.appendLine(`Failed Exit Code: ${e}`);
-                        if(!stdout){
+                        if (!stdout) {
                             reject('PMD Command Failed!  Enable "Show StdErr" setting for more info.');
                         }
                     }
@@ -206,16 +206,16 @@ export class ApexPmd {
             columns: PMD_COLUMNS,
             relax_column_count: true
         };
-        try{
+        try {
             results = parser(csv, parseOpts);
-        }catch(e){
+        } catch (e) {
             //try to recover parsing... remove last ln and try again
             let lines = csv.split(EOL);
             lines.pop();
             csv = lines.join(EOL);
-            try{
+            try {
                 results = parser(csv, parseOpts);
-            }catch(e){
+            } catch (e) {
                 throw new Error('Failed to parse PMD Results.  Enable please logging (STDOUT & STDERROR) and submit an issue if this problem persists.');
             }
             vscode.window.showWarningMessage('Failed to read all PMD problems!');
@@ -231,7 +231,7 @@ export class ApexPmd {
                 if (!results[i]) continue;
 
                 //skip .sfdx files
-                if(result.file.includes('.sfdx')){
+                if (result.file.includes('.sfdx')) {
                     continue;
                 }
 
@@ -254,7 +254,10 @@ export class ApexPmd {
 
     createDiagnostic(result: PmdResult): vscode.Diagnostic {
         let lineNum = parseInt(result.line) - 1;
-        let msg = result.description;
+
+        let uri = `https://pmd.github.io/latest/pmd_rules_apex_${result.ruleSet}.html#${result.rule}`;
+        let msg = `${result.description} (rule: ${result.ruleSet}-${result.rule}) \n   See: ${uri}`;
+
         let priority = parseInt(result.priority);
         if (isNaN(lineNum)) { return null; }
 
