@@ -81,6 +81,10 @@ export class Config {
             this.pmdBinPath = this._ctx.asAbsolutePath(path.join('bin', 'pmd'));
         }
 
+        if (this.pmdBinPath && !path.isAbsolute(this.pmdBinPath) && this.workspaceRootPath) {
+            this.pmdBinPath = path.join(this.workspaceRootPath, this.pmdBinPath);
+        }
+
         if (!this.additionalClassPaths) {
             this.additionalClassPaths = [];
         }
