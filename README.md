@@ -51,6 +51,22 @@ NOTE: If you move away from the default ruleset in an sfdx project, make sure to
 
 If you want to use your own [custom rules](https://pmd.github.io/latest/pmd_userdocs_extending_writing_pmd_rules.html) from a jar file, then the jar file must be on the classpath. By default, the PMD folder and the workspace root folder are included in the classpath. You can add further folders using the `additionalClassPaths` setting.  This ["Hello world"](https://github.com/andrewgilbertsagecom/pmd-custom-rule-sample) example is a good starting place for beginners.
 
+## Developing/Contributing
+
+### Setup & Run
+
+1. `git clone`
+1. `npm install`
+1. debug -> "launch extension"
+
+### Upgrading PMD
+
+- Download latest distribution
+- unzip
+- copy contents (`bin`, `lib`,`LICENSE`) to `bin/pmd`
+
+Any pull request submitted with updates to PMD MUST BE "CHECKSUMED"!
+
 ## Legal Stuff
 
 ```
