@@ -2,7 +2,7 @@
   "name": "apex-pmd",
   "displayName": "Apex PMD",
   "description": "PMD static analysis for Salesforce Apex",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "publisher": "chuckjonas",
   "author": {
     "name": "Charlie Jonas",
@@ -181,6 +181,6 @@
     "vscode": "^1.1.33"
   },
   "dependencies": {
-    "csv-parse": "^4.3.1"
+    "csv-parse": "^4.8.5"
   }
 }

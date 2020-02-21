@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.4.7]
 ### Change
+- npm audit fix
+- fixing bad documentation links
+
+## [0.4.7]
+### Change
 - fix issue with `cachePath` not working for windows
 - upgraded PMD to 6.21.0
 
