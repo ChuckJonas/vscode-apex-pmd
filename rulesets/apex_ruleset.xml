@@ -40,12 +40,6 @@
          <property name="minimum" value="700" />
       </properties>
    </rule>
-   <rule ref="category/apex/design.xml/StdCyclomaticComplexity" message="The {0} ''{1}'' has a Standard Cyclomatic Complexity of {2}.">
-      <priority>3</priority>
-      <properties>
-         <property name="reportLevel" value="10" />
-      </properties>
-   </rule>
    <rule ref="category/apex/design.xml/TooManyFields" message="Too many fields">
       <priority>3</priority>
       <properties>
@@ -56,11 +50,6 @@
       <priority>3</priority>
       <properties>
          <property name="problemDepth" value="4" />
-      </properties>
-   </rule>
-   <rule ref="category/apex/design.xml/CyclomaticComplexity">
-      <priority>3</priority>
-      <properties>
       </properties>
    </rule>
    <rule ref="category/apex/design.xml/CognitiveComplexity">
