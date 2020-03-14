@@ -10,14 +10,14 @@ import * as assert from 'assert';
 // as well as import your extension to test it
 import * as vscode from 'vscode';
 import * as path from 'path';
-import { ApexPmd } from '../src/extension';
-import { Config } from '../src/lib/config';
+import { ApexPmd } from '../../src/extension';
+import { Config } from '../../src/lib/config';
 
 
-const PMD_PATH = path.join(__dirname, '..', '..', 'bin', 'pmd');
-const RULESET_PATH = path.join(__dirname, '..', '..', 'rulesets', 'apex_ruleset.xml');
-const INVALID_RULESET_PATH = path.join(__dirname, '..', '..', 'rulesets', 'apex_ruleset_invalid.xml');
-const TEST_APEX_PATH = path.join(__dirname, '..', '..', 'test', 'assets', 'test.cls');
+const PMD_PATH = path.join(__dirname, '..', '..', '..', 'bin', 'pmd');
+const RULESET_PATH = path.join(__dirname, '..', '..', '..', 'rulesets', 'apex_ruleset.xml');
+const INVALID_RULESET_PATH = path.join(__dirname, '..', '..', '..', 'rulesets', 'apex_ruleset_invalid.xml');
+const TEST_APEX_PATH = path.join(__dirname, '..', '..', '..', 'test', 'assets', 'test.cls');
 
 suite("Extension Tests", () => {
 

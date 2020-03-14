@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ChuckJonas/vscode-apex-pmd.svg?branch=master)](https://travis-ci.org/ChuckJonas/vscode-apex-pmd)
 
-Allows you to run [Apex Static Analysis](http://pmd.sourceforge.net/snapshot/pmd-apex/) directly in vscode on apex & visualforce files.
+Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html) directly in vscode on apex & VisualForce files.
 
 ## Features
 

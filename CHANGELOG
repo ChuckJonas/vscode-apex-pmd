@@ -4,6 +4,14 @@ All notable changes to the VS Code Apex PMD will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.9]
+### Change
+- upgraded to PMD 6.22
+- added Cognitive Complexity to default rule-set
+- removed Cyclomatic Complexity from default rule-set
+- fixed stale readme link
+- Upgraded vscode engine to 1.43.0 (min vscode version) + Upgraded to new test "framework"
+
 ## [0.4.8]
 ### Change
 - npm audit fix

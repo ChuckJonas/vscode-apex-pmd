@@ -3,26 +3,25 @@
     "version": "0.1.0",
     "configurations": [
         {
-            "name": "Launch Extension",
-            "type": "extensionHost",
-            "request": "launch",
-            "runtimeExecutable": "${execPath}",
-            "args": ["--extensionDevelopmentPath=${workspaceRoot}" ],
-            "stopOnEntry": false,
-            "sourceMaps": true,
-            "outFiles": ["${workspaceRoot}/out/src"],
-            "preLaunchTask": "npm"
+          "name": "Run Extension",
+          "type": "extensionHost",
+          "request": "launch",
+          "runtimeExecutable": "${execPath}",
+          "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
+          "outFiles": ["${workspaceFolder}/out/**/*.js"],
+          "preLaunchTask": "npm: watch"
         },
         {
-            "name": "Launch Tests",
-            "type": "extensionHost",
-            "request": "launch",
-            "runtimeExecutable": "${execPath}",
-            "args": ["--extensionDevelopmentPath=${workspaceRoot}", "--extensionTestsPath=${workspaceRoot}/out/test" ],
-            "stopOnEntry": false,
-            "sourceMaps": true,
-            "outFiles": ["${workspaceRoot}/out/test"],
-            "preLaunchTask": "npm"
+          "name": "Run Extension Tests",
+          "type": "extensionHost",
+          "request": "launch",
+          "runtimeExecutable": "${execPath}",
+          "args": [
+            "--extensionDevelopmentPath=${workspaceFolder}",
+            "--extensionTestsPath=${workspaceFolder}/out/test/suite/index"
+          ],
+          "outFiles": ["${workspaceFolder}/out/test/**/*.js"],
+          "preLaunchTask": "npm: watch"
         }
     ]
 }

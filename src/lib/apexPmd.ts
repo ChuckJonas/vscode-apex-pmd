@@ -8,8 +8,6 @@ import { AppStatus } from './appStatus';
 import * as os from 'os';
 import { Options } from 'csv-parse';
 
-
-
 const PMD_COLUMNS: (keyof PmdResult)[] = [
     'problem',
     'package',
@@ -256,7 +254,7 @@ export class ApexPmd {
         let lineNum = parseInt(result.line) - 1;
 
         let uri = `https://pmd.github.io/latest/pmd_rules_apex_${result.ruleSet.split(' ').join('').toLowerCase()}.html#${result.rule.toLowerCase()}`;
-        let msg = `${result.description} (rule: ${result.ruleSet}-${result.rule}) \n   See: ${uri}`;
+        let msg = `${result.description} (rule: ${result.ruleSet}-${result.rule})`;
 
         let priority = parseInt(result.priority);
         if (isNaN(lineNum)) { return null; }
@@ -275,6 +273,7 @@ export class ApexPmd {
             msg,
             level
         );
+        problem.code = {target: vscode.Uri.parse(uri), value: result.rule};
         problem.source = 'apex pmd';
         return problem;
     }
