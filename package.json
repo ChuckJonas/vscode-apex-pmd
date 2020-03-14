@@ -2,7 +2,7 @@
   "name": "apex-pmd",
   "displayName": "Apex PMD",
   "description": "PMD static analysis for Salesforce Apex",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "publisher": "chuckjonas",
   "author": {
     "name": "Charlie Jonas",
@@ -169,6 +169,7 @@
     "postinstall": "node ./node_modules/vscode/bin/install",
     "lint": "tslint --project ./",
     "vscode:prepublish": "tsc -p ./",
+    "update-pmd": "./bin/update.sh",
     "test": "node ./node_modules/vscode/bin/test"
   },
   "devDependencies": {

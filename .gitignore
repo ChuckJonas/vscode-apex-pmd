@@ -2,3 +2,4 @@ out
 node_modules
 .sfdx
 .vscode-test
+bin/pmd.zip

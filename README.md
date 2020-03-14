@@ -61,9 +61,7 @@ If you want to use your own [custom rules](https://pmd.github.io/latest/pmd_user
 
 ### Upgrading PMD
 
-- Download latest distribution
-- unzip
-- copy contents (`bin`, `lib`,`LICENSE`) to `bin/pmd`
+`npm run update-pmd`
 
 Any pull request submitted with updates to PMD MUST BE "CHECKSUMED"!
 
