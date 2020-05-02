@@ -67,6 +67,12 @@ Any pull request submitted with updates to PMD MUST BE "CHECKSUMED"!
 
 ## Legal Stuff
 
+Copyright (c) 2020 Charles Jonas and Contributors
+
+### PMD License
+
+Contains Distribution of PMD library.
+
 ```
 Copyright (c) 2003-2009, InfoEther, LLC
 All rights reserved.
