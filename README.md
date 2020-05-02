@@ -12,6 +12,7 @@ Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html
 
 - Run analysis on file open
 - Run analysis on file save
+- Run analysis on file change (new!)
 - Run analysis on entire workspace
 - Run analysis on single file
 - Ability to define your own ruleset

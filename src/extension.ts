@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import { ApexPmd } from './lib/apexPmd';
 import { Config, getRootWorkspacePath } from './lib/config';
 import { AppStatus } from './lib/appStatus';
-import debounce = require('debounce');
+import { debounce } from 'debounce';
 export { ApexPmd };
 
 const supportedLanguageCodes = ['apex', 'visualforce'];
@@ -65,7 +65,7 @@ export function activate(context: vscode.ExtensionContext) {
   }
 
   if (config.runOnFileChange) {
-    vscode.workspace.onDidChangeTextDocument(debounce((textDocumentChangeEvent) => {
+    vscode.workspace.onDidChangeTextDocument(debounce((textDocumentChangeEvent: vscode.TextDocumentChangeEvent) => {
       const textDocument = textDocumentChangeEvent.document;
       if (isSupportedLanguage(textDocument.languageId)) {
         return vscode.commands.executeCommand('apex-pmd.runFile', textDocument.fileName);
