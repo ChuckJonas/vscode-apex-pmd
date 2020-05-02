@@ -26,6 +26,7 @@ Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html
 - `rulesets` (optional): set to override default ruleset (see "Defining your own ruleset" for more details)
 - `runOnFileOpen`: run every time a file is opened in vscode
 - `runOnFileSave`: run every time a file is saved
+- `runOnFileChange`: Run when a file is changed.  NOTE: this is "debounced" to prevent performance issues.  Delay can be adjusted via `onFileChangeDebounce`.
 - `priorityErrorThreshold`: Determines at what priority level 'errors' will be added. Anything less will be a warning or hint
 - `priorityWarnThreshold`: Determines at what priority level 'warnings' will be added. Anything less will be a hint
 - `enableCache`: Creates a cache file for PMD to run faster. Will create a .pmdCache file in your workspace

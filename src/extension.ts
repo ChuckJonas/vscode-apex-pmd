@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import { ApexPmd } from './lib/apexPmd';
 import { Config, getRootWorkspacePath } from './lib/config';
 import { AppStatus } from './lib/appStatus';
-
+import debounce = require('debounce');
 export { ApexPmd };
 
 const supportedLanguageCodes = ['apex', 'visualforce'];
@@ -17,75 +17,85 @@ const outputChannel = vscode.window.createOutputChannel(appName);
 
 export function activate(context: vscode.ExtensionContext) {
 
-    //setup config
-    const config = new Config(context);
+  //setup config
+  const config = new Config(context);
 
-    //setup instance vars
-    const pmd = new ApexPmd(outputChannel, config);
-    AppStatus.setAppName(appName);
-    AppStatus.getInstance().ok();
+  //setup instance vars
+  const pmd = new ApexPmd(outputChannel, config);
+  AppStatus.setAppName(appName);
+  AppStatus.getInstance().ok();
 
-    context.subscriptions.push(
-        vscode.commands.registerCommand('apex-pmd.clearProblems', () => {
-            collection.clear();
-        })
-    );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('apex-pmd.clearProblems', () => {
+      collection.clear();
+    })
+  );
 
-    //setup commands
-    context.subscriptions.push(
-        vscode.commands.registerCommand('apex-pmd.runWorkspace', () => {
-            vscode.window.withProgress({
-                location: vscode.ProgressLocation.Notification,
-                title: "Running Static Analysis on workspace",
-                cancellable: true
-            }, (progress, token) => {
-                progress.report({ increment: 0 });
-                return pmd.run(getRootWorkspacePath(), collection, progress, token);
-            });
-        })
-    );
+  //setup commands
+  context.subscriptions.push(
+    vscode.commands.registerCommand('apex-pmd.runWorkspace', () => {
+      vscode.window.withProgress({
+        location: vscode.ProgressLocation.Notification,
+        title: "Running Static Analysis on workspace",
+        cancellable: true
+      }, (progress, token) => {
+        progress.report({ increment: 0 });
+        return pmd.run(getRootWorkspacePath(), collection, progress, token);
+      });
+    })
+  );
 
-    context.subscriptions.push(
-        vscode.commands.registerCommand('apex-pmd.runFile', (fileName: string) => {
-            if (!fileName) {
-                fileName = vscode.window.activeTextEditor.document.fileName;
-            }
-            pmd.run(fileName, collection);
-        })
-    );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('apex-pmd.runFile', (fileName: string) => {
 
-    //setup listeners
-    if (config.runOnFileSave) {
-        vscode.workspace.onDidSaveTextDocument((textDocument) => {
-            if(isSupportedLanguage(textDocument.languageId)){
-              return vscode.commands.executeCommand('apex-pmd.runFile', textDocument.fileName);
-            }
-        });
-    }
+      if (!fileName) {
+        fileName = vscode.window.activeTextEditor.document.fileName;
+      }
+      pmd.run(fileName, collection);
+    })
+  );
 
-    if (config.runOnFileOpen) {
-        vscode.window.onDidChangeActiveTextEditor((editor) => {
-            if(isSupportedLanguage(editor.document.languageId)){
-                return vscode.commands.executeCommand('apex-pmd.runFile', editor.document.fileName);
-            }
-        });
-    }
-
-    vscode.workspace.onDidChangeConfiguration((configChange: vscode.ConfigurationChangeEvent) => {
-        if(configChange.affectsConfiguration(settingsNamespace)) {
-            config.init();
-            return pmd.updateConfiguration(config);
-        }
+  //setup listeners
+  if (config.runOnFileSave) {
+    vscode.workspace.onDidSaveTextDocument((textDocument) => {
+      if (isSupportedLanguage(textDocument.languageId)) {
+        return vscode.commands.executeCommand('apex-pmd.runFile', textDocument.fileName);
+      }
     });
+  }
 
-    context.subscriptions.push(vscode.window.onDidChangeVisibleTextEditors(editors => {
-        const isStatusNeeded = editors.some((e) => e.document && isSupportedLanguage(e.document.languageId));
-        if (isStatusNeeded) {
-            AppStatus.getInstance().show();
-        } else {
-            AppStatus.getInstance().hide();
-        }
-    }));
+  if (config.runOnFileChange) {
+    vscode.workspace.onDidChangeTextDocument(debounce((textDocumentChangeEvent) => {
+      const textDocument = textDocumentChangeEvent.document;
+      if (isSupportedLanguage(textDocument.languageId)) {
+        return vscode.commands.executeCommand('apex-pmd.runFile', textDocument.fileName);
+      }
+    }, config.onFileChangeDebounce));
+  }
+
+  if (config.runOnFileOpen) {
+    vscode.window.onDidChangeActiveTextEditor((editor) => {
+      if (isSupportedLanguage(editor.document.languageId)) {
+        return vscode.commands.executeCommand('apex-pmd.runFile', editor.document.fileName, true);
+      }
+    });
+  }
+
+  vscode.workspace.onDidChangeConfiguration((configChange: vscode.ConfigurationChangeEvent) => {
+    if (configChange.affectsConfiguration(settingsNamespace)) {
+      config.init();
+      return pmd.updateConfiguration(config);
+    }
+  });
+
+  context.subscriptions.push(vscode.window.onDidChangeVisibleTextEditors(editors => {
+    const isStatusNeeded = editors.some((e) => e.document && isSupportedLanguage(e.document.languageId));
+    if (isStatusNeeded) {
+      AppStatus.getInstance().show();
+    } else {
+      AppStatus.getInstance().hide();
+    }
+  }));
 }
 
 export function deactivate() { }

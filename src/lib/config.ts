@@ -11,6 +11,8 @@ export class Config {
     public priorityWarnThreshold: number;
     public runOnFileOpen: boolean;
     public runOnFileSave: boolean;
+    public runOnFileChange: boolean;
+    public onFileChangeDebounce: number;
     public showErrors: boolean;
     public showStdOut: boolean;
     public showStdErr: boolean;
@@ -32,20 +34,22 @@ export class Config {
     public init() {
     let config = vscode.workspace.getConfiguration('apexPMD');
         // deprecated setting is left for backward compatibility
-        this._rulesetPath = config.get('rulesetPath') as string;
+        this._rulesetPath = config.get('rulesetPath');
         this.workspaceRootPath = getRootWorkspacePath();
-        this.rulesets = config.get("rulesets") as string[];
-        this.pmdBinPath = config.get('pmdBinPath') as string;
-        this.priorityErrorThreshold = config.get('priorityErrorThreshold') as number;
-        this.priorityWarnThreshold = config.get('priorityWarnThreshold') as number;
-        this.runOnFileOpen = config.get('runOnFileOpen') as boolean;
-        this.runOnFileSave = config.get('runOnFileSave') as boolean;
-        this.showErrors = config.get('showErrors') as boolean;
-        this.showStdOut = config.get('showStdOut') as boolean;
-        this.showStdErr = config.get('showStdErr') as boolean;
-        this.enableCache = config.get('enableCache') as boolean;
-        this.additionalClassPaths = config.get('additionalClassPaths') as string[];
-        this.commandBufferSize = config.get('commandBufferSize') as number;
+        this.rulesets = config.get("rulesets");
+        this.pmdBinPath = config.get('pmdBinPath');
+        this.priorityErrorThreshold = config.get('priorityErrorThreshold');
+        this.priorityWarnThreshold = config.get('priorityWarnThreshold');
+        this.runOnFileOpen = config.get('runOnFileOpen');
+        this.runOnFileSave = config.get('runOnFileSave');
+        this.runOnFileChange = config.get('runOnFileChange');
+        this.onFileChangeDebounce = config.get('onFileChangeDebounce');
+        this.showErrors = config.get('showErrors');
+        this.showStdOut = config.get('showStdOut');
+        this.showStdErr = config.get('showStdErr');
+        this.enableCache = config.get('enableCache');
+        this.additionalClassPaths = config.get('additionalClassPaths');
+        this.commandBufferSize = config.get('commandBufferSize');
         this.resolvePaths();
     }
 
