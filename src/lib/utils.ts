@@ -1,18 +1,25 @@
 //=== Util ===
 import * as fs from 'fs';
+import * as vscode from 'vscode';
 
-export function fileExists(filePath: string) {
+export function getRootWorkspacePath(): string {
+  const ws = vscode.workspace;
+  const hasWorkspaceRoot = ws && ws.workspaceFolders && ws.workspaceFolders.length > 0;
+  return hasWorkspaceRoot ? vscode.workspace.workspaceFolders![0].uri.fsPath : '';
+}
+
+export function fileExists(filePath: string): boolean {
   try {
-    let stat = fs.statSync(filePath);
+    const stat = fs.statSync(filePath);
     return stat.isFile();
   } catch (err) {
     return false;
   }
 }
 
-export function dirExists(filePath: string) {
+export function dirExists(filePath: string): boolean {
   try {
-    let stat = fs.statSync(filePath);
+    const stat = fs.statSync(filePath);
     return stat.isDirectory();
   } catch (err) {
     return false;

@@ -27,7 +27,7 @@ Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html
 - `rulesets` (optional): set to override default ruleset (see "Defining your own ruleset" for more details)
 - `runOnFileOpen`: run every time a file is opened in vscode
 - `runOnFileSave`: run every time a file is saved
-- `runOnFileChange`: Run when a file is changed.  NOTE: this is "debounced" to prevent performance issues.  Delay can be adjusted via `onFileChangeDebounce`.
+- `runOnFileChange`: Run when a file is changed. NOTE: this is "debounced" to prevent performance issues. Delay can be adjusted via `onFileChangeDebounce`.
 - `priorityErrorThreshold`: Determines at what priority level 'errors' will be added. Anything less will be a warning or hint
 - `priorityWarnThreshold`: Determines at what priority level 'warnings' will be added. Anything less will be a hint
 - `enableCache`: Creates a cache file for PMD to run faster. Will create a .pmdCache file in your workspace
@@ -51,7 +51,7 @@ NOTE: If you move away from the default ruleset in an sfdx project, make sure to
 
 ### Using custom rules written in Java
 
-If you want to use your own [custom rules](https://pmd.github.io/latest/pmd_userdocs_extending_writing_pmd_rules.html) from a jar file, then the jar file must be on the classpath. By default, the PMD folder and the workspace root folder are included in the classpath. You can add further folders using the `additionalClassPaths` setting.  This ["Hello world"](https://github.com/andrewgilbertsagecom/pmd-custom-rule-sample) example is a good starting place for beginners.
+If you want to use your own [custom rules](https://pmd.github.io/latest/pmd_userdocs_extending_writing_pmd_rules.html) from a jar file, then the jar file must be on the classpath. By default, the PMD folder and the workspace root folder are included in the classpath. You can add further folders using the `additionalClassPaths` setting. This ["Hello world"](https://github.com/andrewgilbertsagecom/pmd-custom-rule-sample) example is a good starting place for beginners.
 
 ## Developing/Contributing
 
