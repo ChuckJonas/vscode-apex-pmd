@@ -11,49 +11,23 @@ import { parsePmdCsv } from './pmdCsvParser';
 const CLASSPATH_DELM = os.platform() === 'win32' ? ';' : ':';
 
 export class ApexPmd {
-  private _pmdPath: string;
-  private _rulesets: string[];
-  private _errorThreshold: number;
-  private _warningThreshold: number;
-  private _outputChannel: vscode.OutputChannel;
-  private _showErrors: boolean;
-  private _showStdOut: boolean;
-  private _showStdErr: boolean;
-  private _enableCache: boolean;
-  private _additionalClassPaths: string[];
-  private _workspaceRootPath: string;
-  private _commandBufferSize: number;
+  private config: Config;
+  private rulesets: string[];
+  private outputChannel: vscode.OutputChannel;
 
   public constructor(outputChannel: vscode.OutputChannel, config: Config) {
-    this._rulesets = this.getValidRulesetPaths(config.rulesets);
-    this._workspaceRootPath = config.workspaceRootPath;
-    this._pmdPath = config.pmdBinPath;
-    this._errorThreshold = config.priorityErrorThreshold;
-    this._warningThreshold = config.priorityWarnThreshold;
-    this._outputChannel = outputChannel;
-    this._showErrors = config.showErrors;
-    this._showStdOut = config.showStdOut;
-    this._showStdErr = config.showStdErr;
-    this._enableCache = config.enableCache;
-    this._additionalClassPaths = config.additionalClassPaths;
-    this._commandBufferSize = config.commandBufferSize;
+    this.config = config;
+    this.rulesets = this.getValidRulesetPaths(config.rulesets);
+    this.outputChannel = outputChannel;
   }
 
   public updateConfiguration(config: Config) {
-    this._rulesets = this.getValidRulesetPaths(config.rulesets);
-    this._workspaceRootPath = config.workspaceRootPath;
-    this._pmdPath = config.pmdBinPath;
-    this._errorThreshold = config.priorityErrorThreshold;
-    this._warningThreshold = config.priorityWarnThreshold;
-    this._showErrors = config.showErrors;
-    this._showStdOut = config.showStdOut;
-    this._showStdErr = config.showStdErr;
-    this._enableCache = config.enableCache;
-    this._additionalClassPaths = config.additionalClassPaths;
+    this.config = config;
+    this.rulesets = this.getValidRulesetPaths(config.rulesets);
   }
 
   public async run(targetPath: string, collection: vscode.DiagnosticCollection, progress?: vscode.Progress<{ message?: string; increment?: number; }>, token?: vscode.CancellationToken): Promise<void> {
-    this._outputChannel.appendLine(`Analyzing ${targetPath}`);
+    this.outputChannel.appendLine(`Analyzing ${targetPath}`);
     AppStatus.getInstance().thinking();
 
     let canceled = false;
@@ -94,7 +68,7 @@ export class ApexPmd {
 
             collection.set(uri, issues);
           } catch (e) {
-            this._outputChannel.appendLine(e);
+            this.outputChannel.appendLine(e);
           }
         }
       } else {
@@ -111,7 +85,7 @@ export class ApexPmd {
   }
 
   getRulesets() {
-    return this._rulesets;
+    return this.rulesets;
   }
 
   private getValidRulesetPaths(rulesets: string[]) {
@@ -120,7 +94,7 @@ export class ApexPmd {
   }
 
   hasAtLeastOneValidRuleset() {
-    if (this._rulesets.length) {
+    if (this.rulesets.length) {
       return true;
     }
     vscode.window.showErrorMessage(`No valid Ruleset paths found in "apexPMD.rulesets". Ensure configuration correct or change back to the default.`);
@@ -128,11 +102,12 @@ export class ApexPmd {
   }
 
   async executeCmd(targetPath: string, token?: vscode.CancellationToken): Promise<string> {
+    const { workspaceRootPath, enableCache, pmdBinPath, additionalClassPaths, showStdOut, showStdErr, commandBufferSize, showErrors } = this.config;
     // -R Comma-separated list of ruleset or rule references.
-    const cachePath = `${this._workspaceRootPath}/.pmdCache`;
-    const rulesetsArg = this._rulesets.join(',');
+    const cachePath = `${workspaceRootPath}/.pmdCache`;
+    const rulesetsArg = this.rulesets.join(',');
 
-    const cacheKey = this._enableCache ? `-cache "${cachePath}"` : '-no-cache';
+    const cacheKey = enableCache ? `-cache "${cachePath}"` : '-no-cache';
     const formatKey = `-f csv`;
     const targetPathKey = `-d "${targetPath}"`;
     const rulesetsKey = `-R "${rulesetsArg}"`;
@@ -140,17 +115,17 @@ export class ApexPmd {
     const pmdKeys = `${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`;
 
     const classPath = [
-      path.join(this._pmdPath, 'lib', '*'),
-      path.join(this._workspaceRootPath, '*'),
-      ...this._additionalClassPaths
+      path.join(pmdBinPath, 'lib', '*'),
+      path.join(workspaceRootPath, '*'),
+      ...additionalClassPaths
     ].join(CLASSPATH_DELM);
 
     const cmd = `java -cp "${classPath}" net.sourceforge.pmd.PMD ${pmdKeys}`;
 
-    if (this._showStdOut) this._outputChannel.appendLine('PMD Command: ' + cmd);
+    if (showStdOut) this.outputChannel.appendLine('PMD Command: ' + cmd);
 
     let pmdCmd = ChildProcess.exec(cmd,
-      { maxBuffer: Math.max(this._commandBufferSize, 1) * 1024 * 1024 });
+      { maxBuffer: Math.max(commandBufferSize, 1) * 1024 * 1024 });
 
     token && token.onCancellationRequested(() => {
       pmdCmd.kill();
@@ -160,12 +135,12 @@ export class ApexPmd {
     let pmdPromise = new Promise<string>(
       (resolve, reject) => {
         pmdCmd.addListener("error", (e) => {
-          if (this._showErrors) this._outputChannel.appendLine('error:' + e);
+          if (showErrors) this.outputChannel.appendLine('error:' + e);
           reject(e);
         });
         pmdCmd.addListener("exit", (e) => {
           if (e !== 0 && e !== 4) {
-            this._outputChannel.appendLine(`Failed Exit Code: ${e}`);
+            this.outputChannel.appendLine(`Failed Exit Code: ${e}`);
             if (!stdout) {
               reject('PMD Command Failed!  Enable "Show StdErr" setting for more info.');
             }
@@ -173,11 +148,11 @@ export class ApexPmd {
           resolve(stdout);
         });
         pmdCmd.stdout.on('data', (m: string) => {
-          if (this._showStdOut) this._outputChannel.appendLine('stdout:' + m);
+          if (showStdOut) this.outputChannel.appendLine('stdout:' + m);
           stdout += m;
         });
         pmdCmd.stderr.on('data', (m: string) => {
-          if (this._showStdErr) this._outputChannel.appendLine('stderr:' + m);
+          if (showStdErr) this.outputChannel.appendLine('stderr:' + m);
         });
       }
     );
@@ -211,14 +186,15 @@ export class ApexPmd {
           problemsMap.set(result.file, [problem]);
         }
       } catch (ex) {
-        this._outputChannel.appendLine(ex);
+        this.outputChannel.appendLine(ex);
       }
     }
-    this._outputChannel.appendLine(`${problemCount} issue(s) found`);
+    this.outputChannel.appendLine(`${problemCount} issue(s) found`);
     return problemsMap;
   }
 
   createDiagnostic(result: PmdResult): vscode.Diagnostic {
+    const {priorityErrorThreshold, priorityWarnThreshold} = this.config;
     let lineNum = parseInt(result.line) - 1;
 
     let uri = `https://pmd.github.io/latest/pmd_rules_apex_${result.ruleSet.split(' ').join('').toLowerCase()}.html#${result.rule.toLowerCase()}`;
@@ -228,9 +204,9 @@ export class ApexPmd {
     if (isNaN(lineNum)) { return null; }
 
     let level: vscode.DiagnosticSeverity;
-    if (priority <= this._errorThreshold) {
+    if (priority <= priorityErrorThreshold) {
       level = vscode.DiagnosticSeverity.Error;
-    } else if (priority <= this._warningThreshold) {
+    } else if (priority <= priorityWarnThreshold) {
       level = vscode.DiagnosticSeverity.Warning;
     } else {
       level = vscode.DiagnosticSeverity.Information;
@@ -247,10 +223,12 @@ export class ApexPmd {
   }
 
   checkPmdPath(): boolean {
-    if (dirExists(this._pmdPath)) {
+    const {pmdBinPath} = this.config;
+
+    if (dirExists(pmdBinPath)) {
       return true;
     }
-    this._outputChannel.appendLine(this._pmdPath);
+    this.outputChannel.appendLine(pmdBinPath);
     vscode.window.showErrorMessage('PMD Path Does not reference a valid directory.  Please update or clear');
     return false;
   }
