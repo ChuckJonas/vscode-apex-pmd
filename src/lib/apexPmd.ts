@@ -84,11 +84,7 @@ export class ApexPmd {
 
   }
 
-  getRulesets() {
-    return this.rulesets;
-  }
-
-  private getValidRulesetPaths(rulesets: string[]) {
+  getValidRulesetPaths(rulesets: string[]) {
     const validRulesets = rulesets.filter((p) => this.checkRulesetPath(p));
     return validRulesets;
   }
