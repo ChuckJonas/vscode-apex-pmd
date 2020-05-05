@@ -4,6 +4,14 @@ All notable changes to the VS Code Apex PMD will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0]
+### Added
+- Ability to run PMD on file change
+
+### Change
+- Long overdue refactors to simplify code
+- Removed unneeded pmd dist files (reduced package size by 80%!)
+
 ## [0.4.10]
 ### Change
 - upgraded to PMD 6.23

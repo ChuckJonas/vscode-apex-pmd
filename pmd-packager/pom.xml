@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>net.sourceforge.pmd.examples</groupId>
+  <artifactId>pmd-apex-dist</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <pmd.version>6.23.0</pmd.version>
+    <pmd.dist.zipName>pmd-apex-bin-${pmd.version}</pmd.dist.zipName>
+    <!-- Rename this so the name is clearer. This weird name is necessary for the maven assembly. -->
+    <pmd.dist.bin.baseDirectory>${pmd.dist.zipName}</pmd.dist.bin.baseDirectory>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack</id>
+            <phase>package</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>net.sourceforge.pmd</groupId>
+                  <artifactId>pmd-dist</artifactId>
+                  <version>${pmd.version}</version>
+                  <type>jar</type>
+                  <overWrite>false</overWrite>
+                  <outputDirectory>${basedir}/target/extra-resources</outputDirectory>
+                  <includes>scripts/**,LICENSE</includes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+       <artifactId>maven-assembly-plugin</artifactId>
+       <dependencies>
+         <dependency>
+           <groupId>net.sourceforge.pmd</groupId>
+           <artifactId>pmd-dist</artifactId>
+           <version>${pmd.version}</version>
+         </dependency>
+       </dependencies>
+       <configuration>
+         <appendAssemblyId>false</appendAssemblyId>
+         <attach>false</attach>
+         <archiverConfig>
+           <defaultDirectoryMode>493</defaultDirectoryMode> <!-- 0755 -->
+         </archiverConfig>
+         <finalName>${pmd.dist.bin.baseDirectory}</finalName>
+         <descriptorRefs>
+           <descriptorRef>pmd-bin</descriptorRef>
+         </descriptorRefs>
+       </configuration>
+       <executions>
+         <execution>
+           <id>build-bin-dist</id>
+           <phase>package</phase>
+           <goals>
+             <goal>single</goal>
+           </goals>
+         </execution>
+       </executions>
+     </plugin>
+   </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>net.sourceforge.pmd</groupId>
+      <artifactId>pmd-apex</artifactId>
+      <version>${pmd.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.sourceforge.pmd</groupId>
+      <artifactId>pmd-visualforce</artifactId>
+      <version>${pmd.version}</version>
+    </dependency>
+  </dependencies>
+
+</project>

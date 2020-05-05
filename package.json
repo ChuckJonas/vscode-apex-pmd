@@ -2,7 +2,7 @@
   "name": "apex-pmd",
   "displayName": "Apex PMD",
   "description": "PMD static analysis for Salesforce Apex",
-  "version": "0.4.10",
+  "version": "0.5.0",
   "publisher": "chuckjonas",
   "author": {
     "name": "Charlie Jonas",
@@ -101,6 +101,16 @@
           "default": true,
           "description": "Will run static analysis every time a file is saved"
         },
+        "apexPMD.runOnFileChange": {
+          "type": "boolean",
+          "default": false,
+          "description": "Will run static analysis every time a file is changed (with a 500ms debounce delay)"
+        },
+        "apexPMD.onFileChangeDebounce": {
+          "type": "integer",
+          "default": 3000,
+          "description": "Debounce interval to wait before running pmd after document change.  Only applicable if `runOnFileChange == true`"
+        },
         "apexPMD.priorityErrorThreshold": {
           "type": "number",
           "default": 1,
@@ -169,21 +179,29 @@
     "lint": "tslint -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile",
-    "update-pmd": "./bin/update.sh",
+    "update-pmd": "cd pmd-packager && ./upgrade.sh",
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
     "@types/csv-parse": "^1.1.11",
+    "@types/debounce": "^1.2.0",
     "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.9.4",
     "@types/vscode": "1.43.0",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
     "mocha": "^5.2.0",
+    "prettier": "^2.0.5",
     "tslint": "^5.16.0",
     "typescript": "^3.8.3",
     "vscode-test": "^1.3.0"
   },
   "dependencies": {
-    "csv-parse": "^4.8.5"
+    "csv-parse": "^4.8.5",
+    "debounce": "^1.2.0"
   }
 }
