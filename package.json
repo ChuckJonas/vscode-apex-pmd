@@ -2,7 +2,7 @@
   "name": "apex-pmd",
   "displayName": "Apex PMD",
   "description": "PMD static analysis for Salesforce Apex",
-  "version": "0.4.10",
+  "version": "0.5.0",
   "publisher": "chuckjonas",
   "author": {
     "name": "Charlie Jonas",
@@ -179,7 +179,7 @@
     "lint": "tslint -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile",
-    "update-pmd": "./bin/update.sh",
+    "update-pmd": "cd pmd-packager && ./upgrade.sh",
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {

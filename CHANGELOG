@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Change
 - Long overdue refactors to simplify code
+- Removed unneeded pmd dist files (reduced package size by 80%!)
 
 ## [0.4.10]
 ### Change

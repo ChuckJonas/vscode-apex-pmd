@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<setup:Project
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:git="http://www.eclipse.org/oomph/setup/git/1.0"
+    xmlns:jdt="http://www.eclipse.org/oomph/setup/jdt/1.0"
+    xmlns:maven="http://www.eclipse.org/oomph/setup/maven/1.0"
+    xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
+    xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/maven/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Maven.ecore"
+    name="pmd-examples"
+    label="PMD Examples">
+  <setupTask
+      xsi:type="jdt:JRETask"
+      version="JavaSE-1.8"
+      location="${jre.location-1.8}">
+    <description>Define the JRE needed to compile and run the Java projects of ${scope.project.label}</description>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:EclipseIniTask"
+      option="-Xmx"
+      value="1024m"
+      vm="true">
+    <description>Set the heap space needed to work with the projects of ${scope.project.label}</description>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      name="eclipse.target.platform"
+      defaultValue="Photon"
+      storageURI="scope://Workspace"/>
+  <setupTask
+      xsi:type="setup.p2:P2Task">
+    <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
+  </setupTask>
+  <setupTask
+      xsi:type="git:GitCloneTask"
+      id="git.clone"
+      location="${workspace.location}/${scope.project.name}-${scope.project.stream.name}"
+      remoteURI="pmd/pmd-examples">
+    <annotation
+        source="http://www.eclipse.org/oomph/setup/InducedChoices">
+      <detail
+          key="inherit">
+        <value>github.remoteURIs</value>
+      </detail>
+      <detail
+          key="label">
+        <value>${scope.project.label} Github repository</value>
+      </detail>
+      <detail
+          key="target">
+        <value>remoteURI</value>
+      </detail>
+    </annotation>
+    <description>${scope.project.label}</description>
+  </setupTask>
+  <setupTask
+      xsi:type="maven:MavenImportTask">
+    <sourceLocator
+        rootFolder="${git.clone.location}"
+        locateNestedProjects="true"/>
+  </setupTask>
+  <stream name="plsql"
+      label="plsql">
+    <setupTask
+        xsi:type="setup:EclipseIniTask"
+        option="-Doomph.redirection.pmd.examples"
+        value="=https://raw.githubusercontent.com/pmd/pmd-examples.git/master/PMDExamples.setup->${git.clone.location|uri}/PMDExamples.setup"
+        vm="true">
+      <description>Set an Oomph redirection system property to redirect the logical location of this setup to its physical location in the Git clone.</description>
+    </setupTask>
+  </stream>
+  <stream name="java"
+      label="java">
+    <setupTask
+        xsi:type="setup:EclipseIniTask"
+        option="-Doomph.redirection.pmd.examples"
+        value="=https://raw.githubusercontent.com/pmd/pmd-examples.git/master/PMDExamples.setup->${git.clone.location|uri}/PMDExamples.setup"
+        vm="true">
+      <description>Set an Oomph redirection system property to redirect the logical location of this setup to its physical location in the Git clone.</description>
+    </setupTask>
+  </stream>
+  <logicalProjectContainer
+      xsi:type="setup:ProjectCatalog"
+      href="index:/org.eclipse.setup#//@projectCatalogs[name='com.github']"/>
+  <description>PMD Examples provides a sample projects for enhancing and customizing PMD.</description>
+</setup:Project>
