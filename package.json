@@ -196,9 +196,12 @@
     "eslint-plugin-prettier": "^3.1.3",
     "mocha": "^5.2.0",
     "prettier": "^2.0.5",
+    "ts-loader": "^8.0.2",
     "tslint": "^5.16.0",
     "typescript": "^3.8.3",
-    "vscode-test": "^1.3.0"
+    "vscode-test": "^1.3.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "csv-parse": "^4.8.5",
