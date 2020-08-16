@@ -4,3 +4,5 @@ node_modules
 .vscode-test
 bin/pmd.zip
 pmd-packager/target
+*.vsix
+dist/

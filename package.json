@@ -31,7 +31,7 @@
   "activationEvents": [
     "*"
   ],
-  "main": "./out/src/extension",
+  "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
@@ -174,7 +174,7 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "webpack --mode production",
     "compile": "tsc -p ./",
     "lint": "tslint -p ./",
     "watch": "tsc -watch -p ./",

@@ -9,3 +9,9 @@ tsconfig.json
 vsc-extension-quickstart.md
 .sfdx
 pmd-packager/**
+.github
+bin/update.sh
+images/apex-pmd.gif
+webpack.config.js
+*.log
+.sfdx
