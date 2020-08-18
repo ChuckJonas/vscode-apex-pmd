@@ -174,16 +174,16 @@
     }
   },
   "scripts": {
-		"postversion": "npm run vscode:package && git push --tags && npm run vscode:publish && git push && echo \"Successfully released version $npm_package_version!\"",
-		"vscode:package": "vsce package",
-		"vscode:publish": "vsce publish",
-		"vscode:prepublish": "npm run build:prod",
-		"build:prod": "webpack --mode production",
+    "postversion": "npm run vscode:package && git push --tags && npm run vscode:publish && git push && echo \"Successfully released version $npm_package_version!\"",
+    "vscode:package": "vsce package",
+    "vscode:publish": "vsce publish",
+    "vscode:prepublish": "npm run build:prod",
+    "build:prod": "webpack --mode production",
     "compile": "tsc -p ./",
     "lint": "tslint -p ./",
     "watch": "tsc -watch -p ./",
-		"build:test": "npm run compile",
-		"pretest": "yarn build:prod && yarn build:test",
+    "build:test": "npm run compile",
+    "pretest": "yarn build:prod && yarn build:test",
     "update-pmd": "cd pmd-packager && ./upgrade.sh",
     "test": "node ./out/test/runTest.js"
   },
