@@ -179,7 +179,7 @@
     "vscode:publish": "vsce publish",
     "vscode:prepublish": "npm run build:prod",
     "build:prod": "webpack --mode production",
-    "build:test": "npm run compile",
+    "build:test": "tsc",
     "pretest": "npm run build:prod && npm run build:test",
     "update-pmd": "cd pmd-packager && ./upgrade.sh",
     "test": "node ./out/test/runTest.js"
