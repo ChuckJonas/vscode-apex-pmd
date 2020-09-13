@@ -2,7 +2,7 @@
   "name": "apex-pmd",
   "displayName": "Apex PMD",
   "description": "PMD static analysis for Salesforce Apex",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "publisher": "chuckjonas",
   "author": {
     "name": "Charlie Jonas",
@@ -179,11 +179,8 @@
     "vscode:publish": "vsce publish",
     "vscode:prepublish": "npm run build:prod",
     "build:prod": "webpack --mode production",
-    "compile": "tsc -p ./",
-    "lint": "tslint -p ./",
-    "watch": "tsc -watch -p ./",
     "build:test": "npm run compile",
-    "pretest": "yarn build:prod && yarn build:test",
+    "pretest": "npm run build:prod && npm run build:test",
     "update-pmd": "cd pmd-packager && ./upgrade.sh",
     "test": "node ./out/test/runTest.js"
   },
