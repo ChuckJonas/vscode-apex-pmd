@@ -140,7 +140,8 @@ export class ApexPmd {
       ...additionalClassPaths,
     ].join(CLASSPATH_DELM);
 
-    const cmd = `java -cp "${classPath}" net.sourceforge.pmd.PMD ${pmdKeys}`;
+    const javaExc = this.config.jrePath ? path.join(this.config.jrePath, 'bin', 'java') : 'java';
+    const cmd = `${javaExc} -cp "${classPath}" net.sourceforge.pmd.PMD ${pmdKeys}`;
 
     if (showStdOut) this.outputChannel.appendLine('PMD Command: ' + cmd);
 

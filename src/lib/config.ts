@@ -20,6 +20,7 @@ export class Config {
   public enableCache: boolean;
   public additionalClassPaths: string[];
   public commandBufferSize: number;
+  public jrePath: string;
 
   private _ctx: vscode.ExtensionContext;
 
@@ -51,6 +52,7 @@ export class Config {
     this.enableCache = config.get('enableCache');
     this.additionalClassPaths = config.get('additionalClassPaths');
     this.commandBufferSize = config.get('commandBufferSize');
+    this.jrePath = config.get('jrePath');
     this.resolvePaths();
   }
 
@@ -88,6 +90,10 @@ export class Config {
 
     if (this.pmdBinPath && !path.isAbsolute(this.pmdBinPath) && this.workspaceRootPath) {
       this.pmdBinPath = path.join(this.workspaceRootPath, this.pmdBinPath);
+    }
+
+    if (this.jrePath && !path.isAbsolute(this.jrePath) && this.workspaceRootPath) {
+      this.jrePath = path.join(this.workspaceRootPath, this.jrePath);
     }
 
     if (!this.additionalClassPaths) {
