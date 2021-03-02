@@ -8,6 +8,7 @@
       "request": "launch",
       "runtimeExecutable": "${execPath}",
       "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
+      "sourceMaps": true,
       "outFiles": ["${workspaceFolder}/out/**/*.js"],
       "preLaunchTask": "npm: build:prod"
     },
