@@ -175,8 +175,8 @@
   },
   "scripts": {
     "postversion": "npm run vscode:package && git push --tags && npm run vscode:publish && git push && echo \"Successfully released version $npm_package_version!\"",
-    "vscode:package": "vsce package",
-    "vscode:publish": "vsce publish",
+    "vscode:package": "npx vsce package",
+    "vscode:publish": "npx vsce publish",
     "vscode:prepublish": "npm run build:prod",
     "build:prod": "webpack --mode production",
     "build:test": "tsc",
