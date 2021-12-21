@@ -20,7 +20,7 @@ Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html
 
 ## System Requirements
 
-- Must have JRE >= 1.7 installed and in path
+- Must have JRE >= 1.8 installed and in path
 - See [PMD System Requirements](https://pmd.github.io/pmd-6.11.0/pmd_userdocs_installation.html#requirements) for more details
 
 ## Configuration
@@ -35,6 +35,7 @@ Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html
 - `pmdBinPath` (prev. `pmdPath`) (optional): set to override the default pmd binaries. This should point to the PMD folder which contains folders `lib` and `bin`. Most likely it is called `libexec`.
 - `additionalClassPaths` (optional): set of paths to be appended to classpath. Used to find jar files containing custom rule definitions. Can be absolute or relative to workspace.
 - `commandBufferSize` Size of buffer used to collect PMD command output (MB), may need to be increased for very large projects
+- `jrePath` (Optional) Path to JRE (Folder that contains which contains `bin/java`)
 
 ### Defining your own "Ruleset"
 

@@ -2,7 +2,7 @@
   "name": "apex-pmd",
   "displayName": "Apex PMD",
   "description": "PMD static analysis for Salesforce Apex",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "publisher": "chuckjonas",
   "author": {
     "name": "Charlie Jonas",
@@ -153,6 +153,10 @@
           "type": "number",
           "default": "64",
           "description": "Size of buffer used to collect PMD command output (MB), may need to be increased for very large projects"
+        },
+        "apexPMD.jrePath": {
+          "type": "string",
+          "description": "(Optional) Path to JRE (Folder that contains which contains `bin/java`)"
         }
       }
     },
