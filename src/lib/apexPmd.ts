@@ -127,7 +127,7 @@ export class ApexPmd {
     const cachePath = `${workspaceRootPath}/.pmdCache`;
     const rulesetsArg = this.rulesets.join(',');
 
-    const cacheKey = enableCache ? `-cache "${cachePath}"` : '-no-cache';
+    const cacheKey = enableCache ? `--cache "${cachePath}"` : '--no-cache';
     const formatKey = `-f csv`;
     const targetPathKey = `-d "${targetPath}"`;
     const rulesetsKey = `-R "${rulesetsArg}"`;
