@@ -8,7 +8,7 @@ import { debounce } from 'debounce';
 import { getRootWorkspacePath } from './lib/utils';
 export { ApexPmd };
 
-const supportedLanguageCodes = ['apex', 'visualforce'];
+const supportedLanguageCodes = ['apex', 'visualforce', 'xml'];
 const isSupportedLanguage = (langCode: string) => 0 <= supportedLanguageCodes.indexOf(langCode);
 
 const appName = 'Apex PMD';
