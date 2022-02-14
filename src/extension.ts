@@ -49,6 +49,12 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(
+    vscode.commands.registerCommand('apex-pmd.runFileMenu', (uri: vscode.Uri) => {
+      pmd.run(uri.fsPath, collection);
+    })
+  );
+
+  context.subscriptions.push(
     vscode.commands.registerCommand('apex-pmd.runFile', (fileName: string) => {
       if (!fileName) {
         fileName = vscode.window.activeTextEditor.document.fileName;

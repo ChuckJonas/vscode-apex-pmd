@@ -48,6 +48,10 @@
         "command": "apex-pmd.clearProblems",
         "title": "Clear Problems",
         "category": "Apex Static Analysis"
+      },
+      {
+        "command": "apex-pmd.runFileMenu",
+        "title": "Static Analysis On File"
       }
     ],
     "languages": [
@@ -163,15 +167,15 @@
     "menus": {
       "explorer/context": [
         {
-          "when": "resourceLangId == 'apex'",
-          "command": "apex-pmd.runFile",
+          "when": "resourceLangId == 'apex' || resourceLangId == 'visualforce' || resourceLangId == 'xml'",
+          "command": "apex-pmd.runFileMenu",
           "group": "apex-pmd"
         }
       ],
       "editor/context": [
         {
-          "when": "resourceLangId == 'apex'",
-          "command": "apex-pmd.runFile",
+          "when": "resourceLangId == 'apex' || resourceLangId == 'visualforce' || resourceLangId == 'xml'",
+          "command": "apex-pmd.runFileMenu",
           "group": "apex-pmd"
         }
       ]
