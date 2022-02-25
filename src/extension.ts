@@ -8,7 +8,7 @@ import { debounce } from 'debounce';
 import { getRootWorkspacePath } from './lib/utils';
 export { ApexPmd };
 
-const supportedLanguageCodes = ['apex', 'visualforce'];
+const supportedLanguageCodes = ['apex', 'visualforce', 'xml'];
 const isSupportedLanguage = (langCode: string) => 0 <= supportedLanguageCodes.indexOf(langCode);
 
 const appName = 'Apex PMD';
@@ -45,6 +45,12 @@ export function activate(context: vscode.ExtensionContext) {
           return pmd.run(getRootWorkspacePath(), collection, progress, token);
         }
       );
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('apex-pmd.runFileMenu', (uri: vscode.Uri) => {
+      pmd.run(uri.fsPath, collection);
     })
   );
 

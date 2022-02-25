@@ -89,6 +89,11 @@
       <artifactId>pmd-visualforce</artifactId>
       <version>${pmd.version}</version>
     </dependency>
+    <dependency>
+      <groupId>net.sourceforge.pmd</groupId>
+      <artifactId>pmd-xml</artifactId>
+      <version>${pmd.version}</version>
+    </dependency>
   </dependencies>
 
 </project>

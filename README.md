@@ -3,7 +3,7 @@
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/chuckjonas.apex-pmd) ![Visual Studio Marketplace Installs - Azure DevOps Extension](https://img.shields.io/visual-studio-marketplace/azure-devops/installs/total/chuckjonas.apex-pmd)](https://marketplace.visualstudio.com/items?itemName=chuckjonas.apex-pmd)
 [![Build Status](https://travis-ci.org/ChuckJonas/vscode-apex-pmd.svg?branch=master)](https://travis-ci.org/ChuckJonas/vscode-apex-pmd)
 
-Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html) directly in vscode on apex & VisualForce files.
+Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html) directly in vscode on Apex,  VisualForce & other XML metadata files.
 
 ## Features
 
