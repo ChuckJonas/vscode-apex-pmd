@@ -6,3 +6,5 @@ bin/pmd.zip
 pmd-packager/target
 *.vsix
 dist/
+.DS_Store
+.pmdCache
