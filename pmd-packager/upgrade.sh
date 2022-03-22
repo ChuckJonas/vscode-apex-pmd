@@ -1,6 +1,6 @@
-VERSION=$(curl -s https://api.github.com/repos/pmd/pmd/releases/latest | grep '.tag_name' | sed 's:.*/::' | sed 's:",::')
+VERSION="$(curl -s https://api.github.com/repos/pmd/pmd/releases/latest | sed -n '/"tag_name"/ s|.*\([0-9]\+\.[0-9]\+\.[0-9]\+\).*|\1| p')"
 echo $VERSION
-echo -n $VERSION > pmd-packager/pmd-version.txt
+echo -n $VERSION > pmd-version.txt
 sed -i "" "s|version\>[0-9\.]*\<|version>$VERSION<|g" pmd-packager/pom.xml
 ./mvnw clean package -Dpmd.dist.bin.baseDirectory=pmd -Dpmd.version=$VERSION
 rm -rf ../bin/pmd/*
