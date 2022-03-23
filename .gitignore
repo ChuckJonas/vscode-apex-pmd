@@ -8,3 +8,22 @@ pmd-packager/target
 dist/
 .pmdCache
 .DS_Store
+
+# Filter for PMD files we need, and exclude others
+bin/pmd/lib/pmd-*.jar
+!bin/pmd/lib/pmd-apex*.jar
+!bin/pmd/lib/pmd-core*.jar
+!bin/pmd/lib/pmd-visualforce*.jar
+!bin/pmd/lib/pmd-xml*.jar
+
+# jar files we definitely do not want
+bin/pmd/lib/common_*.jar
+bin/pmd/lib/fastparse*.jar
+bin/pmd/lib/groovy*.jar
+bin/pmd/lib/lenses*.jar
+bin/pmd/lib/parsers*.jar
+bin/pmd/lib/protobuf*.jar
+bin/pmd/lib/rhino*.jar
+bin/pmd/lib/scala*.jar
+bin/pmd/lib/sourcecode*.jar
+bin/pmd/lib/trees*.jar

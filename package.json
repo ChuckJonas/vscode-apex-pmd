@@ -189,7 +189,8 @@
     "build:prod": "webpack --mode production",
     "build:test": "tsc",
     "pretest": "npm run build:prod && npm run build:test",
-    "update-pmd": "cd pmd-packager && ./upgrade.sh",
+    "update-pmd-latest": "./pmd-packager/latestversion.sh && ./bin/update.sh",
+    "update-pmd-specified": "./bin/update.sh",
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
