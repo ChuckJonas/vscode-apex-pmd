@@ -11,7 +11,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <pmd.version>6.23.0</pmd.version>
+    <pmd.version>6.43.0</pmd.version>
     <pmd.dist.zipName>pmd-apex-bin-${pmd.version}</pmd.dist.zipName>
     <!-- Rename this so the name is clearer. This weird name is necessary for the maven assembly. -->
     <pmd.dist.bin.baseDirectory>${pmd.dist.zipName}</pmd.dist.bin.baseDirectory>
