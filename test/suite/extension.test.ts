@@ -34,10 +34,10 @@ suite('Extension Tests', () => {
 
     const pmd = new ApexPmd(outputChannel, config);
 
-    assert.equal(pmd.checkPmdPath(), true);
-    assert.equal(pmd.getRulesets()[0], RULESET_PATH);
-    assert.equal(pmd.getRulesets().length, 1);
-    assert.equal(pmd.hasAtLeastOneValidRuleset(), true);
+    assert.strictEqual(pmd.checkPmdPath(), true);
+    assert.strictEqual(pmd.getRulesets()[0], RULESET_PATH);
+    assert.strictEqual(pmd.getRulesets().length, 1);
+    assert.strictEqual(pmd.hasAtLeastOneValidRuleset(), true);
   });
 
   // Defines a Mocha unit test

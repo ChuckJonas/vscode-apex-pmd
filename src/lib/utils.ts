@@ -27,5 +27,5 @@ export function dirExists(filePath: string): boolean {
 }
 
 export function stripQuotes(s: string): string {
-  return s.substr(1, s.length - 2);
+  return s.substring(1, s.length - 2);
 }
