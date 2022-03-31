@@ -62,64 +62,40 @@
    <!-- PERFORMANCE -->
    <rule ref="category/apex/performance.xml/AvoidSoqlInLoops" message="Avoid Soql queries inside loops">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/performance.xml/AvoidSoslInLoops" message="Avoid Sosl queries inside loops">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/performance.xml/AvoidDmlStatementsInLoops" message="Avoid DML Statements inside loops">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/errorprone.xml/AvoidDirectAccessTriggerMap" message="Avoid directly accessing Trigger.old and Trigger.new">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/bestpractices.xml/AvoidLogicInTrigger" message="Avoid logic in triggers">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/bestpractices.xml/AvoidGlobalModifier" message="Avoid using global modifier">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/errorprone.xml/AvoidNonExistentAnnotations">
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/errorprone.xml/AvoidHardcodingId" message="Avoid hardcoding ID's">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
 
    <!-- NAMING -->
    <rule ref="category/apex/codestyle.xml/ClassNamingConventions" message="Class names should begin with an uppercase character">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/codestyle.xml/MethodNamingConventions" message="Method name does not begin with a lower case character.">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/errorprone.xml/MethodWithSameNameAsEnclosingClass" message="Classes should not have non-constructor methods with the same name as the class">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/codestyle.xml/VariableNamingConventions" message="{0} variable {1} should begin with {2}">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
 
    <!-- TESTS -->
@@ -131,126 +107,80 @@
    </rule>
    <rule ref="category/apex/bestpractices.xml/ApexUnitTestClassShouldHaveAsserts" message="Apex unit test classes should have at least one System.assert() or assertEquals() or AssertNotEquals() call">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/bestpractices.xml/ApexUnitTestShouldNotUseSeeAllDataTrue" message="@isTest(seeAllData=true) should not be used in Apex unit tests because it opens up the existing database data for unexpected modification by tests">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
 
    <!-- SECURITY -->
    <rule ref="category/apex/security.xml/ApexSharingViolations" message="Apex classes should declare a sharing model if DML or SOQL is used">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/security.xml/ApexInsecureEndpoint" message="Apex callouts should use encrypted communication channels">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/security.xml/ApexCSRF" message="Avoid making DML operations in Apex class constructor/init method">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/security.xml/ApexOpenRedirect" message="Apex classes should safely redirect to a known location">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/security.xml/ApexSOQLInjection" message="Apex classes should escape variables merged in DML query">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/security.xml/ApexXSSFromURLParam" message="Apex classes should escape Strings obtained from URL parameters">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/security.xml/ApexXSSFromEscapeFalse" message="Apex classes should escape addError strings">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/security.xml/ApexBadCrypto" message="Apex Crypto should use random IV/key">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/security.xml/ApexCRUDViolation" message="Validate CRUD permission before SOQL/DML operation">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/security.xml/ApexDangerousMethods" message="Calling potentially dangerous method">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/security.xml/ApexSuggestUsingNamedCred" message="Consider using named credentials for authenticated callouts">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
 
    <!-- BRACES -->
    <rule ref="category/apex/codestyle.xml/IfStmtsMustUseBraces" message="Avoid using if statements without curly braces">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/codestyle.xml/WhileLoopsMustUseBraces" message="Avoid using 'while' statements without curly braces">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/codestyle.xml/IfElseStmtsMustUseBraces" message="Avoid using 'if...else' statements without curly braces">
       <priority>3</priority>
-      <properties>
-         </properties>
    </rule>
    <rule ref="category/apex/codestyle.xml/ForLoopsMustUseBraces" message="Avoid using 'for' statements without curly braces">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
 
    <!-- EMPTY -->
    <rule ref="category/apex/errorprone.xml/EmptyCatchBlock" message="Avoid empty catch blocks">
       <priority>3</priority>
-      <properties>
-         </properties>
    </rule>
    <rule ref="category/apex/errorprone.xml/EmptyIfStmt" message="Avoid empty 'if' statements">
       <priority>3</priority>
-      <properties>
-         </properties>
    </rule>
    <rule ref="category/apex/errorprone.xml/EmptyWhileStmt" message="Avoid empty 'while' statements">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/errorprone.xml/EmptyTryOrFinallyBlock" message="Avoid empty try or finally blocks">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
    <rule ref="category/apex/errorprone.xml/EmptyStatementBlock" message="Avoid empty block statements.">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
 
    <!-- STYLE -->
    <rule ref="category/apex/codestyle.xml/OneDeclarationPerLine">
       <priority>3</priority>
-      <properties>
-      </properties>
    </rule>
 
   <!-- Visual Force -->
