@@ -221,9 +221,9 @@ export class ApexPmd {
       .split(' ')
       .join('')
       .toLowerCase()}.html#${result.rule.toLowerCase()}`;
-    const msg = `${result.description} (rule: ${result.ruleSet}-${result.rule})`;
-
     const priority = parseInt(result.priority);
+    const msg = `${result.description} (rule: ${result.ruleSet}-${result.rule} priority: ${priority})`;
+
     if (isNaN(lineNum)) {
       return null;
     }
