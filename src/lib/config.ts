@@ -10,6 +10,7 @@ export class Config {
   public pmdBinPath: string;
   public priorityErrorThreshold: number;
   public priorityWarnThreshold: number;
+  public priorityClearOnClose: number;
   public runOnFileOpen: boolean;
   public runOnFileSave: boolean;
   public runOnFileChange: boolean;
@@ -42,6 +43,7 @@ export class Config {
     this.pmdBinPath = config.get('pmdBinPath');
     this.priorityErrorThreshold = config.get('priorityErrorThreshold');
     this.priorityWarnThreshold = config.get('priorityWarnThreshold');
+    this.priorityClearOnClose = this.getClearOnClosePriority(config.get('priorityClearOnClose'))
     this.runOnFileOpen = config.get('runOnFileOpen');
     this.runOnFileSave = config.get('runOnFileSave');
     this.runOnFileChange = config.get('runOnFileChange');
@@ -109,5 +111,27 @@ export class Config {
         return resolvedPath;
       });
     }
+  }
+
+  getClearOnClosePriority(value: string): number {
+    let abovePriority = 0
+    switch (value) {
+      case 'priority 2+':
+        abovePriority = 1;
+        break;
+      case 'priority 3+':
+        abovePriority = 2;
+        break;
+      case 'priority 4+':
+        abovePriority = 3;
+        break;
+      case 'priority 5+':
+        abovePriority = 4;
+        break;
+      case 'none':
+        abovePriority = 5;
+        break;
+    }
+    return abovePriority;
   }
 }
