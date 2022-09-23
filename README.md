@@ -21,7 +21,7 @@ Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html
 ## System Requirements
 
 - Must have JRE >= 1.8 installed and in path
-- See [PMD System Requirements](https://pmd.github.io/pmd-6.11.0/pmd_userdocs_installation.html#requirements) for more details
+- See [PMD System Requirements](https://pmd.github.io/latest/pmd_userdocs_installation.html#requirements) for more details
 
 ## Configuration
 
@@ -45,7 +45,7 @@ Set `apexPMD.rulesets` string array to reference your custom rulesets. You can e
 
 You can also mention the default ruleset in `apexPMD.rulesets`. To do this add `default` value to the array.
 
-[Apex Ruleset Reference](https://pmd.github.io/pmd-6.11.0/pmd_rules_apex.html)
+[Apex Ruleset Reference](https://pmd.github.io/latest/pmd_rules_apex.html)
 
 NOTE: If you move away from the default ruleset in an sfdx project, make sure to exclude the `.sfdx` generated classes by keeping this line:
 
@@ -71,7 +71,7 @@ Any pull request submitted with updates to PMD MUST BE "CHECKSUMED"!
 
 ## Legal Stuff
 
-Copyright (c) 2020 Charles Jonas and Contributors
+Copyright (c) 2022 Charles Jonas and Contributors
 
 ### PMD License
 
