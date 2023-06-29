@@ -60,17 +60,7 @@
    </rule>
 
    <!-- PERFORMANCE -->
-   <rule ref="category/apex/performance.xml/AvoidSoqlInLoops" message="Avoid Soql queries inside loops">
-      <priority>3</priority>
-      <properties>
-      </properties>
-   </rule>
-   <rule ref="category/apex/performance.xml/AvoidSoslInLoops" message="Avoid Sosl queries inside loops">
-      <priority>3</priority>
-      <properties>
-      </properties>
-   </rule>
-   <rule ref="category/apex/performance.xml/AvoidDmlStatementsInLoops" message="Avoid DML Statements inside loops">
+   <rule ref="category/apex/performance.xml/OperationWithLimitsInLoop">
       <priority>3</priority>
       <properties>
       </properties>
@@ -116,7 +106,22 @@
       <properties>
       </properties>
    </rule>
-   <rule ref="category/apex/codestyle.xml/VariableNamingConventions" message="{0} variable {1} should begin with {2}">
+   <rule ref="category/apex/codestyle.xml/FieldNamingConventions">
+      <priority>3</priority>
+      <properties>
+      </properties>
+   </rule>
+   <rule ref="category/apex/codestyle.xml/FormalParameterNamingConventions">
+      <priority>3</priority>
+      <properties>
+      </properties>
+   </rule>
+   <rule ref="category/apex/codestyle.xml/LocalVariableNamingConventions">
+      <priority>3</priority>
+      <properties>
+      </properties>
+   </rule>
+   <rule ref="category/apex/codestyle.xml/PropertyNamingConventions">
       <priority>3</priority>
       <properties>
       </properties>
@@ -151,7 +156,7 @@
       <properties>
       </properties>
    </rule>
-   <rule ref="category/apex/security.xml/ApexCSRF" message="Avoid making DML operations in Apex class constructor/init method">
+   <rule ref="category/apex/errorprone.xml/ApexCSRF">
       <priority>3</priority>
       <properties>
       </properties>
