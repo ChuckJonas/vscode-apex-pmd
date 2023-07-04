@@ -146,7 +146,7 @@ export class ApexPmd {
       env["JAVA_HOME"] = this.config.jrePath;
     }
 
-    const cmd = `${pmdBinPath}/bin/pmd check ${pmdKeys}`;
+    const cmd = `${path.join(pmdBinPath, 'bin', 'pmd')} check ${pmdKeys}`;
 
     if (showStdOut) this.outputChannel.appendLine('PMD Command: ' + cmd);
 
