@@ -140,7 +140,7 @@ export class ApexPmd {
       ...additionalClassPaths,
     ].join(CLASSPATH_DELM);
 
-    let env : NodeJS.ProcessEnv = {};
+    let env : NodeJS.ProcessEnv = {...process.env};
     env["CLASSPATH"] = classPath;
     if (this.config.jrePath) {
       env["PATH"] = `${path.join(this.config.jrePath, 'bin')}${path.delimiter}${process.env.PATH}`;
