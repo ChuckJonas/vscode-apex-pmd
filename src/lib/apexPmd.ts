@@ -143,7 +143,7 @@ export class ApexPmd {
     let env : NodeJS.ProcessEnv = {};
     env["CLASSPATH"] = classPath;
     if (this.config.jrePath) {
-      env["JAVA_HOME"] = this.config.jrePath;
+      env["PATH"] = `${path.join(this.config.jrePath, 'bin')}${path.delimiter}${process.env.PATH}`;
     }
 
     const cmd = `${path.join(pmdBinPath, 'bin', 'pmd')} check ${pmdKeys}`;
