@@ -261,4 +261,15 @@
 	<rule ref="category/vf/security.xml/VfUnescapeEl" >
 		<priority>3</priority>
 	</rule>
+
+	<!-- Apex Doc -->
+	<rule ref="category/apex/documentation.xml/ApexDoc" message="Document classes, methods, and properties that are public or global.">
+		<priority>3</priority>
+	</rule>
+
+	<rule ref="category/vf/security.xml/VfUnescapeEl" >
+		<priority>3</priority>
+	</rule>
+	
 </ruleset>
+
