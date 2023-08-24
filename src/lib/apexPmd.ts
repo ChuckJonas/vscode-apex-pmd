@@ -128,24 +128,30 @@ export class ApexPmd {
     const rulesetsArg = this.rulesets.join(',');
 
     const cacheKey = enableCache ? `--cache "${cachePath}"` : '--no-cache';
+    const noProgressBar = '--no-progress';
     const formatKey = `-f csv`;
     const targetPathKey = `-d "${targetPath}"`;
     const rulesetsKey = `-R "${rulesetsArg}"`;
 
-    const pmdKeys = `${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`;
+    const pmdKeys = `${noProgressBar} ${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`;
 
     const classPath = [
-      path.join(pmdBinPath, 'lib', '*'),
       path.join(workspaceRootPath, '*'),
       ...additionalClassPaths,
     ].join(CLASSPATH_DELM);
 
-    const javaExc = this.config.jrePath ? path.join(this.config.jrePath, 'bin', 'java') : 'java';
-    const cmd = `${javaExc} -cp "${classPath}" net.sourceforge.pmd.PMD ${pmdKeys}`;
+    let env : NodeJS.ProcessEnv = {...process.env};
+    env["CLASSPATH"] = classPath;
+    if (this.config.jrePath) {
+      env["PATH"] = `${path.join(this.config.jrePath, 'bin')}${path.delimiter}${process.env.PATH}`;
+    }
+
+    const cmd = `${path.join(pmdBinPath, 'bin', 'pmd')} check ${pmdKeys}`;
 
     if (showStdOut) this.outputChannel.appendLine('PMD Command: ' + cmd);
 
     const pmdCmd = ChildProcess.exec(cmd, {
+      env: env,
       maxBuffer: Math.max(commandBufferSize, 1) * 1024 * 1024,
     });
 
