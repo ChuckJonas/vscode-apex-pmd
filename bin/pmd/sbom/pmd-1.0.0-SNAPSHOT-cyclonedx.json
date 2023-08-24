@@ -1,0 +1,3674 @@
+{
+  "bomFormat" : "CycloneDX",
+  "specVersion" : "1.4",
+  "serialNumber" : "urn:uuid:22f82115-a21f-4221-8e01-f770892407bb",
+  "version" : 1,
+  "metadata" : {
+    "timestamp" : "2023-06-29T18:00:41Z",
+    "tools" : [
+      {
+        "vendor" : "OWASP Foundation",
+        "name" : "CycloneDX Maven plugin makeAggregateBom compile+provided+runtime+system",
+        "version" : "2.7.6",
+        "hashes" : [
+          {
+            "alg" : "MD5",
+            "content" : "639c35c7f79c5514f3abe11247999b70"
+          },
+          {
+            "alg" : "SHA-1",
+            "content" : "649239e622d8d454bb9ab6fafd6746c85cd11b7d"
+          },
+          {
+            "alg" : "SHA-256",
+            "content" : "1e3bc10146c370fe8b8f0a2edcb64329907d61dbc2f445db6ac1034cd3221ce3"
+          },
+          {
+            "alg" : "SHA-512",
+            "content" : "894a4b5762d32c88cc58ae1a35a3cc3d45a3c494accadb31b55b5832af65f60c0f8164623521a81de73e3ed6a4c994cca0f1951c8368b9d07fb41c82eaa84bbd"
+          },
+          {
+            "alg" : "SHA-384",
+            "content" : "3c385acc773a41056fb58ea27096c8ec86d46d8bd74a2eee9cf0913051981611afc68cf13a88d31af16590a489a97c0e"
+          },
+          {
+            "alg" : "SHA3-384",
+            "content" : "93695160055039f4791ecebd61c7aa6130f074f50a823de6e5aff7217c35548062829ec2b930658c2702cd47ea3118a1"
+          },
+          {
+            "alg" : "SHA3-256",
+            "content" : "4c9f5d3ab2b6ab9b4b4a8968a7ee2373b85a496bec34eefd96ed7c8260d2a45b"
+          },
+          {
+            "alg" : "SHA3-512",
+            "content" : "c2af46fe07c4be746fdc0b54e9eb3285231055c5401bcfb34c2d9392efe27fe9c16a0edd91615970bfae3f4a59846e89c3d88a6a36d4ba110a6d140a04fe184d"
+          }
+        ]
+      }
+    ],
+    "component" : {
+      "group" : "net.sourceforge.pmd.examples",
+      "name" : "pmd-apex-dist",
+      "version" : "1.0.0-SNAPSHOT",
+      "licenses" : [ ],
+      "purl" : "pkg:maven/net.sourceforge.pmd.examples/pmd-apex-dist@1.0.0-SNAPSHOT?type=pom",
+      "type" : "library",
+      "bom-ref" : "pkg:maven/net.sourceforge.pmd.examples/pmd-apex-dist@1.0.0-SNAPSHOT?type=pom"
+    }
+  },
+  "components" : [
+    {
+      "publisher" : "PMD",
+      "group" : "net.sourceforge.pmd",
+      "name" : "pmd-apex",
+      "version" : "7.0.0-rc3",
+      "description" : "PMD is a source code analyzer. It finds common programming flaws like unused variables, empty catch blocks, unnecessary object creation, and so forth. It supports many languages. It can be extended with custom rules. It uses JavaCC and Antlr to parse source files into abstract syntax trees (AST) and runs rules against them to find violations. Rules can be written in Java or using a XPath query. It supports Java, JavaScript, Salesforce.com Apex and Visualforce, Kotlin, Swift, Modelica, PLSQL, Apache Velocity, JSP, WSDL, HTML, XML and XSL. Scala is supported, but there are currently no Scala rules available. Additionally, it includes CPD, the copy-paste-detector. CPD finds duplicated code in Coco, C/C++, C#, Dart, Fortran, Gherkin, Go, Groovy, HTML, Java, JavaScript, JSP, Julia, Kotlin, Lua, Matlab, Modelica, Objective-C, Perl, PHP, PLSQL, Python, Ruby, Salesforce.com Apex and Visualforce, Scala, Swift, T-SQL, Typescript and XML.",
+      "scope" : "optional",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "d66f45db8650a6244f336fd901af5932"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "7519327d5b45112a5447af6d49d9db30759dff05"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "1b3c38dbe2823d7eea6d2bc329db8c15d18add078605437f10d099c68b7e8613"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "d4a0bfaac5973465f04b96bf70697c2714094ac33a8ca1447e468485e286983a751fca146a8688df89a15fdbdc3f1443f1d0c4812a7e28a5ed138d729c456077"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "dc0246194235558626fa74202f3784906994d596e15b4439e54a51ebf4c216d363ef4261db9b712775558c9702bdc69b"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "e1bffc14045c7665c05ab77212f435026c146114ddd41ed46d3c0fa8b7e227715b97ec814043a9b02f7a283a207b5d8a"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "84d93c11a58c3dbe647591aee404682b2d8c821395bcf888968c5357c8d74320"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "8aca9b5a31c3bf06e69459939c43f2321447a0f0c57db6c4280f6124138c765fc6c246b85c8fd35b9942ce0d238e3b9cc4a69c798771e2f022d6647867256b42"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "BSD-style",
+            "url" : "http://pmd.sourceforge.net/license.html"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/net.sourceforge.pmd/pmd-apex@7.0.0-rc3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://pmd.github.io/pmd-apex/"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://github.com/pmd/pmd/actions"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/pmd/pmd/issues"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "https://sourceforge.net/p/pmd/mailman/pmd-devel"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/pmd/pmd/pmd-apex"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/net.sourceforge.pmd/pmd-apex@7.0.0-rc3?type=jar"
+    },
+    {
+      "publisher" : "PMD",
+      "group" : "net.sourceforge.pmd",
+      "name" : "pmd-core",
+      "version" : "7.0.0-rc3",
+      "description" : "PMD is a source code analyzer. It finds common programming flaws like unused variables, empty catch blocks, unnecessary object creation, and so forth. It supports many languages. It can be extended with custom rules. It uses JavaCC and Antlr to parse source files into abstract syntax trees (AST) and runs rules against them to find violations. Rules can be written in Java or using a XPath query. It supports Java, JavaScript, Salesforce.com Apex and Visualforce, Kotlin, Swift, Modelica, PLSQL, Apache Velocity, JSP, WSDL, HTML, XML and XSL. Scala is supported, but there are currently no Scala rules available. Additionally, it includes CPD, the copy-paste-detector. CPD finds duplicated code in Coco, C/C++, C#, Dart, Fortran, Gherkin, Go, Groovy, HTML, Java, JavaScript, JSP, Julia, Kotlin, Lua, Matlab, Modelica, Objective-C, Perl, PHP, PLSQL, Python, Ruby, Salesforce.com Apex and Visualforce, Scala, Swift, T-SQL, Typescript and XML.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "a82a8cfabb50ab995f545f57a773e385"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "44251acabf39ee230ae8bb3569bf3386eaf0f16e"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "83e6c16ea660da3a1b5afc2ccf922fccbbe05fdb9b87c3d68ed003050648ada9"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "4515ba48e57641c31213b46d5d12ce6ec218a4f426be878ef77b75f88875669d6c540c3fc5ad716c6b90b6dc5e0df97a743de50d00381aaf96b03287af50f37b"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "e7d2e0b672d0b5f02f421ae8dfde8efaabe282257999e200bbf9a115286468ab6450d02a364e94caccb69047ce2b2d7e"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "31a957aa8d72ab58ad02f86e950e353e5cb879f94fd9fe87a0cb45f1a1c6d64560c01872d7910f15ba98be2a97263a62"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "128271747616ece618e56d8ada2440dcc26fac4e6748f30b4d266a47dc59daf6"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "0f74f90cd590ba631bd225ae44e79a8f2c0843d6257c1aec0c596109911e4d44dde235b012d91b3579ee5dab5c842699b1b14d6ac9a1d0e59ed13296136a5c7d"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "BSD-style",
+            "url" : "http://pmd.sourceforge.net/license.html"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/net.sourceforge.pmd/pmd-core@7.0.0-rc3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://pmd.github.io/pmd-core/"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://github.com/pmd/pmd/actions"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/pmd/pmd/issues"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "https://sourceforge.net/p/pmd/mailman/pmd-devel"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/pmd/pmd/pmd-core"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/net.sourceforge.pmd/pmd-core@7.0.0-rc3?type=jar"
+    },
+    {
+      "publisher" : "QOS.ch",
+      "group" : "org.slf4j",
+      "name" : "jul-to-slf4j",
+      "version" : "1.7.36",
+      "description" : "JUL to SLF4J bridge",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "2a3fe73e6cafe8f102facaf2dd65353f"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "ed46d81cef9c412a88caef405b58f93a678ff2ca"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "9e641fb142c5f0b0623d6222c09ea87523a41bf6bed48ac79940724010b989de"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "0bb1e7343d07d41bcfb0c1ffeb2db28cbb35e7a80a409b80042f463b082a292976f09d719e319471e31c7bab716121728a16509fd385fc6e3b400b1b214cffea"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "50e2f326fc00537a5fb3726c7c55556851b3be8b4346f522f27ddecf2fdb44adabae3197b30ccfd854c37d6734adbd8f"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "4ad0c3870852ac44530a9dcb992d947cd8708ee6f422559da41aaaa8b22d1610fb116b32d2c54df83b110b85487083bf"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "8e3f5aaaa27f618b52e610376d2a16c6f9dc8dce5e6c2bbe42131a590626aae6"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "e3da265406b5e69f02235ed7272a48f71cb8b6f0a696820e28e90fb5eafeeb311abf2a4e779b402f384c6a80470fd41116ee52a526f57040fae3b24cb3b19c01"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.slf4j/jul-to-slf4j@1.7.36?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.slf4j.org"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/qos-ch/slf4j/jul-to-slf4j"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.slf4j/jul-to-slf4j@1.7.36?type=jar"
+    },
+    {
+      "publisher" : "Saxonica",
+      "group" : "net.sf.saxon",
+      "name" : "Saxon-HE",
+      "version" : "10.7",
+      "description" : "The XSLT and XQuery Processor",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "7ccb6fcfe9712a4fdafcc22a5a6373db"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "7036ec457712cdd7eb874c28b2881d756ee37b56"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "5bc745dc718a7eeaeb18bc184d54e58b7e73471eb09697e1be1261902382c623"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "7d5a4fa472c5ff90f0ebf732dc75b4a1052fa8dda505323b2f7f83d3d05e213ff379375ec886a5b6f4957d6d35278b32dd42b9d83f9c7ace313056055f672e45"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "9f4bb3685d5df92370ba3c8f58769cfc782aff628431136ab19319cee2d88c3c00dada76d74abb0ca8f39a01992740cf"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "28f21be834d67ba6317098503b65d4753435dc37706f7a7e450b0b120226fb843b15fefe8086aa10c359c90a8af3985e"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "d12b9190a03e4c6ab1014385f4b8970c6d1f68f099173eed346abd3a157758e2"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "c858323a1a55eec1195d2c1fb7eda9ccc936124ca16045d1b08fe33d96cebe7e401970a67bc17316846e1d39553b46f46d66715693fc9914746a689e76578221"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MPL-2.0-no-copyleft-exception",
+            "url" : "https://www.mozilla.org/MPL/2.0/"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/net.sf.saxon/Saxon-HE@10.7?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.saxonica.com/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://saxonica.plan.io/projects/saxonmirrorhe/repository"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/net.sf.saxon/Saxon-HE@10.7?type=jar"
+    },
+    {
+      "publisher" : "OW2",
+      "group" : "org.ow2.asm",
+      "name" : "asm",
+      "version" : "9.4",
+      "description" : "ASM, a very small and fast Java bytecode manipulation framework",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "ffa64f03a23a4823d98703e6ce6ff397"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "b4e0e2d2e023aa317b7cfcfc916377ea348e07d1"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "39d0e2b3dc45af65a09b097945750a94a126e052e124f93468443a1d0e15f381"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "41e6d8f67faa63e3993692d6606cbc68ec43d140e0232c5aee2ef7dbeea289ad5711ce04407c771e8baef844ead5f838d8b248e20a06e3fd5c41c52d3340a459"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "b4be5348020e602444066609b95162c1037e85bff5670db6a22330dbd556eecb9e9270a4ddcda17d352717c6803d7109"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "bca491acf7ad4834c25ea75e3267d9a47de90897d99613f6c9ef91f715e63a660c7dd4f6f2c4aa0c8ee0d9f012968409"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "5e7bdbd620fc5d3b5acc82867a38638d004c9476f25ba9de342778b098f57829"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "55e16a86d5b9a7a7e145e8c327d6456a6d4a73be49e35f78e14691e11453da63d86c956ea3f55feeede39e62292af9eb2ff21ebce62293a99ee115a9d862f91a"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-3-Clause",
+            "url" : "https://opensource.org/licenses/BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.ow2.asm/asm@9.4?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://asm.ow2.io/"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://repository.ow2.org/nexus/service/local/staging/deploy/maven2"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://gitlab.ow2.org/asm/asm/issues"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "https://mail.ow2.org/wws/arc/asm/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://gitlab.ow2.org/asm/asm/"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.ow2.asm/asm@9.4?type=jar"
+    },
+    {
+      "group" : "com.google.code.gson",
+      "name" : "gson",
+      "version" : "2.8.9",
+      "description" : "Gson JSON library",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "e67627f67e03301092dc7de0a2d7cef8"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "8a432c1d6825781e21a02db2e2c33c5fde2833b9"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "d3999291855de495c94c743761b8ab5176cfeabe281a5ab0d8e8d45326fd703e"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "46501e4dd34c9a6f33ff63aeeec45b049579365c5273490e5dfd5ea4effaeced907d0fc728204c619aa136e867ad826204582ff9ba3080d06693c1c675c8473f"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "2f2897912784595e52d3f8e57741aed7dd866f16a69562d57e0604d85e2fef08b2a32e58afd00d264f66cc6ec775dc79"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "3ce084f79191afdbdb0a9aa83073b128f620cf585b65c2e81ba98080fd91e9f327db3f0952903094b7dd387bc802b5ba"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "e82ae9fa3a783ee683880d219ab529bb3d0b45ea721d002ee948fad99a67b4f0"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "25cfe43039c6d41344434f89e9a8ad6f93a341512baf93e894a14a9dfd3af1cb0f0afaed4ade6db3c719f910fd9dfbeb7bec8bcfd7f49ac572ab217bce9e595e"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0",
+            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.google.code.gson/gson@2.8.9?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/google/gson/gson"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/google/gson/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/google/gson/gson/"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.google.code.gson/gson@2.8.9?type=jar"
+    },
+    {
+      "group" : "org.pcollections",
+      "name" : "pcollections",
+      "version" : "3.1.3",
+      "description" : "A Persistent Java Collections Library",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "0bcc127e55f6b649526f818e5aa70e6e"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "2261af5079f2951222d10bf9a2562af6098c8f89"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "cda740535eddf9209308d4777eab2e5725579126ebca47ab34ff63eb986893d3"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "ec59812730599818cc3abc962b56f0140a3575545a917135b2a619425dc8a28ebb6f4c7be1a055a4da3146d9fd747158acec6b8d2561229158c1b7d958f1fa68"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "a28290ed31c95467474e9eb1605ce8edc151600a0ca66b510160769e84fd8aae6025d1aeb555c5e7061535c86ab17571"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "c44c9fcce3f638fa10c3c2f27291cd6fcf211b718d5e284a92a9d1881355a9a4be7fb3582bdc6191367d1962374751c2"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "87c458af1de8fba5b5cad01e95c7d2ba117cacb40e6080d893eecff1b8369e8d"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "337c28dadffb5b6bc23d1e09b37f8b25e769373600049782e5b5601f00c470996583f296e8f2cd59ed272d3442bda7ca1a5bdd0a292e8344003aef53991d9bb1"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.pcollections/pcollections@3.1.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://pcollections.org"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/hrldcpr/pcollections"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.pcollections/pcollections@3.1.3?type=jar"
+    },
+    {
+      "group" : "com.github.oowekyala.ooxml",
+      "name" : "nice-xml-messages",
+      "version" : "3.1",
+      "description" : "Associates XML DOM nodes to their position in source, to enrich error messages. This builds on top of the standard org.w3c.dom API. Should probably not be used in performance critical code, but can hopefully cleanup reporting logic in places where user-friendly messages are important.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "39c913451ff2d2ec740c58a77a26fa16"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "4c3863b0f015af5cfd9abe02fab364fb99867167"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "0b4ceb5b8362d43c9c6c49b1bd57f1c5da54d3c5c7c305fa39c0a04462bb4799"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "6b3e7c2f1d4b9a46c8dc113b60deee5e2a70b57f308886074816e0d7e3a5460cfb7c1c547171c0ad125deb551bafbb41b911c52db8bac448be3504b0d407a7fc"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "c79cd24010cfcfcc712509412dacbfb5bcc4a64e98bfd6a638698350c4f45c1a2c6724491368cc56a4d5947cbe0482e1"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "218130aec89a116471d0dd34b9c733f144e36f1cbcd2b705fea4ed2f7fb90e8c6a5386aaff037bc772e180868b13c03f"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "02b4007b4ada909e9bb676189310b233c8c2c254e2bdc901928030ef0f96f346"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "f2e7883ab42ba31eb380ed9dc7199f3d7d4b0c0c8b06432ebe502c6e117017abdd579f86032a14bf842fb68889a13d1bd504a60a212f889e171e78003c0322a0"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.github.oowekyala.ooxml/nice-xml-messages@3.1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/oowekyala/nice-xml-messages"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/oowekyala/nice-xml-messages"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.github.oowekyala.ooxml/nice-xml-messages@3.1?type=jar"
+    },
+    {
+      "publisher" : "ANTLR",
+      "group" : "org.antlr",
+      "name" : "antlr-runtime",
+      "version" : "3.5.2",
+      "description" : "A framework for constructing recognizers, compilers, and translators from grammatical descriptions containing Java, C#, C++, or Python actions.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "1fbbae2cb72530207c20b797bdabd029"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "cd9cd41361c155f3af0f653009dcecb08d8b4afd"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "ce3fc8ecb10f39e9a3cddcbb2ce350d272d9cd3d0b1e18e6fe73c3b9389c8734"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "71adb4a78a23e4106e9f09c92a7e0c1d975ad314a49f4a06472e22a2ec09c83fc02c6b684a20055b46ae69fcc119b155b7109ef56e170579c9a462c8839bae52"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "e56770e380da87eda373e1f0fa7da0fd031b3e310e70b581d8a7eeffa80192f7cdccd073e45f277610ca1e161662db62"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "856d53937937c945025382711f9a28b66510ba5fa98ba928cedfa0314cc333d2a570c84d12e3dc877fc11b9e5b5902be"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "52d6cd070ca8a0dc5bfe4dbc2e7f6c095e32d3c83c5030bbc160dcc5eb47457d"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "d9da25347d24b7ccb0f840cec91f7ca7262b61969351f87b3c6ef7fbc202104d45250ae3920d2dd430a9db20c457529b1adcf9c7e3bc068b1f03793123a88646"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "BSD licence",
+            "url" : "http://antlr.org/license.html"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.antlr/antlr-runtime@3.5.2?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.antlr.org"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/antlr/antlr3/issues"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "https://groups.google.com/forum/?fromgroups#!forum/antlr-discussion"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/antlr/antlr3/tree/master/antlr-runtime"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.antlr/antlr-runtime@3.5.2?type=jar"
+    },
+    {
+      "publisher" : "PMD",
+      "group" : "net.sourceforge.pmd",
+      "name" : "pmd-apex-jorje",
+      "version" : "7.0.0-rc3",
+      "description" : "PMD is a source code analyzer. It finds common programming flaws like unused variables, empty catch blocks, unnecessary object creation, and so forth. It supports many languages. It can be extended with custom rules. It uses JavaCC and Antlr to parse source files into abstract syntax trees (AST) and runs rules against them to find violations. Rules can be written in Java or using a XPath query. It supports Java, JavaScript, Salesforce.com Apex and Visualforce, Kotlin, Swift, Modelica, PLSQL, Apache Velocity, JSP, WSDL, HTML, XML and XSL. Scala is supported, but there are currently no Scala rules available. Additionally, it includes CPD, the copy-paste-detector. CPD finds duplicated code in Coco, C/C++, C#, Dart, Fortran, Gherkin, Go, Groovy, HTML, Java, JavaScript, JSP, Julia, Kotlin, Lua, Matlab, Modelica, Objective-C, Perl, PHP, PLSQL, Python, Ruby, Salesforce.com Apex and Visualforce, Scala, Swift, T-SQL, Typescript and XML.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "c692c6546326f0800cb87fde7e90f79b"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "10455aeab1bafe6c4bf1cd3e0379ceb33085a3ec"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "3ed8f254692911752418f608b7487ca667ca3e1d33fc4403d6efc08f019d1b24"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "0bf8817eda515052610595364b202d134fed8f63e795af9c92bd9e51694495f0ba016920e36d1836db058b4a0d926a36d26121dc86903b447a607d03aa2ce611"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "c277cba22cd6ac85cbd31fb72a10c1c4b2c1d813d42650608cd18d98b48b39cc125af0107881902f9bcf8d2d7e2c4211"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "4c6bfda6d26d0df64e87b24f54e07da1f87e522297a8951e41f17ea4abcfc16d0ed00dbc91d4901b85896ace33849e13"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "f936eb67c6fe8a675c0441edf536780bd11ec7a8348f1f9f06516da253f3d92b"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "fd349fc680abc3f98f0b958c662763c3b99db46584da9b976594ea0fd791d9c8792602e0cb03200972bdc2fb4730897860eac8da1736b2994c1d7bf1a5bbe823"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "BSD-style",
+            "url" : "http://pmd.sourceforge.net/license.html"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/net.sourceforge.pmd/pmd-apex-jorje@7.0.0-rc3?classifier=lib&type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://pmd.github.io/pmd-apex-jorje/"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://github.com/pmd/pmd/actions"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/pmd/pmd/issues"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "https://sourceforge.net/p/pmd/mailman/pmd-devel"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/pmd/pmd/pmd-apex-jorje"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/net.sourceforge.pmd/pmd-apex-jorje@7.0.0-rc3?classifier=lib&type=jar"
+    },
+    {
+      "group" : "cglib",
+      "name" : "cglib",
+      "version" : "3.3.0",
+      "description" : "cglib is a powerful, high performance and quality Code Generation Library, It is used to extend JAVA classes and implements interfaces at runtime.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "6ff304cc2874dd20277a8206fee5fd9a"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "c956b9f9708af5901e9cf05701e9b2b1c25027cc"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "9fe0c26d7464140ccdfe019ac687be1fb906122b508ab54beb810db0f09a9212"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "9eaee4a52bd9261364bff9f7dee145f3d7f7e1a842bbb179c6c9fec065beb162bea312b566c875db20dea317bd76267774c73e102e9ee46ab27c4c2b488bf96b"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "77afc0fd5bee2dfa7f4776bd18b4a1832236260ecd38369f22b03f053c3bd1fed8a97ed5ce1fe785a9e84fd1f3332932"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "29112a5b7da3f996e8fb35023dbc857c377215f64f00f9ed900253d14588af9622dabddc257e4e4380c166ca1f971256"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "e32d12001bc5dc8ee145c71c76bbb18ed514876997f2da3843b7f80c6d63e935"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "4c8765f754d3303b7ffe2b960116756ff9122f413ccc5a284d726831e520d4ea2c581c2c664291255665cc5558c7511b606c8ce1b212aa8dd49a12e46d55ff22"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/cglib/cglib@3.3.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/cglib/cglib/cglib"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://travis-ci.org/cglib/cglib"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/cglib/cglib/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/cglib/cglib/cglib"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/cglib/cglib@3.3.0?type=jar"
+    },
+    {
+      "group" : "com.google.code.findbugs",
+      "name" : "jsr305",
+      "version" : "3.0.2",
+      "description" : "JSR305 Annotations for Findbugs",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "dd83accb899363c32b07d7a1b2e4ce40"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "25ea2e8b0c338a877313bd4672d3fe056ea78f0d"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "766ad2a0783f2687962c8ad74ceecc38a28b9f72a2d085ee438b7813e928d0c7"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "bb09db62919a50fa5b55906013be6ca4fc7acb2e87455fac5eaf9ede2e41ce8bbafc0e5a385a561264ea4cd71bbbd3ef5a45e02d63277a201d06a0ae1636f804"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "ca0b169d3eb2d0922dc031133a021f861a043bb3e405a88728215fd6ff00fa52fdc7347842dcc2031472e3726164bdc4"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "9903fd7505218999f8262efedb3d935d64bcef84aae781064ab5e1b24755466b269517cada562fa140cd1d417ede57a1"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "223fda9a89a461afaae73b177a2dc20ed4a90f2f8757f5c65f3241b0510f00ff"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "3996b5af57a5d5c6a0cd62b11773360fb051dd86a2ba968476806a2a5d32049b82d69a24a3c694e8fe4d735be6a28e41000cc500cc2a9fb577e058045855d2d6"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://findbugs.sourceforge.net/"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://code.google.com/p/jsr-305/"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar"
+    },
+    {
+      "group" : "com.google.errorprone",
+      "name" : "error_prone_annotations",
+      "version" : "2.1.3",
+      "description" : "Sonatype helps open source projects to set up Maven repositories on https://oss.sonatype.org/",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "97504b36cf871722d81a4b9e114f2a16"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "39b109f2cd352b2d71b52a3b5a1a9850e1dc304b"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "03d0329547c13da9e17c634d1049ea2ead093925e290567e1a364fd6b1fc7ff8"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "bd2135cc9eb2c652658a2814ec9c565fa3e071d4cff590cbe17b853885c78c9f84c1b7b24ba736f4f30ed8cec60a6af983827fcbed61ff142f27ac808e97fc6b"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "03ff39082a3cd3c64d679c3df3be10abc3a87d6a576f6e21585ac6a18439d136608f9293e370186388fc5c8854adb3eb"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "02e686b3fbe3c3a728d1d9ee67fe7ad5f32688314e24f63efb1666302650d86ccaef4304f5750cd155729404603cfa00"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "5c7b2ffc8d4073700647681ed44dd783049648aa8e174f37d2510339a65f5466"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "3f05def83905268da5044c8bd6fbf62b89499d77351b56a357de8d27ef872c6c300385a6bca009590d61be90a39a0f417c4d8358a13b09847ba0452ef416db06"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.google.errorprone/error_prone_annotations@2.1.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://nexus.sonatype.org/oss-repository-hosting.html/error_prone_parent/error_prone_annotations"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/google/error-prone/error_prone_annotations"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.google.errorprone/error_prone_annotations@2.1.3?type=jar"
+    },
+    {
+      "group" : "com.google.j2objc",
+      "name" : "j2objc-annotations",
+      "version" : "1.1",
+      "description" : "A set of annotations that provide additional information to the J2ObjC translator to modify the result of translation.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "49ae3204bb0bb9b2ac77062641f4a6d7"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "ed28ded51a8b1c6b112568def5f4b455e6809019"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "2994a7eb78f2710bd3d3bfb639b2c94e219cedac0d4d084d516e78c16dddecf6"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "a4a0b58ffc2d9f9b516f571bcd0ac14e4d3eec15aacd6320a4a1a12045acce8c6081e8ce922c4e882221cedb2cc266399ab468487ae9a08124d65edc07ae30f0"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "8942363710e7473635a2c77ff82db8af1915cb6ac8429851b4acfa04f059183f8e3444dedff75a7da02698f2ee22a181"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "a9906146d76704f64b1a1aad3d80be86e0d08a987fdb63d4d8d0399937e7e94076d9878a14593fb4465f3a5fccec0df5"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "275370eeb5f02c15358168ea134c4eab1afed8d27750a8a326b9f9f506dfc9f2"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "d9e2a3943373e1eab933b45f49997b24e01466eb99a177c40f21c7107c9f21ebb135e14d191b0a5b699e3985d20de8e87662e92c0bf59e5e054d3da85fd777dd"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.google.j2objc/j2objc-annotations@1.1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/google/j2objc/"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://svn.sonatype.org/spice/tags/oss-parent-7/j2objc-annotations"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.google.j2objc/j2objc-annotations@1.1?type=jar"
+    },
+    {
+      "group" : "org.antlr",
+      "name" : "stringtemplate",
+      "version" : "3.2.1",
+      "description" : "StringTemplate is a java template engine for generating source code, web pages, emails, or any other formatted text output. StringTemplate is particularly good at multi-targeted code generators, multiple site skins, and internationalization/localization. It evolved over years of effort developing jGuru.com. StringTemplate also generates the stringtemplate website: http://www.stringtemplate.org and powers the ANTLR v3 code generator. Its distinguishing characteristic is that unlike other engines, it strictly enforces model-view separation. Strict separation makes websites and code generators more flexible and maintainable; it also provides an excellent defense against malicious template authors. There are currently about 600 StringTemplate source downloads a month.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "b58ca53e518a92a1991eb63b61917582"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "59ec8083721eae215c6f3caee944c410d2be34de"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "f66ce72e965e5301cb0f020e54d2ba6ad76feb91b3cbfc30dbbf00c06a6df6d7"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "47f3cfd91906b527b615fd10d27387aafa9f355aa9c18a86861c975091c39895b711fe514ed1597dabe6af2a2705dfc45bb70fb5e30f5d428a48e0d1b02b7856"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "a12c2a95e162207835a2a785f2dfccd4b3d9d9b94741d1b3e171ff04699afc920c549425115c63a95c7941ead3909edf"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "d9ccd03170058316ea8c98142afbecb7a3b357dda5cd1253c9b57810449048fae7d79e93d5ba74cb901bd765429d8714"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "6181e67482392f97de747d04dc11418e54ca77888d1d1f6925563fe6a2c1633b"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "e75331f732a6c9e280f04438db65c47aa2efb4b07980ad3ce5e227693b47c5959d87e40590e19552f67dc257cc4f187a35ee112e850a6bda9d9e69bba2dba34c"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "BSD licence",
+            "url" : "http://antlr.org/license.html"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.antlr/stringtemplate@3.2.1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.stringtemplate.org"
+        },
+        {
+          "type" : "distribution",
+          "url" : "scpexe://antlr.org/home/mavensync/antlr-repo"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://fisheye2.cenqua.com/browse/stringtemplate"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.antlr/stringtemplate@3.2.1?type=jar"
+    },
+    {
+      "group" : "antlr",
+      "name" : "antlr",
+      "version" : "2.7.7",
+      "description" : "A framework for constructing recognizers, compilers, and translators from grammatical descriptions containing Java, C#, C++, or Python actions.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "f8f1352c52a4c6a500b597596501fc64"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "83cd2cd674a217ade95a4bb83a8a14f351f48bd0"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "88fbda4b912596b9f56e8e12e580cc954bacfb51776ecfddd3e18fc1cf56dc4c"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "311c3115f9f6651d1711c52d1739e25a70f25456cacb9a2cdde7627498c30b13d721133cc75b39462ad18812a82472ef1b3b9d64fab5abb0377c12bf82043a74"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "2e811e531ce30a2a905d093a00de596cf04406413b60422db8252b46125cadf07b71459cf6ac6da575ec030a9bf05e57"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "bdf019332ae8714ef6a3904bb42bb08c1fe4feacf5e6137274884b0377d4e5b5f7aa9fe8e1ef5ca9b3e15f12320fdb67"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "babce5c8beb1d5907a7ed6354589e991da7d8d5cbd86c479abfa1e1dfc4d2eb8"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "3a8ce565280a157dd6e08fb68c317a4c28616099c56bc4992c38cf74a10a54a89e18e7c45190ce8511360798a87adc92f432382f9d9bdde0d56664b50044b517"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/antlr/antlr@2.7.7?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.antlr.org/"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/antlr/antlr@2.7.7?type=jar"
+    },
+    {
+      "publisher" : "Codehaus",
+      "group" : "org.codehaus.mojo",
+      "name" : "animal-sniffer-annotations",
+      "version" : "1.14",
+      "description" : "Animal Sniffer Parent project.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "9d42e46845c874f1710a9f6a741f6c14"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "775b7e22fb10026eed3f86e8dc556dfafe35f2d5"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "2068320bd6bad744c3673ab048f67e30bef8f518996fa380033556600669905d"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "9e5e3ea9e06e0ac9463869fd0e08ed38f7042784995a7b50c9bfd7f692a53f0e1430b9e1367dc772d0d4eafe5fd2beabbcc60da5008bd792f9e7ec8436c0f136"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "f84c3a6589e4fd49764595bad99ef2ebb443f1c9a5f11177a2073b54156989979b5e97fac591714f18304fbcf26bb1c6"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "1821c7ba68f3b43cb25b3038fa732631d1db6063ecc5c7f84b31fdadfa8ca43434dc960e602af02a2891237cd90b8c29"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "9b624360f936e928bc63bf44e475d8fd052148c0d0cc56c3c88c26429b430c08"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "5f0a62a96445cfeaf101d2ddc56472621f5c3dafc54ad4b230a373012833b7da83e96af7c07b60a586768361b3bce3f3626ed2cc09fbbd84e840e0714d6344ee"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.codehaus.mojo/animal-sniffer-annotations@1.14?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://mojo.codehaus.org/animal-sniffer/animal-sniffer-annotations"
+        },
+        {
+          "type" : "build-system",
+          "url" : "http://bamboo.ci.codehaus.org/browse/MOJO"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://nexus.codehaus.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "http://jira.codehaus.org/browse/MANIMALSNIFFER"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "http://markmail.org/list/org.codehaus.mojo.dev"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://fisheye.codehaus.org/browse/mojo/tags/animal-sniffer-parent-1.14/animal-sniffer-annotations"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.codehaus.mojo/animal-sniffer-annotations@1.14?type=jar"
+    },
+    {
+      "group" : "org.openjdk.jol",
+      "name" : "jol-core",
+      "version" : "0.4",
+      "description" : "JOL is the set of tools for examining field and object layouts in JVM.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "837e3373deaad8b55894afc3754f2073"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "37446fb0dd959fd43b9262d3f8a23652dd4f5f18"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "10d9b76dc418d42dea1ecfe0115dbc20293a561a3b4252d837bd11c5f64522a7"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "3f5a6ea904e8f2a9411f83f31ea8eb38ad4d138d9281a20730e33de2871e945762b727e59e0626771a08dd6c56b305c3b4ba47d6952a75217f6128ee4d5b4b48"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "ef449366ceb8725a049405569ccca0bc0524da3c1a25d5ae0c4386b1779c6eb8f565b49d13ef2950e861fa354f9dfbcd"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "9575fc59054b51c068d303fceb84d3afa13f510d7902035812d1531562a055037b0ab17119a398a697131b030c9b5881"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "c75b1cef4329bb4854f6b293f5c0a9143b8f9eb183aa75dc749cc4a8f7913940"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "f3dcccfc81d0c615353a0f03022f96d239353bbcae3f2aa6c52211251ca8549e549646ded8a97b6b892e778eaf31b45d7367d6d8dfefb8bab7e396876da23140"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "GNU General Public License (GPL), version 2, with the Classpath exception",
+            "url" : "http://openjdk.java.net/legal/gplv2+ce.html"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.openjdk.jol/jol-core@0.4?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://maven.apache.org"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://hg.openjdk.java.net/code-tools/jol/jol-core/"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.openjdk.jol/jol-core@0.4?type=jar"
+    },
+    {
+      "group" : "aopalliance",
+      "name" : "aopalliance",
+      "version" : "1.0",
+      "description" : "AOP Alliance",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "04177054e180d09e3998808efa0401c7"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "0235ba8b489512805ac13a8f9ea77a1ca5ebe3e8"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "0addec670fedcd3f113c5c8091d783280d23f75e3acb841b61a9cdb079376a08"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "3f44a932d8c00cfeee2eb057bcd7c301a2d029063e0a916e1e20b3aec4877d19d67a2fd8aaf58fa2d5a00133d1602128a7f50912ffb6cabc7b0fdc7fbda3f8a1"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "4dddf44338b5aff9580da2532b81c0ac3e1d09e1f28c6db871a55cad442b705dd7791eb07f9d4577d49d0be3673ba783"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "2bd64cbaf769c6e4e85e34f7a6119d89e16fbf55af3fc5d6cbd52eb214c367dec1ac7b9062ee0fb35a2e0acfc7c477e1"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "d4a726b2bf8aa58197021a7d8fca674b4b2790d4c48de43a92f728866a91c2f0"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "830bc3f8328be76897990e9b9fc42eef02623115e456af96ad09b20900ad615519c8c8de60155ac04fb332eaa9510110d52edd13911af76271c71d91cbd789cc"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "Public Domain"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/aopalliance/aopalliance@1.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://aopalliance.sourceforge.net"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/aopalliance/aopalliance@1.0?type=jar"
+    },
+    {
+      "group" : "javax.inject",
+      "name" : "javax.inject",
+      "version" : "1",
+      "description" : "The javax.inject API",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "289075e48b909e9e74e6c915b3631d2e"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "6975da39a7040257bd51d21a231b76c915872d38"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "e126b7ccf3e42fd1984a0beef1004a7269a337c202e59e04e8e2af714280d2f2d8d2ba5e6f59481b8dcd34aaf35c966a688d0b48ec7e96f102c274dc0d3b381e"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "ac04c9f03ccbe35a25deb8b50280a0ca01dbe6aff0dd795d55af6112bfe3cd5817eb82f32fb18378d86cd64b07597190"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "fca090ecb1edeacb9fe865dc515cd1d109b323cd742d4a9733ff199a96ee96e0db4f924079520b9c189ef750f255475d"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "5b0054e39e522de0e0ffc4034d12f72270291fb24d94d5ffc9c4d69c25035fc6"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "fb290f5a70b1efc1dff12f40a0b2d7b94019f66da42e78010c0b8e61f222c4f267b67e356a9e9c346eb801e5515e36243888f280c5cb95c2dd69016a30cadeb9"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/javax.inject/javax.inject@1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://code.google.com/p/atinject/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://code.google.com/p/atinject/source/checkout"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/javax.inject/javax.inject@1?type=jar"
+    },
+    {
+      "group" : "net.sourceforge.pmd",
+      "name" : "pmd-apex-jorje",
+      "version" : "7.0.0-rc3",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "ad6c0cf390af3640657305f6beb0cee4"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "675c26643acff0ae3b1b7d96c670f296e2b4796f"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "01a5e97a0e5f7427440f69a89cf56bdc36e9f9fddad40184e853d7a87a22a7dc"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "6c6127217208b5447b24f07084fec79a94364d83fb397cf76a6ec7eafbaccd81a7429d10223cf02001b7a9f58b263982c877b79c196abb2f8f5a82cf9a85a930"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "0df1aca0ae8944aaed8d20393f95d9054cb8a8458d2d0397736ce41f509ea74d5d43d4347b83f5163fd9c6436575435d"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "45b14efd2801712298e6e5c4e5b7e1f3e4433cbc41b35d55f1b3935d5def845abd87da99aaeae27c8cc1d498a6bb5e1e"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "d978c23ac37cbfc13593524e16ba961252eac99dfddca8c95a907ed63c1418f8"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "50a3f142900a5d5f98ee0e0a5b2c174dd6dc9ef106002c9e387b9e49020c7a060d0ab0caf58d87f5168794a761571cd3b137530e8800a759efb894f0d578d181"
+        }
+      ],
+      "purl" : "pkg:maven/net.sourceforge.pmd/pmd-apex-jorje@7.0.0-rc3?type=pom",
+      "type" : "library",
+      "bom-ref" : "pkg:maven/net.sourceforge.pmd/pmd-apex-jorje@7.0.0-rc3?type=pom"
+    },
+    {
+      "group" : "com.github.nawforce",
+      "name" : "apexlink",
+      "version" : "1.4.1",
+      "description" : "Salesforce Apex static analysis toolkit",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "fb46712e43566326472e87936a81e48d"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "d3c31ce9328352e2b9bddf70eca90f8a2a41702a"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "a3d987d0862aaa1966f56ce7539683d807e1b834cc6345bfd67ab2679138ce62"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "06de399230d7d213730ef3feb9d026be02728132bfbf836ba33022295db0a8f80908ad9d6fb7fc355a245e4dca430d8b1e0d0148e241a3c7b4084070384a20a0"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "bb12bb7948d7df1f20768c13085f648a69ef58bb71159d2128726aa6ddc3abb4995002ad6962892d49c367afc580c98f"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "8fd29cd8bda7ef5759f94f39765857086e6e5c8467782273b06ad53d60614437762cb5ec369981a60a61de52e42cf920"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "ee3325705f9fae2cfe22d9d1348aeffe9cbe2538283d828c92625486a417fbed"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "b50b4a15b9a94459cf19ddec2591c8b60609bf91eb81f25117ccd7cad07af7dd7a43dc588abd996acda8da230eabd7f854bca50216c42728ce56a5e19ac0146f"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-3-Clause",
+            "url" : "https://opensource.org/licenses/BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.github.nawforce/apexlink@1.4.1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/nawforce/ApexLink"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://github.com/nawforce/ApexLink.git"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.github.nawforce/apexlink@1.4.1?type=jar"
+    },
+    {
+      "publisher" : "LAMP/EPFL",
+      "group" : "org.scala-lang",
+      "name" : "scala-library",
+      "version" : "2.13.3",
+      "description" : "Standard library for the Scala Programming Language",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "a779b6bf5a53f55700d67b6ce9098b7a"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "1431ec9962701faf77bbd5e1449ded674be6fe5b"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "cb0eb1a33a6056b2e652f26923bfa361348ae72a2119da7b78dc1f673d1a93b1"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "7a6113a7ad24a8c41b32f80baf91edd95aa0cb7ad1034cdc07eb6f05756f4e962d690c1c4cc1ea10e201813b83d96cf81268d70a7139c3b6b1849e827c7e7974"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "1131a7490f7427bbfe9671f6cf3389a9d4c85d0c70dbcc6ac93ff3e2e50a7b229eda439fea12d03660ff26aa4cf217c6"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "a7afba91558639bc31b77592dbbcb88335ec3e4f66c2cf7b74bd8c68fefcea57cd4b45312f7e67b45bac1bb1cbfafdc4"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "e74d9c66ef828ede0950fa4a9f205fd08d82fcd8ef24b4f2e9dc11113fbfb7de"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "171d3de9e4cf4c0e9183c285cf5492958a01be10d91c587b7f8f3291e2c8f4223171a98044a025447259ed0528e3cbb582926479b1014053ba5b825b77d9458a"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0",
+            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.scala-lang/scala-library@2.13.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://www.scala-lang.org/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/scala/bug/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/scala/scala.git"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.scala-lang/scala-library@2.13.3?type=jar"
+    },
+    {
+      "publisher" : "org.scala-lang.modules",
+      "group" : "org.scala-lang.modules",
+      "name" : "scala-parallel-collections_2.13",
+      "version" : "1.0.0",
+      "description" : "scala-parallel-collections",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "0376375d562ac40d0f998540f82ba1dd"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "8753206c4604c6c8d58e1229cfc01553ff681404"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "fc08be49e91db44d7fe5c1ff95a322ad4500805a525cc2c4b1b91693f041c8e4"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "afc50520869e2e51adacf211a759f7ecdfc62a2645e1689d264c7bc9d2a89a72944c84028e77abb50f344f0399937bebe507d5e476004610e7cfdd1191537ca8"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "3f196ddf2874837b052de0b4c554da94baa6cea12d2e7fa7bb8938905505e938616379023036df671df1fed36598d9e3"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "6f2fe28b9634292c8e22bfc54fb836cc2fb9af1818eb77e90be69c7e6be710e14bbc48929d00f905a0ce00f2934af1fa"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "532fd6bc8a3928926294ef6c71cd838349013a1b270e34c651376a117f5ca60e"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "3003d7dd84457f8d058cf57f48308bc373fe2c0bc34ec2f092ff4fe1a9c07dc100777671248b69c8123d77bcc766f1f68cde47de49720361f3917bfd06ea6f50"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0",
+            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.scala-lang.modules/scala-parallel-collections_2.13@1.0.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.scala-lang.org/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/scala/scala-parallel-collections/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/scala/scala-parallel-collections"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.scala-lang.modules/scala-parallel-collections_2.13@1.0.0?type=jar"
+    },
+    {
+      "publisher" : "com.github.nawforce",
+      "group" : "com.github.nawforce",
+      "name" : "pkgforce_2.13",
+      "version" : "1.4.1",
+      "description" : "Salesforce Metadata Management Utility Library",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "2f9fc7556290aa75ed201673381c2835"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "39d10a4be7bbb0d3e1edc224c8596cf96bffd917"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "06dbacd55e3413b46a89d2f6eb6d80b2a1929b0bed130e496c5a93e68c23d53f"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "f08e813f8a6a5553dd6b527f8c65a4a431bfea894e1d71a18b5d0e764d3ba61b8890fd16f69b25f1174c7df4af2da0e66c3b4206685b0c008db50f44a662ce98"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "05a5863d8e4b221b0e4e8ae85be99b9fafbef9749933fab6abdbd537f31cf987fdf08ca6147cd30ccb94e1f0d3b8e31c"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "e4218fd0f2ae1e5dddf8380d3ba77473a3b8c52da54c982ac9ca7b70bec1984208b87a45f753b00ad064c5dffafe0b3f"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "63f27619d8b21ce90da9f903ea2366937fe280d9e147f68337cc1af4a586642f"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "732a1e2792e1539787573cf84a09ed3574d0c8c55c128f04afacdf7c4deb0121d7b6896893cd977b555258f8e3c8dab4e0ab9b61038d5f2feca466543fce4680"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-3-Clause",
+            "url" : "https://opensource.org/licenses/BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.github.nawforce/pkgforce_2.13@1.4.1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/nawforce/pkgforce"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/nawforce/pkgforce"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.github.nawforce/pkgforce_2.13@1.4.1?type=jar"
+    },
+    {
+      "publisher" : "org.scala-lang.modules",
+      "group" : "org.scala-lang.modules",
+      "name" : "scala-xml_2.13",
+      "version" : "1.3.0",
+      "description" : "scala-xml",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "17d25d9f015a8616e96cef2cdcc8b50d"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "1db2b0fb6f454a9d34971b47158ee9dbe85d4eca"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "6d96d45a7fc6fc7ab69bdbac841b48cf67ab109f048c8db375ae4effae524f39"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "12366053a1a6c5aaf2942a3bf6bb98dfdf5511eff3d42145973fd6e526adde989205a2ff0d8064dd01cc354e9a633a450f41df81353388ebbb6be0ccc5f5ac6a"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "6c5911d7f9ebd3f33253b205268b7a55c5482f7fa4b38e034f3fbcdf401928b1278d2950487f9e47d872f8d82489a2de"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "e485ec6a3cec915a75a39ff347489236f768df5d7279096e9f9e2fd7f7ff9ddc01f80311b85540bd6c48ff80401e3a42"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "fb26769d70653ee8460c74737d5d6e497d57236177b4e8e9b61649f59861a102"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "0dccaa025dfe107f10b227fd69eda3e9ad96298d4345cefd512f0b0ee191086d0556d97b67a8707eb7172f716a61940e0be935e0d0963645f9867744cc877a2c"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0",
+            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.scala-lang.modules/scala-xml_2.13@1.3.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.scala-lang.org/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/scala/scala-xml/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/scala/scala-xml"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.scala-lang.modules/scala-xml_2.13@1.3.0?type=jar"
+    },
+    {
+      "publisher" : "org.scala-js",
+      "group" : "org.scala-js",
+      "name" : "scalajs-stubs_2.13",
+      "version" : "1.0.0",
+      "description" : "scalajs-stubs",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "fff252e1608b19443a6df54e98a71a4d"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "617745e4ec29fa8606178cd726dd569c13c7e641"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "60a58e75030081111da2e96e70140e6e370f2d1db7a353fe065b62eb757f82e3"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "35afbe3c84c0533e33c24339b81aa683900caa13a82bbbd1d54b61a61d018c78decc18011a2daaf8873925f635f31c60bb1e8bbd5ed978682839fd55dec11b00"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "8f122be84cf930f8c48e2ed8c40f46faf48fea9494ed8a6f78d8e6f41019e34cd5fc1ea25d9889ef1fcbf3f42d131798"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "3c391a83cb8f36d3dd954415e7214abd2a67e32cc32fb830529e8c8532a31565ac8e99a4b630ac1008bbd79d60aac0c3"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "5e342e1462d33bb663ccbd711788f0a1f9c47ba37cd5eab5a93d7f074fc8305b"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "3b712c2c099c81e421662f469dd67e257e62f5b9e334586a51dd894e0482ef0a99b3590779ef9599bc788edaa383d6bd97f9d1e6b1aa6d81f4bbe822787ff35e"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "BSD New",
+            "url" : "https://github.com/scala-js/scala-js-stubs/blob/master/LICENSE"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.scala-js/scalajs-stubs_2.13@1.0.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://www.scala-js.org/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/scala-js/scala-js-stubs"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.scala-js/scalajs-stubs_2.13@1.0.0?type=jar"
+    },
+    {
+      "publisher" : "com.github.nawforce",
+      "group" : "com.github.nawforce",
+      "name" : "scala-json-rpc_2.13",
+      "version" : "1.0.1",
+      "description" : "scala-json-rpc",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "491f1937041664ea31a9bcdc1802d713"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "947aa4dd5ec766861455076ded38ab56ab56ffd6"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "8cf74f4ed56ca38056bc42c31670538e8f9c67b682097febb1094f8e2db13cc8"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "6361267b10d3761620534b08cf39e5073f9b8c9389d86e4b03f582fcdba0870fb1f1110feb539075c3882af6c7de2f62b9fa6c6ca7123ab6f339ce8b650f1b5d"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "fd8420523ab71da4b2ee77400e8f791f5e6d96418fa73bac705172c92198f15d08cdebe7d7a2bdc07729426788b29ecf"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "eba7c43385642b1336dde725f7ff846cf4d32bf2c3f596ffc1ec705578da21d4d24306cec4981e3f42f4700360f7ba4f"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "23e1a79bd3d7e19ef95de087ff9f57eff8b3722facea7d4d2e581de779bd6926"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "d10af7f4fd0f14e263d91e88ae811ff0c6ab075d408630f1bac415f803db2f31e36dcc12b01b3f3bb0f09effad19da7cfd8f389d508ac543cfa98433f1db5af3"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.github.nawforce/scala-json-rpc_2.13@1.0.1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/nawforce/scala-json-rpc"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.github.nawforce/scala-json-rpc_2.13@1.0.1?type=jar"
+    },
+    {
+      "publisher" : "LAMP/EPFL",
+      "group" : "org.scala-lang",
+      "name" : "scala-reflect",
+      "version" : "2.13.3",
+      "description" : "Compiler for the Scala Programming Language",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "231f2b830d372467d040e24002638c2c"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "0eb08a460df09947c423e5ce77b3d4af566085f1"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "959dc9ab8aad84e2fc7adacfb84f2ed908caee22c4c2d291dd818f0c40c6ed5b"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "b67dfc1f743d17eef2266e87b254c5ad3671960651b83a96cf9ee26c65d877f37d9d764882d40c3d7bfb5dfe9a916da3678970840b29af1753ea36b54cb4c24d"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "e3d3eb22c6088053ecc3750cc60dc03215b8b93a1fe75faa1a98ab0e97902ee9e8540a9e23b24fc2ed67e106690c3f28"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "531f0b4d6cd32fe086e8b8a7ef610e5074b5aebbb6ed4630dd31e1ec358a7bf4b24d2de0df8a0553eb509a0b2665fa2f"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "cfa4a8aeb6a7a7c3a2e8ee49cf10531316829033f34de827bf3c871eae83d833"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "807104e57a71976f58609e28d6a219699f4dfd4fcdc4209625b7021805f79cbff3ac249a2e7531a12888753d8e3cf6a2197423e8f38799006a3ab0775c011acb"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0",
+            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.scala-lang/scala-reflect@2.13.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://www.scala-lang.org/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/scala/bug/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/scala/scala.git"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.scala-lang/scala-reflect@2.13.3?type=jar"
+    },
+    {
+      "publisher" : "com.github.nawforce",
+      "group" : "com.github.nawforce",
+      "name" : "scala-json-rpc-upickle-json-serializer_2.13",
+      "version" : "1.0.1",
+      "description" : "scala-json-rpc-upickle-json-serializer",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "1573bacc4869fca2e9b4190c5286eeb4"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "5cd19669deda2b6284ef1f94e9cc8c8e59bdb979"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "1c9c0663336825eeadb9cec2857c41ccf800047d80c2544f134eeac2fa7bc749"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "79389844bc2f3f5d0a2f673db59024479e2b57c940809e04658fbb165c985de9677becbb8f55779d6c9fa719718a7f1ac68d4128f87cfd0b8cc590ce9cf3cba5"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "af46d4b68c4abc23c4b55e0fdb70462be61ea27097d639dad800c372ecdf43c897192c22eabc8bb1d72cbbb30a20a16a"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "3d58a2e44f12db44f49b15306201d6c2322ee99d8e3f57a3d841822826d22f15d53c812332a657c8b5070d79cd16f7c6"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "562048b1701ae16eb70fc5e467edbd5d2244b8621b9e049a347c0029dc7a8f64"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "9a30c8f2f4c2b3a7b14b92777209c07e58a0c18f2c021e5ad9247f852bf9297506a8f34856bfd5290e0c5dfa8b484030dc0d2b9642041b79415aa50b079b9820"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.github.nawforce/scala-json-rpc-upickle-json-serializer_2.13@1.0.1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/nawforce/scala-json-rpc"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.github.nawforce/scala-json-rpc-upickle-json-serializer_2.13@1.0.1?type=jar"
+    },
+    {
+      "group" : "com.lihaoyi",
+      "name" : "upickle_2.13",
+      "version" : "1.2.0",
+      "description" : "upickle",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "abcf824fcfa8631eef37567f8fc0af00"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "6a9fdc473b8f86be977d0b02d0a036d448315b36"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "eba8ec18d8284cfcb10395842c254280b46f97ea2aca7f48b2b3db20205bae6f"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "53c8cc9806a49eb747c0359c661cf5c739e33e873901665c88cda8bb494b6f0aca8e142ad8682bf9f11eaccd3da0763a4d9e06ec1417383a155ff2be60b6ed32"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "4c3b848cd29f6855bf62cefd1c7bf2e40345ddf2bb0a37c8bcda6c2cce09120064364162d2d313e17fbd4d6fe76c8862"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "314f802e61c2a628d4ff7f716627307280e139e1c22f00043588c6316529d58b1e9bd0c062f5033fc1685be2172daa2d"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "3b712ba360059804ea48270c4a1d1617c7bd6fe0bbfa25f9f72d4f70e6c73bd0"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "7d068f6800c36d8af69178c24d13874af61f647c27ac9b508ed81bebce4fef343583de632df6ca45d136ce975dfbec336e1e305f195efbd7ef61b4000f746b5a"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.lihaoyi/upickle_2.13@1.2.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/lihaoyi/upickle"
+        },
+        {
+          "type" : "vcs",
+          "url" : "git://github.com/lihaoyi/upickle.git"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.lihaoyi/upickle_2.13@1.2.0?type=jar"
+    },
+    {
+      "group" : "com.lihaoyi",
+      "name" : "ujson_2.13",
+      "version" : "1.2.0",
+      "description" : "ujson",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "f8e773dc5a5dd4fb08c1a0f3e2ea9e3c"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "c813e752db936cfecfd708e2051522645f287645"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "68474183a6ff657f97a91488e294cbe977b2a439fec216d5167700c72471f358"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "88b3d92831cba8c292be4c7e427f7fbaafe6b4f6e18fe98a0c2d41358ac5db122761dae721fd820e4e6cae64ff1f78f70af88a2f3d4cbafc61f3c0f65148c83a"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "b950a993d22e95a1a86d7b2f4da65da4617c4ea65488113792cb54df944f05fe225a686cb19b9255a49ca048c7562bfd"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "2fd85348a62ef50c042c69be3d23fb2332637643abbb4be9cee0fb794cbdedc76080bcf08cf7f1f8f4f892bbbf133771"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "cd7b701042c7758010974462707d6ecb92fef78603b3150c39216a3f7237cb7f"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "dae2ff7fcc4fa2046f5a8ca8468c4ec030dafe293340bd0cc84cd814824129446cc4e7a27361d4883982ee6f214a5b745e854af93d54b9d7de48f883608398db"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.lihaoyi/ujson_2.13@1.2.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/lihaoyi/upickle"
+        },
+        {
+          "type" : "vcs",
+          "url" : "git://github.com/lihaoyi/upickle.git"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.lihaoyi/ujson_2.13@1.2.0?type=jar"
+    },
+    {
+      "group" : "com.lihaoyi",
+      "name" : "upickle-core_2.13",
+      "version" : "1.2.0",
+      "description" : "upickle-core",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "e2f6077d352e3c1d608a85789dc98ee4"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "6da71e8114b7668bef7fa6b3387a31f64b13e853"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "503d9d2687053a401f974e902ed095e7534f11f9b06448e03543f72c02f4e6bd"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "fe0420c0a789be7d86e5c29ce8f49054959b7b2997ab5bb0f5b342e148ab46ec11fdcc924e399122d01a998a709c280793fb5f0eeb6c6b03df41c0aae3999338"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "23b4a46a4ea8e2d75de20f231164ffb4e7ed060d2aea1202a737ce38c9bdbca3a8780e9cf224f7ebe032d9101de6f06f"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "c9f0ea02b7736591218e90cdadf5faec2df2f5ada590fec3668c5f1d50cdb08583f0b3518c5bc7dc8a0e29e0ece07b78"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "215503d8a54b0b3f568544a49ee8bd733142eb9b9421ec19b64b16e8ec8a1802"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "3d6ee8b4b7422169fb002b652150de34cca7dc52dc2eb266f6eddcf3564a31958386f953b0d316b271dde4b6ad48b8127470d5e7d702147d400e269faf6ce1c9"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.lihaoyi/upickle-core_2.13@1.2.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/lihaoyi/upickle"
+        },
+        {
+          "type" : "vcs",
+          "url" : "git://github.com/lihaoyi/upickle.git"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.lihaoyi/upickle-core_2.13@1.2.0?type=jar"
+    },
+    {
+      "publisher" : "org.scala-lang.modules",
+      "group" : "org.scala-lang.modules",
+      "name" : "scala-collection-compat_2.13",
+      "version" : "2.1.4",
+      "description" : "scala-collection-compat",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "471842a3e9585e0e17126c2493b2a1a2"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "1f14d9b6314547b44e6a9c5daf3efcadc1e4e955"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "576127ad3fa1449461c05d7c2cd943170b8644fb2248db8a1131a8ca21026db6"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "e762c93eb6b0b1ee8e9890dbcd5b20ba344713fb796e22e87d0a0969ca64130d55be325279e51ec11027ead01083ee2e855f74f2f19a01f8ec8603557e41e799"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "181e35f855743ff58eec9db3857c6d92ddb80aa8c275363060e9f442a6fb256078d117c580e54108eca8da6fc3932c28"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "214c78b1101c896457425042ea9c7527b34bc88f2e02c1f4f4d6ef7364d81b130036789ba7a7fe0ddc10818cacd24cd0"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "c0a6a48997cb9cf9d44eb641bbb4291706ce06df95342be7226e09da46060c97"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "83c52afe0d215f622a96a59e21c3f1768e2e908e4aa9d0a9d03e938c5e5b3ee16d17fb0fe88a3d96a9b6c59a5be48103aca052ebaedd0b7efa3a6eb17f502771"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0",
+            "url" : "https://www.apache.org/licenses/LICENSE-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.scala-lang.modules/scala-collection-compat_2.13@2.1.4?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.scala-lang.org/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/scala/scala-collection-compat/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/scala/scala-collection-compat"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.scala-lang.modules/scala-collection-compat_2.13@2.1.4?type=jar"
+    },
+    {
+      "group" : "com.lihaoyi",
+      "name" : "geny_2.13",
+      "version" : "0.6.2",
+      "description" : "geny",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "468745e3f41ee0377d211099ddcdbd9d"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "4dc065ddd1e7860dde10ca3cd23b0574a412b9e6"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "26017fa73ec7fa3cd2d44a4f5d3462c58cd6ddebf7d42d40123768edf7dee43c"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "0f3e20309f7513aefac47f468bdbeb5e98d6c8271686a9d50dd907a8827e7bac0ae79e81cee19ad96f70ffd74e7cec05decb6a98c48816d799bbc2cd0cf781b2"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "3adc818ffdafb5e7f5353f29922c36f079e7c5c2cab5ba11e6ccdc9e74907b60d15f505e4cb42f473013d5c3a6a12d7f"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "1e958cd12d1af2d81c6c5855dc54e31b39dfb7b4ad1f2bfafac5dace024d29264970c93f90e75d1eeefda9ad9409aeec"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "cf874f005f3e5d67d5f4bd075a60f79a8dcd7c228a5af1c14c0ab28810367cf5"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "6b9ac590fc11b33db775c0494182ea9f39457a619996b1169326283367f21228d72307799f8c5e75e4e034ed8f57e4331e9bd052e2f9b591803f3396776e09e1"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.lihaoyi/geny_2.13@0.6.2?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/lihaoyi/geny"
+        },
+        {
+          "type" : "vcs",
+          "url" : "git://github.com/lihaoyi/geny.git"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.lihaoyi/geny_2.13@0.6.2?type=jar"
+    },
+    {
+      "group" : "com.lihaoyi",
+      "name" : "upack_2.13",
+      "version" : "1.2.0",
+      "description" : "upack",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "6922e8a65b313a9af56d31f31345fa45"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "c1e224e9c9b3eed105ded5e102224acf548ddff6"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "1ed89d975c11ca0c87398f57e29ace72ff00835ba87b504a83c4190d17416c26"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "be9acc43f29e2fed408b584dfd326c26f023428837c7e4478abd76da1fb57cfcb550ef9d41733df79454910591c15c3daaba3757a92419d0d474cadbc4a11fca"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "c2b4dbae6ea083747649e0d0984fe599f72ef8897453023a642b1073c96f57ba11103b7ef4faf20e272c49088415e653"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "31a26ed9cc75bb8ad0a592849185539da33d438b58ed016f8cdd737d1da954ac8c2ea938ff40ec5b4a62065483dc4997"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "83381aef5564d0d74fdecaac1805446336d375144f8c7bc4e16e036fff48c142"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "0ca62eaea87ff90128dd2987d78e899628be60f472851bed53c9e39e6aaabbe1cdc59452e008e70837b97bf8d9f2edda21313816529fd04eee2c4183d9689ce4"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.lihaoyi/upack_2.13@1.2.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/lihaoyi/upickle"
+        },
+        {
+          "type" : "vcs",
+          "url" : "git://github.com/lihaoyi/upickle.git"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.lihaoyi/upack_2.13@1.2.0?type=jar"
+    },
+    {
+      "group" : "com.lihaoyi",
+      "name" : "upickle-implicits_2.13",
+      "version" : "1.2.0",
+      "description" : "upickle-implicits",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "a780d8970446a81f2e8f8ec967a94908"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "3113da7c0f648121ff2504532cec1fc9daf726f8"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "31d16e260f6eae6c4172f430f2c0711f669cd9dff576aadd1370b8bc5472f8d4"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "12d08ef3c3414013515028c1c766fe8d58991e50d8b4e65cc9616cd5f35a2a360767176f0520e0d216262627ab57612237c3de3b0bee916829ba0a8af722d5bf"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "d66118927474ec7a0f3618422d086db2756f20c0f69a5cfd2b81ed0618db5e1627969cd9bcad5e7274f1de225af33957"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "9dce5d3a28bb7a91f3638fc9df522611470b7cf9388c7c9c8ab8f72cc27ba3adcfade83e82175836054d30de19be9af1"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "48fc68f98c307ce10ef49dd3d808d315e11e3ac4f0a799aec9759bef127323d6"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "390defa14f93cd6a461c1a5e8924e1839a524d9ed63daec73bb8c9f45555cb96061754345b3872bfe3882b041dbd15cd39cae1cbcc8fa2e924a02664afa46218"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.lihaoyi/upickle-implicits_2.13@1.2.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/lihaoyi/upickle"
+        },
+        {
+          "type" : "vcs",
+          "url" : "git://github.com/lihaoyi/upickle.git"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.lihaoyi/upickle-implicits_2.13@1.2.0?type=jar"
+    },
+    {
+      "publisher" : "The Apache Software Foundation",
+      "group" : "org.apache.commons",
+      "name" : "commons-lang3",
+      "version" : "3.8.1",
+      "description" : "Apache Commons Lang, a package of Java utility classes for the classes that are in java.lang's hierarchy, or are considered to be so standard as to justify existence in java.lang.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "540b1256d887a6993ecbef23371a3302"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "6505a72a097d9270f7a9e7bf42c4238283247755"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "dac807f65b07698ff39b1b07bfef3d87ae3fd46d91bbf8a2bc02b2a831616f68"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "fb0fe98385496a565678a000c26a3245082abfbf879cc29a35112b4bf18c966697a7a63bb1fd2fae4a42512cd3de5a2e6dc9d1df4a4058332a6ddeae06cdf667"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "72c6fd199936f06db886eba9dccd188e26afabf7b9e6744cea18f27e414abfe04d3d3f609f8505311a01f43e885bec1a"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "3b6eede7aaff2bbbf5133872b59e9c4932e60064951a68c219f128a8c3a2556c25c2c90a599b342ee3fdef25a745a474"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "4e708ddf8ed0c6dbd8c6bba07e06425b5d263d899884b91bf11f86ec0d6f8463"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "f43e89519e803e976f7b4d756d934be802ab36077cf2dc38dd9aa901eaf7104e58157859f45ccef7b38e072007a60f17270923e2ed7eabd41a4c776dee1458e1"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.apache.commons/commons-lang3@3.8.1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://commons.apache.org/proper/commons-lang/"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://builds.apache.org/"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://repository.apache.org/service/local/staging/deploy/maven2"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "http://issues.apache.org/jira/browse/LANG"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "http://mail-archives.apache.org/mod_mbox/commons-user/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://git-wip-us.apache.org/repos/asf?p=commons-lang.git"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.apache.commons/commons-lang3@3.8.1?type=jar"
+    },
+    {
+      "publisher" : "PMD",
+      "group" : "net.sourceforge.pmd",
+      "name" : "pmd-visualforce",
+      "version" : "7.0.0-rc3",
+      "description" : "PMD is a source code analyzer. It finds common programming flaws like unused variables, empty catch blocks, unnecessary object creation, and so forth. It supports many languages. It can be extended with custom rules. It uses JavaCC and Antlr to parse source files into abstract syntax trees (AST) and runs rules against them to find violations. Rules can be written in Java or using a XPath query. It supports Java, JavaScript, Salesforce.com Apex and Visualforce, Kotlin, Swift, Modelica, PLSQL, Apache Velocity, JSP, WSDL, HTML, XML and XSL. Scala is supported, but there are currently no Scala rules available. Additionally, it includes CPD, the copy-paste-detector. CPD finds duplicated code in Coco, C/C++, C#, Dart, Fortran, Gherkin, Go, Groovy, HTML, Java, JavaScript, JSP, Julia, Kotlin, Lua, Matlab, Modelica, Objective-C, Perl, PHP, PLSQL, Python, Ruby, Salesforce.com Apex and Visualforce, Scala, Swift, T-SQL, Typescript and XML.",
+      "scope" : "optional",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "88132445acb3cdc7a7c9cc03af7ea986"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "1ee99c6db108c10a7663e0d5579855a375ca28c9"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "291b5d051605a79363e2096aa3a18ffa863785e272207e552162af72d14ac59b"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "f6a5777fa0f1eb1fe6eddb2d97469ae9bee1ea439bf0c5e9771370a9f193a91e0caa942a774ae16ad2468fa02232b0ca9bc5de871eeb4ec113f1c6f283c2d977"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "d6ac9612a495b6a11d5819be3b3c07d47c7b377e792ff80751de09d05fc6de6a823f86af8028c9d6ba25d2d01f87b716"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "04d24e5a6c03cde8ef5cc200c39563d2a89e4c320d300a6d5f8ae177ab287205da7866cb6c7922ec73cb3a84cbb8f765"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "8d1fb5351777e1d7be7b13c65f2c705498fcb9059216b340f14c2e054b538baf"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "af404ebf66180c2ddb55158ba501ea3069aa27dc7f7d15df59164f20a167df0f33730e1b2edf3712aaaa3a9b0e124ba2b9e51a10f2e7ce380bed8f66cb5c8bbe"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "BSD-style",
+            "url" : "http://pmd.sourceforge.net/license.html"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/net.sourceforge.pmd/pmd-visualforce@7.0.0-rc3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://pmd.github.io/pmd-visualforce/"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://github.com/pmd/pmd/actions"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/pmd/pmd/issues"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "https://sourceforge.net/p/pmd/mailman/pmd-devel"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/pmd/pmd/pmd-visualforce"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/net.sourceforge.pmd/pmd-visualforce@7.0.0-rc3?type=jar"
+    },
+    {
+      "publisher" : "PMD",
+      "group" : "net.sourceforge.pmd",
+      "name" : "pmd-xml",
+      "version" : "7.0.0-rc3",
+      "description" : "PMD is a source code analyzer. It finds common programming flaws like unused variables, empty catch blocks, unnecessary object creation, and so forth. It supports many languages. It can be extended with custom rules. It uses JavaCC and Antlr to parse source files into abstract syntax trees (AST) and runs rules against them to find violations. Rules can be written in Java or using a XPath query. It supports Java, JavaScript, Salesforce.com Apex and Visualforce, Kotlin, Swift, Modelica, PLSQL, Apache Velocity, JSP, WSDL, HTML, XML and XSL. Scala is supported, but there are currently no Scala rules available. Additionally, it includes CPD, the copy-paste-detector. CPD finds duplicated code in Coco, C/C++, C#, Dart, Fortran, Gherkin, Go, Groovy, HTML, Java, JavaScript, JSP, Julia, Kotlin, Lua, Matlab, Modelica, Objective-C, Perl, PHP, PLSQL, Python, Ruby, Salesforce.com Apex and Visualforce, Scala, Swift, T-SQL, Typescript and XML.",
+      "scope" : "optional",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "f007cdb8fe9145862c3dffa51fe374a2"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "534f54f9430454a8a3162f2617663467a09df12b"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "de1459f355324006656a145cb2f1661767115bdaf8b4862150594857c13c73eb"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "d1012b2b8b8141fb0bf3d6772c6404616dbf457701df8f7c31f9f9d398055c2b6aeefe88f7b24965ae73f7ede384b40de3a92f5319455565010aa6462b867aac"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "1e668d91bd91f5cfd7ad389de896055ddf9587644ebd40220e8c95df83544182f5894b1823b556bbb904fa51e1481276"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "84748e3ca3d45f698991be16862f8072d0cc7aa304f43629680807be47ac1a0baa66cbecf22774ca474863f7b0dd17a1"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "0e405e8718e556d6e24fe6efb4643782a1ab93b87509cf8c145f6a722119789b"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "3c4e59daa4a25cc79e6e4cc9267fe1faef7715bc07b423dec16cdb1eea8ef53b6c7ba747038b2268b6724ceb83886ad59e0dddfc143795e459847fd770a293fd"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "BSD-style",
+            "url" : "http://pmd.sourceforge.net/license.html"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/net.sourceforge.pmd/pmd-xml@7.0.0-rc3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://pmd.github.io/pmd-xml/"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://github.com/pmd/pmd/actions"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/pmd/pmd/issues"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "https://sourceforge.net/p/pmd/mailman/pmd-devel"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/pmd/pmd/pmd-xml"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/net.sourceforge.pmd/pmd-xml@7.0.0-rc3?type=jar"
+    },
+    {
+      "publisher" : "ANTLR",
+      "group" : "org.antlr",
+      "name" : "antlr4-runtime",
+      "version" : "4.9.1",
+      "description" : "The ANTLR 4 Runtime",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "0dcc4b860d5d8d2852ab94d58c56ca2d"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "428664f05d2b7f7b7610204b5aa7c1763f62011a"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "a80502c3140ae7acfbb1f57847c8eb1c101461a969215ec38c3f1ebdff61ac29"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "0ecc07e9e3c3f50813cd8d74cbcc372e61b346b99b6006c29c611a654e7fb29bd705a2b6e3ae6bd1b2b9de15133ad6826a3b7f26569564d13dc81fe6f3023144"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "f310e41857b03312408844e385c08e3af078b8261c34f966049c470e3d24ac1f89eb296967cf8db9aa0fd355a8ff0005"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "c5f18f5e7e12dd8446268111926b85c6bba771e529f99b746fa3393605301550dd5fc3a6c53740d68bceb37c42b72b09"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "8da35321f3abd4db4f6bbe6222faf057b9abb8bedf7f3d21711e832d13f64086"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "4320e9cd8b6d8eeb32f6443eff6e2d1941ad8d7722e0c87cae413e42da44850456201d2be4c1f1e1c9df45893b470c121a5ea3adcea6425ab60d74b8a29ded54"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-4-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.antlr/antlr4-runtime@4.9.1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.antlr.org/antlr4-runtime"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/antlr/antlr4/issues"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "https://groups.google.com/forum/?fromgroups#!forum/antlr-discussion"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/antlr/antlr4/tree/master/antlr4-runtime"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.antlr/antlr4-runtime@4.9.1?type=jar"
+    },
+    {
+      "publisher" : "PMD",
+      "group" : "net.sourceforge.pmd",
+      "name" : "pmd-cli",
+      "version" : "7.0.0-rc3",
+      "description" : "PMD is a source code analyzer. It finds common programming flaws like unused variables, empty catch blocks, unnecessary object creation, and so forth. It supports many languages. It can be extended with custom rules. It uses JavaCC and Antlr to parse source files into abstract syntax trees (AST) and runs rules against them to find violations. Rules can be written in Java or using a XPath query. It supports Java, JavaScript, Salesforce.com Apex and Visualforce, Kotlin, Swift, Modelica, PLSQL, Apache Velocity, JSP, WSDL, HTML, XML and XSL. Scala is supported, but there are currently no Scala rules available. Additionally, it includes CPD, the copy-paste-detector. CPD finds duplicated code in Coco, C/C++, C#, Dart, Fortran, Gherkin, Go, Groovy, HTML, Java, JavaScript, JSP, Julia, Kotlin, Lua, Matlab, Modelica, Objective-C, Perl, PHP, PLSQL, Python, Ruby, Salesforce.com Apex and Visualforce, Scala, Swift, T-SQL, Typescript and XML.",
+      "scope" : "optional",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "1133882692c8388946cdca9d029f158d"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "ef53a6695820a1953d54e00aa716db5e0c04b906"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "921194b496a4f77ce215ad65d3f58fc300d49c2fbe504aef5d97d325aab29dcb"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "a50b60d9b3fd685da587da2a3f4817b4df44c60c2eafaccdf7df3e084c3bb379ec3825c3d577cb1d6cf0e1e79687742b4060218fa4e9b292a070a57599642d61"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "9934f94179b6f4bbc0d02ce91820f584599995c3fa716d43333aaacb83c331b6a23ce7216bbf08c30fc5393f5f4ea790"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "8c7df2321b6abba3c154889c72b146184e8637b280773758adac74160174408058f9e5c6659d1375ef3284e43cdfee06"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "a88d1da1a12b4be0dd9d4bbe070195827eee75c77a6c49f14c76a4863499e6c5"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "e6c259a1b233a819d45176bed86a31052b046ccf3303e002f6708ddec8d89b0947bdc62e6fab4b740d3a6e567de8306c22fdafcedfd6e278bd3983de6c28b0e8"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "BSD-style",
+            "url" : "http://pmd.sourceforge.net/license.html"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/net.sourceforge.pmd/pmd-cli@7.0.0-rc3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://pmd.github.io/pmd-cli/"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://github.com/pmd/pmd/actions"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/pmd/pmd/issues"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "https://sourceforge.net/p/pmd/mailman/pmd-devel"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/pmd/pmd/pmd-cli"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/net.sourceforge.pmd/pmd-cli@7.0.0-rc3?type=jar"
+    },
+    {
+      "group" : "net.sourceforge.pmd",
+      "name" : "pmd-ui",
+      "version" : "7.0.0-rc1",
+      "description" : "The Rule Designer is a graphical tool that helps PMD users develop their custom rules.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "2bf5db5c9545141d1665532d8891991b"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "cb1cda178fdc35977d0c89f8b2130141af7c2c01"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "525cfdfb3f6817cfd04b8f04bad9a2067833d66537882b2927c4a52e40e02ac2"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "5d5d1d192f6d5694e91242376d6158154087090b32c60d25896fce023e3f24827752a49af35e843b88a96e7cb01481aa1aab1a77429a722ac99b69e8a9572491"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "93b6c91935f9559d7911f13466204785a065be1844332dbf256568bd8c6582b649c7ed5272b255b42df3506b15bae0a7"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "50def8b27f9477b2703a6ea9fafba0b55163968aa902e2191cd3d8847806e4e640f3c078f88e145abd34e6823f7d116a"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "97e25d1311e18a1a5f87f6b4fe0fb49ea4412b2aae66493c7c5740914961f95e"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "ec4fb6fa8cfa478303d19a8958167e04d61c05fd334262ebd414fdfbe718b8bea1696f581b29347aeadc50edeb051801142edc0030ebb8689aa3aec7308d846c"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-2-Clause",
+            "url" : "https://opensource.org/licenses/BSD-2-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/net.sourceforge.pmd/pmd-ui@7.0.0-rc1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://pmd.github.io"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://github.com/pmd/pmd-designer/actions"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/pmd/pmd-designer"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/net.sourceforge.pmd/pmd-ui@7.0.0-rc1?type=jar"
+    },
+    {
+      "publisher" : "QOS.ch",
+      "group" : "org.slf4j",
+      "name" : "slf4j-api",
+      "version" : "1.7.36",
+      "description" : "The slf4j API",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "872da51f5de7f3923da4de871d57fd85"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "6c62681a2f655b49963a5983b8b0950a6120ae14"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "d3ef575e3e4979678dc01bf1dcce51021493b4d11fb7f1be8ad982877c16a1c0"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "f9b033fc019a44f98b16048da7e2b59edd4a6a527ba60e358f65ab88e0afae03a9340f1b3e8a543d49fa542290f499c5594259affa1ff3e6e7bf3b428d4c610b"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "2b14ad035877087157e379d3277dcdcd79e58d6bdb147c47d29e377d75ce53ad42cafbf22f5fb7827c7e946ff4876b9a"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "3bc3110dafb8d5be16a39f3b2671a466463cd99eb39610c0e4719a7bf2d928f2ea213c734887c6926a07c4cca7769e4b"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "ba2608179fcf46e2291a90b9cbb4aa30d718e481f59c350cc21c73b88d826881"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "14c4edcd19702ef607d78826839d8a6d3a39157df54b89a801d3d3cbbe1307131a77671b041c761122730fb1387888c5ec2e46bdd80e1cb07f8f144676441824"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.slf4j.org"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/qos-ch/slf4j/slf4j-api"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar"
+    },
+    {
+      "publisher" : "QOS.ch",
+      "group" : "org.slf4j",
+      "name" : "slf4j-simple",
+      "version" : "1.7.36",
+      "description" : "SLF4J Simple binding",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "fd4a5fa54910b5ee561f639c903cf34a"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "a41f9cfe6faafb2eb83a1c7dd2d0dfd844e2a936"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "2f39bed943d624dfa8f4102d0571283a10870b6aa36f197a8a506f147010c10f"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "cdcebe8fa58527a1bc7da0c18e90a9547ce8ac99cccfe5657860c2a25478c030ea758251da3e32a71eab9cbb91360692b5c6c5887a1f1597d1fda07151b27e5f"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "57eb6d0c778ad9637a819fe64ab6a7b5e291c1c2e5e9a8f536c553e54837fe0e26b9ef5a83ce25c7e3e7e8c5d455ab24"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "15809f42dc66ec21d8d931c2e10cbb1c2c7c580678c1946a0e4fc8b5c7cec5ff001a5551979693a59fbfa1420ba0c038"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "a313022d52742de983fa574ebaaf3c6fbb173b0d823a6c31b2a22f429e03a428"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "335556e92ec298e2db4e2aa6d4cff0f61fdee178f8889c84db35b9236f08c4c371cc7ff27a77b16699d531111d0eb3ead3696738ed2bd726f75add07f2c51017"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.slf4j/slf4j-simple@1.7.36?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.slf4j.org"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/qos-ch/slf4j/slf4j-simple"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.slf4j/slf4j-simple@1.7.36?type=jar"
+    },
+    {
+      "group" : "info.picocli",
+      "name" : "picocli",
+      "version" : "4.7.0",
+      "description" : "Java command line parser with both an annotations API and a programmatic API. Usage help with ANSI styles and colors. Autocomplete. Nested subcommands. Easily included as source to avoid adding a dependency.",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "cd96d5f9c60efe890515fc5d1d02e951"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "dcdde55edcb523af7814ba47e57a8a097daa208d"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "3f6ffb10ce853ef2f6f934b467ccc13c9c1708b4d83a1a5664fdb07e078e8e1c"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "5a313afc59b421a31de23caceca2e39a200ec93cfa8e6ba688bfb3be3814db233e27365409ce31820874651dce83c31797552ceb22fc7ee2792a2bb0aeef5ea4"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "668b08524bb3fad28923cd7f81dca3d22e38b75e044c5128cc4b79d0e360b189cbdd38a94749b6fa4919f2cfde434fee"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "6c8cfc819ad38282b054b46ef5df0767cebac2b73bc419b6a37689a210d68b7f3be92754c67f008196991746638aa3b5"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "0e276fbbf7a4eca9c7a9b6d997e17437f6637a46401d4a9b6a522ae1e364123e"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "4d5d662060fbc04ca6fc0eb9005a1d7d6049d7f0786d049ae004b1fb5cedd64196ccb81dfecafb88e765297948a8cc74f309e0030a94858f370d6baf4341c015"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/info.picocli/picocli@4.7.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://picocli.info"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/remkop/picocli/tree/master"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/info.picocli/picocli@4.7.0?type=jar"
+    },
+    {
+      "group" : "me.tongfei",
+      "name" : "progressbar",
+      "version" : "0.9.5",
+      "description" : "A terminal-based progress bar for JVM",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "7bda2e0d24c326b6af99f8ff28239c28"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "aaf7a04a9e9e6bd0aa03268cfcd6168e903bcf2d"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "a1a086fa66f85c49bb3ca701a78cebb33647f367d4a5be8588c784d56272cc6e"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "e9f29b15cea7746c02288645c92633ec2a30b19fc1273a71608df5d42140ecaf69339c576bf263093148f4548a85924a62eb4e24013128cf61053b4c97df82c8"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "126db35d39f280298d6395de0f90df954a8e64b41db424b00f565dda1bde0f66f017237a42094adee4d72a453e6b1b7e"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "7452d8b7785cab60dfb10e5c36f8547c8bc0e6df985b2c9fde5134481bce5426e83ba59efbdcdb38538f0168a5aecb7e"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "e02f1576f6ec76e457b728b6049cb4b859fa342dcfcd467e9347fb82f307355d"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "b8cbcbc1d4e126305d354382d44fb4b6999fd03d67c0770677f5067e8926be3903be3a34982cc0795eec2b39a48395574ca11b0da34229c923b255cc44630782"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/me.tongfei/progressbar@0.9.5?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://github.com/ctongfei/progressbar"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/me.tongfei/progressbar@0.9.5?type=jar"
+    },
+    {
+      "group" : "org.jline",
+      "name" : "jline",
+      "version" : "3.21.0",
+      "description" : "JLine",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "859778f9cdd3bd42bbaaf0f6f7fe5e6a"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "2bf6f2311356f309fda0412e9389d2499346b5a1"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "1e7d63a2bd1c26354ca1987e55469ea4327c4a3845c10d7a7790ca9729c49c02"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "1a2321279254bd9782b76bf6afe4dbb137ad2efb73e441f7a0d8fd568eee9f600ce812223b0aa579d598071f43a1663e345f44d07b24a9469698f7224c56771b"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "8bbcb0d0e3018e29cf03853efdae4e275541f9c4e4424228a5fbc83d0f8ae7eb3bef6d8ae4c85c4c69e11e2a67eb4eb7"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "2f45c0ef812ad0726f79a5399dbf034984f7e5eae482948d90220f98dec4a354e75116369734a0a44c6a614fd025ddb6"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "a3650ce5b31b44e5d07c3405f7a279483fa2e7768a57f7f284e99c75733d52db"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "2906a3597c98169b426946afb079c2429a3b6041985651b50526d0fc98c21e514d44c6d3f1b4e7a5b508469c4783535c3eea5d2161d33270c6d052b67c48fe8c"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-4-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.jline/jline@3.21.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://nexus.sonatype.org/oss-repository-hosting.html/jline-parent/jline"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://travis-ci.org/jline/jline3"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/jline/jline3/issues"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "https://groups.google.com/group/jline-users"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://github.com/jline/jline3/jline"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.jline/jline@3.21.0?type=jar"
+    },
+    {
+      "group" : "org.checkerframework",
+      "name" : "checker-qual",
+      "version" : "2.5.2",
+      "description" : "Checker Qual is the set of annotations (qualifiers) and supporting classes used by the Checker Framework to type check Java source code. Please see artifact: org.checkerframework:checker",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "04acc78b24bbd365423da357da003cf0"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "cea74543d5904a30861a61b4643a5f2bb372efc4"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "64b02691c8b9d4e7700f8ee2e742dce7ea2c6e81e662b7522c9ee3bf568c040a"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "fb32e3893f9ebc956ef99066b219a8fc8049b47b80a7253cd89b7faadf0a2fa14d60b52dd5c2f4aaeb1db0359f49fec9e29d3616bd314ec8c82db1c657be8cd2"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "62f90d15efb90c3691a577ca58c4b48209e294fda2cb9cf0873af5beb4f79dc4b33958474189d824853b768d2a19add9"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "506dd2e0c27cd480f0cb8775a3d9ba486d299ab6385c3c8354b94552531a47ccd379c2e68a63889d80474c287df657ea"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "381f414c86b36e9e843565b70cff4aa5ed4aea5f265bacb330343e46015b5135"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "b9bdbc3632eb85185408682e1107b886a374b21c77117d75cbecfb812b1c486daad89bd9461512c2b7bf853c82a4bd225d45846909934291dc75349ceb369e22"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.checkerframework/checker-qual@2.5.2?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://checkerframework.org"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/typetools/checker-framework.git"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.checkerframework/checker-qual@2.5.2?type=jar"
+    },
+    {
+      "group" : "net.sourceforge.pmd",
+      "name" : "pmd-cli",
+      "version" : "7.0.0-rc3",
+      "scope" : "optional",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "f6ec86d5b1cdb20faa8fbd4f303d8d6d"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "34eb7100e757b0a3a6b9ec4cf62767f11b789405"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "638a5084dd95deba5bfb3c89cb50a26a769d30132b195e40d1bb72c59bd455a5"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "fa8c6b03c8cd94fce52c2af21565d2f880735d491757e1f367a9da8d1687942672d400e37b6861327f270596d68ac53e29e3d21684c71a59f82c196c77ea3e7a"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "71d1364a472f19687f9d67c3bc9fe8bc63df17487ac8a6d5dea81f81ec5c188f4103d3aeea9dc1a39914a941eaf1d72e"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "b68ae250eb4281af82daed4d204bfdcd3c64cf064dad3ab99d8deea4bf4e4fd7c7165c9123e814d7d52e1080be0ed6f2"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "38f203390ad647ae390249dad49e0d1ffbcbb1b461d4b32d4741d1a7c189417f"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "031d6b9464152966bc05797d8e297dbaa6fbb90a77b1b0cd74ccf0b338b8bc28ae2400e5ebfc9962fff92391feec938c8a65aac6c4557eaf7001540085216c50"
+        }
+      ],
+      "purl" : "pkg:maven/net.sourceforge.pmd/pmd-cli@7.0.0-rc3?classifier=completion&type=sh",
+      "type" : "library",
+      "bom-ref" : "pkg:maven/net.sourceforge.pmd/pmd-cli@7.0.0-rc3?classifier=completion&type=sh"
+    }
+  ],
+  "dependencies" : [
+    {
+      "ref" : "pkg:maven/net.sourceforge.pmd.examples/pmd-apex-dist@1.0.0-SNAPSHOT?type=pom",
+      "dependsOn" : [
+        "pkg:maven/net.sourceforge.pmd/pmd-apex@7.0.0-rc3?type=jar",
+        "pkg:maven/net.sourceforge.pmd/pmd-visualforce@7.0.0-rc3?type=jar",
+        "pkg:maven/net.sourceforge.pmd/pmd-xml@7.0.0-rc3?type=jar",
+        "pkg:maven/net.sourceforge.pmd/pmd-cli@7.0.0-rc3?type=jar",
+        "pkg:maven/net.sourceforge.pmd/pmd-cli@7.0.0-rc3?classifier=completion&type=sh"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/net.sourceforge.pmd/pmd-apex@7.0.0-rc3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/net.sourceforge.pmd/pmd-core@7.0.0-rc3?type=jar",
+        "pkg:maven/org.antlr/antlr-runtime@3.5.2?type=jar",
+        "pkg:maven/net.sourceforge.pmd/pmd-apex-jorje@7.0.0-rc3?classifier=lib&type=jar",
+        "pkg:maven/net.sourceforge.pmd/pmd-apex-jorje@7.0.0-rc3?type=pom",
+        "pkg:maven/com.github.nawforce/apexlink@1.4.1?type=jar",
+        "pkg:maven/org.apache.commons/commons-lang3@3.8.1?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/net.sourceforge.pmd/pmd-core@7.0.0-rc3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar",
+        "pkg:maven/org.slf4j/jul-to-slf4j@1.7.36?type=jar",
+        "pkg:maven/org.antlr/antlr4-runtime@4.9.1?type=jar",
+        "pkg:maven/net.sf.saxon/Saxon-HE@10.7?type=jar",
+        "pkg:maven/org.apache.commons/commons-lang3@3.8.1?type=jar",
+        "pkg:maven/org.ow2.asm/asm@9.4?type=jar",
+        "pkg:maven/com.google.code.gson/gson@2.8.9?type=jar",
+        "pkg:maven/org.checkerframework/checker-qual@2.5.2?type=jar",
+        "pkg:maven/org.pcollections/pcollections@3.1.3?type=jar",
+        "pkg:maven/com.github.oowekyala.ooxml/nice-xml-messages@3.1?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.slf4j/jul-to-slf4j@1.7.36?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.antlr/antlr4-runtime@4.9.1?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/net.sf.saxon/Saxon-HE@10.7?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.apache.commons/commons-lang3@3.8.1?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.ow2.asm/asm@9.4?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.google.code.gson/gson@2.8.9?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.checkerframework/checker-qual@2.5.2?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.pcollections/pcollections@3.1.3?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.github.oowekyala.ooxml/nice-xml-messages@3.1?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.antlr/antlr-runtime@3.5.2?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/net.sourceforge.pmd/pmd-apex-jorje@7.0.0-rc3?classifier=lib&type=jar",
+      "dependsOn" : [
+        "pkg:maven/cglib/cglib@3.3.0?type=jar",
+        "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+        "pkg:maven/com.google.code.gson/gson@2.8.9?type=jar",
+        "pkg:maven/com.google.errorprone/error_prone_annotations@2.1.3?type=jar",
+        "pkg:maven/com.google.j2objc/j2objc-annotations@1.1?type=jar",
+        "pkg:maven/org.antlr/antlr-runtime@3.5.2?type=jar",
+        "pkg:maven/org.antlr/stringtemplate@3.2.1?type=jar",
+        "pkg:maven/org.apache.commons/commons-lang3@3.8.1?type=jar",
+        "pkg:maven/org.codehaus.mojo/animal-sniffer-annotations@1.14?type=jar",
+        "pkg:maven/org.openjdk.jol/jol-core@0.4?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar",
+        "pkg:maven/aopalliance/aopalliance@1.0?type=jar",
+        "pkg:maven/javax.inject/javax.inject@1?type=jar",
+        "pkg:maven/org.ow2.asm/asm@9.4?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/cglib/cglib@3.3.0?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.ow2.asm/asm@9.4?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.google.errorprone/error_prone_annotations@2.1.3?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.google.j2objc/j2objc-annotations@1.1?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.antlr/stringtemplate@3.2.1?type=jar",
+      "dependsOn" : [
+        "pkg:maven/antlr/antlr@2.7.7?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/antlr/antlr@2.7.7?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.codehaus.mojo/animal-sniffer-annotations@1.14?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.openjdk.jol/jol-core@0.4?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/aopalliance/aopalliance@1.0?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/javax.inject/javax.inject@1?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/net.sourceforge.pmd/pmd-apex-jorje@7.0.0-rc3?type=pom",
+      "dependsOn" : [
+        "pkg:maven/cglib/cglib@3.3.0?type=jar",
+        "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+        "pkg:maven/com.google.code.gson/gson@2.8.9?type=jar",
+        "pkg:maven/com.google.errorprone/error_prone_annotations@2.1.3?type=jar",
+        "pkg:maven/com.google.j2objc/j2objc-annotations@1.1?type=jar",
+        "pkg:maven/org.antlr/antlr-runtime@3.5.2?type=jar",
+        "pkg:maven/org.antlr/stringtemplate@3.2.1?type=jar",
+        "pkg:maven/org.apache.commons/commons-lang3@3.8.1?type=jar",
+        "pkg:maven/org.codehaus.mojo/animal-sniffer-annotations@1.14?type=jar",
+        "pkg:maven/org.openjdk.jol/jol-core@0.4?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar",
+        "pkg:maven/aopalliance/aopalliance@1.0?type=jar",
+        "pkg:maven/javax.inject/javax.inject@1?type=jar",
+        "pkg:maven/org.ow2.asm/asm@9.4?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.github.nawforce/apexlink@1.4.1?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.scala-lang/scala-library@2.13.3?type=jar",
+        "pkg:maven/org.scala-lang.modules/scala-parallel-collections_2.13@1.0.0?type=jar",
+        "pkg:maven/com.github.nawforce/pkgforce_2.13@1.4.1?type=jar",
+        "pkg:maven/com.github.nawforce/scala-json-rpc_2.13@1.0.1?type=jar",
+        "pkg:maven/com.github.nawforce/scala-json-rpc-upickle-json-serializer_2.13@1.0.1?type=jar",
+        "pkg:maven/com.lihaoyi/upickle_2.13@1.2.0?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.scala-lang/scala-library@2.13.3?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.scala-lang.modules/scala-parallel-collections_2.13@1.0.0?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.scala-lang/scala-library@2.13.3?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.github.nawforce/pkgforce_2.13@1.4.1?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.scala-lang/scala-library@2.13.3?type=jar",
+        "pkg:maven/com.lihaoyi/upickle_2.13@1.2.0?type=jar",
+        "pkg:maven/org.scala-lang.modules/scala-xml_2.13@1.3.0?type=jar",
+        "pkg:maven/org.scala-js/scalajs-stubs_2.13@1.0.0?type=jar",
+        "pkg:maven/org.antlr/antlr4-runtime@4.9.1?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.lihaoyi/upickle_2.13@1.2.0?type=jar",
+      "dependsOn" : [
+        "pkg:maven/com.lihaoyi/ujson_2.13@1.2.0?type=jar",
+        "pkg:maven/com.lihaoyi/upack_2.13@1.2.0?type=jar",
+        "pkg:maven/com.lihaoyi/upickle-implicits_2.13@1.2.0?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.lihaoyi/ujson_2.13@1.2.0?type=jar",
+      "dependsOn" : [
+        "pkg:maven/com.lihaoyi/upickle-core_2.13@1.2.0?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.lihaoyi/upickle-core_2.13@1.2.0?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.scala-lang.modules/scala-collection-compat_2.13@2.1.4?type=jar",
+        "pkg:maven/com.lihaoyi/geny_2.13@0.6.2?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.scala-lang.modules/scala-collection-compat_2.13@2.1.4?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.scala-lang/scala-library@2.13.3?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.lihaoyi/geny_2.13@0.6.2?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.lihaoyi/upack_2.13@1.2.0?type=jar",
+      "dependsOn" : [
+        "pkg:maven/com.lihaoyi/upickle-core_2.13@1.2.0?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.lihaoyi/upickle-implicits_2.13@1.2.0?type=jar",
+      "dependsOn" : [
+        "pkg:maven/com.lihaoyi/upickle-core_2.13@1.2.0?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.scala-lang.modules/scala-xml_2.13@1.3.0?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.scala-lang/scala-library@2.13.3?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.scala-js/scalajs-stubs_2.13@1.0.0?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.scala-lang/scala-library@2.13.3?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.github.nawforce/scala-json-rpc_2.13@1.0.1?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.scala-lang/scala-library@2.13.3?type=jar",
+        "pkg:maven/org.scala-lang/scala-reflect@2.13.3?type=jar",
+        "pkg:maven/com.lihaoyi/upickle_2.13@1.2.0?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.scala-lang/scala-reflect@2.13.3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.scala-lang/scala-library@2.13.3?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.github.nawforce/scala-json-rpc-upickle-json-serializer_2.13@1.0.1?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.scala-lang/scala-library@2.13.3?type=jar",
+        "pkg:maven/com.github.nawforce/scala-json-rpc_2.13@1.0.1?type=jar",
+        "pkg:maven/org.scala-lang/scala-reflect@2.13.3?type=jar",
+        "pkg:maven/com.lihaoyi/upickle_2.13@1.2.0?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/net.sourceforge.pmd/pmd-visualforce@7.0.0-rc3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/net.sourceforge.pmd/pmd-core@7.0.0-rc3?type=jar",
+        "pkg:maven/net.sourceforge.pmd/pmd-apex@7.0.0-rc3?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/net.sourceforge.pmd/pmd-xml@7.0.0-rc3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/net.sourceforge.pmd/pmd-core@7.0.0-rc3?type=jar",
+        "pkg:maven/org.antlr/antlr4-runtime@4.9.1?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/net.sourceforge.pmd/pmd-cli@7.0.0-rc3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/net.sourceforge.pmd/pmd-core@7.0.0-rc3?type=jar",
+        "pkg:maven/net.sourceforge.pmd/pmd-ui@7.0.0-rc1?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar",
+        "pkg:maven/org.slf4j/slf4j-simple@1.7.36?type=jar",
+        "pkg:maven/info.picocli/picocli@4.7.0?type=jar",
+        "pkg:maven/me.tongfei/progressbar@0.9.5?type=jar",
+        "pkg:maven/org.checkerframework/checker-qual@2.5.2?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/net.sourceforge.pmd/pmd-ui@7.0.0-rc1?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.slf4j/slf4j-simple@1.7.36?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/info.picocli/picocli@4.7.0?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/me.tongfei/progressbar@0.9.5?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.jline/jline@3.21.0?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.jline/jline@3.21.0?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/net.sourceforge.pmd/pmd-cli@7.0.0-rc3?classifier=completion&type=sh",
+      "dependsOn" : [
+        "pkg:maven/net.sourceforge.pmd/pmd-core@7.0.0-rc3?type=jar",
+        "pkg:maven/net.sourceforge.pmd/pmd-ui@7.0.0-rc1?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar",
+        "pkg:maven/org.slf4j/slf4j-simple@1.7.36?type=jar",
+        "pkg:maven/info.picocli/picocli@4.7.0?type=jar",
+        "pkg:maven/me.tongfei/progressbar@0.9.5?type=jar",
+        "pkg:maven/org.checkerframework/checker-qual@2.5.2?type=jar"
+      ]
+    }
+  ]
+}

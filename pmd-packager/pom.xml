@@ -11,7 +11,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <pmd.version>6.23.0</pmd.version>
+    <pmd.version>7.0.0-rc3</pmd.version>
     <pmd.dist.zipName>pmd-apex-bin-${pmd.version}</pmd.dist.zipName>
     <!-- Rename this so the name is clearer. This weird name is necessary for the maven assembly. -->
     <pmd.dist.bin.baseDirectory>${pmd.dist.zipName}</pmd.dist.bin.baseDirectory>
@@ -19,6 +19,28 @@
 
   <build>
     <plugins>
+     <plugin>
+        <groupId>org.cyclonedx</groupId>
+        <artifactId>cyclonedx-maven-plugin</artifactId>
+        <version>2.7.6</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>makeAggregateBom</goal>
+            </goals>
+          </execution>
+        </executions>
+        <!-- https://github.com/CycloneDX/cyclonedx-maven-plugin/issues/326 -->
+        <dependencies>
+          <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>9.5</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -38,7 +60,7 @@
                   <type>jar</type>
                   <overWrite>false</overWrite>
                   <outputDirectory>${basedir}/target/extra-resources</outputDirectory>
-                  <includes>scripts/**,LICENSE</includes>
+                  <includes>scripts/**,LICENSE,conf/**</includes>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -93,6 +115,39 @@
       <groupId>net.sourceforge.pmd</groupId>
       <artifactId>pmd-xml</artifactId>
       <version>${pmd.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.sourceforge.pmd</groupId>
+      <artifactId>pmd-cli</artifactId>
+      <version>${pmd.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>net.sourceforge.pmd</groupId>
+          <artifactId>pmd-languages-deps</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>net.sourceforge</groupId>
+          <artifactId>pmd-ui</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- include bash/zsh completions -->
+    <dependency>
+      <groupId>net.sourceforge.pmd</groupId>
+      <artifactId>pmd-cli</artifactId>
+      <version>${pmd.version}</version>
+      <type>sh</type>
+      <classifier>completion</classifier>
+      <exclusions>
+        <exclusion>
+          <groupId>net.sourceforge.pmd</groupId>
+          <artifactId>pmd-languages-deps</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>net.sourceforge</groupId>
+          <artifactId>pmd-ui</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 
