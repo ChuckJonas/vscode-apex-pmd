@@ -33,7 +33,7 @@ Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html
 - `priorityErrorThreshold`: Determines at what priority level 'errors' will be added. Anything less will be a warning or hint
 - `priorityWarnThreshold`: Determines at what priority level 'warnings' will be added. Anything less will be a hint
 - `enableCache`: Creates a cache file for PMD to run faster. Will create a .pmdCache file in your workspace
-- `pmdBinPath` (prev. `pmdPath`) (optional): set to override the default pmd binaries. This should point to the PMD folder which contains folders `lib` and `bin`. Most likely it is called `libexec`.
+- `pmdBinPath` (prev. `pmdPath`) (optional): set to override the default pmd binaries. This should point to the PMD folder which contains folders `lib` and `bin`. Most likely it is called `libexec`. **WARNING: Since `v0.6.0`, this extension no longer supports PMD 6x.  If you receive an error, please clear this setting!**
 - `additionalClassPaths` (optional): set of paths to be appended to classpath. Used to find jar files containing custom rule definitions. Can be absolute or relative to workspace.
 - `commandBufferSize` Size of buffer used to collect PMD command output (MB), may need to be increased for very large projects
 - `jrePath` (Optional) Path to JRE (Folder that contains which contains `bin/java`)
@@ -62,7 +62,7 @@ If you want to use your own [custom rules](https://pmd.github.io/latest/pmd_user
 
 1. `git clone`
 1. `npm install`
-1. debug -> "launch extension"
+1. debug -> `run extension`
 
 ### Upgrading PMD
 
