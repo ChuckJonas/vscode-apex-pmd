@@ -161,6 +161,7 @@ export class ApexPmd {
       });
 
     let stdout = '';
+    let stderr = '';
     const pmdPromise = new Promise<string>((resolve, reject) => {
       pmdCmd.addListener('error', (e) => {
         if (showErrors) this.outputChannel.appendLine('error:' + e);
@@ -169,8 +170,12 @@ export class ApexPmd {
       pmdCmd.addListener('exit', (e) => {
         if (e !== 0 && e !== 4) {
           this.outputChannel.appendLine(`Failed Exit Code: ${e}`);
+          if (!showStdErr) this.outputChannel.appendLine('stderr:' + stderr);
+          if (stderr.includes('Cannot load ruleset')) {
+            reject('PMD Command Failed!  There is a problem with the ruleset. Check the plugin output for details.')
+          }
           if (!stdout) {
-            reject('PMD Command Failed!  Enable "Show StdErr" setting for more info.');
+            reject('PMD Command Failed!  Check the plugin output for details.');
           }
         }
         resolve(stdout);
@@ -181,6 +186,7 @@ export class ApexPmd {
       });
       pmdCmd.stderr.on('data', (m: string) => {
         if (showStdErr) this.outputChannel.appendLine('stderr:' + m);
+        stderr += m;
       });
     });
     return pmdPromise;
