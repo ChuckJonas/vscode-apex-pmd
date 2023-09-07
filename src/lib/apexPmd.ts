@@ -32,6 +32,7 @@ export class ApexPmd {
     progress?: vscode.Progress<{ message?: string; increment?: number }>,
     token?: vscode.CancellationToken
   ): Promise<void> {
+    this.outputChannel.appendLine('###################################');
     this.outputChannel.appendLine(`Analyzing ${targetPath}`);
     AppStatus.getInstance().thinking();
 
@@ -140,18 +141,21 @@ export class ApexPmd {
       ...additionalClassPaths,
     ].join(CLASSPATH_DELM);
 
-    let env : NodeJS.ProcessEnv = {...process.env};
-    env["CLASSPATH"] = classPath;
+    let env : NodeJS.ProcessEnv = {};
+    env["CLASSPATH"] = `"${classPath}"`;
     if (this.config.jrePath) {
       env["PATH"] = `${path.join(this.config.jrePath, 'bin')}${path.delimiter}${process.env.PATH}`;
     }
 
     const cmd = `${path.join(pmdBinPath, 'bin', 'pmd')} check ${pmdKeys}`;
 
-    if (showStdOut) this.outputChannel.appendLine('PMD Command: ' + cmd);
+    if (showStdOut) {
+      this.outputChannel.appendLine(`env: ${JSON.stringify(env)}`);
+      this.outputChannel.appendLine(`PMD Command: ${cmd}`);
+    }
 
     const pmdCmd = ChildProcess.exec(cmd, {
-      env: env,
+      env: {...process.env, ...env},
       maxBuffer: Math.max(commandBufferSize, 1) * 1024 * 1024,
     });
 
@@ -176,11 +180,11 @@ export class ApexPmd {
         resolve(stdout);
       });
       pmdCmd.stdout.on('data', (m: string) => {
-        if (showStdOut) this.outputChannel.appendLine('stdout:' + m);
+        if (showStdOut) this.outputChannel.append('stdout:' + m);
         stdout += m;
       });
       pmdCmd.stderr.on('data', (m: string) => {
-        if (showStdErr) this.outputChannel.appendLine('stderr:' + m);
+        if (showStdErr) this.outputChannel.append('stderr:' + m);
       });
     });
     return pmdPromise;
