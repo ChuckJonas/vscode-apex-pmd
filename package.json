@@ -193,7 +193,6 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/csv-parse": "^1.1.11",
     "@types/debounce": "^1.2.0",
     "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2.5",
