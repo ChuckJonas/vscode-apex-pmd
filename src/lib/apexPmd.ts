@@ -88,6 +88,7 @@ export class ApexPmd {
     } catch (e) {
       AppStatus.getInstance().errors();
       vscode.window.showErrorMessage(`Static Analysis Failed. Error Details: ${e}`);
+      this.outputChannel.show(true);
       // should this throw e for promise catch?
     }
   }
