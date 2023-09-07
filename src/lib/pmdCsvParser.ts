@@ -32,7 +32,7 @@ export function parsePmdCsv(csv: string): Array<PmdResult> {
       results = parser(csv, parseOpts);
     } catch (e) {
       throw new Error(
-        'Failed to parse PMD Results.  Enable please logging (STDOUT & STDERROR) and submit an issue if this problem persists.'
+        'Failed to parse PMD Results. Please submit an issue with the output from the "Apex PMD" output channel if this problem persists.'
       );
     }
     vscode.window.showWarningMessage('Failed to read all PMD problems!');

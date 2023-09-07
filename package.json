@@ -125,21 +125,6 @@
           "default": 3,
           "description": "Determines at what priority level 'warnings' will be added. Anything less will be a hint"
         },
-        "apexPMD.showErrors": {
-          "type": "boolean",
-          "default": true,
-          "description": "Show errors in output window"
-        },
-        "apexPMD.showStdOut": {
-          "type": "boolean",
-          "default": false,
-          "description": "Show showStdOut in output window"
-        },
-        "apexPMD.showStdErr": {
-          "type": "boolean",
-          "default": true,
-          "description": "Show showStdErr in output window"
-        },
         "apexPMD.enableCache": {
           "type": "boolean",
           "default": false,
