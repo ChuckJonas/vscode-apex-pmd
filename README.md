@@ -22,7 +22,7 @@ Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html
 ## System Requirements
 
 - Must have JRE >= 1.8 installed and in path
-- See [PMD System Requirements](https://pmd.github.io/pmd-6.11.0/pmd_userdocs_installation.html#requirements) for more details
+- See [PMD System Requirements](https://docs.pmd-code.org/latest/pmd_userdocs_installation.html#requirements) for more details
 
 ## Configuration
 
@@ -46,7 +46,7 @@ Set `apexPMD.rulesets` string array to reference your custom rulesets. You can e
 
 You can also mention the default ruleset in `apexPMD.rulesets`. To do this add `default` value to the array.
 
-[Apex Ruleset Reference](https://pmd.github.io/pmd-6.11.0/pmd_rules_apex.html)
+[Apex Ruleset Reference](https://docs.pmd-code.org/latest/pmd_rules_apex.html)
 
 NOTE: If you move away from the default ruleset in an sfdx project, make sure to exclude the `.sfdx` generated classes by keeping this line:
 
@@ -54,7 +54,7 @@ NOTE: If you move away from the default ruleset in an sfdx project, make sure to
 
 ### Using custom rules written in Java
 
-If you want to use your own [custom rules](https://pmd.github.io/latest/pmd_userdocs_extending_writing_pmd_rules.html) from a jar file, then the jar file must be on the classpath. By default, the PMD folder and the workspace root folder are included in the classpath. You can add further folders using the `additionalClassPaths` setting. This ["Hello world"](https://github.com/andrewgilbertsagecom/pmd-custom-rule-sample) example is a good starting place for beginners.
+If you want to use your own [custom rules](https://docs.pmd-code.org/latest/pmd_userdocs_extending_writing_pmd_rules.html) from a jar file, then the jar file must be on the classpath. By default, the PMD folder and the workspace root folder are included in the classpath. You can add further folders using the `additionalClassPaths` setting. This ["Hello world"](https://github.com/andrewgilbertsagecom/pmd-custom-rule-sample) example is a good starting place for beginners.
 
 ## Troubleshooting
 
