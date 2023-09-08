@@ -4,6 +4,12 @@ All notable changes to the VS Code Apex PMD will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- Update README.md - Intro sentence to get the command palette opened [#137](https://github.com/ChuckJonas/vscode-apex-pmd/pull/137) @surfmuggle
+
 ## [0.5.9]
 ### Change
 - added ability to run on `xml` files
