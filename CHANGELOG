@@ -6,17 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+**Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.6.1...HEAD
+
 ## [0.6.1] - 2023-09-08
 
 ### Added
 
-- Check for "Cannot load ruleset" [#141](https://github.com/ChuckJonas/vscode-apex-pmd/pull/141) @adangel
+- Check for "Cannot load ruleset" by @adangel in [#141](https://github.com/ChuckJonas/vscode-apex-pmd/pull/141)
 
 ### Changed
 
-- Update README.md - Intro sentence to get the command palette opened [#137](https://github.com/ChuckJonas/vscode-apex-pmd/pull/137) @surfmuggle
-- Update dependencies [#142](https://github.com/ChuckJonas/vscode-apex-pmd/pull/142) @adangel
-- Quote classPath to deal with spaces in workspaceRootPath [#143](https://github.com/ChuckJonas/vscode-apex-pmd/pull/143) @adangel
+- Update README.md - Intro sentence to get the command palette opened by @surfmuggle in [#137](https://github.com/ChuckJonas/vscode-apex-pmd/pull/137)
+- Update dependencies by @adangel in [#142](https://github.com/ChuckJonas/vscode-apex-pmd/pull/142)
+- Quote classPath to deal with spaces in workspaceRootPath by @adangel in [#143](https://github.com/ChuckJonas/vscode-apex-pmd/pull/143)
 
 ### Removed
 
@@ -28,7 +30,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Error executing PMD when project folder uses spaces [#139](https://github.com/ChuckJonas/vscode-apex-pmd/issues/139)
 - Static Analysis Failed - Cannot load ruleset [#140](https://github.com/ChuckJonas/vscode-apex-pmd/issues/140)
 
-**Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.6.0...HEAD
+### New Contributors
+
+* @surfmuggle made their first contribution in https://github.com/ChuckJonas/vscode-apex-pmd/pull/137
+
+**Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.6.0...v0.6.1
 
 ## [0.6.0] - 2023-08-24
 
