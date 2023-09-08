@@ -5,10 +5,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.6.1]
-### Change
+
+### Added
+
+- Check for "Cannot load ruleset" [#141](https://github.com/ChuckJonas/vscode-apex-pmd/pull/141) @adangel
+
+### Removed
+
 - remove settings `showErrors`, `showStdOut`, and `showStdErr`. Output from PMD execution is always
   displayed in the output window. This helps to diagnose problems like ruleset loading errors.
-### Fixed Issues
+
+### Fixed
+
 -  Static Analysis Failed - Cannot load ruleset [#140](https://github.com/ChuckJonas/vscode-apex-pmd/issues/140)
 
 ## [0.6.0]
