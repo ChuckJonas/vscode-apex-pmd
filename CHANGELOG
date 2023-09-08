@@ -6,10 +6,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Check for "Cannot load ruleset" [#141](https://github.com/ChuckJonas/vscode-apex-pmd/pull/141) @adangel
+
 ### Changed
 
 - Update README.md - Intro sentence to get the command palette opened [#137](https://github.com/ChuckJonas/vscode-apex-pmd/pull/137) @surfmuggle
 - Update dependencies [#142](https://github.com/ChuckJonas/vscode-apex-pmd/pull/142) @adangel
+
+### Removed
+
+- remove settings `showErrors`, `showStdOut`, and `showStdErr`. Output from PMD execution is always
+  displayed in the output window. This helps to diagnose problems like ruleset loading errors.
+
+### Fixed
+
+-  Static Analysis Failed - Cannot load ruleset [#140](https://github.com/ChuckJonas/vscode-apex-pmd/issues/140)
 
 **Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.6.0...HEAD
 

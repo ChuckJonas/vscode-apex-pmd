@@ -14,9 +14,6 @@ export class Config {
   public runOnFileSave: boolean;
   public runOnFileChange: boolean;
   public onFileChangeDebounce: number;
-  public showErrors: boolean;
-  public showStdOut: boolean;
-  public showStdErr: boolean;
   public enableCache: boolean;
   public additionalClassPaths: string[];
   public commandBufferSize: number;
@@ -46,9 +43,6 @@ export class Config {
     this.runOnFileSave = config.get('runOnFileSave');
     this.runOnFileChange = config.get('runOnFileChange');
     this.onFileChangeDebounce = config.get('onFileChangeDebounce');
-    this.showErrors = config.get('showErrors');
-    this.showStdOut = config.get('showStdOut');
-    this.showStdErr = config.get('showStdErr');
     this.enableCache = config.get('enableCache');
     this.additionalClassPaths = config.get('additionalClassPaths');
     this.commandBufferSize = config.get('commandBufferSize');

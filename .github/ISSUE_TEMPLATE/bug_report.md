@@ -13,13 +13,14 @@ assignees: ''
 A clear and concise description of what the bug is.
 
 **Apex PMD Output**
-<!-- Please make sure "Show StdErr" and "Show StdOut" Settings are enabled -->
+<!-- Copy the output of the output channel "Apex PMD" from the output view -->
 
 **Apex PMD Settings**
 <!-- Please provide the "EFFECTIVE" (check workspace & user) settings -->
 
-- pmdPath:
-- rulesetPath:
+- pmdBinPath:
+- rulesets:
+- additionalClassPaths:
 
 **Apex File**
 <!-- The File you were running the tool on (if applicable)-->

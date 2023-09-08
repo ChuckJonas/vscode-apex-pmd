@@ -88,6 +88,7 @@ export class ApexPmd {
     } catch (e) {
       AppStatus.getInstance().errors();
       vscode.window.showErrorMessage(`Static Analysis Failed. Error Details: ${e}`);
+      this.outputChannel.show(true);
       // should this throw e for promise catch?
     }
   }
@@ -117,10 +118,7 @@ export class ApexPmd {
       enableCache,
       pmdBinPath,
       additionalClassPaths,
-      showStdOut,
-      showStdErr,
       commandBufferSize,
-      showErrors,
     } = this.config;
 
     // -R Comma-separated list of ruleset or rule references.
@@ -148,7 +146,7 @@ export class ApexPmd {
 
     const cmd = `${path.join(pmdBinPath, 'bin', 'pmd')} check ${pmdKeys}`;
 
-    if (showStdOut) this.outputChannel.appendLine('PMD Command: ' + cmd);
+    this.outputChannel.appendLine('PMD Command: ' + cmd);
 
     const pmdCmd = ChildProcess.exec(cmd, {
       env: env,
@@ -161,26 +159,31 @@ export class ApexPmd {
       });
 
     let stdout = '';
+    let stderr = '';
     const pmdPromise = new Promise<string>((resolve, reject) => {
       pmdCmd.addListener('error', (e) => {
-        if (showErrors) this.outputChannel.appendLine('error:' + e);
+        this.outputChannel.appendLine('error:' + e);
         reject(e);
       });
       pmdCmd.addListener('exit', (e) => {
         if (e !== 0 && e !== 4) {
           this.outputChannel.appendLine(`Failed Exit Code: ${e}`);
+          if (stderr.includes('Cannot load ruleset')) {
+            reject('PMD Command Failed!  There is a problem with the ruleset. Check the plugin output for details.')
+          }
           if (!stdout) {
-            reject('PMD Command Failed!  Enable "Show StdErr" setting for more info.');
+            reject('PMD Command Failed!  Check the plugin output for details.');
           }
         }
         resolve(stdout);
       });
       pmdCmd.stdout.on('data', (m: string) => {
-        if (showStdOut) this.outputChannel.appendLine('stdout:' + m);
+        this.outputChannel.appendLine('stdout:' + m);
         stdout += m;
       });
       pmdCmd.stderr.on('data', (m: string) => {
-        if (showStdErr) this.outputChannel.appendLine('stderr:' + m);
+        this.outputChannel.appendLine('stderr:' + m);
+        stderr += m;
       });
     });
     return pmdPromise;
