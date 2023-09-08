@@ -7,6 +7,7 @@
 Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html) directly in vscode on Apex,  VisualForce & other XML metadata files.
 
 ## Features
+To start the command you can click in the menu on `Help/Show All Commands` or press the hotkey <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> and type `Apex`. 
 
 ![Apex PMD](https://raw.githubusercontent.com/ChuckJonas/vscode-apex-pmd/master/images/apex-pmd.gif)
 
