@@ -98,6 +98,6 @@ Steps to do when releasing a new version of this extension. These steps can be a
     - Using a script:
     ```shell
     export VSCE_PAT=....
-    npx vsce login
+    #npx vsce login chuckjonas
     npx vsce publish --packagePath apex-pmd-${RELEASE_VERSION}.vsix
     ```
