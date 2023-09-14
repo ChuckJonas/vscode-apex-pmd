@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   name="Test ruleset" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+   <description>Test ruleset</description>
+   <exclude-pattern>.*/.sfdx/.*</exclude-pattern>
+
+   <rule name="MyCustomRule"
+         language="apex"
+         class="org.example.pmd.apex.MyCustomRule">
+         <description>Test rule</description>
+   </rule>
+</ruleset>
