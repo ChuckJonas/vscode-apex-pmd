@@ -84,7 +84,7 @@ Steps to do when releasing a new version of this extension. These steps can be a
     ```
 
 ## Perform the release
-1. Push the changes and the tag. Wait for Github Actions to build the extension. Download the extension from Github Actions workflow.
+1. Push the changes and the tag. Wait for Github Actions to build the extension. Download the extension from [Github Actions workflow](https://github.com/ChuckJonas/vscode-apex-pmd/actions).
     ```shell
     git push origin master
     git push origin tag "v${RELEASE_VERSION}
@@ -94,8 +94,8 @@ Steps to do when releasing a new version of this extension. These steps can be a
     - Manual: Go to <https://github.com/ChuckJonas/vscode-apex-pmd/releases/new>
     - When automated, we can use [softprops/action-gh-release](https://github.com/softprops/action-gh-release)
     ```shell
-    START=$(grep -n -E "^## " CHANGELOG.md | head -1 | cut -d ':' -f 1)
-    END=$(grep -n -E "^## " CHANGELOG.md | head -2 | tail -1 | cut -d ':' -f 1)
+    START=$(grep -n -E "^## " CHANGELOG.md | head -2 | tail -1 | cut -d ':' -f 1)
+    END=$(grep -n -E "^## " CHANGELOG.md | head -3 | tail -1 | cut -d ':' -f 1)
     RELEASE_NOTES=$(tail -n +$((START + 1)) CHANGELOG.md | head -n $((END - START - 1)))
     RELEASE_TITLE="${RELEASE_VERSION} - ${RELEASE_DATE}"
     ```
