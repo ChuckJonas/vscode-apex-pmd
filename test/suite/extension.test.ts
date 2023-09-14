@@ -101,4 +101,41 @@ suite('Extension Tests', () => {
         done(e);
       });
   });
+
+  test('test workspace root path with spaces', function (done) {
+    this.timeout(100000);
+
+    const workspaceRootPath = path.join(TEST_ASSETS_PATH, 'project2 - with space');
+    const apexClassFile = path.join(workspaceRootPath, 'test.cls');
+
+    const collection = vscode.languages.createDiagnosticCollection('apex-pmd-test');
+
+    const config = new Config();
+    config.pmdBinPath = PMD_PATH;
+    config.rulesets = [RULESET_PATH];
+    config.priorityErrorThreshold = 3;
+    config.priorityWarnThreshold = 1;
+    config.workspaceRootPath = workspaceRootPath;
+    config.additionalClassPaths = [];
+    config.commandBufferSize = 64000000;
+
+    const pmd = new ApexPmd(outputChannel, config);
+
+    const testApexUri = vscode.Uri.file(apexClassFile);
+    pmd
+      .run(apexClassFile, collection)
+      .then(() => {
+        const errs = collection.get(testApexUri);
+        assert.strictEqual(errs.length, 1);
+
+        const diagnostic = errs[0];
+        const code = diagnostic.code as {value :string };
+        assert.strictEqual(code.value, "OperationWithLimitsInLoop");
+        assert.strictEqual(diagnostic.range.start.line, 6); // vscode lines are 0-based
+        done();
+      })
+      .catch((e) => {
+        done(e);
+      });
+  });
 });
