@@ -15,10 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improve marketplace integration - Rename CHANGELOG -> CHANGELOG.md by @adangel in [#147](https://github.com/ChuckJonas/vscode-apex-pmd/pull/147)
 - Bump @vscode/test-electron from 1.6.1 to 2.3.4 by @adangel in [#149](https://github.com/ChuckJonas/vscode-apex-pmd/pull/149)
 - CLASSPATH must only be quoted for Windows by @adangel in [#151](https://github.com/ChuckJonas/vscode-apex-pmd/pull/151)
+- Quote pmdBinPath in case it contains spaces by @adangel in [#152](https://github.com/ChuckJonas/vscode-apex-pmd/pull/152)
 
 ### Fixed
 
 - additionalClassPaths not being picked up for custom rules (regression in 0.6.1) [#145](https://github.com/ChuckJonas/vscode-apex-pmd/issues/145)
+- Cannot execute PMD when user dir contains spaces [#146](https://github.com/ChuckJonas/vscode-apex-pmd/issues/146)
 
 **Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.6.1...HEAD
 
