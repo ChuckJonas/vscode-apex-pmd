@@ -2,7 +2,7 @@
   "name": "apex-pmd",
   "displayName": "Apex PMD",
   "description": "PMD static analysis for Salesforce Apex",
-  "version": "0.6.2",
+  "version": "0.6.3-snapshot.0",
   "publisher": "chuckjonas",
   "author": {
     "name": "Charlie Jonas",
