@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [ci] Run github actions and tests on all operating systems by @adangel in [#150](https://github.com/ChuckJonas/vscode-apex-pmd/pull/150)
+
 ### Changed
 
 - Improve marketplace integration - Rename CHANGELOG -> CHANGELOG.md by @adangel in [#147](https://github.com/ChuckJonas/vscode-apex-pmd/pull/147)

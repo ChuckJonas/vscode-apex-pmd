@@ -12,21 +12,28 @@ jobs:
   build:
     strategy:
       matrix:
-        #os: [macos-latest, ubuntu-latest, windows-latest]
-        os: [ubuntu-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-    - run: npm ci
-    - run: xvfb-run -a npm test
+        cache: 'npm'
+    - name: Install npm dependencies
+      run: npm ci
+    - name: Run Tests (Linux)
       if: runner.os == 'Linux'
-    - run: npm test
+      run: xvfb-run -a npm test
+    - name: Run Tests (MacOS, Windows)
       if: runner.os != 'Linux'
-    - run: npm run vscode:package
-    - uses: actions/upload-artifact@v3
+      run: npm test
+    - name: Package extension
+      if: runner.os == 'Linux'
+      run: npm run vscode:package
+    - name: Upload extension
+      uses: actions/upload-artifact@v3
+      if: runner.os == 'Linux'
       with:
         name: vscode-apex-pmd
         path: apex-pmd-*.vsix
