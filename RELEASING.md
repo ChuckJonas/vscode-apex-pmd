@@ -87,7 +87,7 @@ Steps to do when releasing a new version of this extension. These steps can be a
 1. Push the changes and the tag. Wait for Github Actions to build the extension. Download the extension from [Github Actions workflow](https://github.com/ChuckJonas/vscode-apex-pmd/actions).
     ```shell
     git push origin master
-    git push origin tag "v${RELEASE_VERSION}
+    git push origin tag "v${RELEASE_VERSION}"
     ```
 2. Create a new Release on github based on the tag. Copy the release notes from `CHANGELOG.md`, upload the
     extension package `apex-pmd-RELEASE_VERSION.vsix`.

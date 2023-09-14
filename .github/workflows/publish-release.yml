@@ -1,0 +1,28 @@
+name: Publish Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'npm'
+    - name: Install npm dependencies
+      run: npm ci
+    - name: Download release asset and publish to Visual Studio Code Marketplace
+      shell: bash
+      run: |
+        curl --location --remote-name ${{ github.event.release.assets[0].browser_download_url }}
+        ls -lh
+        npx vsce publish --packagePath apex-pmd-*.vsix
+      env:
+        VSCE_PAT: ${{ secrets.VSCE_PAT }}
