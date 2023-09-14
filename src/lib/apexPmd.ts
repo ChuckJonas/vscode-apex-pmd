@@ -141,16 +141,21 @@ export class ApexPmd {
 
     let env : NodeJS.ProcessEnv = {};
     if (os.platform() === 'win32') {
-      // add surrounding quotes in case workspaceRootPath or additionalClassPaths contain spaces
+      // add surrounding quotes in case workspaceRootPath or additionalClassPaths contains spaces
       env["CLASSPATH"] = `"${classPath}"`;
     } else {
       env["CLASSPATH"] = `${classPath}`;
     }
     if (this.config.jrePath) {
-      env["PATH"] = `${path.join(this.config.jrePath, 'bin')}${path.delimiter}${process.env.PATH}`;
+      if (os.platform() === 'win32') {
+        // add surrounding quotes in case jrePath contains spaces
+        env["PATH"] = `"${path.join(this.config.jrePath, 'bin')}${path.delimiter}${process.env.PATH}"`;
+      } else {
+        env["PATH"] = `${path.join(this.config.jrePath, 'bin')}${path.delimiter}${process.env.PATH}`;
+      }
     }
 
-    const cmd = `${path.join(pmdBinPath, 'bin', 'pmd')} check ${pmdKeys}`;
+    const cmd = `"${path.join(pmdBinPath, 'bin', 'pmd')}" check ${pmdKeys}`;
 
     this.outputChannel.appendLine(`env: ${JSON.stringify(env)}`);
     this.outputChannel.appendLine('PMD Command: ' + cmd);
