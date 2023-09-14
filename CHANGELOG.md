@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Improve marketplace integration - Rename CHANGELOG -> CHANGELOG.md by @adangel in [#147](https://github.com/ChuckJonas/vscode-apex-pmd/pull/147)
+
 **Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.6.1...HEAD
 
 ## [0.6.1] - 2023-09-08
