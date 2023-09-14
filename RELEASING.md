@@ -93,6 +93,12 @@ Steps to do when releasing a new version of this extension. These steps can be a
     extension package `apex-pmd-RELEASE_VERSION.vsix`.
     - Manual: Go to <https://github.com/ChuckJonas/vscode-apex-pmd/releases/new>
     - When automated, we can use [softprops/action-gh-release](https://github.com/softprops/action-gh-release)
+    ```shell
+    START=$(grep -n -E "^## " CHANGELOG.md | head -1 | cut -d ':' -f 1)
+    END=$(grep -n -E "^## " CHANGELOG.md | head -2 | tail -1 | cut -d ':' -f 1)
+    RELEASE_NOTES=$(tail -n +$((START + 1)) CHANGELOG.md | head -n $((END - START - 1)))
+    RELEASE_TITLE="${RELEASE_VERSION} - ${RELEASE_DATE}"
+    ```
 3. Publish the extension in Visual Studio Code Marketplace
     - Manual: Go to <https://marketplace.visualstudio.com/manage/publishers/chuckjonas>
     - Using a script:
