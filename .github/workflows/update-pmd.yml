@@ -5,6 +5,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   build:
@@ -24,26 +25,30 @@ jobs:
       id: pmd
       shell: bash
       run: |
-        VERSION=$(curl -s https://api.github.com/repos/pmd/pmd/releases/latest | jq --raw-output ".tag_name" | sed 's:.*/::')
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        PMD_VERSION=$(curl -s https://api.github.com/repos/pmd/pmd/releases/latest | jq --raw-output ".tag_name" | sed 's:.*/::')
+        echo "version=$PMD_VERSION" >> $GITHUB_OUTPUT
         cd pmd-packager
-        ./upgrade.sh "$VERSION"
-    - name: Commit and Push
+        ./upgrade.sh "$PMD_VERSION"
+    - name: Update CHANGELOG
       shell: bash
       run: |
-        # configure git
-        # see https://github.com/orgs/community/discussions/26560 and https://api.github.com/users/github-actions[bot]
-        git config --local user.name "github-actions[bot]"
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git add -A
-        git commit -m "Update PMD ${{ steps.pmd.version }}"
+        LINE=$(grep -n "^## \[Unreleased\]" CHANGELOG.md | cut -d ':' -f 1)
+        BEFORE=$(head -n $LINE CHANGELOG.md)
+        AFTER=$(tail -n +$((LINE + 1)) CHANGELOG.md)
+        {
+          echo "$BEFORE"
+          echo
+          echo "* Upgraded to PMD ${PMD_VERSION}"
+          echo "$AFTER"
+        } > CHANGELOG.md
+      env:
+        PMD_VERSION: ${{ steps.pmd.version }}
     - name: Run Tests
       shell: bash
       run: npm test
-    - name: Push
-      shell: bash
-      run: |
-        git push origin
-
-# TODO: Update CHANGELOG.md
-# TODO: Create a PR instead?
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v5
+      with:
+        title: Upgrade to PMD ${{ steps.pmd.version }}
+        commit-message: Upgrade to PMD ${{ steps.pmd.version }}
+        branch: upgrade-pmd-${{ steps.pmd.version }}
