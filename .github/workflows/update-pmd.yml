@@ -44,7 +44,7 @@ jobs:
         {
           echo "$BEFORE"
           echo
-          echo "* Upgraded to PMD ${PMD_VERSION}"
+          echo "- Upgraded to PMD ${PMD_VERSION}"
           echo "$AFTER"
         } > CHANGELOG.md
       env:
