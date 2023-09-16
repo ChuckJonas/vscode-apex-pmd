@@ -35,19 +35,16 @@ jobs:
       shell: bash
       run: |
         # configure git
-        # see https://github.com/orgs/community/discussions/26560 and https://api.github.com/users/github-actions[bot]
-        git config --local user.name "github-actions[bot]"
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "${GITHUB_ACTOR}"
+        git config --local user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
-        RELEASE_VERSION="${{ inputs.releaseVersion }}"
-        NEXT_VERSION="${{ inputs.nextVersion }}"
         RELEASE_DATE=$(date +%Y-%m-%d)
 
         npx json --in-place -f package.json -e "this.version=\"${RELEASE_VERSION}\""
         npm install
 
         sed -i "s/^## \[Unreleased\]/## [${RELEASE_VERSION}] - ${RELEASE_DATE}/" CHANGELOG.md
-        sed -i "s/^\(\*\*Full Changelog\*\*: https:\/\/github.com\/ChuckJonas\/vscode-apex-pmd\/compare\/v[0-9]\+\.[0-9]\+\.[0-9]\+\.\.\.\)HEAD$/\1v${RELEASE_VERSION}/" CHANGELOG.md
+        sed -i "s;^\(\*\*Full Changelog\*\*: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v[0-9]\+\.[0-9]\+\.[0-9]\+\.\.\.\)HEAD$;\1v${RELEASE_VERSION};" CHANGELOG.md
 
         git add --update
         git commit -m "v${RELEASE_VERSION}"
@@ -78,11 +75,16 @@ jobs:
         git commit -m "Prepare next development version v${NEXT_VERSION}"
 
         git push origin --atomic --follow-tags --tags HEAD:master
+      env:
+        RELEASE_VERSION: ${{ inputs.releaseVersion }}
+        NEXT_VERSION: ${{ inputs.nextVersion }}
     - name: Build from tag v${{ inputs.releaseVersion }}
       shell: bash
       run: |
-        git checkout "v${{ inputs.releaseVersion }}"
+        git checkout "v${RELEASE_VERSION}"
         npm run vscode:package
+      env:
+        RELEASE_VERSION: ${{ inputs.releaseVersion }}
     - name: Prepare release notes
       id: release_notes
       shell: bash
@@ -93,9 +95,9 @@ jobs:
         RELEASE_TITLE="${RELEASE_VERSION} - ${RELEASE_DATE}"
 
         {
-          echo 'body<<EOF'
+          echo 'body<<EOF_RELEASE_NOTES_EOF'
           echo "${RELEASE_NOTES}"
-          echo EOF
+          echo EOF_RELEASE_NOTES_EOF
         } >> $GITHUB_OUTPUT
         echo "title=${RELEASE_TITLE}" >> $GITHUB_OUTPUT
     - name: Create a draft release

@@ -23,8 +23,9 @@ jobs:
     - name: Download release asset and publish to Visual Studio Code Marketplace
       shell: bash
       run: |
-        curl --location --remote-name ${{ github.event.release.assets[0].browser_download_url }}
+        curl --location --remote-name ${VSIX_URL}
         ls -lh
         npx vsce publish --packagePath apex-pmd-*.vsix
       env:
         VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        VSIX_URL: ${{ github.event.release.assets[0].browser_download_url }}
