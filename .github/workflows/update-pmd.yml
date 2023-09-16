@@ -1,5 +1,11 @@
 name: Update PMD
 
+#
+# - Updates PMD to the latest released version of PMD.
+# - Runs the tests
+# - Creates a new pull request for the changes
+#
+
 on:
   workflow_dispatch:
 
@@ -21,7 +27,7 @@ jobs:
         cache: 'npm'
     - name: Install npm dependencies
       run: npm ci
-    - name: Update PMD
+    - name: Upgrade PMD
       id: pmd
       shell: bash
       run: |

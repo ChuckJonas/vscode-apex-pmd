@@ -1,5 +1,7 @@
 name: Publish Release
 
+# See RELEASING.md
+
 on:
   release:
     types: [published]

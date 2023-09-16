@@ -1,5 +1,7 @@
 name: Prepare Release
 
+# See RELEASING.md
+
 on:
   workflow_dispatch:
     inputs:
