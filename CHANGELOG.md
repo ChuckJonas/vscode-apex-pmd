@@ -8,9 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 ### Changed
+
+- default ruleset: Use "visualforce" instead of "vf" by @adangel in [#160](https://github.com/ChuckJonas/vscode-apex-pmd/pull/160)
+
 ### Deprecated
 ### Removed
 ### Fixed
+
+- Default ruleset not compatible with final PMD 7.0.0 [#158](https://github.com/ChuckJonas/vscode-apex-pmd/issues/158)
+
 ### New Contributors
 
 **Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.6.2...HEAD
