@@ -194,7 +194,7 @@
     "ts-loader": "^8.0.2",
     "tslint": "^5.16.0",
     "typescript": "^3.8.3",
-    "@vscode/test-electron": "^2.3.4",
+    "@vscode/test-electron": "^2.3.9",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   },
