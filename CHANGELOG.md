@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 ### Changed
+
+- Upgraded github actions and node by @adangel in [#161](https://github.com/ChuckJonas/vscode-apex-pmd/pull/161)
+
 ### Deprecated
 ### Removed
 ### Fixed
