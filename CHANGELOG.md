@@ -81,7 +81,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Upgraded to PMD7!
+- Upgraded to PMD7! (7.0.0-rc3)
 
 ### Removed
 
