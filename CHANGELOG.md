@@ -4,7 +4,7 @@ All notable changes to the VS Code Apex PMD will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.7.0] - 2024-04-25
 
 ### Added
 
@@ -15,15 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade bundled PMD version to 7.0.0 by @adangel in [#160](https://github.com/ChuckJonas/vscode-apex-pmd/pull/160)
 - Upgraded github actions and node by @adangel in [#161](https://github.com/ChuckJonas/vscode-apex-pmd/pull/161)
 
-### Deprecated
-### Removed
 ### Fixed
 
 - Default ruleset not compatible with final PMD 7.0.0 [#158](https://github.com/ChuckJonas/vscode-apex-pmd/issues/158)
 
-### New Contributors
-
-**Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.6.2...HEAD
+**Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.6.2...v0.7.0
 
 ## [0.6.2] - 2023-09-14
 
