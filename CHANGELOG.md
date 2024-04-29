@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+
+- Add GitHub Actions workflow for automated release by @adangel in [#153](https://github.com/ChuckJonas/vscode-apex-pmd/pull/153)
+- CI/CD and releasing [#95](https://github.com/ChuckJonas/vscode-apex-pmd/issues/95)
+
 ### Changed
 ### Deprecated
 ### Removed
