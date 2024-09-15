@@ -1,7 +1,7 @@
 @echo off
 rem make all variables local to not add new global environment variables to the current cmd session
 setlocal
-set TOPDIR="%~dp0.."
+set TOPDIR=%~dp0..
 set OPTS=
 set COMMAND=%1
 set MAIN_CLASS=net.sourceforge.pmd.cli.PmdCli
@@ -67,8 +67,10 @@ if %_needjfxlib% EQU 1 (
     )
     rem The wildcard will include only jar files, but we need to access also
     rem property files such as javafx.properties that lay bare in the dir
-    set pmd_classpath=%TOPDIR%\conf;%TOPDIR%\lib\*;%JAVAFX_HOME%\lib\*;%JAVAFX_HOME%\lib\
+    rem note: no trailing backslash, as this would escape a following quote when %pmd_classpath% is used later
+    set pmd_classpath=%TOPDIR%\conf;%TOPDIR%\lib\*;%JAVAFX_HOME%\lib\*;%JAVAFX_HOME%\lib
 ) else (
+    rem note: no trailing backslash, as this would escape a following quote when %pmd_classpath% is used later
     set pmd_classpath=%TOPDIR%\conf;%TOPDIR%\lib\*
 )
 
@@ -76,4 +78,4 @@ if defined CLASSPATH (
     set pmd_classpath=%CLASSPATH%;%pmd_classpath%
 )
 
-java %PMD_JAVA_OPTS% %jreopts% -classpath %pmd_classpath% %OPTS% %MAIN_CLASS% %*
+java %PMD_JAVA_OPTS% %jreopts% -classpath "%pmd_classpath%" %OPTS% %MAIN_CLASS% %*
