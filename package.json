@@ -166,7 +166,11 @@
       ]
     }
   },
+  "config": {
+    "pmdVersion": "7.0.0"
+  },
   "scripts": {
+    "postinstall": "cd pmd-packager && ./upgrade.sh $npm_package_config_pmdVersion",
     "postversion": "npm run vscode:package && git push --tags && npm run vscode:publish && git push && echo \"Successfully released version $npm_package_version!\"",
     "vscode:package": "npx vsce package --allow-star-activation",
     "vscode:publish": "npx vsce publish",

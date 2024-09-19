@@ -77,7 +77,7 @@ this output channel.
 
 `npm run update-pmd`
 
-Any pull request submitted with updates to PMD MUST BE "CHECKSUMED"!
+This will check for the latest PMD version on github and update `config.pmdVersion` in `package.json`.
 
 ## Legal Stuff
 
