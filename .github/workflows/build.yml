@@ -23,6 +23,8 @@ jobs:
       with:
         node-version: 20
         cache: 'npm'
+    - name: Use bash for npm scripts
+      run: echo "npm_config_script_shell="$(which bash)"" >> "$GITHUB_ENV"
     - name: Install npm dependencies
       run: npm ci
     - name: Run Tests (Linux)
