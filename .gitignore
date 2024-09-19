@@ -2,6 +2,7 @@ out
 node_modules
 .sfdx
 .vscode-test
+bin/pmd
 bin/pmd.zip
 pmd-packager/target
 *.vsix
