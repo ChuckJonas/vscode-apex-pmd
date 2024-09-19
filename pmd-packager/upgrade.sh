@@ -23,6 +23,6 @@ fi
 rm -rf "$TARGETDIR"
 mkdir -p "$TARGETDIR"
 ./mvnw clean package -Dpmd.dist.bin.baseDirectory=pmd -Dpmd.version="$VERSION"
-bsdtar --strip-components=1 -xf target/pmd.zip -C "$TARGETDIR"
+unzip -d "$TARGETDIR/.." -q target/pmd.zip
 echo "$VERSION" > "$TARGETDIR/VERSION"
 npm pkg set config.pmdVersion="$VERSION"
