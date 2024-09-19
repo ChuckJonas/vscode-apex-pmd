@@ -22,7 +22,7 @@ fi
 
 rm -rf "$TARGETDIR"
 mkdir -p "$TARGETDIR"
-./mvnw clean package -Dpmd.dist.bin.baseDirectory=pmd -Dpmd.version="$VERSION"
+./mvnw --no-transfer-progress clean package -Dpmd.dist.bin.baseDirectory=pmd -Dpmd.version="$VERSION"
 unzip -d "$TARGETDIR/.." -q target/pmd.zip
 echo "$VERSION" > "$TARGETDIR/VERSION"
 npm pkg set config.pmdVersion="$VERSION"
