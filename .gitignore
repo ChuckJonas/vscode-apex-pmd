@@ -7,3 +7,4 @@ bin/pmd.zip
 pmd-packager/target
 *.vsix
 dist/
+test/assets/project2 - with space/pmd-copy
