@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+
+- Improve PMD update procedure by @adangel in [#174](https://github.com/ChuckJonas/vscode-apex-pmd/pull/174)
+
 ### Deprecated
 ### Removed
 ### Fixed

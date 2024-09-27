@@ -107,9 +107,9 @@ export class ApexPmd {
     if (this.rulesets.length) {
       return true;
     }
-    vscode.window.showErrorMessage(
-      `No valid Ruleset paths found in "apexPMD.rulesets". Ensure configuration correct or change back to the default.`
-    );
+    const msg = `No valid Ruleset paths found in "apexPMD.rulesets". Ensure configuration correct or change back to the default.`;
+    this.outputChannel.appendLine(msg);
+    vscode.window.showErrorMessage(msg);
     return false;
   }
 
@@ -157,6 +157,7 @@ export class ApexPmd {
 
     const cmd = `"${path.join(pmdBinPath, 'bin', 'pmd')}" check ${pmdKeys}`;
 
+    this.outputChannel.appendLine(`node: ${process.version}`);
     this.outputChannel.appendLine(`env: ${JSON.stringify(env)}`);
     this.outputChannel.appendLine('PMD Command: ' + cmd);
 
@@ -274,8 +275,10 @@ export class ApexPmd {
     if (dirExists(pmdBinPath)) {
       return true;
     }
-    this.outputChannel.appendLine(pmdBinPath);
-    vscode.window.showErrorMessage('PMD Path Does not reference a valid directory.  Please update or clear');
+
+    let msg = `pmdBinPath does not reference a valid directory: '${pmdBinPath}'. Please update or clear.`;
+    this.outputChannel.appendLine(msg);
+    vscode.window.showErrorMessage(msg);
     return false;
   }
 
