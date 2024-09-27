@@ -140,12 +140,7 @@ export class ApexPmd {
     ].join(CLASSPATH_DELM);
 
     let env : NodeJS.ProcessEnv = {};
-    if (os.platform() === 'win32') {
-      // add surrounding quotes in case workspaceRootPath or additionalClassPaths contains spaces
-      env["CLASSPATH"] = `"${classPath}"`;
-    } else {
-      env["CLASSPATH"] = `${classPath}`;
-    }
+    env["CLASSPATH"] = `${classPath}`;
     if (this.config.jrePath) {
       if (os.platform() === 'win32') {
         // add surrounding quotes in case jrePath contains spaces
