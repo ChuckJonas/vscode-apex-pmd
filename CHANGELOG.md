@@ -4,22 +4,19 @@ All notable changes to the VS Code Apex PMD will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.8.0] - 2024-09-27
 ### Added
+
+- Upgrade PMD from 7.0.0 to 7.6.0 by @adangel in [#176](https://github.com/ChuckJonas/vscode-apex-pmd/pull/176)
+
 ### Changed
 
 - Bump braces from 3.0.2 to 3.0.3 by @dependabot in [#168](https://github.com/ChuckJonas/vscode-apex-pmd/pull/168)
 - Bump webpack from 5.88.2 to 5.94.0 by @dependabot in [#172](https://github.com/ChuckJonas/vscode-apex-pmd/pull/172)
 - Improve PMD update procedure by @adangel in [#174](https://github.com/ChuckJonas/vscode-apex-pmd/pull/174)
 - Bump micromatch from 4.0.5 to 4.0.8 by @adangel in [#175](https://github.com/ChuckJonas/vscode-apex-pmd/pull/175)
-- Upgrade PMD from 7.0.0 to 7.6.0 by @adangel in [#176](https://github.com/ChuckJonas/vscode-apex-pmd/pull/176)
 
-### Deprecated
-### Removed
-### Fixed
-### New Contributors
-
-**Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.7.0...HEAD
+**Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.7.0...v0.8.0
 
 ## [0.7.0] - 2024-04-25
 
