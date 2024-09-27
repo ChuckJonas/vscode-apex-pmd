@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Improve PMD update procedure by @adangel in [#174](https://github.com/ChuckJonas/vscode-apex-pmd/pull/174)
+- Bump micromatch from 4.0.5 to 4.0.8 by @adangel in [#175](https://github.com/ChuckJonas/vscode-apex-pmd/pull/175)
 
 ### Deprecated
 ### Removed
