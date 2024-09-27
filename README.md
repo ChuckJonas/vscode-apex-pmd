@@ -67,11 +67,27 @@ this output channel.
 
 ## Developing/Contributing
 
+### Prerequisites
+
+* node
+* bash: npm calls shell scripts and therefore bash is needed. Under Windows, make sure to run npm from within git-bash.
+* java: needs to be installed already. It is needed for executing PMD later on.
+
 ### Setup & Run
 
 1. `git clone`
 1. `npm install`
 1. debug -> `run extension`
+
+### Creating a installable vsix package
+
+`npm run vscode:package`
+
+This will create a file "apex-pmd-<version>.vsix", which can be directly installed in VS Code.
+
+### Executing automated tests
+
+`npm run test`
 
 ### Upgrading PMD
 
