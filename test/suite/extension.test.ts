@@ -147,7 +147,7 @@ suite('Extension Tests', () => {
     const pmdBinPath = path.join(workspaceRootPath, 'pmd-copy');
     const pmdBinSource = path.join(workspaceRootPath, '../../../bin/pmd');
 
-    // can create a symlink from pmdBinSource -> pmdBinPath, as
+    // cannot create a symlink from pmdBinSource -> pmdBinPath, as
     // symlinks are not really supported by win32/git. Under Windows, the user needs extra permissions.
     // That's why after git clone/checkout, the symlink is not properly restored (core.symlinks is by default false).
     // We simply copy the whole directory into workspace...
