@@ -167,7 +167,7 @@
     }
   },
   "config": {
-    "pmdVersion": "7.0.0"
+    "pmdVersion": "7.6.0"
   },
   "scripts": {
     "postinstall": "pmd-packager/upgrade.sh",
