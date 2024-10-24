@@ -214,4 +214,38 @@ suite('Extension Tests', () => {
         done(e);
       });
   });
+
+  test('UnusedMethod with Apex Link and PMD_APEX_ROOT_DIRECTORY', function (done) {
+    this.timeout(100000);
+
+    const workspaceRootPath = path.join(TEST_ASSETS_PATH, 'project3_unusedmethod');
+    const rulesetPath = path.join(workspaceRootPath, 'custom_ruleset.xml');
+    const apexClassFile = path.join(workspaceRootPath, 'src', 'Foo.cls');
+
+    const collection = vscode.languages.createDiagnosticCollection('apex-pmd-test');
+
+    const config = new Config();
+    config.pmdBinPath = PMD_PATH;
+    config.rulesets = [rulesetPath];
+    config.priorityErrorThreshold = 3;
+    config.priorityWarnThreshold = 1;
+    config.workspaceRootPath = workspaceRootPath;
+    config.additionalClassPaths = [];
+    config.commandBufferSize = 64000000;
+
+    const pmd = new ApexPmd(outputChannel, config);
+
+    const testApexUri = vscode.Uri.file(apexClassFile);
+    pmd
+      .run(apexClassFile, collection)
+      .then(() => {
+        const errs = collection.get(testApexUri);
+        assert.strictEqual(errs.length, 1);
+        assert.strictEqual(errs[0].message, "Unused methods make understanding code harder (rule: Design-UnusedMethod)");
+        done();
+      })
+      .catch((e) => {
+        done(e);
+      });
+  });
 });

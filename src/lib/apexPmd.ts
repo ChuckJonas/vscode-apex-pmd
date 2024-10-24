@@ -150,6 +150,9 @@ export class ApexPmd {
       }
     }
 
+    // TODO: determine the nearest sfdx-project.json file beginning from targetPath up to workspaceRootPath
+    env["PMD_APEX_ROOT_DIRECTORY"] = workspaceRootPath;
+
     const cmd = `"${path.join(pmdBinPath, 'bin', 'pmd')}" check ${pmdKeys}`;
 
     this.outputChannel.appendLine(`node: ${process.version}`);
