@@ -120,6 +120,7 @@ export class ApexPmd {
       pmdBinPath,
       additionalClassPaths,
       commandBufferSize,
+      apexRootDirectory,
     } = this.config;
 
     // -R Comma-separated list of ruleset or rule references.
@@ -150,7 +151,14 @@ export class ApexPmd {
       }
     }
 
-    env["PMD_APEX_ROOT_DIRECTORY"] = findSfdxProject(targetPath, workspaceRootPath);
+    switch (apexRootDirectory.mode) {
+      case "automatic":
+        env["PMD_APEX_ROOT_DIRECTORY"] = findSfdxProject(targetPath, workspaceRootPath);
+        break;
+      case "custom":
+        env["PMD_APEX_ROOT_DIRECTORY"] = apexRootDirectory.custom ?? '';
+        break;
+    }
 
     const cmd = `"${path.join(pmdBinPath, 'bin', 'pmd')}" check ${pmdKeys}`;
 

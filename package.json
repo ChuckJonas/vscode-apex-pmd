@@ -146,6 +146,25 @@
         "apexPMD.jrePath": {
           "type": "string",
           "description": "(Optional) Path to JRE (Folder that contains which contains `bin/java`)"
+        },
+        "apexPMD.apexRootDirectory": {
+          "type": "object",
+          "default": {
+            "mode": "automatic"
+          },
+          "markdownDescription": "Whether and how to set `PMD_APEX_ROOT_DIRECTORY` env variable. This variable should point to the sfdx project directory, which contains the file `sfdx-project.json`.\n\nThis is needed for the rule [UnusedMethod](https://docs.pmd-code.org/latest/pmd_rules_apex_design.html#unusedmethod) which utilizes [Apex Language Server](https://github.com/apex-dev-tools/apex-ls) which needs a well-formed sfdx project.\n\n* off = Do not set `PMD_APEX_ROOT_DIRECTORY` at all\n* automatic = (default) Automatically find the nearest `sfdx-project.json` file in a parent directory and use that directory\n* custom = Use a custom location for `PMD_APEX_ROOT_DIRECTORY` provided by \"customValue\". It should point to the directory where the `sfdx-project.json` file is located. This is only used, if the \"mode\"==\"custom\".",
+          "additionalProperties": false,
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": ["off", "automatic", "custom"],
+              "default": "automatic"
+            },
+            "customValue": {
+              "type": "string",
+              "default": ""
+            }
+          }
         }
       }
     },

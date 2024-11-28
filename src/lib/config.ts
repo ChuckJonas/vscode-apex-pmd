@@ -3,6 +3,11 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import { getRootWorkspacePath } from './utils';
 
+interface ApexRootDirectory {
+  mode: "off" | "automatic" | "custom";
+  custom?: string;
+}
+
 export class Config {
   private _rulesetPath: string;
   public workspaceRootPath: string;
@@ -18,6 +23,7 @@ export class Config {
   public additionalClassPaths: string[];
   public commandBufferSize: number;
   public jrePath: string;
+  public apexRootDirectory: ApexRootDirectory;
 
   private _ctx: vscode.ExtensionContext;
 
@@ -30,10 +36,11 @@ export class Config {
       if (!isTest) {
         throw new Error('VSCode ApexPMD missing configuration');
       }
+      this.readConfig();
     }
   }
 
-  public init() {
+  private readConfig() {
     const config = vscode.workspace.getConfiguration('apexPMD');
     // deprecated setting is left for backward compatibility
     this._rulesetPath = config.get('rulesetPath');
@@ -50,6 +57,11 @@ export class Config {
     this.additionalClassPaths = config.get('additionalClassPaths');
     this.commandBufferSize = config.get('commandBufferSize');
     this.jrePath = config.get('jrePath');
+    this.apexRootDirectory = config.get('apexRootDirectory');
+  }
+
+  public init() {
+    this.readConfig();
     this.resolvePaths();
   }
 
