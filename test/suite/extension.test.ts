@@ -33,10 +33,10 @@ suite('Apex PMD Tests', () => {
 
     const pmd = new ApexPmd(outputChannel, config);
 
-    assert.equal(pmd.checkPmdPath(), true);
-    assert.equal(pmd.getRulesets()[0], RULESET_PATH);
-    assert.equal(pmd.getRulesets().length, 1);
-    assert.equal(pmd.hasAtLeastOneValidRuleset(), true);
+    assert.strictEqual(pmd.checkPmdPath(), true);
+    assert.strictEqual(pmd.getRulesets()[0], RULESET_PATH);
+    assert.strictEqual(pmd.getRulesets().length, 1);
+    assert.strictEqual(pmd.hasAtLeastOneValidRuleset(), true);
   });
 
   test('test diagnostic warning', function (done) {
@@ -60,7 +60,7 @@ suite('Apex PMD Tests', () => {
       .run(TEST_APEX_PATH, collection)
       .then(() => {
         const errs = collection.get(testApexUri);
-        assert.equal(errs.length, 1);
+        assert.strictEqual(errs.length, 1);
         done();
       })
       .catch((e) => {
