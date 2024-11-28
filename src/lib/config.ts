@@ -26,7 +26,10 @@ export class Config {
       this._ctx = ctx;
       this.init();
     } else {
-      console.warn('VSCode ApexPMD missing configuration');
+      const isTest = global['test'] !== undefined;
+      if (!isTest) {
+        throw new Error('VSCode ApexPMD missing configuration');
+      }
     }
   }
 

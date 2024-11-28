@@ -13,6 +13,10 @@ const TestUtils = {
       if (fs.existsSync(destination)) {
         throw new Error(`Destination directory (or file) ${destination} already exists, won't copy!`);
       }
+      const stat = fs.statSync(source);
+      if (!stat.isDirectory()) {
+        throw new Error(`Source path ${source} is not a directory. Won't copy!`);
+      }
 
       fs.mkdirSync(destination);
       for (const file of fs.readdirSync(source)) {

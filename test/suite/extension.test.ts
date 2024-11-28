@@ -19,6 +19,7 @@ const PMD_PATH = path.join(__dirname, '..', '..', '..', 'bin', 'pmd');
 const RULESET_PATH = path.join(__dirname, '..', '..', '..', 'rulesets', 'apex_ruleset.xml');
 const INVALID_RULESET_PATH = path.join(__dirname, '..', '..', '..', 'rulesets', 'apex_ruleset_invalid.xml');
 const TEST_ASSETS_PATH = path.join(__dirname, '..', '..', '..', 'test', 'assets');
+const TEST_ASSETS_TEMP_PATH = path.join(__dirname, '..', '..', '..', 'test', 'assets_temp');
 const TEST_APEX_PATH = path.join(TEST_ASSETS_PATH, 'test.cls');
 
 const outputChannel = vscode.window.createOutputChannel('Apex PMD');
@@ -188,7 +189,7 @@ suite('Extension Tests', () => {
       });
   });
 
-  test('UnusedMethod with Apex Link and PMD_APEX_ROOT_DIRECTORY', function (done) {
+  test('UnusedMethod with Apex Link and PMD_APEX_ROOT_DIRECTORY as workspace root', function (done) {
     this.timeout(100000);
 
     const workspaceRootPath = path.join(TEST_ASSETS_PATH, 'project3_unusedmethod');
@@ -213,7 +214,48 @@ suite('Extension Tests', () => {
       .run(apexClassFile, collection)
       .then(() => {
         const errs = collection.get(testApexUri);
-        assert.strictEqual(errs.length, 1);
+        assert.strictEqual(errs.length, 1, "Wrong number of found violations");
+        assert.strictEqual(errs[0].message, "Unused methods make understanding code harder (rule: Design-UnusedMethod)");
+        done();
+      })
+      .catch((e) => {
+        done(e);
+      });
+  });
+
+  test('UnusedMethod with Apex Link and PMD_APEX_ROOT_DIRECTORY as subdirectory', function (done) {
+    this.timeout(100000);
+
+    // copy the original sample project and create a subfolder structure
+    const workspaceRootPath = path.join(TEST_ASSETS_TEMP_PATH, 'project3_unusedmethod_subdir');
+    const sourcePath = path.join(TEST_ASSETS_PATH, 'project3_unusedmethod');
+    TestUtils.deleteDirectory(workspaceRootPath)
+    fs.mkdirSync(workspaceRootPath, { recursive: true });
+    TestUtils.copyDirectory(sourcePath, path.join(workspaceRootPath, 'module'));
+
+
+    const rulesetPath = path.join(workspaceRootPath, 'module', 'custom_ruleset.xml');
+    const apexClassFile = path.join(workspaceRootPath, 'module', 'src', 'Foo.cls');
+
+    const collection = vscode.languages.createDiagnosticCollection('apex-pmd-test');
+
+    const config = new Config();
+    config.pmdBinPath = PMD_PATH;
+    config.rulesets = [rulesetPath];
+    config.priorityErrorThreshold = 3;
+    config.priorityWarnThreshold = 1;
+    config.workspaceRootPath = workspaceRootPath;
+    config.additionalClassPaths = [];
+    config.commandBufferSize = 64000000;
+
+    const pmd = new ApexPmd(outputChannel, config);
+
+    const testApexUri = vscode.Uri.file(apexClassFile);
+    pmd
+      .run(apexClassFile, collection)
+      .then(() => {
+        const errs = collection.get(testApexUri);
+        assert.strictEqual(errs.length, 1, "Wrong number of found violations");
         assert.strictEqual(errs[0].message, "Unused methods make understanding code harder (rule: Design-UnusedMethod)");
         done();
       })

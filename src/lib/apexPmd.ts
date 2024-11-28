@@ -4,7 +4,7 @@ import * as path from 'path';
 import { Config } from './config';
 import { AppStatus } from './appStatus';
 import * as os from 'os';
-import { fileExists, dirExists } from './utils';
+import { fileExists, dirExists, findSfdxProject } from './utils';
 import { parsePmdCsv } from './pmdCsvParser';
 
 //setup OS constants
@@ -150,8 +150,7 @@ export class ApexPmd {
       }
     }
 
-    // TODO: determine the nearest sfdx-project.json file beginning from targetPath up to workspaceRootPath
-    env["PMD_APEX_ROOT_DIRECTORY"] = workspaceRootPath;
+    env["PMD_APEX_ROOT_DIRECTORY"] = findSfdxProject(targetPath, workspaceRootPath);
 
     const cmd = `"${path.join(pmdBinPath, 'bin', 'pmd')}" check ${pmdKeys}`;
 

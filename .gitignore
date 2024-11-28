@@ -8,3 +8,4 @@ pmd-packager/target
 *.vsix
 dist/
 test/assets/project2 - with space/pmd-copy
+test/assets_temp
