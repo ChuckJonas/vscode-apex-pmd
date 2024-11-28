@@ -13,6 +13,7 @@ import * as path from 'path';
 import { ApexPmd } from '../../src/extension';
 import { Config } from '../../src/lib/config';
 import * as fs from 'fs';
+import { TestUtils } from './test-utils';
 
 const PMD_PATH = path.join(__dirname, '..', '..', '..', 'bin', 'pmd');
 const RULESET_PATH = path.join(__dirname, '..', '..', '..', 'rulesets', 'apex_ruleset.xml');
@@ -151,36 +152,8 @@ suite('Extension Tests', () => {
     // symlinks are not really supported by win32/git. Under Windows, the user needs extra permissions.
     // That's why after git clone/checkout, the symlink is not properly restored (core.symlinks is by default false).
     // We simply copy the whole directory into workspace...
-    const copyDirectory = function(source : string, destination : string) {
-      for (const file of fs.readdirSync(source)) {
-        const originalFilePath = path.join(source, file);
-        const targetFilePath = path.join(destination, file);
-        const stat = fs.statSync(originalFilePath);
-        if (stat.isFile()) {
-          fs.copyFileSync(originalFilePath, targetFilePath);
-        } else if (stat.isDirectory()) {
-          fs.mkdirSync(targetFilePath);
-          copyDirectory(originalFilePath, targetFilePath);
-        }
-      }
-    }
-    const deleteDirectory = function(dir : string) {
-      for (const file of fs.readdirSync(dir)) {
-        const filePath = path.join(dir, file);
-        const stat = fs.statSync(filePath);
-        if (stat.isFile()) {
-          fs.unlinkSync(filePath);
-        } else if (stat.isDirectory()) {
-          deleteDirectory(filePath);
-        }
-      }
-      fs.rmdirSync(dir);
-    }
-    if (fs.existsSync(pmdBinPath)) {
-      deleteDirectory(pmdBinPath);
-    }
-    fs.mkdirSync(pmdBinPath);
-    copyDirectory(pmdBinSource, pmdBinPath);
+    TestUtils.deleteDirectory(pmdBinPath);
+    TestUtils.copyDirectory(pmdBinSource, pmdBinPath);
 
     const apexClassFile = path.join(workspaceRootPath, 'test.cls');
 
