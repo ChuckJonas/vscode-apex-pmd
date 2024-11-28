@@ -7,7 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
+- Support for environment variable PMD_APEX_ROOT_DIRECTORY ([#157](https://github.com/ChuckJonas/vscode-apex-pmd/issues/157))
+
 ### Changed
+
+- Configuration properties are organized now in 4 sections. The names of the properties stay the same. The sections
+  are:
+  * Events
+  * Rule Configurations
+  * Violation Handling
+  * PMD Execution
+
 ### Deprecated
 ### Removed
 ### Fixed
