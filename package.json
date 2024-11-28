@@ -78,77 +78,123 @@
         ]
       }
     ],
-    "configuration": {
-      "type": "object",
-      "title": "Apex PMD configuration",
-      "properties": {
-        "apexPMD.pmdBinPath": {
-          "type": "string",
-          "default": "",
-          "description": "(Optional) Path to where PMD was installed"
-        },
-        "apexPMD.rulesets": {
-          "type": "array",
-          "items": {
-            "type": "string"
+    "configuration": [
+      {
+        "title": "Events",
+        "properties": {
+          "apexPMD.runOnFileOpen": {
+            "type": "boolean",
+            "default": false,
+            "description": "Will run static analysis every time a file is opened",
+            "order": 1
           },
-          "default": [],
-          "description": "(Optional) Paths to rulesets' xml files."
-        },
-        "apexPMD.runOnFileOpen": {
-          "type": "boolean",
-          "default": false,
-          "description": "Will run static analysis every time a file is opened"
-        },
-        "apexPMD.runOnFileSave": {
-          "type": "boolean",
-          "default": true,
-          "description": "Will run static analysis every time a file is saved"
-        },
-        "apexPMD.runOnFileChange": {
-          "type": "boolean",
-          "default": false,
-          "description": "Will run static analysis every time a file is changed (with a 500ms debounce delay)"
-        },
-        "apexPMD.onFileChangeDebounce": {
-          "type": "integer",
-          "default": 3000,
-          "description": "Debounce interval to wait before running pmd after document change.  Only applicable if `runOnFileChange == true`"
-        },
-        "apexPMD.priorityErrorThreshold": {
-          "type": "number",
-          "default": 1,
-          "description": "Determines at what priority level 'errors' will be added. Anything less will be a warning or hint"
-        },
-        "apexPMD.priorityWarnThreshold": {
-          "type": "number",
-          "default": 3,
-          "description": "Determines at what priority level 'warnings' will be added. Anything less will be a hint"
-        },
-        "apexPMD.enableCache": {
-          "type": "boolean",
-          "default": false,
-          "description": "Creates a cache file for PMD to run faster. Will create a .pmdCache file in your workspace"
-        },
-        "apexPMD.additionalClassPaths": {
-          "type": "array",
-          "items": {
-            "type": "string"
+          "apexPMD.runOnFileSave": {
+            "type": "boolean",
+            "default": true,
+            "description": "Will run static analysis every time a file is saved",
+            "order": 2
           },
-          "default": [],
-          "description": "(Optional) paths to be appended to classpath. Used to find jar files containing custom rule definitions. Can be absolute or relative to workspace."
-        },
-        "apexPMD.commandBufferSize": {
-          "type": "number",
-          "default": "64",
-          "description": "Size of buffer used to collect PMD command output (MB), may need to be increased for very large projects"
-        },
-        "apexPMD.jrePath": {
-          "type": "string",
-          "description": "(Optional) Path to JRE (Folder that contains which contains `bin/java`)"
+          "apexPMD.runOnFileChange": {
+            "type": "boolean",
+            "default": false,
+            "description": "Will run static analysis every time a file is changed (with a 500ms debounce delay)",
+            "order": 3
+          },
+          "apexPMD.onFileChangeDebounce": {
+            "type": "integer",
+            "default": 3000,
+            "description": "Debounce interval to wait before running pmd after document change.  Only applicable if `runOnFileChange == true`",
+            "order": 4
+          }
+        }
+      },
+      {
+        "title": "Rule Configurations",
+        "properties": {
+          "apexPMD.rulesets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "description": "(Optional) Paths to rulesets' xml files.",
+            "order": 1
+          },
+          "apexPMD.additionalClassPaths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "description": "(Optional) paths to be appended to classpath. Used to find jar files containing custom rule definitions. Can be absolute or relative to workspace.",
+            "order": 2
+          },
+          "apexPMD.apexRootDirectory": {
+            "type": "object",
+            "default": {
+              "mode": "automatic"
+            },
+            "markdownDescription": "Whether and how to set `PMD_APEX_ROOT_DIRECTORY` env variable. This variable should point to the sfdx project directory, which contains the file `sfdx-project.json`.\n\nThis is needed for the rule [UnusedMethod](https://docs.pmd-code.org/latest/pmd_rules_apex_design.html#unusedmethod) which utilizes [Apex Language Server](https://github.com/apex-dev-tools/apex-ls) which needs a well-formed sfdx project.\n\n* off = Do not set `PMD_APEX_ROOT_DIRECTORY` at all\n* automatic = (default) Automatically find the nearest `sfdx-project.json` file in a parent directory and use that directory\n* custom = Use a custom location for `PMD_APEX_ROOT_DIRECTORY` provided by \"customValue\". It should point to the directory where the `sfdx-project.json` file is located. This is only used, if the \"mode\"==\"custom\".",
+            "additionalProperties": false,
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": ["off", "automatic", "custom"],
+                "default": "automatic"
+              },
+              "customValue": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            "order": 3
+          }
+        }
+      },
+      {
+        "title": "Violation Handling",
+        "properties": {
+          "apexPMD.priorityErrorThreshold": {
+            "type": "number",
+            "default": 1,
+            "description": "Determines at what priority level 'errors' will be added. Anything less will be a warning or hint"
+          },
+          "apexPMD.priorityWarnThreshold": {
+            "type": "number",
+            "default": 3,
+            "description": "Determines at what priority level 'warnings' will be added. Anything less will be a hint"
+          }
+        }
+      },
+      {
+        "title": "PMD Execution",
+        "properties": {
+          "apexPMD.jrePath": {
+            "type": "string",
+            "description": "(Optional) Path to JRE (Folder that contains which contains `bin/java`)",
+            "order": 1
+          },
+          "apexPMD.pmdBinPath": {
+            "type": "string",
+            "default": "",
+            "description": "(Optional) Path to where PMD was installed",
+            "order": 2
+          },
+          "apexPMD.enableCache": {
+            "type": "boolean",
+            "default": false,
+            "description": "Creates a cache file for PMD to run faster. Will create a .pmdCache file in your workspace",
+            "order": 3
+          },
+          "apexPMD.commandBufferSize": {
+            "type": "number",
+            "default": "64",
+            "description": "Size of buffer used to collect PMD command output (MB), may need to be increased for very large projects",
+            "order": 4
+          }
         }
       }
-    },
+    ],
     "menus": {
       "explorer/context": [
         {

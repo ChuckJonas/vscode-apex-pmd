@@ -1,6 +1,7 @@
 //=== Util ===
 import * as fs from 'fs';
 import * as vscode from 'vscode';
+import * as path from 'path';
 
 export function getRootWorkspacePath(): string {
   const ws = vscode.workspace;
@@ -28,4 +29,18 @@ export function dirExists(filePath: string): boolean {
 
 export function stripQuotes(s: string): string {
   return s.substr(1, s.length - 2);
+}
+
+export function findSfdxProject(startFile: string, defaultFallback: string): string {
+  let currentDir = path.dirname(startFile);
+  while (currentDir !== '') {
+    let found = fs.readdirSync(currentDir).some(s => 'sfdx-project.json' === s);
+    if (found) {
+      return currentDir;
+    }
+    let paths = currentDir.split(path.sep);
+    paths.pop(); // remove last
+    currentDir = paths.join(path.sep);
+  }
+  return defaultFallback;
 }
