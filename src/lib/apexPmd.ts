@@ -141,22 +141,17 @@ export class ApexPmd {
 
     let env : NodeJS.ProcessEnv = {};
     if (this.config.jrePath) {
-      if (os.platform() === 'win32') {
-        // add surrounding quotes in case jrePath contains spaces
-        env["PATH"] = `"${path.join(this.config.jrePath, 'bin')}${path.delimiter}${process.env.PATH}"`;
-      } else {
-        env["PATH"] = `${path.join(this.config.jrePath, 'bin')}${path.delimiter}${process.env.PATH}`;
-      }
+      env["PATH"] = `${path.join(this.config.jrePath, 'bin')}`;
     }
 
     const cmd = `java -cp "${path.join(pmdBinPath, 'lib')}${path.sep}*${path.delimiter}${classPath}" net.sourceforge.pmd.cli.PmdCli check ${pmdKeys}`;
 
     this.outputChannel.appendLine(`node: ${process.version}`);
-    this.outputChannel.appendLine(`env: ${JSON.stringify(env)}`);
+    this.outputChannel.appendLine(`custom env: ${JSON.stringify(env)}`);
     this.outputChannel.appendLine('PMD Command: ' + cmd);
 
     const pmdCmd = ChildProcess.exec(cmd, {
-      env: {...process.env, ...env},
+      env: {...process.env, ...env}, // provides default env and maybe overwrites PATH
       maxBuffer: Math.max(commandBufferSize, 1) * 1024 * 1024,
     });
 
