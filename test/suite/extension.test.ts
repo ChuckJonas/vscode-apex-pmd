@@ -13,6 +13,7 @@ import * as path from 'path';
 import { ApexPmd } from '../../src/extension';
 import { Config } from '../../src/lib/config';
 import * as fs from 'fs';
+import { env } from 'process';
 
 const PMD_PATH = path.join(__dirname, '..', '..', '..', 'bin', 'pmd');
 const RULESET_PATH = path.join(__dirname, '..', '..', '..', 'rulesets', 'apex_ruleset.xml');
@@ -245,6 +246,84 @@ suite('Extension Tests', () => {
         const code = diagnostic.code as {value :string };
         assert.strictEqual(code.value, "OperationWithLimitsInLoop");
         assert.strictEqual(diagnostic.range.start.line, 6); // vscode lines are 0-based
+        done();
+      })
+      .catch((e) => {
+        done(e);
+      });
+  });
+
+  test('test jrePath with spaces', function (done) {
+    this.timeout(100000);
+
+    const workspaceRootPath = path.join(TEST_ASSETS_PATH, 'project2_simple');
+    const jrePath = path.join(workspaceRootPath, "custom jre");
+
+    const JAVA_HOME = env['JAVA_HOME'];
+    if (JAVA_HOME === undefined || JAVA_HOME === '') {
+      throw new Error("Can't execute test, as JAVA_HOME is not defined!");
+    } else {
+      console.log(`copying '${JAVA_HOME}' (JAVA_HOME) to '${jrePath}'`);
+    }
+
+    const copyDirectory = function(source : string, destination : string) {
+      for (const file of fs.readdirSync(source)) {
+        const originalFilePath = path.join(source, file);
+        const targetFilePath = path.join(destination, file);
+        const stat = fs.statSync(originalFilePath);
+        if (stat.isFile()) {
+          fs.copyFileSync(originalFilePath, targetFilePath);
+        } else if (stat.isDirectory()) {
+          fs.mkdirSync(targetFilePath);
+          copyDirectory(originalFilePath, targetFilePath);
+        }
+      }
+    }
+    const deleteDirectory = function(dir : string) {
+      for (const file of fs.readdirSync(dir)) {
+        const filePath = path.join(dir, file);
+        const stat = fs.statSync(filePath);
+        if (stat.isFile()) {
+          fs.unlinkSync(filePath);
+        } else if (stat.isDirectory()) {
+          deleteDirectory(filePath);
+        }
+      }
+      fs.rmdirSync(dir);
+    }
+    if (fs.existsSync(jrePath)) {
+      deleteDirectory(jrePath);
+    }
+    fs.mkdirSync(jrePath);
+    copyDirectory(JAVA_HOME, jrePath);
+
+    const apexClassFile = path.join(workspaceRootPath, 'test.cls');
+
+    const collection = vscode.languages.createDiagnosticCollection('apex-pmd-test');
+
+    const config = new Config();
+    config.jrePath = jrePath;
+    config.pmdBinPath = PMD_PATH;
+    config.rulesets = [RULESET_PATH];
+    config.priorityErrorThreshold = 3;
+    config.priorityWarnThreshold = 1;
+    config.workspaceRootPath = workspaceRootPath;
+    config.additionalClassPaths = [];
+    config.commandBufferSize = 64000000;
+
+    const pmd = new ApexPmd(outputChannel, config);
+
+    const testApexUri = vscode.Uri.file(apexClassFile);
+    pmd
+      .run(apexClassFile, collection)
+      .then(() => {
+        const errs = collection.get(testApexUri);
+        assert.strictEqual(errs.length, 1);
+
+        const diagnostic = errs[0];
+        const code = diagnostic.code as {value :string };
+        assert.strictEqual(code.value, "OperationWithLimitsInLoop");
+        assert.strictEqual(diagnostic.range.start.line, 4); // vscode lines are 0-based
         done();
       })
       .catch((e) => {
