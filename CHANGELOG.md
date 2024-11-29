@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+
+- PMD fails to run from within VS Code when workspace path contains special characters  
+  Reported by @mlankfer in [#181](https://github.com/ChuckJonas/vscode-apex-pmd/issues/181)  
+  Fixed by @adangel in [#187](https://github.com/ChuckJonas/vscode-apex-pmd/pull/187)
+
+
 ### New Contributors
 
 **Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.8.0...HEAD
