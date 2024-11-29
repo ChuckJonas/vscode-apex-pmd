@@ -140,7 +140,6 @@ export class ApexPmd {
     ].join(CLASSPATH_DELM);
 
     let env : NodeJS.ProcessEnv = {};
-    env["CLASSPATH"] = `${classPath}`;
     if (this.config.jrePath) {
       if (os.platform() === 'win32') {
         // add surrounding quotes in case jrePath contains spaces
@@ -150,7 +149,7 @@ export class ApexPmd {
       }
     }
 
-    const cmd = `"${path.join(pmdBinPath, 'bin', 'pmd')}" check ${pmdKeys}`;
+    const cmd = `java -cp "${path.join(pmdBinPath, 'lib')}${path.sep}*${path.delimiter}${classPath}" net.sourceforge.pmd.cli.PmdCli check ${pmdKeys}`;
 
     this.outputChannel.appendLine(`node: ${process.version}`);
     this.outputChannel.appendLine(`env: ${JSON.stringify(env)}`);
