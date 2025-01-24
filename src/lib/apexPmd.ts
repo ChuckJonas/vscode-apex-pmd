@@ -114,13 +114,7 @@ export class ApexPmd {
   }
 
   async executeCmd(targetPath: string, token?: vscode.CancellationToken): Promise<string> {
-    const {
-      workspaceRootPath,
-      enableCache,
-      pmdBinPath,
-      additionalClassPaths,
-      commandBufferSize,
-    } = this.config;
+    const { workspaceRootPath, enableCache, pmdBinPath, additionalClassPaths, commandBufferSize } = this.config;
 
     // -R Comma-separated list of ruleset or rule references.
     const cachePath = `${workspaceRootPath}/.pmdCache`;
@@ -134,19 +128,16 @@ export class ApexPmd {
 
     const pmdKeys = `${noProgressBar} ${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`;
 
-    const classPath = [
-      path.join(workspaceRootPath, '*'),
-      ...additionalClassPaths,
-    ].join(CLASSPATH_DELM);
+    const classPath = [path.join(workspaceRootPath, '*'), ...additionalClassPaths].join(CLASSPATH_DELM);
 
-    let env : NodeJS.ProcessEnv = {};
-    env["CLASSPATH"] = `${classPath}`;
+    let env: NodeJS.ProcessEnv = {};
+    env['CLASSPATH'] = `${classPath}`;
     if (this.config.jrePath) {
       if (os.platform() === 'win32') {
         // add surrounding quotes in case jrePath contains spaces
-        env["PATH"] = `"${path.join(this.config.jrePath, 'bin')}${path.delimiter}${process.env.PATH}"`;
+        env['PATH'] = `"${path.join(this.config.jrePath, 'bin')}${path.delimiter}${process.env.PATH}"`;
       } else {
-        env["PATH"] = `${path.join(this.config.jrePath, 'bin')}${path.delimiter}${process.env.PATH}`;
+        env['PATH'] = `${path.join(this.config.jrePath, 'bin')}${path.delimiter}${process.env.PATH}`;
       }
     }
 
@@ -157,7 +148,7 @@ export class ApexPmd {
     this.outputChannel.appendLine('PMD Command: ' + cmd);
 
     const pmdCmd = ChildProcess.exec(cmd, {
-      env: {...process.env, ...env},
+      env: { ...process.env, ...env },
       maxBuffer: Math.max(commandBufferSize, 1) * 1024 * 1024,
     });
 
@@ -177,7 +168,7 @@ export class ApexPmd {
         if (e !== 0 && e !== 4) {
           this.outputChannel.appendLine(`Failed Exit Code: ${e}`);
           if (stderr.includes('Cannot load ruleset')) {
-            reject('PMD Command Failed!  There is a problem with the ruleset. Check the plugin output for details.')
+            reject('PMD Command Failed!  There is a problem with the ruleset. Check the plugin output for details.');
           }
           if (!stdout) {
             reject('PMD Command Failed!  Check the plugin output for details.');

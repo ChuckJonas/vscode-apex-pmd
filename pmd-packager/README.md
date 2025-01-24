@@ -16,17 +16,18 @@ This results in a zip file: `target/pmd-apex-bin-6.23.0.zip`. It can be installe
 ### PMD Version
 
 The PMD version is controlled by the property `pmd.version` in the pom.xml. It's set to 6.23.0 by default, but you can change that:
-* To build a specific version: `./mvnw clean package -Dpmd.version=6.25.0`
-* To update the property to the latest released version: `./mvnw versions:update-properties` (this will modify the pom file)
+
+- To build a specific version: `./mvnw clean package -Dpmd.version=6.25.0`
+- To update the property to the latest released version: `./mvnw versions:update-properties` (this will modify the pom file)
 
 ### Dependencies
-
 
 The dependencies are described here in the [`/project/dependencies`](pom.xml#L81-L87) element in the pom.xml.
 
 Maven resolves the necessary transitive dependencies itself and packs only those.
 
 To add a dependency on another PMD module, first find out the maven artifact ID of the module (eg `pmd-visualforce` for the VF language). Then you can add a `dependency` element under `/project/dependencies` in the pom:
+
 ```xml
     <dependency>
       <groupId>net.sourceforge.pmd</groupId>
@@ -46,16 +47,3 @@ The final ZIP name is controlled by the property `pmd.dist.zipName`. On the mave
 ```
 
 This will build a zip named `pmd.zip`. The default value of this property includes the `pmd.version` used, which might not be what you want.
-
-
-
-
-
-
-
-
-
-
-
-
-

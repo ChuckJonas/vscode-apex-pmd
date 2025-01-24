@@ -6,10 +6,11 @@
 [![build](https://github.com/ChuckJonas/vscode-apex-pmd/actions/workflows/build.yml/badge.svg)](https://github.com/ChuckJonas/vscode-apex-pmd/actions/workflows/build.yml)
 [![Build Status](https://travis-ci.org/ChuckJonas/vscode-apex-pmd.svg?branch=master)](https://travis-ci.org/ChuckJonas/vscode-apex-pmd)
 
-Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html) directly in vscode on Apex,  VisualForce & other XML metadata files.
+Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html) directly in vscode on Apex, VisualForce & other XML metadata files.
 
 ## Features
-To start the command you can click in the menu on `Help/Show All Commands` or press the hotkey <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> and type `Apex`. 
+
+To start the command you can click in the menu on `Help/Show All Commands` or press the hotkey <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> and type `Apex`.
 
 ![Apex PMD](https://raw.githubusercontent.com/ChuckJonas/vscode-apex-pmd/master/images/apex-pmd.gif)
 
@@ -36,7 +37,7 @@ To start the command you can click in the menu on `Help/Show All Commands` or pr
 - `priorityErrorThreshold`: Determines at what priority level 'errors' will be added. Anything less will be a warning or hint
 - `priorityWarnThreshold`: Determines at what priority level 'warnings' will be added. Anything less will be a hint
 - `enableCache`: Creates a cache file for PMD to run faster. Will create a .pmdCache file in your workspace
-- `pmdBinPath` (prev. `pmdPath`) (optional): set to override the default pmd binaries. This should point to the PMD folder which contains folders `lib` and `bin`. Most likely it is called `libexec`. **WARNING: Since `v0.6.0`, this extension no longer supports PMD 6x.  If you receive an error, please clear this setting!**
+- `pmdBinPath` (prev. `pmdPath`) (optional): set to override the default pmd binaries. This should point to the PMD folder which contains folders `lib` and `bin`. Most likely it is called `libexec`. **WARNING: Since `v0.6.0`, this extension no longer supports PMD 6x. If you receive an error, please clear this setting!**
 - `additionalClassPaths` (optional): set of paths to be appended to classpath. Used to find jar files containing custom rule definitions. Can be absolute or relative to workspace.
 - `commandBufferSize` Size of buffer used to collect PMD command output (MB), may need to be increased for very large projects
 - `jrePath` (Optional) Path to JRE (Folder that contains which contains `bin/java`)
@@ -69,9 +70,9 @@ this output channel.
 
 ### Prerequisites
 
-* node
-* bash: npm calls shell scripts and therefore bash is needed. Under Windows, make sure to run npm from within git-bash.
-* java: needs to be installed already. It is needed for executing PMD later on.
+- node
+- bash: npm calls shell scripts and therefore bash is needed. Under Windows, make sure to run npm from within git-bash.
+- java: needs to be installed already. It is needed for executing PMD later on.
 
 ### Setup & Run
 
