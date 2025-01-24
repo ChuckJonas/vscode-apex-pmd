@@ -18,7 +18,6 @@ export function parsePmdCsv(csv: string): Array<PmdResult> {
   let results: PmdResult[];
   const parseOpts: Options = {
     columns: PMD_COLUMNS,
-    // eslint-disable-next-line @typescript-eslint/camelcase
     relax_column_count: true,
   };
   try {

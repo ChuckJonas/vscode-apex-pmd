@@ -37,10 +37,11 @@ export class ApexPmd {
     AppStatus.getInstance().thinking();
 
     let canceled = false;
-    token &&
+    if (token) {
       token.onCancellationRequested(() => {
         canceled = true;
       });
+    }
 
     if (!this.checkPmdPath() || !this.hasAtLeastOneValidRuleset()) return;
 
@@ -50,10 +51,11 @@ export class ApexPmd {
 
       if (problemsMap.size > 0) {
         AppStatus.getInstance().errors();
-        progress &&
+        if (progress) {
           progress.report({
             message: `Processing ${problemsMap.size} file(s)`,
           });
+        }
 
         const increment = (1 / problemsMap.size) * 100;
 
@@ -62,7 +64,9 @@ export class ApexPmd {
             return;
           }
 
-          progress && progress.report({ increment });
+          if (progress) {
+            progress.report({ increment });
+          }
 
           try {
             const uri = vscode.Uri.file(path);
@@ -130,7 +134,7 @@ export class ApexPmd {
 
     const classPath = [path.join(workspaceRootPath, '*'), ...additionalClassPaths].join(CLASSPATH_DELM);
 
-    let env: NodeJS.ProcessEnv = {};
+    const env: NodeJS.ProcessEnv = {};
     env['CLASSPATH'] = `${classPath}`;
     if (this.config.jrePath) {
       if (os.platform() === 'win32') {
@@ -152,10 +156,11 @@ export class ApexPmd {
       maxBuffer: Math.max(commandBufferSize, 1) * 1024 * 1024,
     });
 
-    token &&
+    if (token) {
       token.onCancellationRequested(() => {
         pmdCmd.kill();
       });
+    }
 
     let stdout = '';
     let stderr = '';
@@ -262,7 +267,7 @@ export class ApexPmd {
       return true;
     }
 
-    let msg = `pmdBinPath does not reference a valid directory: '${pmdBinPath}'. Please update or clear.`;
+    const msg = `pmdBinPath does not reference a valid directory: '${pmdBinPath}'. Please update or clear.`;
     this.outputChannel.appendLine(msg);
     vscode.window.showErrorMessage(msg);
     return false;
