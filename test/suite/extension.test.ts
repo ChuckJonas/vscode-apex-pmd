@@ -95,7 +95,7 @@ suite('Extension Tests', () => {
       .then(() => {
         const errs = collection.get(testApexUri);
         assert.strictEqual(errs.length, 1);
-        assert.strictEqual(errs[0].message, "Violation... (rule: Test ruleset-MyCustomRule)");
+        assert.strictEqual(errs[0].message, 'Violation... (rule: Test ruleset-MyCustomRule)');
         done();
       })
       .catch((e) => {
@@ -130,8 +130,8 @@ suite('Extension Tests', () => {
         assert.strictEqual(errs.length, 1);
 
         const diagnostic = errs[0];
-        const code = diagnostic.code as {value :string };
-        assert.strictEqual(code.value, "OperationWithLimitsInLoop");
+        const code = diagnostic.code as { value: string };
+        assert.strictEqual(code.value, 'OperationWithLimitsInLoop');
         assert.strictEqual(diagnostic.range.start.line, 6); // vscode lines are 0-based
         done();
       })
@@ -151,7 +151,7 @@ suite('Extension Tests', () => {
     // symlinks are not really supported by win32/git. Under Windows, the user needs extra permissions.
     // That's why after git clone/checkout, the symlink is not properly restored (core.symlinks is by default false).
     // We simply copy the whole directory into workspace...
-    const copyDirectory = function(source : string, destination : string) {
+    const copyDirectory = function (source: string, destination: string) {
       for (const file of fs.readdirSync(source)) {
         const originalFilePath = path.join(source, file);
         const targetFilePath = path.join(destination, file);
@@ -163,8 +163,8 @@ suite('Extension Tests', () => {
           copyDirectory(originalFilePath, targetFilePath);
         }
       }
-    }
-    const deleteDirectory = function(dir : string) {
+    };
+    const deleteDirectory = function (dir: string) {
       for (const file of fs.readdirSync(dir)) {
         const filePath = path.join(dir, file);
         const stat = fs.statSync(filePath);
@@ -175,7 +175,7 @@ suite('Extension Tests', () => {
         }
       }
       fs.rmdirSync(dir);
-    }
+    };
     if (fs.existsSync(pmdBinPath)) {
       deleteDirectory(pmdBinPath);
     }
@@ -205,8 +205,8 @@ suite('Extension Tests', () => {
         assert.strictEqual(errs.length, 1);
 
         const diagnostic = errs[0];
-        const code = diagnostic.code as {value :string };
-        assert.strictEqual(code.value, "OperationWithLimitsInLoop");
+        const code = diagnostic.code as { value: string };
+        assert.strictEqual(code.value, 'OperationWithLimitsInLoop');
         assert.strictEqual(diagnostic.range.start.line, 6); // vscode lines are 0-based
         done();
       })
