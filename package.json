@@ -192,7 +192,7 @@
     "@types/vscode": "1.43.0",
     "@typescript-eslint/eslint-plugin": "^8.21.0",
     "@typescript-eslint/parser": "^8.21.0",
-    "@vscode/test-electron": "^2.3.9",
+    "@vscode/test-electron": "^2.4.1",
     "cross-env": "^7.0.3",
     "eslint": "^9.19.0",
     "eslint-config-prettier": "^10.0.1",
