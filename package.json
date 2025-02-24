@@ -191,7 +191,7 @@
     "@types/node": "^22.13.4",
     "@types/vscode": "1.43.0",
     "@typescript-eslint/eslint-plugin": "^8.24.0",
-    "@typescript-eslint/parser": "^8.24.0",
+    "@typescript-eslint/parser": "^8.24.1",
     "@vscode/test-electron": "^2.4.1",
     "cross-env": "^7.0.3",
     "eslint": "^9.20.1",
