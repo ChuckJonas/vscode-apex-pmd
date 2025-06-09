@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for environment variable PMD_APEX_ROOT_DIRECTORY by @gparada in [#157](https://github.com/ChuckJonas/vscode-apex-pmd/issues/157)
   and by @adangel in [#180](https://github.com/ChuckJonas/vscode-apex-pmd/pull/180)
 - New configuration property "apexPMD.apexRootDirectory"
+- Updated PMD from 7.6.0 to 7.14.0 by @adangel in [#322](https://github.com/ChuckJonas/vscode-apex-pmd/pull/322)
 
 ### Changed
 
