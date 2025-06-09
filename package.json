@@ -139,7 +139,11 @@
             "properties": {
               "mode": {
                 "type": "string",
-                "enum": ["off", "automatic", "custom"],
+                "enum": [
+                  "off",
+                  "automatic",
+                  "custom"
+                ],
                 "default": "automatic"
               },
               "customValue": {
@@ -213,7 +217,7 @@
     }
   },
   "config": {
-    "pmdVersion": "7.6.0"
+    "pmdVersion": "7.14.0"
   },
   "scripts": {
     "postinstall": "pmd-packager/upgrade.sh",
