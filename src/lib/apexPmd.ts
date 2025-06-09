@@ -4,7 +4,7 @@ import * as path from 'path';
 import { Config } from './config';
 import { AppStatus } from './appStatus';
 import * as os from 'os';
-import { fileExists, dirExists } from './utils';
+import { fileExists, dirExists, findSfdxProject } from './utils';
 import { parsePmdCsv } from './pmdCsvParser';
 
 //setup OS constants
@@ -118,7 +118,14 @@ export class ApexPmd {
   }
 
   async executeCmd(targetPath: string, token?: vscode.CancellationToken): Promise<string> {
-    const { workspaceRootPath, enableCache, pmdBinPath, additionalClassPaths, commandBufferSize } = this.config;
+    const {
+      workspaceRootPath,
+      enableCache,
+      pmdBinPath,
+      additionalClassPaths,
+      commandBufferSize,
+      apexRootDirectory,
+    } = this.config;
 
     // -R Comma-separated list of ruleset or rule references.
     const cachePath = `${workspaceRootPath}/.pmdCache`;
@@ -137,6 +144,15 @@ export class ApexPmd {
     let env : NodeJS.ProcessEnv = {};
     if (this.config.jrePath) {
       env["PATH"] = `${path.join(this.config.jrePath, 'bin')}`;
+    }
+
+    switch (apexRootDirectory.mode) {
+      case "automatic":
+        env["PMD_APEX_ROOT_DIRECTORY"] = findSfdxProject(targetPath, workspaceRootPath);
+        break;
+      case "custom":
+        env["PMD_APEX_ROOT_DIRECTORY"] = apexRootDirectory.custom ?? '';
+        break;
     }
 
     const cmd = `java -cp "${path.join(pmdBinPath, 'lib')}${path.sep}*${path.delimiter}${classPath}" net.sourceforge.pmd.cli.PmdCli check ${pmdKeys}`;

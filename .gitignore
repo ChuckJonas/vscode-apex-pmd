@@ -9,3 +9,4 @@ pmd-packager/target
 dist/
 test/assets/project2 - with space/pmd-copy
 test/assets/project2_simple/custom jre
+test/assets_temp

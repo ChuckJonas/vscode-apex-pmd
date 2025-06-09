@@ -12,8 +12,8 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import { ApexPmd } from '../../src/extension';
 import { Config } from '../../src/lib/config';
-import * as fs from 'fs';
 import { env } from 'process';
+import { TestUtils } from './test-utils';
 
 const PMD_PATH = path.join(__dirname, '..', '..', '..', 'bin', 'pmd');
 const RULESET_PATH = path.join(__dirname, '..', '..', '..', 'rulesets', 'apex_ruleset.xml');
@@ -23,7 +23,7 @@ const TEST_APEX_PATH = path.join(TEST_ASSETS_PATH, 'test.cls');
 
 const outputChannel = vscode.window.createOutputChannel('Apex PMD');
 
-suite('Extension Tests', () => {
+suite('Apex PMD Tests', () => {
   test('check default paths', () => {
     const config = new Config();
     config.pmdBinPath = PMD_PATH;
@@ -34,10 +34,10 @@ suite('Extension Tests', () => {
 
     const pmd = new ApexPmd(outputChannel, config);
 
-    assert.equal(pmd.checkPmdPath(), true);
-    assert.equal(pmd.getRulesets()[0], RULESET_PATH);
-    assert.equal(pmd.getRulesets().length, 1);
-    assert.equal(pmd.hasAtLeastOneValidRuleset(), true);
+    assert.strictEqual(pmd.checkPmdPath(), true);
+    assert.strictEqual(pmd.getRulesets()[0], RULESET_PATH);
+    assert.strictEqual(pmd.getRulesets().length, 1);
+    assert.strictEqual(pmd.hasAtLeastOneValidRuleset(), true);
   });
 
   test('test diagnostic warning', function (done) {
@@ -61,7 +61,7 @@ suite('Extension Tests', () => {
       .run(TEST_APEX_PATH, collection)
       .then(() => {
         const errs = collection.get(testApexUri);
-        assert.equal(errs.length, 1);
+        assert.strictEqual(errs.length, 1);
         done();
       })
       .catch((e) => {
@@ -189,36 +189,8 @@ suite('Extension Tests', () => {
     // symlinks are not really supported by win32/git. Under Windows, the user needs extra permissions.
     // That's why after git clone/checkout, the symlink is not properly restored (core.symlinks is by default false).
     // We simply copy the whole directory into workspace...
-    const copyDirectory = function (source: string, destination: string) {
-      for (const file of fs.readdirSync(source)) {
-        const originalFilePath = path.join(source, file);
-        const targetFilePath = path.join(destination, file);
-        const stat = fs.statSync(originalFilePath);
-        if (stat.isFile()) {
-          fs.copyFileSync(originalFilePath, targetFilePath);
-        } else if (stat.isDirectory()) {
-          fs.mkdirSync(targetFilePath);
-          copyDirectory(originalFilePath, targetFilePath);
-        }
-      }
-    };
-    const deleteDirectory = function (dir: string) {
-      for (const file of fs.readdirSync(dir)) {
-        const filePath = path.join(dir, file);
-        const stat = fs.statSync(filePath);
-        if (stat.isFile()) {
-          fs.unlinkSync(filePath);
-        } else if (stat.isDirectory()) {
-          deleteDirectory(filePath);
-        }
-      }
-      fs.rmdirSync(dir);
-    };
-    if (fs.existsSync(pmdBinPath)) {
-      deleteDirectory(pmdBinPath);
-    }
-    fs.mkdirSync(pmdBinPath);
-    copyDirectory(pmdBinSource, pmdBinPath);
+    TestUtils.deleteDirectory(pmdBinPath);
+    TestUtils.copyDirectory(pmdBinSource, pmdBinPath);
 
     const apexClassFile = path.join(workspaceRootPath, 'test.cls');
 
@@ -266,36 +238,8 @@ suite('Extension Tests', () => {
       console.log(`copying '${JAVA_HOME}' (JAVA_HOME) to '${jrePath}'`);
     }
 
-    const copyDirectory = function(source : string, destination : string) {
-      for (const file of fs.readdirSync(source)) {
-        const originalFilePath = path.join(source, file);
-        const targetFilePath = path.join(destination, file);
-        const stat = fs.statSync(originalFilePath);
-        if (stat.isFile()) {
-          fs.copyFileSync(originalFilePath, targetFilePath);
-        } else if (stat.isDirectory()) {
-          fs.mkdirSync(targetFilePath);
-          copyDirectory(originalFilePath, targetFilePath);
-        }
-      }
-    }
-    const deleteDirectory = function(dir : string) {
-      for (const file of fs.readdirSync(dir)) {
-        const filePath = path.join(dir, file);
-        const stat = fs.statSync(filePath);
-        if (stat.isFile()) {
-          fs.unlinkSync(filePath);
-        } else if (stat.isDirectory()) {
-          deleteDirectory(filePath);
-        }
-      }
-      fs.rmdirSync(dir);
-    }
-    if (fs.existsSync(jrePath)) {
-      deleteDirectory(jrePath);
-    }
-    fs.mkdirSync(jrePath);
-    copyDirectory(JAVA_HOME, jrePath);
+    TestUtils.deleteDirectory(jrePath);
+    TestUtils.copyDirectory(JAVA_HOME, jrePath);
 
     const apexClassFile = path.join(workspaceRootPath, 'test.cls');
 

@@ -41,6 +41,17 @@ To start the command you can click in the menu on `Help/Show All Commands` or pr
 - `additionalClassPaths` (optional): set of paths to be appended to classpath. Used to find jar files containing custom rule definitions. Can be absolute or relative to workspace.
 - `commandBufferSize` Size of buffer used to collect PMD command output (MB), may need to be increased for very large projects
 - `jrePath` (Optional) Path to JRE (Folder that contains which contains `bin/java`)
+- `apexRootDirectory` (optional, since 0.9.0): Whether and how to set `PMD_APEX_ROOT_DIRECTORY` env variable. This
+   variable should point to the sfdx project directory, which contains the file `sfdx-project.json`.  
+   
+   This is needed for the rule [UnusedMethod](https://docs.pmd-code.org/latest/pmd_rules_apex_design.html#unusedmethod)
+   which utilizes [Apex Language Server](https://github.com/apex-dev-tools/apex-ls) which needs a well-formed sfdx
+   project.  
+   * off = Do not set `PMD_APEX_ROOT_DIRECTORY` at all
+   * automatic = (default) Automatically find the nearest `sfdx-project.json` file in a parent directory and use
+     that directory
+   * custom = Use a custom location for `PMD_APEX_ROOT_DIRECTORY` provided by "customValue". It should point to the
+     directory where the `sfdx-project.json` file is located. This is only used, if the "mode"=="custom".
 
 ### Defining your own "Ruleset"
 
