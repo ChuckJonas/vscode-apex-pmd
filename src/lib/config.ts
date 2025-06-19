@@ -25,6 +25,7 @@ export class Config {
   public jrePath: string;
   public apexRootDirectory: ApexRootDirectory;
   public limitPMDProcesses: boolean;
+  public childProcessMethod: string;
 
   private _ctx: vscode.ExtensionContext;
 
@@ -60,6 +61,7 @@ export class Config {
     this.jrePath = config.get('jrePath');
     this.apexRootDirectory = config.get('apexRootDirectory');
     this.limitPMDProcesses = config.get('limitPMDProcesses');
+    this.childProcessMethod = config.get('childProcessMethod');
   }
 
   public init() {

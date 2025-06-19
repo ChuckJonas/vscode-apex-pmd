@@ -3,12 +3,8 @@ import * as ChildProcess from 'child_process';
 import * as path from 'path';
 import { Config } from './config';
 import { AppStatus } from './appStatus';
-import * as os from 'os';
 import { fileExists, dirExists, findSfdxProject } from './utils';
 import { parsePmdCsv } from './pmdCsvParser';
-
-//setup OS constants
-const CLASSPATH_DELM = os.platform() === 'win32' ? ';' : ':';
 
 export class ApexPmd {
   private config: Config;
@@ -131,7 +127,7 @@ export class ApexPmd {
     } = this.config;
 
     if (this.config.limitPMDProcesses && this.pmdProcessCounter > 0) {
-      let errorMessage = `There are already ${this.pmdProcessCounter} PMD processes running.`;
+      const errorMessage = `There are already ${this.pmdProcessCounter} PMD processes running.`;
       this.outputChannel.append(" ERROR:");
       this.outputChannel.appendLine(errorMessage)
       throw new Error(errorMessage);
@@ -140,18 +136,9 @@ export class ApexPmd {
     // -R Comma-separated list of ruleset or rule references.
     const cachePath = `${workspaceRootPath}/.pmdCache`;
     const rulesetsArg = this.rulesets.join(',');
+    const classPath = [path.join(workspaceRootPath, '*'), ...additionalClassPaths].join(path.delimiter);
 
-    const cacheKey = enableCache ? `--cache "${cachePath}"` : '--no-cache';
-    const noProgressBar = '--no-progress';
-    const formatKey = `-f csv`;
-    const targetPathKey = `-d "${targetPath}"`;
-    const rulesetsKey = `-R "${rulesetsArg}"`;
-
-    const pmdKeys = `${noProgressBar} ${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`;
-
-    const classPath = [path.join(workspaceRootPath, '*'), ...additionalClassPaths].join(CLASSPATH_DELM);
-
-    let env : NodeJS.ProcessEnv = {};
+    const env : NodeJS.ProcessEnv = {};
     if (this.config.jrePath) {
       env["PATH"] = `${path.join(this.config.jrePath, 'bin')}`;
     }
@@ -165,20 +152,51 @@ export class ApexPmd {
         break;
     }
 
-    const cmd = `java -cp "${path.join(pmdBinPath, 'lib')}${path.sep}*${path.delimiter}${classPath}" net.sourceforge.pmd.cli.PmdCli check ${pmdKeys}`;
+    const args = ['-cp', `${path.join(pmdBinPath, 'lib')}${path.sep}*${path.delimiter}${classPath}`,
+           'net.sourceforge.pmd.cli.PmdCli', 'check',
+           '--no-progress',
+           ...(enableCache ? ['--cache', cachePath] : ['--no-cache']),
+           '-f', 'csv',
+           '-d', targetPath,
+           '-R', rulesetsArg
+         ];
+    const command = "java";
+    const cmd = command + ' ' + args.map(s => s.indexOf(' ') > -1 ? `"${s}"` : s).join(' ');
 
-    this.outputChannel.appendLine(` DEBUG:node: ${process.version}`);
-    this.outputChannel.appendLine(` DEBUG:custom env: ${JSON.stringify(env)}`);
-    this.outputChannel.appendLine(' DEBUG:PMD Command: ' + cmd);
+
+    this.outputChannel.appendLine(` DEBUG:Node: ${process.version}`);
+    this.outputChannel.appendLine(` DEBUG:Custom environment: ${JSON.stringify(env)}`);
 
     const startTime = Date.now();
     this.pmdProcessCounter++;
     this.outputChannel.appendLine(`  INFO:Starting PMD now: ${startTime} (running PMD processes: ${this.pmdProcessCounter})`);
 
-    const pmdCmd = ChildProcess.exec(cmd, {
-      env: {...process.env, ...env}, // provides default env and maybe overwrites PATH
-      maxBuffer: Math.max(commandBufferSize, 1) * 1024 * 1024,
-    });
+    let pmdCmd;
+    switch (this.config.childProcessMethod) {
+      case "execFile":
+        this.outputChannel.appendLine(` DEBUG:PMD Command (execFile): command=${command}, args=${args}`);
+        pmdCmd = ChildProcess.execFile(command, args,
+         {
+          env: {...process.env, ...env}, // provides default env and maybe overwrites PATH
+          maxBuffer: Math.max(commandBufferSize, 1) * 1024 * 1024,
+         });
+        break;
+      case "spawn":
+        this.outputChannel.appendLine(` DEBUG:PMD Command (spawn): command=${command}, args=${args}`);
+        pmdCmd = ChildProcess.spawn(command, args,
+         {
+          env: {...process.env, ...env}, // provides default env and maybe overwrites PATH
+         });
+        break;
+      default:
+      case "exec":
+        this.outputChannel.appendLine(' DEBUG:PMD Command (exec): ' + cmd);
+        pmdCmd = ChildProcess.exec(cmd, {
+          env: {...process.env, ...env}, // provides default env and maybe overwrites PATH
+          maxBuffer: Math.max(commandBufferSize, 1) * 1024 * 1024,
+        });
+        break;
+    }
 
     if (token) {
       token.onCancellationRequested(() => {

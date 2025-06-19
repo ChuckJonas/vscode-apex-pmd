@@ -201,6 +201,16 @@
             "default": true,
             "description": "Make sure to run only 1 PMD process in the background. This avoids running multiple instances in parallel and consume resources.",
             "order": 5
+          },
+          "apexPMD.childProcessMethod": {
+            "type": "string",
+            "enum": [
+              "exec",
+              "execFile",
+              "spawn"
+            ],
+            "default": "exec",
+            "order": 6
           }
         }
       }
