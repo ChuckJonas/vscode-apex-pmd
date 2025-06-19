@@ -130,6 +130,13 @@ export class ApexPmd {
       apexRootDirectory,
     } = this.config;
 
+    if (this.config.limitPMDProcesses && this.pmdProcessCounter > 0) {
+      let errorMessage = `There are already ${this.pmdProcessCounter} PMD processes running.`;
+      this.outputChannel.append(" ERROR:");
+      this.outputChannel.appendLine(errorMessage)
+      throw new Error(errorMessage);
+    }
+
     // -R Comma-separated list of ruleset or rule references.
     const cachePath = `${workspaceRootPath}/.pmdCache`;
     const rulesetsArg = this.rulesets.join(',');
