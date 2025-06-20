@@ -1,4 +1,4 @@
-import * as parser from 'csv-parse/lib/sync';
+import { parse } from 'csv-parse/sync';
 import { Options } from 'csv-parse';
 import { EOL } from 'os';
 import * as vscode from 'vscode';
@@ -21,14 +21,14 @@ export function parsePmdCsv(csv: string): Array<PmdResult> {
     relax_column_count: true,
   };
   try {
-    results = parser(csv, parseOpts);
+    results = parse(csv, parseOpts);
   } catch (e) {
     //try to recover parsing... remove last ln and try again
     const lines = csv.split(EOL);
     lines.pop();
     csv = lines.join(EOL);
     try {
-      results = parser(csv, parseOpts);
+      results = parse(csv, parseOpts);
     } catch (e) {
       throw new Error(
         'Failed to parse PMD Results. Please submit an issue with the output from the "Apex PMD" output channel if this problem persists.'
