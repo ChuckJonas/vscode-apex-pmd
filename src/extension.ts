@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import { ApexPmd } from './lib/apexPmd';
 import { Config } from './lib/config';
 import { AppStatus } from './lib/appStatus';
-import { debounce } from 'debounce';
+import * as debounce from 'debounce';
 import { getRootWorkspacePath } from './lib/utils';
 export { ApexPmd };
 
