@@ -136,8 +136,9 @@ export class ApexPmd {
     const formatKey = `-f csv`;
     const targetPathKey = `-d "${targetPath}"`;
     const rulesetsKey = `-R "${rulesetsArg}"`;
+    const debugMode = this.config.enableDebugOutput ? '--debug' : '';
 
-    const pmdKeys = `${noProgressBar} ${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`;
+    const pmdKeys = `${noProgressBar} ${debugMode} ${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`;
 
     const classPath = [path.join(workspaceRootPath, '*'), ...additionalClassPaths].join(CLASSPATH_DELM);
 

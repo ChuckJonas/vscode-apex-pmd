@@ -15,7 +15,7 @@ A clear and concise description of what the bug is.
 
 ```
 1. Open the output channel "Apex PMD" ("Ctrl+P" and enter "> show output channels...")
-2. Configure log level "Debug"
+2. Configure log level "Debug" and enable the setting "apexPMD.enableDebugOutput".
 3. Reproduce the problem and execute Apex PMD again
 4. Then copy the output from the output view here, replacing this text.
 ```

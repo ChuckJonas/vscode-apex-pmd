@@ -195,6 +195,12 @@
             "default": "64",
             "description": "Size of buffer used to collect PMD command output (MB), may need to be increased for very large projects",
             "order": 4
+          },
+          "apexPMD.enableDebugOutput": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable debug mode when executing PMD which gives more detailed log messages in the output channel.",
+            "order": 5
           }
         }
       }

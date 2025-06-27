@@ -52,6 +52,7 @@ To start the command you can click in the menu on `Help/Show All Commands` or pr
      that directory
    * custom = Use a custom location for `PMD_APEX_ROOT_DIRECTORY` provided by "customValue". It should point to the
      directory where the `sfdx-project.json` file is located. This is only used, if the "mode"=="custom".
+- `enableDebugOutput`: Logs PMD's debug messages to help troubleshooting.
 
 ### Defining your own "Ruleset"
 
