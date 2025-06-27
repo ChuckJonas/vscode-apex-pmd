@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump minimum version of VS Code API from 1.43.0 to 1.74.0 by @adangel in [#345](https://github.com/ChuckJonas/vscode-apex-pmd/pull/345)
 - Bump PMD from 7.14.0 to 7.15.0 by @adangel in [#346](https://github.com/ChuckJonas/vscode-apex-pmd/pull/346)
 ### Changed
+- Output Channel "Apex PMD" is now a LogOutputChannel and supports different log levels
 ### Deprecated
 ### Removed
 - Support for VS Code versions older than November 2022 has been removed via [#345](https://github.com/ChuckJonas/vscode-apex-pmd/pull/345)

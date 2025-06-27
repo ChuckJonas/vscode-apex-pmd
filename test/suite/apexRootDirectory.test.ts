@@ -10,7 +10,7 @@ const PMD_PATH = path.join(__dirname, '..', '..', '..', 'bin', 'pmd');
 const TEST_ASSETS_PATH = path.join(__dirname, '..', '..', '..', 'test', 'assets');
 const TEST_ASSETS_TEMP_PATH = path.join(__dirname, '..', '..', '..', 'test', 'assets_temp');
 
-const outputChannel = vscode.window.createOutputChannel('Apex PMD');
+const outputChannel = vscode.window.createOutputChannel('Apex PMD', {log: true});
 
 suite('Apex Root Directory related tests', () => {
   test('UnusedMethod with Apex Link and PMD_APEX_ROOT_DIRECTORY as workspace root (default automatic)', function (done) {
