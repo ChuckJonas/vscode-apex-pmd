@@ -23,6 +23,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Output Channel "Apex PMD" is now a LogOutputChannel and supports different log levels by @adangel in [#347](https://github.com/ChuckJonas/vscode-apex-pmd/pull/347)
 - Set apexRootDirectory.mode by default to "off" to prevent performance issues for now by @adangel in [#348](https://github.com/ChuckJonas/vscode-apex-pmd/pull/348)
+
+<details>
+  <summary>16 dependency updates</summary>
+
+- Bump debounce from 1.2.1 to 2.2.0 by @dependabot[bot] in [#214](https://github.com/pmd/pmd/pull/214)
+- Bump csv-parse from 4.16.3 to 5.6.0 by @dependabot[bot] in [#215](https://github.com/pmd/pmd/pull/215)
+- Bump mocha from 11.5.0 to 11.6.0 by @dependabot[bot] in [#323](https://github.com/pmd/pmd/pull/323)
+- Bump typescript-eslint from 8.33.0 to 8.34.1 by @dependabot[bot] in [#327](https://github.com/pmd/pmd/pull/327)
+- Bump mocha from 11.6.0 to 11.7.0 by @dependabot[bot] in [#329](https://github.com/pmd/pmd/pull/329)
+- Bump eslint from 9.28.0 to 9.29.0 by @dependabot[bot] in [#330](https://github.com/pmd/pmd/pull/330)
+- Bump @<!-- -->types/node from 22.15.30 to 24.0.3 by @dependabot[bot] in [#331](https://github.com/pmd/pmd/pull/331)
+- Bump @<!-- -->types/debounce from 1.2.1 to 1.2.4 by @dependabot[bot] in [#333](https://github.com/pmd/pmd/pull/333)
+- Bump eslint-plugin-prettier from 5.2.6 to 5.5.0 by @dependabot[bot] in [#334](https://github.com/pmd/pmd/pull/334)
+- Bump typescript-eslint from 8.34.1 to 8.35.0 by @dependabot[bot] in [#336](https://github.com/pmd/pmd/pull/336)
+- Bump @<!-- -->types/node from 24.0.3 to 24.0.4 by @dependabot[bot] in [#339](https://github.com/pmd/pmd/pull/339)
+- Bump prettier from 3.5.3 to 3.6.1 by @dependabot[bot] in [#340](https://github.com/pmd/pmd/pull/340)
+- Bump eslint-plugin-prettier from 5.5.0 to 5.5.1 by @dependabot[bot] in [#341](https://github.com/pmd/pmd/pull/341)
+- Bump mocha from 11.7.0 to 11.7.1 by @dependabot[bot] in [#342](https://github.com/pmd/pmd/pull/342)
+- Bump minimum version of VS Code API from 1.43.0 to 1.74.0 by @adangel in [#345](https://github.com/pmd/pmd/pull/345)
+- Bump PMD from 7.14.0 to 7.15.0 by @adangel in [#346](https://github.com/pmd/pmd/pull/346)
+
+</details>
+
 ### Removed
 - Support for VS Code versions older than November 2022 has been removed via [#345](https://github.com/ChuckJonas/vscode-apex-pmd/pull/345)
 ### Fixed
