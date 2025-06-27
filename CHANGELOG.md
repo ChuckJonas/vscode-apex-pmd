@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New configuration property "apexPMD.enableDebugOutput" by @adangel in [#347](https://github.com/ChuckJonas/vscode-apex-pmd/pull/347)
 ### Changed
 - Output Channel "Apex PMD" is now a LogOutputChannel and supports different log levels by @adangel in [#347](https://github.com/ChuckJonas/vscode-apex-pmd/pull/347)
+- Set apexRootDirectory.mode by default to "off" to prevent performance issues for now by @adangel in [#348](https://github.com/ChuckJonas/vscode-apex-pmd/pull/348)
 ### Deprecated
 ### Removed
 - Support for VS Code versions older than November 2022 has been removed via [#345](https://github.com/ChuckJonas/vscode-apex-pmd/pull/345)

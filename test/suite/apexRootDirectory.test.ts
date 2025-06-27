@@ -13,7 +13,7 @@ const TEST_ASSETS_TEMP_PATH = path.join(__dirname, '..', '..', '..', 'test', 'as
 const outputChannel = vscode.window.createOutputChannel('Apex PMD', {log: true});
 
 suite('Apex Root Directory related tests', () => {
-  test('UnusedMethod with Apex Link and PMD_APEX_ROOT_DIRECTORY as workspace root (default automatic)', function (done) {
+  test('UnusedMethod with Apex Link and PMD_APEX_ROOT_DIRECTORY as workspace root (automatic)', function (done) {
     this.timeout(100000);
 
     const workspaceRootPath = path.join(TEST_ASSETS_PATH, 'project3_unusedmethod');
@@ -30,6 +30,7 @@ suite('Apex Root Directory related tests', () => {
     config.workspaceRootPath = workspaceRootPath;
     config.additionalClassPaths = [];
     config.commandBufferSize = 64000000;
+    config.apexRootDirectory = { mode: 'automatic' };
 
     const pmd = new ApexPmd(outputChannel, config);
 
@@ -47,7 +48,7 @@ suite('Apex Root Directory related tests', () => {
       });
   });
 
-  test('UnusedMethod with Apex Link and PMD_APEX_ROOT_DIRECTORY as workspace root (off)', function (done) {
+  test('UnusedMethod with Apex Link and PMD_APEX_ROOT_DIRECTORY as workspace root (default off)', function (done) {
     this.timeout(100000);
 
     const workspaceRootPath = path.join(TEST_ASSETS_PATH, 'project3_unusedmethod');
@@ -64,7 +65,6 @@ suite('Apex Root Directory related tests', () => {
     config.workspaceRootPath = workspaceRootPath;
     config.additionalClassPaths = [];
     config.commandBufferSize = 64000000;
-    config.apexRootDirectory = { "mode": "off" };
 
     const pmd = new ApexPmd(outputChannel, config);
 
@@ -82,7 +82,7 @@ suite('Apex Root Directory related tests', () => {
       });
   });
 
-  test('UnusedMethod with Apex Link and PMD_APEX_ROOT_DIRECTORY as subdirectory (default automatic)', function (done) {
+  test('UnusedMethod with Apex Link and PMD_APEX_ROOT_DIRECTORY as subdirectory (automatic)', function (done) {
     this.timeout(100000);
 
     // copy the original sample project and create a subfolder structure
@@ -106,6 +106,7 @@ suite('Apex Root Directory related tests', () => {
     config.workspaceRootPath = workspaceRootPath;
     config.additionalClassPaths = [];
     config.commandBufferSize = 64000000;
+    config.apexRootDirectory = { mode: "automatic" };
 
     const pmd = new ApexPmd(outputChannel, config);
 
