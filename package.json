@@ -9,7 +9,7 @@
     "email": "charlie@callawaycloudconsulting.com"
   },
   "engines": {
-    "vscode": "^1.43.0"
+    "vscode": "^1.74.0"
   },
   "repository": {
     "type": "git",
