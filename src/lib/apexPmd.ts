@@ -151,7 +151,7 @@ export class ApexPmd {
         env["PMD_APEX_ROOT_DIRECTORY"] = findSfdxProject(targetPath, workspaceRootPath);
         break;
       case "custom":
-        env["PMD_APEX_ROOT_DIRECTORY"] = apexRootDirectory.custom ?? '';
+        env["PMD_APEX_ROOT_DIRECTORY"] = apexRootDirectory.customValue ?? '';
         break;
     }
 

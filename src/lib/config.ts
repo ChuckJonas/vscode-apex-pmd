@@ -5,7 +5,7 @@ import { getRootWorkspacePath } from './utils';
 
 interface ApexRootDirectory {
   mode: "off" | "automatic" | "custom";
-  custom?: string;
+  customValue?: string;
 }
 
 export class Config {
