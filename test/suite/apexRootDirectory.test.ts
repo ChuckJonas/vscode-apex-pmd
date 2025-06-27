@@ -172,7 +172,7 @@ suite('Apex Root Directory related tests', () => {
     config.workspaceRootPath = workspaceRootPath;
     config.additionalClassPaths = [];
     config.commandBufferSize = 64000000;
-    config.apexRootDirectory = { "mode": "custom", "custom": path.join(workspaceRootPath, 'subdir') };
+    config.apexRootDirectory = { "mode": "custom", "customValue": path.join(workspaceRootPath, 'subdir') };
 
     const pmd = new ApexPmd(outputChannel, config);
 
