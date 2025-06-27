@@ -14,7 +14,7 @@ const isSupportedLanguage = (langCode: string) => 0 <= supportedLanguageCodes.in
 const appName = 'Apex PMD';
 const settingsNamespace = 'apexPMD';
 const collection = vscode.languages.createDiagnosticCollection('apex-pmd');
-const outputChannel = vscode.window.createOutputChannel(appName);
+const outputChannel = vscode.window.createOutputChannel(appName, {log: true});
 
 export function activate(context: vscode.ExtensionContext) {
   //setup config

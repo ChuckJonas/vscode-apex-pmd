@@ -13,9 +13,9 @@ const CLASSPATH_DELM = os.platform() === 'win32' ? ';' : ':';
 export class ApexPmd {
   private config: Config;
   private rulesets: string[];
-  private outputChannel: vscode.OutputChannel;
+  private outputChannel: vscode.LogOutputChannel;
 
-  public constructor(outputChannel: vscode.OutputChannel, config: Config) {
+  public constructor(outputChannel: vscode.LogOutputChannel, config: Config) {
     this.config = config;
     this.rulesets = this.getValidRulesetPaths(config.rulesets);
     this.outputChannel = outputChannel;
@@ -32,8 +32,8 @@ export class ApexPmd {
     progress?: vscode.Progress<{ message?: string; increment?: number }>,
     token?: vscode.CancellationToken
   ): Promise<void> {
-    this.outputChannel.appendLine('###################################');
-    this.outputChannel.appendLine(`Analyzing ${targetPath}`);
+    this.outputChannel.info('###################################');
+    this.outputChannel.info(`Analyzing ${targetPath}`);
     AppStatus.getInstance().thinking();
 
     let canceled = false;
@@ -82,7 +82,7 @@ export class ApexPmd {
 
             collection.set(uri, issues);
           } catch (e) {
-            this.outputChannel.appendLine(e);
+            this.outputChannel.error(e);
           }
         }
       } else {
@@ -112,7 +112,7 @@ export class ApexPmd {
       return true;
     }
     const msg = `No valid Ruleset paths found in "apexPMD.rulesets". Ensure configuration correct or change back to the default.`;
-    this.outputChannel.appendLine(msg);
+    this.outputChannel.warn(msg);
     vscode.window.showErrorMessage(msg);
     return false;
   }
@@ -136,8 +136,9 @@ export class ApexPmd {
     const formatKey = `-f csv`;
     const targetPathKey = `-d "${targetPath}"`;
     const rulesetsKey = `-R "${rulesetsArg}"`;
+    const debugMode = this.config.enableDebugOutput ? '--debug' : '';
 
-    const pmdKeys = `${noProgressBar} ${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`;
+    const pmdKeys = `${noProgressBar} ${debugMode} ${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`;
 
     const classPath = [path.join(workspaceRootPath, '*'), ...additionalClassPaths].join(CLASSPATH_DELM);
 
@@ -157,9 +158,9 @@ export class ApexPmd {
 
     const cmd = `java -cp "${path.join(pmdBinPath, 'lib')}${path.sep}*${path.delimiter}${classPath}" net.sourceforge.pmd.cli.PmdCli check ${pmdKeys}`;
 
-    this.outputChannel.appendLine(`node: ${process.version}`);
-    this.outputChannel.appendLine(`custom env: ${JSON.stringify(env)}`);
-    this.outputChannel.appendLine('PMD Command: ' + cmd);
+    this.outputChannel.debug(`node: ${process.version}`);
+    this.outputChannel.debug(`custom env: ${JSON.stringify(env)}`);
+    this.outputChannel.debug('PMD Command: ' + cmd);
 
     const pmdCmd = ChildProcess.exec(cmd, {
       env: {...process.env, ...env}, // provides default env and maybe overwrites PATH
@@ -176,12 +177,12 @@ export class ApexPmd {
     let stderr = '';
     const pmdPromise = new Promise<string>((resolve, reject) => {
       pmdCmd.addListener('error', (e) => {
-        this.outputChannel.appendLine('error:' + e);
+        this.outputChannel.error('error:' + e);
         reject(e);
       });
       pmdCmd.addListener('exit', (e) => {
         if (e !== 0 && e !== 4) {
-          this.outputChannel.appendLine(`Failed Exit Code: ${e}`);
+          this.outputChannel.error(`Failed Exit Code: ${e}`);
           if (stderr.includes('Cannot load ruleset')) {
             reject('PMD Command Failed!  There is a problem with the ruleset. Check the plugin output for details.');
           }
@@ -192,11 +193,11 @@ export class ApexPmd {
         resolve(stdout);
       });
       pmdCmd.stdout.on('data', (m: string) => {
-        this.outputChannel.append('stdout:' + m);
+        this.outputChannel.debug('stdout:' + m);
         stdout += m;
       });
       pmdCmd.stderr.on('data', (m: string) => {
-        this.outputChannel.append('stderr:' + m);
+        this.outputChannel.debug('stderr:' + m);
         stderr += m;
       });
     });
@@ -229,10 +230,10 @@ export class ApexPmd {
           problemsMap.set(result.file, [problem]);
         }
       } catch (ex) {
-        this.outputChannel.appendLine(ex);
+        this.outputChannel.error(ex);
       }
     }
-    this.outputChannel.appendLine(`${problemCount} issue(s) found`);
+    this.outputChannel.info(`${problemCount} issue(s) found`);
     return problemsMap;
   }
 
@@ -278,7 +279,7 @@ export class ApexPmd {
     }
 
     const msg = `pmdBinPath does not reference a valid directory: '${pmdBinPath}'. Please update or clear.`;
-    this.outputChannel.appendLine(msg);
+    this.outputChannel.error(msg);
     vscode.window.showErrorMessage(msg);
     return false;
   }

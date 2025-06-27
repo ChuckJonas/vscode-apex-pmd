@@ -195,6 +195,12 @@
             "default": "64",
             "description": "Size of buffer used to collect PMD command output (MB), may need to be increased for very large projects",
             "order": 4
+          },
+          "apexPMD.enableDebugOutput": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable debug mode when executing PMD which gives more detailed log messages in the output channel.",
+            "order": 5
           }
         }
       }
@@ -239,7 +245,7 @@
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "^24.0.4",
-    "@types/vscode": "1.43.0",
+    "@types/vscode": "1.74.0",
     "@typescript-eslint/eslint-plugin": "^8.29.1",
     "@typescript-eslint/parser": "^8.24.1",
     "@vscode/test-electron": "^2.5.2",

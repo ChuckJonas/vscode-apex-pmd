@@ -13,15 +13,22 @@ A clear and concise description of what the bug is.
 
 **Apex PMD Output**
 
-<!-- Copy the output of the output channel "Apex PMD" from the output view -->
+```
+1. Open the output channel "Apex PMD" ("Ctrl+P" and enter "> show output channels...")
+2. Configure log level "Debug" and enable the setting "apexPMD.enableDebugOutput".
+3. Reproduce the problem and execute Apex PMD again
+4. Then copy the output from the output view here, replacing this text.
+```
 
 **Apex PMD Settings**
 
 <!-- Please provide the "EFFECTIVE" (check workspace & user) settings -->
 
-- pmdBinPath:
 - rulesets:
 - additionalClassPaths:
+- apexRootDirectory:
+- jrePath:
+- pmdBinPath:
 
 **Apex File**
 
