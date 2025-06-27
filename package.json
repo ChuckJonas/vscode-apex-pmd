@@ -195,6 +195,22 @@
             "default": "64",
             "description": "Size of buffer used to collect PMD command output (MB), may need to be increased for very large projects",
             "order": 4
+          },
+          "apexPMD.limitPMDProcesses": {
+            "type": "boolean",
+            "default": true,
+            "description": "Make sure to run only 1 PMD process in the background. This avoids running multiple instances in parallel and consume resources.",
+            "order": 5
+          },
+          "apexPMD.childProcessMethod": {
+            "type": "string",
+            "enum": [
+              "exec",
+              "execFile",
+              "spawn"
+            ],
+            "default": "exec",
+            "order": 6
           }
         }
       }

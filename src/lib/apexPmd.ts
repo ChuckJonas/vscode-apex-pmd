@@ -3,17 +3,14 @@ import * as ChildProcess from 'child_process';
 import * as path from 'path';
 import { Config } from './config';
 import { AppStatus } from './appStatus';
-import * as os from 'os';
 import { fileExists, dirExists, findSfdxProject } from './utils';
 import { parsePmdCsv } from './pmdCsvParser';
-
-//setup OS constants
-const CLASSPATH_DELM = os.platform() === 'win32' ? ';' : ':';
 
 export class ApexPmd {
   private config: Config;
   private rulesets: string[];
   private outputChannel: vscode.OutputChannel;
+  private pmdProcessCounter : number = 0;
 
   public constructor(outputChannel: vscode.OutputChannel, config: Config) {
     this.config = config;
@@ -33,7 +30,7 @@ export class ApexPmd {
     token?: vscode.CancellationToken
   ): Promise<void> {
     this.outputChannel.appendLine('###################################');
-    this.outputChannel.appendLine(`Analyzing ${targetPath}`);
+    this.outputChannel.appendLine(`  INFO:Analyzing ${targetPath}`);
     AppStatus.getInstance().thinking();
 
     let canceled = false;
@@ -82,6 +79,7 @@ export class ApexPmd {
 
             collection.set(uri, issues);
           } catch (e) {
+            this.outputChannel.append(' ERROR:');
             this.outputChannel.appendLine(e);
           }
         }
@@ -112,6 +110,7 @@ export class ApexPmd {
       return true;
     }
     const msg = `No valid Ruleset paths found in "apexPMD.rulesets". Ensure configuration correct or change back to the default.`;
+    this.outputChannel.append(' ERROR:');
     this.outputChannel.appendLine(msg);
     vscode.window.showErrorMessage(msg);
     return false;
@@ -127,21 +126,19 @@ export class ApexPmd {
       apexRootDirectory,
     } = this.config;
 
+    if (this.config.limitPMDProcesses && this.pmdProcessCounter > 0) {
+      const errorMessage = `There are already ${this.pmdProcessCounter} PMD processes running.`;
+      this.outputChannel.append(" ERROR:");
+      this.outputChannel.appendLine(errorMessage)
+      throw new Error(errorMessage);
+    }
+
     // -R Comma-separated list of ruleset or rule references.
     const cachePath = `${workspaceRootPath}/.pmdCache`;
     const rulesetsArg = this.rulesets.join(',');
+    const classPath = [path.join(workspaceRootPath, '*'), ...additionalClassPaths].join(path.delimiter);
 
-    const cacheKey = enableCache ? `--cache "${cachePath}"` : '--no-cache';
-    const noProgressBar = '--no-progress';
-    const formatKey = `-f csv`;
-    const targetPathKey = `-d "${targetPath}"`;
-    const rulesetsKey = `-R "${rulesetsArg}"`;
-
-    const pmdKeys = `${noProgressBar} ${formatKey} ${cacheKey} ${targetPathKey} ${rulesetsKey}`;
-
-    const classPath = [path.join(workspaceRootPath, '*'), ...additionalClassPaths].join(CLASSPATH_DELM);
-
-    let env : NodeJS.ProcessEnv = {};
+    const env : NodeJS.ProcessEnv = {};
     if (this.config.jrePath) {
       env["PATH"] = `${path.join(this.config.jrePath, 'bin')}`;
     }
@@ -155,16 +152,51 @@ export class ApexPmd {
         break;
     }
 
-    const cmd = `java -cp "${path.join(pmdBinPath, 'lib')}${path.sep}*${path.delimiter}${classPath}" net.sourceforge.pmd.cli.PmdCli check ${pmdKeys}`;
+    const args = ['-cp', `${path.join(pmdBinPath, 'lib')}${path.sep}*${path.delimiter}${classPath}`,
+           'net.sourceforge.pmd.cli.PmdCli', 'check',
+           '--no-progress',
+           ...(enableCache ? ['--cache', cachePath] : ['--no-cache']),
+           '-f', 'csv',
+           '-d', targetPath,
+           '-R', rulesetsArg
+         ];
+    const command = "java";
+    const cmd = command + ' ' + args.map(s => s.indexOf(' ') > -1 ? `"${s}"` : s).join(' ');
 
-    this.outputChannel.appendLine(`node: ${process.version}`);
-    this.outputChannel.appendLine(`custom env: ${JSON.stringify(env)}`);
-    this.outputChannel.appendLine('PMD Command: ' + cmd);
 
-    const pmdCmd = ChildProcess.exec(cmd, {
-      env: {...process.env, ...env}, // provides default env and maybe overwrites PATH
-      maxBuffer: Math.max(commandBufferSize, 1) * 1024 * 1024,
-    });
+    this.outputChannel.appendLine(` DEBUG:Node: ${process.version}`);
+    this.outputChannel.appendLine(` DEBUG:Custom environment: ${JSON.stringify(env)}`);
+
+    const startTime = Date.now();
+    this.pmdProcessCounter++;
+    this.outputChannel.appendLine(`  INFO:Starting PMD now: ${startTime} (running PMD processes: ${this.pmdProcessCounter})`);
+
+    let pmdCmd;
+    switch (this.config.childProcessMethod) {
+      case "execFile":
+        this.outputChannel.appendLine(` DEBUG:PMD Command (execFile): command=${command}, args=${args}`);
+        pmdCmd = ChildProcess.execFile(command, args,
+         {
+          env: {...process.env, ...env}, // provides default env and maybe overwrites PATH
+          maxBuffer: Math.max(commandBufferSize, 1) * 1024 * 1024,
+         });
+        break;
+      case "spawn":
+        this.outputChannel.appendLine(` DEBUG:PMD Command (spawn): command=${command}, args=${args}`);
+        pmdCmd = ChildProcess.spawn(command, args,
+         {
+          env: {...process.env, ...env}, // provides default env and maybe overwrites PATH
+         });
+        break;
+      default:
+      case "exec":
+        this.outputChannel.appendLine(' DEBUG:PMD Command (exec): ' + cmd);
+        pmdCmd = ChildProcess.exec(cmd, {
+          env: {...process.env, ...env}, // provides default env and maybe overwrites PATH
+          maxBuffer: Math.max(commandBufferSize, 1) * 1024 * 1024,
+        });
+        break;
+    }
 
     if (token) {
       token.onCancellationRequested(() => {
@@ -176,12 +208,15 @@ export class ApexPmd {
     let stderr = '';
     const pmdPromise = new Promise<string>((resolve, reject) => {
       pmdCmd.addListener('error', (e) => {
-        this.outputChannel.appendLine('error:' + e);
+        this.outputChannel.appendLine(' ERROR:' + e);
+        this.pmdProcessCounter--;
         reject(e);
       });
       pmdCmd.addListener('exit', (e) => {
+        this.pmdProcessCounter--;
+        this.outputChannel.appendLine(`  INFO:PMD Exit code: ${e}. Duration: ${Date.now() - startTime} ms (running PMD processes: ${this.pmdProcessCounter})`);
         if (e !== 0 && e !== 4) {
-          this.outputChannel.appendLine(`Failed Exit Code: ${e}`);
+          this.outputChannel.appendLine(` ERROR:Failed Exit Code: ${e}`);
           if (stderr.includes('Cannot load ruleset')) {
             reject('PMD Command Failed!  There is a problem with the ruleset. Check the plugin output for details.');
           }
@@ -229,10 +264,11 @@ export class ApexPmd {
           problemsMap.set(result.file, [problem]);
         }
       } catch (ex) {
+        this.outputChannel.append(' ERROR:');
         this.outputChannel.appendLine(ex);
       }
     }
-    this.outputChannel.appendLine(`${problemCount} issue(s) found`);
+    this.outputChannel.appendLine(`  INFO:${problemCount} issue(s) found`);
     return problemsMap;
   }
 
@@ -278,6 +314,7 @@ export class ApexPmd {
     }
 
     const msg = `pmdBinPath does not reference a valid directory: '${pmdBinPath}'. Please update or clear.`;
+    this.outputChannel.appendLine(' ERROR:');
     this.outputChannel.appendLine(msg);
     vscode.window.showErrorMessage(msg);
     return false;
