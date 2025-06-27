@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+- Fix apexRootDirectory.customValue setting by @adangel in [#344](https://github.com/ChuckJonas/vscode-apex-pmd/pull/344)  
+  reported by @yarhamjohn
 ### New Contributors
 
 **Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.9.0...HEAD
