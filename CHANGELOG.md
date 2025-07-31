@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+- Revert "Add workaround for webpack legacy open ssl" by @adangel in [#349](https://github.com/ChuckJonas/vscode-apex-pmd/pull/349)
 ### Deprecated
 ### Removed
 ### Fixed
