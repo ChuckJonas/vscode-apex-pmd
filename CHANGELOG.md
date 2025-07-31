@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Dependency updates
+- Bump glob from 7.2.3 to 11.0.3 (dev dep) by @dependabot[bot] in [#377](https://github.com/ChuckJonas/vscode-apex-pmd/pull/377)
+### New Contributors
+**Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.10.0...HEAD
+
+## [0.10.0] - 2025-06-27
 
 ### Added
 - Bump minimum version of VS Code API from 1.43.0 to 1.74.0 by @adangel in [#345](https://github.com/ChuckJonas/vscode-apex-pmd/pull/345)
@@ -13,15 +24,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New configuration property "apexPMD.enableDebugOutput" by @adangel in [#347](https://github.com/ChuckJonas/vscode-apex-pmd/pull/347)
 ### Changed
 - Output Channel "Apex PMD" is now a LogOutputChannel and supports different log levels by @adangel in [#347](https://github.com/ChuckJonas/vscode-apex-pmd/pull/347)
-### Deprecated
+- Set apexRootDirectory.mode by default to "off" to prevent performance issues for now by @adangel in [#348](https://github.com/ChuckJonas/vscode-apex-pmd/pull/348)
 ### Removed
 - Support for VS Code versions older than November 2022 has been removed via [#345](https://github.com/ChuckJonas/vscode-apex-pmd/pull/345)
 ### Fixed
 - Fix apexRootDirectory.customValue setting by @adangel in [#344](https://github.com/ChuckJonas/vscode-apex-pmd/pull/344)  
   reported by @yarhamjohn
-### New Contributors
 
-**Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.9.0...HEAD
+**Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.9.0...v0.10.0
 
 ## [0.9.0] - 2025-06-09
 

@@ -1,5 +1,4 @@
 import { parse } from 'csv-parse/sync';
-import { Options } from 'csv-parse';
 import { EOL } from 'os';
 import * as vscode from 'vscode';
 
@@ -16,7 +15,7 @@ const PMD_COLUMNS: (keyof PmdResult)[] = [
 
 export function parsePmdCsv(csv: string): Array<PmdResult> {
   let results: PmdResult[];
-  const parseOpts: Options = {
+  const parseOpts = {
     columns: PMD_COLUMNS,
     relax_column_count: true,
   };
