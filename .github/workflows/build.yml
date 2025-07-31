@@ -2,6 +2,10 @@ name: build
 
 on:
   push:
+    branches:
+      - '**'
+      # don't run on dependabot branches. Dependabot will create pull requests, which will then be run instead
+      - '!dependabot/**'
   pull_request:
   workflow_dispatch:
 
