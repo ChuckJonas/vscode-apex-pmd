@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+### Dependency updates
+- Bump glob from 7.2.3 to 11.0.3 (dev dep) by @dependabot[bot] in [#377](https://github.com/ChuckJonas/vscode-apex-pmd/pull/377)
 ### New Contributors
 **Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.10.0...HEAD
 
