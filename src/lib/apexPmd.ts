@@ -5,7 +5,6 @@ import { Config } from './config';
 import { AppStatus } from './appStatus';
 import * as os from 'os';
 import { fileExists, dirExists, findSfdxProject } from './utils';
-import { parsePmdCsv } from './pmdCsvParser';
 
 //setup OS constants
 const CLASSPATH_DELM = os.platform() === 'win32' ? ';' : ':';
@@ -118,14 +117,8 @@ export class ApexPmd {
   }
 
   async executeCmd(targetPath: string, token?: vscode.CancellationToken): Promise<string> {
-    const {
-      workspaceRootPath,
-      enableCache,
-      pmdBinPath,
-      additionalClassPaths,
-      commandBufferSize,
-      apexRootDirectory,
-    } = this.config;
+    const { workspaceRootPath, enableCache, pmdBinPath, additionalClassPaths, commandBufferSize, apexRootDirectory } =
+      this.config;
 
     // -R Comma-separated list of ruleset or rule references.
     const cachePath = `${workspaceRootPath}/.pmdCache`;
@@ -133,7 +126,7 @@ export class ApexPmd {
 
     const cacheKey = enableCache ? `--cache "${cachePath}"` : '--no-cache';
     const noProgressBar = '--no-progress';
-    const formatKey = `-f csv`;
+    const formatKey = `-f json`;
     const targetPathKey = `-d "${targetPath}"`;
     const rulesetsKey = `-R "${rulesetsArg}"`;
     const debugMode = this.config.enableDebugOutput ? '--debug' : '';
@@ -142,17 +135,17 @@ export class ApexPmd {
 
     const classPath = [path.join(workspaceRootPath, '*'), ...additionalClassPaths].join(CLASSPATH_DELM);
 
-    let env : NodeJS.ProcessEnv = {};
+    let env: NodeJS.ProcessEnv = {};
     if (this.config.jrePath) {
-      env["PATH"] = `${path.join(this.config.jrePath, 'bin')}`;
+      env['PATH'] = `${path.join(this.config.jrePath, 'bin')}`;
     }
 
     switch (apexRootDirectory.mode) {
-      case "automatic":
-        env["PMD_APEX_ROOT_DIRECTORY"] = findSfdxProject(targetPath, workspaceRootPath);
+      case 'automatic':
+        env['PMD_APEX_ROOT_DIRECTORY'] = findSfdxProject(targetPath, workspaceRootPath);
         break;
-      case "custom":
-        env["PMD_APEX_ROOT_DIRECTORY"] = apexRootDirectory.customValue ?? '';
+      case 'custom':
+        env['PMD_APEX_ROOT_DIRECTORY'] = apexRootDirectory.customValue ?? '';
         break;
     }
 
@@ -163,7 +156,7 @@ export class ApexPmd {
     this.outputChannel.debug('PMD Command: ' + cmd);
 
     const pmdCmd = ChildProcess.exec(cmd, {
-      env: {...process.env, ...env}, // provides default env and maybe overwrites PATH
+      env: { ...process.env, ...env }, // provides default env and maybe overwrites PATH
       maxBuffer: Math.max(commandBufferSize, 1) * 1024 * 1024,
     });
 
@@ -205,32 +198,26 @@ export class ApexPmd {
   }
 
   parseProblems(csv: string): Map<string, Array<vscode.Diagnostic>> {
-    const results = parsePmdCsv(csv);
+    const results = this.mapPmdToResult(csv);
 
     const problemsMap = new Map<string, Array<vscode.Diagnostic>>();
     let problemCount = 0;
 
-    for (let i = 1; i < results.length; i++) {
-      try {
-        const result = results[i];
-        if (!results[i]) continue;
+    for (let i = 0; i < results.length; i++) {
+      const result = results[i];
+      if (!result) continue;
 
-        //skip .sfdx files
-        if (result.file.includes('.sfdx')) {
-          continue;
-        }
+      // skip .sfdx files
+      if (result.file.endsWith('.sfdx')) continue;
 
-        const problem = this.createDiagnostic(result);
-        if (!problem) continue;
+      const problem = this.createDiagnostic(result);
+      if (!problem) continue;
 
-        problemCount++;
-        if (problemsMap.has(result.file)) {
-          problemsMap.get(result.file).push(problem);
-        } else {
-          problemsMap.set(result.file, [problem]);
-        }
-      } catch (ex) {
-        this.outputChannel.error(ex);
+      problemCount++;
+      if (problemsMap.has(result.file)) {
+        problemsMap.get(result.file)!.push(problem);
+      } else {
+        problemsMap.set(result.file, [problem]);
       }
     }
     this.outputChannel.info(`${problemCount} issue(s) found`);
@@ -240,12 +227,17 @@ export class ApexPmd {
   createDiagnostic(result: PmdResult): vscode.Diagnostic {
     const { priorityErrorThreshold, priorityWarnThreshold } = this.config;
     const lineNum = parseInt(result.line) - 1;
-
-    const uri = `https://pmd.github.io/latest/pmd_rules_apex_${result.ruleSet
-      .split(' ')
-      .join('')
-      .toLowerCase()}.html#${result.rule.toLowerCase()}`;
+    let uri = '';
     const msg = `${result.description} (rule: ${result.ruleSet}-${result.rule})`;
+    const externalURL = `${result.externalURL}`;
+    if (externalURL) {
+      uri = externalURL;
+    } else {
+      uri = `https://pmd.github.io/latest/pmd_rules_apex_${result.ruleSet
+        .split(' ')
+        .join('')
+        .toLowerCase()}.html#${result.rule.toLowerCase()}`;
+    }
 
     const priority = parseInt(result.priority);
     if (isNaN(lineNum)) {
@@ -292,5 +284,29 @@ export class ApexPmd {
       `No Ruleset not found at ${rulesetPath}. Ensure configuration correct or change back to the default.`
     );
     return false;
+  }
+
+  mapPmdToResult(jsonString: string): PmdResult[] {
+    const report: PmdReport = JSON.parse(jsonString);
+
+    const results: PmdResult[] = [];
+
+    report.files.forEach((file) => {
+      file.violations.forEach((violation) => {
+        results.push({
+          problem: violation.rule,
+          package: '',
+          file: file.filename,
+          priority: violation.priority.toString(),
+          line: violation.beginline.toString(),
+          description: violation.description,
+          ruleSet: violation.ruleset,
+          rule: violation.rule,
+          externalURL: violation.externalInfoUrl,
+        });
+      });
+    });
+
+    return results;
   }
 }
