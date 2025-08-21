@@ -229,16 +229,16 @@ export class ApexPmd {
     const lineNum = parseInt(result.line) - 1;
     let uri = '';
     const msg = `${result.description} (rule: ${result.ruleSet}-${result.rule})`;
-    const externalURL = `${result.externalURL}`;
-    if (externalURL) {
-      uri = externalURL;
+    const externalURL = result.externalURL;
+    if (externalURL != undefined) {
+      uri = externalURL.startsWith('http') ? externalURL : 'https://' + externalURL;
     } else {
       uri = `https://pmd.github.io/latest/pmd_rules_apex_${result.ruleSet
         .split(' ')
         .join('')
         .toLowerCase()}.html#${result.rule.toLowerCase()}`;
     }
-
+    this.outputChannel.info(uri);
     const priority = parseInt(result.priority);
     if (isNaN(lineNum)) {
       return null;
