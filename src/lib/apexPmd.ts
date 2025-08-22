@@ -238,7 +238,6 @@ export class ApexPmd {
         .join('')
         .toLowerCase()}.html#${result.rule.toLowerCase()}`;
     }
-    this.outputChannel.info(uri);
     const priority = parseInt(result.priority);
     if (isNaN(lineNum)) {
       return null;
