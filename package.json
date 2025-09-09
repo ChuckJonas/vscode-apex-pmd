@@ -254,7 +254,7 @@
     "glob": "^11.0.3",
     "mocha": "^11.7.1",
     "prettier": "^3.6.2",
-    "ts-loader": "^9.5.2",
+    "ts-loader": "^9.5.4",
     "tslint": "^6.1.3",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.39.1",
