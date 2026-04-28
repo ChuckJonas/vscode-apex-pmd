@@ -142,7 +142,7 @@ export class ApexPmd {
 
     const classPath = [path.join(workspaceRootPath, '*'), ...additionalClassPaths].join(CLASSPATH_DELM);
 
-    let env : NodeJS.ProcessEnv = {};
+    let env: NodeJS.ProcessEnv = {};
     if (this.config.jrePath) {
       env["PATH"] = `${path.join(this.config.jrePath, 'bin')}`;
     }
@@ -163,7 +163,7 @@ export class ApexPmd {
     this.outputChannel.debug('PMD Command: ' + cmd);
 
     const pmdCmd = ChildProcess.exec(cmd, {
-      env: {...process.env, ...env}, // provides default env and maybe overwrites PATH
+      env: { ...process.env, ...env }, // provides default env and maybe overwrites PATH
       maxBuffer: Math.max(commandBufferSize, 1) * 1024 * 1024,
     });
 
@@ -245,7 +245,7 @@ export class ApexPmd {
       .split(' ')
       .join('')
       .toLowerCase()}.html#${result.rule.toLowerCase()}`;
-    const msg = `${result.description} (rule: ${result.ruleSet}-${result.rule})`;
+    const msg = `Sev ${result.priority}: ${result.description} (rule: ${result.ruleSet}-${result.rule})`;
 
     const priority = parseInt(result.priority);
     if (isNaN(lineNum)) {
@@ -289,7 +289,7 @@ export class ApexPmd {
       return true;
     }
     vscode.window.showErrorMessage(
-      `No Ruleset not found at ${rulesetPath}. Ensure configuration correct or change back to the default.`
+      `Ruleset not found at ${rulesetPath}. Ensure configuration correct or change back to the default.`
     );
     return false;
   }

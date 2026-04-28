@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	name="Default ruleset used by the CodeClimate Engine for Salesforce.com Apex"
 	xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
-   <description>Quickstart configuration of PMD for ApexPMD.</description>
+   <description>Quickstart configuration of PMD for ApexPMD</description>
 	<exclude-pattern>.*/.sfdx/.*</exclude-pattern>
 	<exclude-pattern>.*/.sf/.*</exclude-pattern>
 
@@ -67,25 +67,25 @@
 
 	<!-- NAMING -->
 	<rule ref="category/apex/codestyle.xml/ClassNamingConventions">
-		<priority>1</priority>
+		<priority>2</priority>
 	</rule>
 	<rule ref="category/apex/codestyle.xml/MethodNamingConventions">
-		<priority>1</priority>
+		<priority>2</priority>
 	</rule>
 	<rule ref="category/apex/errorprone.xml/MethodWithSameNameAsEnclosingClass">
 		<priority>3</priority>
 	</rule>
 	<rule ref="category/apex/codestyle.xml/FieldNamingConventions">
-		<priority>1</priority>
+		<priority>2</priority>
 	</rule>
 	<rule ref="category/apex/codestyle.xml/FormalParameterNamingConventions">
-		<priority>1</priority>
+		<priority>2</priority>
 	</rule>
 	<rule ref="category/apex/codestyle.xml/LocalVariableNamingConventions">
-		<priority>1</priority>
+		<priority>2</priority>
 	</rule>
 	<rule ref="category/apex/codestyle.xml/PropertyNamingConventions">
-		<priority>1</priority>
+		<priority>2</priority>
 	</rule>
    <rule ref="category/apex/codestyle.xml/AnnotationsNamingConventions">
 		<priority>3</priority>
@@ -173,7 +173,7 @@
 
 	<!-- STYLE -->
 	<rule ref="category/apex/codestyle.xml/OneDeclarationPerLine">
-		<priority>1</priority>
+		<priority>2</priority>
 	</rule>
 
    <!-- DESIGN -->

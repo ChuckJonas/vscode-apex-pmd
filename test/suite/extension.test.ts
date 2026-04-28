@@ -19,9 +19,9 @@ const PMD_PATH = path.join(__dirname, '..', '..', '..', 'bin', 'pmd');
 const RULESET_PATH = path.join(__dirname, '..', '..', '..', 'rulesets', 'apex_ruleset.xml');
 const INVALID_RULESET_PATH = path.join(__dirname, '..', '..', '..', 'rulesets', 'apex_ruleset_invalid.xml');
 const TEST_ASSETS_PATH = path.join(__dirname, '..', '..', '..', 'test', 'assets');
-const TEST_APEX_PATH = path.join(TEST_ASSETS_PATH, 'test.cls');
+//const TEST_APEX_PATH = path.join(TEST_ASSETS_PATH, 'test.cls');
 
-const outputChannel = vscode.window.createOutputChannel('Apex PMD', {log: true});
+const outputChannel = vscode.window.createOutputChannel('Apex PMD', { log: true });
 
 suite('Apex PMD Tests', () => {
   test('check default paths', () => {
@@ -42,6 +42,9 @@ suite('Apex PMD Tests', () => {
 
   test('test diagnostic warning', function (done) {
     this.timeout(100000);
+    const workspaceRootPath = path.join(TEST_ASSETS_PATH, 'project - diagnostic');
+
+    const apexClassFile = path.join(workspaceRootPath, 'test.cls');
 
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd-test');
 
@@ -50,15 +53,15 @@ suite('Apex PMD Tests', () => {
     config.rulesets = [RULESET_PATH];
     config.priorityErrorThreshold = 3;
     config.priorityWarnThreshold = 1;
-    config.workspaceRootPath = '';
+    config.workspaceRootPath = workspaceRootPath;
     config.additionalClassPaths = [];
     config.commandBufferSize = 64000000;
 
     const pmd = new ApexPmd(outputChannel, config);
 
-    const testApexUri = vscode.Uri.file(TEST_APEX_PATH);
+    const testApexUri = vscode.Uri.file(apexClassFile);
     pmd
-      .run(TEST_APEX_PATH, collection)
+      .run(apexClassFile, collection)
       .then(() => {
         const errs = collection.get(testApexUri);
         assert.strictEqual(errs.length, 1);
@@ -96,7 +99,7 @@ suite('Apex PMD Tests', () => {
       .then(() => {
         const errs = collection.get(testApexUri);
         assert.strictEqual(errs.length, 1);
-        assert.strictEqual(errs[0].message, 'Violation... (rule: Test ruleset-MyCustomRule)');
+        assert.strictEqual(errs[0].message, 'Sev 5: Violation... (rule: Test ruleset-MyCustomRule)');
         done();
       })
       .catch((e) => {
@@ -109,12 +112,13 @@ suite('Apex PMD Tests', () => {
 
     const workspaceRootPath = path.join(TEST_ASSETS_PATH, 'project2 - with space');
     const apexClassFile = path.join(workspaceRootPath, 'test.cls');
+    const rulesetPath = path.join(workspaceRootPath, 'apex_ruleset.xml');
 
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd-test');
 
     const config = new Config();
     config.pmdBinPath = PMD_PATH;
-    config.rulesets = [RULESET_PATH];
+    config.rulesets = [rulesetPath];
     config.priorityErrorThreshold = 3;
     config.priorityWarnThreshold = 1;
     config.workspaceRootPath = workspaceRootPath;
@@ -146,12 +150,13 @@ suite('Apex PMD Tests', () => {
 
     const workspaceRootPath = path.join(TEST_ASSETS_PATH, 'project2 - with & and space');
     const apexClassFile = path.join(workspaceRootPath, 'test.cls');
+    const rulesetPath = path.join(workspaceRootPath, 'apex_ruleset.xml');
 
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd-test');
 
     const config = new Config();
     config.pmdBinPath = PMD_PATH;
-    config.rulesets = [RULESET_PATH];
+    config.rulesets = [rulesetPath];
     config.priorityErrorThreshold = 3;
     config.priorityWarnThreshold = 1;
     config.workspaceRootPath = workspaceRootPath;
@@ -168,7 +173,7 @@ suite('Apex PMD Tests', () => {
         assert.strictEqual(errs.length, 1);
 
         const diagnostic = errs[0];
-        const code = diagnostic.code as {value :string };
+        const code = diagnostic.code as { value: string };
         assert.strictEqual(code.value, "OperationWithLimitsInLoop");
         assert.strictEqual(diagnostic.range.start.line, 6); // vscode lines are 0-based
         done();
@@ -193,12 +198,13 @@ suite('Apex PMD Tests', () => {
     TestUtils.copyDirectory(pmdBinSource, pmdBinPath);
 
     const apexClassFile = path.join(workspaceRootPath, 'test.cls');
+    const rulesetPath = path.join(workspaceRootPath, 'apex_ruleset.xml');
 
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd-test');
 
     const config = new Config();
     config.pmdBinPath = pmdBinPath;
-    config.rulesets = [RULESET_PATH];
+    config.rulesets = [rulesetPath];
     config.priorityErrorThreshold = 3;
     config.priorityWarnThreshold = 1;
     config.workspaceRootPath = workspaceRootPath;
@@ -242,13 +248,14 @@ suite('Apex PMD Tests', () => {
     TestUtils.copyDirectory(JAVA_HOME, jrePath);
 
     const apexClassFile = path.join(workspaceRootPath, 'test.cls');
+    const rulesetPath = path.join(workspaceRootPath, 'apex_ruleset.xml');
 
     const collection = vscode.languages.createDiagnosticCollection('apex-pmd-test');
 
     const config = new Config();
     config.jrePath = jrePath;
     config.pmdBinPath = PMD_PATH;
-    config.rulesets = [RULESET_PATH];
+    config.rulesets = [rulesetPath];
     config.priorityErrorThreshold = 3;
     config.priorityWarnThreshold = 1;
     config.workspaceRootPath = workspaceRootPath;
@@ -265,7 +272,7 @@ suite('Apex PMD Tests', () => {
         assert.strictEqual(errs.length, 1);
 
         const diagnostic = errs[0];
-        const code = diagnostic.code as {value :string };
+        const code = diagnostic.code as { value: string };
         assert.strictEqual(code.value, "OperationWithLimitsInLoop");
         assert.strictEqual(diagnostic.range.start.line, 4); // vscode lines are 0-based
         done();

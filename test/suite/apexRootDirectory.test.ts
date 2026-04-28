@@ -10,7 +10,7 @@ const PMD_PATH = path.join(__dirname, '..', '..', '..', 'bin', 'pmd');
 const TEST_ASSETS_PATH = path.join(__dirname, '..', '..', '..', 'test', 'assets');
 const TEST_ASSETS_TEMP_PATH = path.join(__dirname, '..', '..', '..', 'test', 'assets_temp');
 
-const outputChannel = vscode.window.createOutputChannel('Apex PMD', {log: true});
+const outputChannel = vscode.window.createOutputChannel('Apex PMD', { log: true });
 
 suite('Apex Root Directory related tests', () => {
   test('UnusedMethod with Apex Link and PMD_APEX_ROOT_DIRECTORY as workspace root (automatic)', function (done) {
@@ -40,7 +40,7 @@ suite('Apex Root Directory related tests', () => {
       .then(() => {
         const errs = collection.get(testApexUri);
         assert.strictEqual(errs.length, 1, "Wrong number of found violations");
-        assert.strictEqual(errs[0].message, "Unused methods make understanding code harder (rule: Design-UnusedMethod)");
+        assert.strictEqual(errs[0].message, "Sev 3: Unused methods make understanding code harder (rule: Design-UnusedMethod)");
         done();
       })
       .catch((e) => {
@@ -116,7 +116,7 @@ suite('Apex Root Directory related tests', () => {
       .then(() => {
         const errs = collection.get(testApexUri);
         assert.strictEqual(errs.length, 1, "Wrong number of found violations");
-        assert.strictEqual(errs[0].message, "Unused methods make understanding code harder (rule: Design-UnusedMethod)");
+        assert.strictEqual(errs[0].message, "Sev 3: Unused methods make understanding code harder (rule: Design-UnusedMethod)");
         done();
       })
       .catch((e) => {
@@ -183,7 +183,7 @@ suite('Apex Root Directory related tests', () => {
       .then(() => {
         const errs = collection.get(testApexUri);
         assert.strictEqual(errs.length, 1, "Wrong number of found violations");
-        assert.strictEqual(errs[0].message, "Unused methods make understanding code harder (rule: Design-UnusedMethod)");
+        assert.strictEqual(errs[0].message, "Sev 3: Unused methods make understanding code harder (rule: Design-UnusedMethod)");
         done();
       })
       .catch((e) => {
