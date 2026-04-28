@@ -68,6 +68,7 @@ You can also mention the default ruleset in `apexPMD.rulesets`. To do this add `
 NOTE: If you move away from the default ruleset in an sfdx project, make sure to exclude the `.sfdx` and `.sf` generated classes by keeping these lines:
 
 `<exclude-pattern>.*/.sfdx/.*</exclude-pattern>`
+
 `<exclude-pattern>.*/.sf/.*</exclude-pattern>`
 
 ### Using custom rules written in Java
