@@ -19,7 +19,6 @@ const PMD_PATH = path.join(__dirname, '..', '..', '..', 'bin', 'pmd');
 const RULESET_PATH = path.join(__dirname, '..', '..', '..', 'rulesets', 'apex_ruleset.xml');
 const INVALID_RULESET_PATH = path.join(__dirname, '..', '..', '..', 'rulesets', 'apex_ruleset_invalid.xml');
 const TEST_ASSETS_PATH = path.join(__dirname, '..', '..', '..', 'test', 'assets');
-//const TEST_APEX_PATH = path.join(TEST_ASSETS_PATH, 'test.cls');
 
 const outputChannel = vscode.window.createOutputChannel('Apex PMD', { log: true });
 
