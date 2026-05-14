@@ -142,7 +142,7 @@ export class ApexPmd {
 
     const classPath = [path.join(workspaceRootPath, '*'), ...additionalClassPaths].join(CLASSPATH_DELM);
 
-    let env: NodeJS.ProcessEnv = {};
+    const env: NodeJS.ProcessEnv = {};
     if (this.config.jrePath) {
       env["PATH"] = `${path.join(this.config.jrePath, 'bin')}`;
     }
@@ -205,7 +205,7 @@ export class ApexPmd {
   }
 
   parseProblems(csv: string): Map<string, Array<vscode.Diagnostic>> {
-    const results = parsePmdCsv(csv);
+    const results = parsePmdCsv(csv, this.outputChannel);
 
     const problemsMap = new Map<string, Array<vscode.Diagnostic>>();
     let problemCount = 0;

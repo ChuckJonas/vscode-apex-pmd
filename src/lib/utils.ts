@@ -13,7 +13,7 @@ export function fileExists(filePath: string): boolean {
   try {
     const stat = fs.statSync(filePath);
     return stat.isFile();
-  } catch (err) {
+  } catch (ignoreErr) {
     return false;
   }
 }
@@ -22,7 +22,7 @@ export function dirExists(filePath: string): boolean {
   try {
     const stat = fs.statSync(filePath);
     return stat.isDirectory();
-  } catch (err) {
+  } catch (ignoreErr) {
     return false;
   }
 }
@@ -34,11 +34,11 @@ export function stripQuotes(s: string): string {
 export function findSfdxProject(startFile: string, defaultFallback: string): string {
   let currentDir = path.dirname(startFile);
   while (currentDir !== '') {
-    let found = fs.readdirSync(currentDir).some(s => 'sfdx-project.json' === s);
+    const found = fs.readdirSync(currentDir).some(s => 'sfdx-project.json' === s);
     if (found) {
       return currentDir;
     }
-    let paths = currentDir.split(path.sep);
+    const paths = currentDir.split(path.sep);
     paths.pop(); // remove last
     currentDir = paths.join(path.sep);
   }

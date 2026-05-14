@@ -8,6 +8,12 @@ export default tseslint.config(
   {
     rules: {
       '@typescript-eslint/explicit-function-return-type': [0],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "caughtErrorsIgnorePattern": "^ignore"
+        }
+      ]
     },
   },
   eslintConfigPrettier
