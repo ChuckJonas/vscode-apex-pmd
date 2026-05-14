@@ -22,7 +22,7 @@ export function parsePmdCsv(csv: string, outputChannel: vscode.LogOutputChannel)
   try {
     results = parse(csv, parseOpts);
   } catch (e1) {
-    outputChannel.error("Error while parsing CSV, trying to recover. " + e1);
+    outputChannel.error('Error while parsing CSV, trying to recover. ' + e1);
     //try to recover parsing... remove last ln and try again
     const lines = csv.split(EOL);
     lines.pop();
@@ -30,7 +30,7 @@ export function parsePmdCsv(csv: string, outputChannel: vscode.LogOutputChannel)
     try {
       results = parse(csv, parseOpts);
     } catch (e2) {
-      outputChannel.error("Error while parsing CSV. " + e2);
+      outputChannel.error('Error while parsing CSV. ' + e2);
       throw new Error(
         'Failed to parse PMD Results. Please submit an issue with the output from the "Apex PMD" output channel if this problem persists.'
       );

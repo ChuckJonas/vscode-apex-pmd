@@ -34,7 +34,7 @@ export function stripQuotes(s: string): string {
 export function findSfdxProject(startFile: string, defaultFallback: string): string {
   let currentDir = path.dirname(startFile);
   while (currentDir !== '') {
-    const found = fs.readdirSync(currentDir).some(s => 'sfdx-project.json' === s);
+    const found = fs.readdirSync(currentDir).some((s) => 'sfdx-project.json' === s);
     if (found) {
       return currentDir;
     }

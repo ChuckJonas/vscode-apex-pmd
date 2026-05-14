@@ -4,7 +4,7 @@ import * as path from 'path';
 import { getRootWorkspacePath } from './utils';
 
 interface ApexRootDirectory {
-  mode: "off" | "automatic" | "custom";
+  mode: 'off' | 'automatic' | 'custom';
   customValue?: string;
 }
 
