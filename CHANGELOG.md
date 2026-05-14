@@ -6,7 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
 ### Added
+
 - Bump PMD from 7.15.0 to 7.24.0 by @dschach in [#458](https://github.com/ChuckJonas/vscode-apex-pmd/pull/458)
 - Update default ruleset to raise severity of some rules, enable/disable some other rules by @dschach in [#458](https://github.com/ChuckJonas/vscode-apex-pmd/pull/458)
   - added rules
@@ -31,15 +33,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - NcssTypeCount
 
 ### Changed
+
 - Revert "Add workaround for webpack legacy open ssl" by @adangel in [#349](https://github.com/ChuckJonas/vscode-apex-pmd/pull/349)
 - Document correct default setting by @adangel in [#350](https://github.com/ChuckJonas/vscode-apex-pmd/pull/350)
 - Update changelog for 0.10.0 with updated dependencies by @adangel in [#351](https://github.com/ChuckJonas/vscode-apex-pmd/pull/351)
+
 ### Deprecated
+
 ### Removed
+
 ### Fixed
+
 - Error message for method naming was hardcoded to saying must start with lowercase by @dschach in [#458](https://github.com/ChuckJonas/vscode-apex-pmd/pull/458)
+- Fix linting and prettier by @adangel in [#460](https://github.com/ChuckJonas/vscode-apex-pmd/pull/460)
 
 ### Dependency updates
+
 - Bump prettier from 3.6.1 to 3.6.2 by @dependabot[bot] in [#343](https://github.com/ChuckJonas/vscode-apex-pmd/pull/343)
 - Bump typescript-eslint from 8.35.0 to 8.35.1 by @dependabot[bot] in [#355](https://github.com/ChuckJonas/vscode-apex-pmd/pull/355)
 - Bump @<!-- -->types/node from 24.0.4 to 24.0.10 by @dependabot[bot] in [#359](https://github.com/ChuckJonas/vscode-apex-pmd/pull/359)
@@ -59,15 +68,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump eslint from 9.31.0 to 9.32.0 by @dependabot[bot] in [#386](https://github.com/ChuckJonas/vscode-apex-pmd/pull/386)
 
 ### New Contributors
+
 **Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.10.0...HEAD
 
 ## [0.10.0] - 2025-06-27
 
 ### Added
+
 - Bump minimum version of VS Code API from 1.43.0 to 1.74.0 by @adangel in [#345](https://github.com/ChuckJonas/vscode-apex-pmd/pull/345)
 - Bump PMD from 7.14.0 to 7.15.0 by @adangel in [#346](https://github.com/ChuckJonas/vscode-apex-pmd/pull/346)
 - New configuration property "apexPMD.enableDebugOutput" by @adangel in [#347](https://github.com/ChuckJonas/vscode-apex-pmd/pull/347)
+
 ### Changed
+
 - Output Channel "Apex PMD" is now a LogOutputChannel and supports different log levels by @adangel in [#347](https://github.com/ChuckJonas/vscode-apex-pmd/pull/347)
 - Set apexRootDirectory.mode by default to "off" to prevent performance issues for now by @adangel in [#348](https://github.com/ChuckJonas/vscode-apex-pmd/pull/348)
 
@@ -94,8 +107,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 </details>
 
 ### Removed
+
 - Support for VS Code versions older than November 2022 has been removed via [#345](https://github.com/ChuckJonas/vscode-apex-pmd/pull/345)
+
 ### Fixed
+
 - Fix apexRootDirectory.customValue setting by @adangel in [#344](https://github.com/ChuckJonas/vscode-apex-pmd/pull/344)  
   reported by @yarhamjohn
 
@@ -114,10 +130,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Configuration properties are organized now in 4 sections. The names of the properties stay the same. The sections
   are:
-  * Events
-  * Rule Configurations
-  * Violation Handling
-  * PMD Execution
+  - Events
+  - Rule Configurations
+  - Violation Handling
+  - PMD Execution
 
 <details>
   <summary>75 dependency updates</summary>

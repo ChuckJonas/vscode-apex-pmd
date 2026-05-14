@@ -39,8 +39,11 @@ suite('Apex Root Directory related tests', () => {
       .run(apexClassFile, collection)
       .then(() => {
         const errs = collection.get(testApexUri);
-        assert.strictEqual(errs.length, 1, "Wrong number of found violations");
-        assert.strictEqual(errs[0].message, "Sev 3: Unused methods make understanding code harder (rule: Design-UnusedMethod)");
+        assert.strictEqual(errs.length, 1, 'Wrong number of found violations');
+        assert.strictEqual(
+          errs[0].message,
+          'Sev 3: Unused methods make understanding code harder (rule: Design-UnusedMethod)'
+        );
         done();
       })
       .catch((e) => {
@@ -74,7 +77,7 @@ suite('Apex Root Directory related tests', () => {
       .then(() => {
         const errs = collection.get(testApexUri);
         // we don't detect the violation, as ApexLink is not setup correctly (sfdx-project.json is not used)
-        assert.strictEqual(errs.length, 0, "Wrong number of found violations");
+        assert.strictEqual(errs.length, 0, 'Wrong number of found violations');
         done();
       })
       .catch((e) => {
@@ -88,10 +91,9 @@ suite('Apex Root Directory related tests', () => {
     // copy the original sample project and create a subfolder structure
     const workspaceRootPath = path.join(TEST_ASSETS_TEMP_PATH, 'project3_unusedmethod_subdir');
     const sourcePath = path.join(TEST_ASSETS_PATH, 'project3_unusedmethod');
-    TestUtils.deleteDirectory(workspaceRootPath)
+    TestUtils.deleteDirectory(workspaceRootPath);
     fs.mkdirSync(workspaceRootPath, { recursive: true });
     TestUtils.copyDirectory(sourcePath, path.join(workspaceRootPath, 'module'));
-
 
     const rulesetPath = path.join(workspaceRootPath, 'module', 'custom_ruleset.xml');
     const apexClassFile = path.join(workspaceRootPath, 'module', 'src', 'Foo.cls');
@@ -106,7 +108,7 @@ suite('Apex Root Directory related tests', () => {
     config.workspaceRootPath = workspaceRootPath;
     config.additionalClassPaths = [];
     config.commandBufferSize = 64000000;
-    config.apexRootDirectory = { mode: "automatic" };
+    config.apexRootDirectory = { mode: 'automatic' };
 
     const pmd = new ApexPmd(outputChannel, config);
 
@@ -115,8 +117,11 @@ suite('Apex Root Directory related tests', () => {
       .run(apexClassFile, collection)
       .then(() => {
         const errs = collection.get(testApexUri);
-        assert.strictEqual(errs.length, 1, "Wrong number of found violations");
-        assert.strictEqual(errs[0].message, "Sev 3: Unused methods make understanding code harder (rule: Design-UnusedMethod)");
+        assert.strictEqual(errs.length, 1, 'Wrong number of found violations');
+        assert.strictEqual(
+          errs[0].message,
+          'Sev 3: Unused methods make understanding code harder (rule: Design-UnusedMethod)'
+        );
         done();
       })
       .catch((e) => {
@@ -130,13 +135,15 @@ suite('Apex Root Directory related tests', () => {
     // copy the original sample project and create a subfolder structure
     const workspaceRootPath = path.join(TEST_ASSETS_TEMP_PATH, 'project3_unusedmethod_weird');
     const sourcePath = path.join(TEST_ASSETS_PATH, 'project3_unusedmethod');
-    TestUtils.deleteDirectory(workspaceRootPath)
+    TestUtils.deleteDirectory(workspaceRootPath);
     fs.mkdirSync(path.join(workspaceRootPath, 'subdir'), { recursive: true });
     TestUtils.copyDirectory(sourcePath, path.join(workspaceRootPath, 'subdir', 'module'));
     // replace the original sfdx-project.json file in subdir/module with a broken one
     fs.unlinkSync(path.join(workspaceRootPath, 'subdir', 'module', 'sfdx-project.json'));
     // it's broken because of referencing paths _not within_ the project
-    fs.writeFileSync(path.join(workspaceRootPath, 'subdir', 'module', 'sfdx-project.json'), `
+    fs.writeFileSync(
+      path.join(workspaceRootPath, 'subdir', 'module', 'sfdx-project.json'),
+      `
         {
           "packageDirectories": [
             {
@@ -146,9 +153,12 @@ suite('Apex Root Directory related tests', () => {
           ],
           "namespace": "foo_ns"
         }
-        `);
+        `
+    );
     // and create a new one in the parent directory (subdir) - but not in workspaceRoot (that would be a default fallback).
-    fs.writeFileSync(path.join(workspaceRootPath, 'subdir', 'sfdx-project.json'), `
+    fs.writeFileSync(
+      path.join(workspaceRootPath, 'subdir', 'sfdx-project.json'),
+      `
       {
         "packageDirectories": [
           {
@@ -158,7 +168,8 @@ suite('Apex Root Directory related tests', () => {
         ],
         "namespace": "foo_ns"
       }
-      `);
+      `
+    );
 
     const rulesetPath = path.join(workspaceRootPath, 'subdir', 'module', 'custom_ruleset.xml');
     const apexClassFile = path.join(workspaceRootPath, 'subdir', 'module', 'src', 'Foo.cls');
@@ -173,7 +184,7 @@ suite('Apex Root Directory related tests', () => {
     config.workspaceRootPath = workspaceRootPath;
     config.additionalClassPaths = [];
     config.commandBufferSize = 64000000;
-    config.apexRootDirectory = { "mode": "custom", "customValue": path.join(workspaceRootPath, 'subdir') };
+    config.apexRootDirectory = { mode: 'custom', customValue: path.join(workspaceRootPath, 'subdir') };
 
     const pmd = new ApexPmd(outputChannel, config);
 
@@ -182,13 +193,15 @@ suite('Apex Root Directory related tests', () => {
       .run(apexClassFile, collection)
       .then(() => {
         const errs = collection.get(testApexUri);
-        assert.strictEqual(errs.length, 1, "Wrong number of found violations");
-        assert.strictEqual(errs[0].message, "Sev 3: Unused methods make understanding code harder (rule: Design-UnusedMethod)");
+        assert.strictEqual(errs.length, 1, 'Wrong number of found violations');
+        assert.strictEqual(
+          errs[0].message,
+          'Sev 3: Unused methods make understanding code harder (rule: Design-UnusedMethod)'
+        );
         done();
       })
       .catch((e) => {
         done(e);
       });
   });
-
 });

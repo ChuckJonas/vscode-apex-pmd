@@ -50,3 +50,39 @@ jobs:
         with:
           name: vscode-apex-pmd
           path: apex-pmd-*.vsix
+
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+      - name: Install npm dependencies
+        run: npm ci
+      - name: Run eslint
+        run: npm run lint
+
+  prettier:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+      - name: Install npm dependencies
+        run: npm ci
+      - name: Run prettier
+        run: npm run prettier
+      - name: Fail build if there are changes
+        run: |
+          git status
+          git diff --quiet && git diff --cached --quiet || (echo "Workspace is dirty"; exit 1)

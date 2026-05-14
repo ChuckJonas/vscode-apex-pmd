@@ -173,7 +173,7 @@ suite('Apex PMD Tests', () => {
 
         const diagnostic = errs[0];
         const code = diagnostic.code as { value: string };
-        assert.strictEqual(code.value, "OperationWithLimitsInLoop");
+        assert.strictEqual(code.value, 'OperationWithLimitsInLoop');
         assert.strictEqual(diagnostic.range.start.line, 6); // vscode lines are 0-based
         done();
       })
@@ -234,7 +234,7 @@ suite('Apex PMD Tests', () => {
     this.timeout(100000);
 
     const workspaceRootPath = path.join(TEST_ASSETS_PATH, 'project2_simple');
-    const jrePath = path.join(workspaceRootPath, "custom jre");
+    const jrePath = path.join(workspaceRootPath, 'custom jre');
 
     const JAVA_HOME = env['JAVA_HOME'];
     if (JAVA_HOME === undefined || JAVA_HOME === '') {
@@ -272,7 +272,7 @@ suite('Apex PMD Tests', () => {
 
         const diagnostic = errs[0];
         const code = diagnostic.code as { value: string };
-        assert.strictEqual(code.value, "OperationWithLimitsInLoop");
+        assert.strictEqual(code.value, 'OperationWithLimitsInLoop');
         assert.strictEqual(diagnostic.range.start.line, 4); // vscode lines are 0-based
         done();
       })

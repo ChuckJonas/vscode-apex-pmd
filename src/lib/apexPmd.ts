@@ -118,14 +118,8 @@ export class ApexPmd {
   }
 
   async executeCmd(targetPath: string, token?: vscode.CancellationToken): Promise<string> {
-    const {
-      workspaceRootPath,
-      enableCache,
-      pmdBinPath,
-      additionalClassPaths,
-      commandBufferSize,
-      apexRootDirectory,
-    } = this.config;
+    const { workspaceRootPath, enableCache, pmdBinPath, additionalClassPaths, commandBufferSize, apexRootDirectory } =
+      this.config;
 
     // -R Comma-separated list of ruleset or rule references.
     const cachePath = `${workspaceRootPath}/.pmdCache`;
@@ -142,17 +136,17 @@ export class ApexPmd {
 
     const classPath = [path.join(workspaceRootPath, '*'), ...additionalClassPaths].join(CLASSPATH_DELM);
 
-    let env: NodeJS.ProcessEnv = {};
+    const env: NodeJS.ProcessEnv = {};
     if (this.config.jrePath) {
-      env["PATH"] = `${path.join(this.config.jrePath, 'bin')}`;
+      env['PATH'] = `${path.join(this.config.jrePath, 'bin')}`;
     }
 
     switch (apexRootDirectory.mode) {
-      case "automatic":
-        env["PMD_APEX_ROOT_DIRECTORY"] = findSfdxProject(targetPath, workspaceRootPath);
+      case 'automatic':
+        env['PMD_APEX_ROOT_DIRECTORY'] = findSfdxProject(targetPath, workspaceRootPath);
         break;
-      case "custom":
-        env["PMD_APEX_ROOT_DIRECTORY"] = apexRootDirectory.customValue ?? '';
+      case 'custom':
+        env['PMD_APEX_ROOT_DIRECTORY'] = apexRootDirectory.customValue ?? '';
         break;
     }
 
@@ -205,7 +199,7 @@ export class ApexPmd {
   }
 
   parseProblems(csv: string): Map<string, Array<vscode.Diagnostic>> {
-    const results = parsePmdCsv(csv);
+    const results = parsePmdCsv(csv, this.outputChannel);
 
     const problemsMap = new Map<string, Array<vscode.Diagnostic>>();
     let problemCount = 0;
