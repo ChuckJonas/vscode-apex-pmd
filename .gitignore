@@ -1,6 +1,7 @@
 out
 node_modules
 .sfdx
+.sf
 .vscode-test
 bin/pmd
 bin/pmd.zip
@@ -10,3 +11,4 @@ dist/
 test/assets/project2 - with space/pmd-copy
 test/assets/project2_simple/custom jre
 test/assets_temp
+.pmdCache

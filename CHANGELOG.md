@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Bump PMD from 7.15.0 to 7.24.0 by @dschach in [#458](https://github.com/ChuckJonas/vscode-apex-pmd/pull/458)
+- Update default ruleset to raise severity of some rules, enable/disable some other rules by @dschach in [#458](https://github.com/ChuckJonas/vscode-apex-pmd/pull/458)
+  - added rules
+    - AnnotationsNamingConventions (prio 3)
+    - ApexDoc (prio 3)
+    - OperationWithHighCostInLoop (prio 3)
+    - NcssCount (prio 3)
+  - raised severity
+    - ApexAssertionsShouldIncludeMessage (prio 3, was 4)
+    - ApexUnitTestMethodShouldHaveIsTestAnnotation (prio 3, was 4)
+    - ClassNamingConventions (prio 2, was 3)
+    - FieldNamingConventions (prio 2, was 3)
+    - FormalParameterNamingConventions (prio 2, was 3)
+    - LocalVariableNamingConventions (prio 2, was 3)
+    - MethodNamingConventions (prio 2, was 3)
+    - OneDeclarationPerLine (prio 2, was 3)
+    - PropertyNamingConventions (prio 2, was 3)
+  - removed rules (all replaced by NcssCount)
+    - ExcessiveClassLength
+    - NcssConstructorCount
+    - NcssMethodCount
+    - NcssTypeCount
+
 ### Changed
 - Revert "Add workaround for webpack legacy open ssl" by @adangel in [#349](https://github.com/ChuckJonas/vscode-apex-pmd/pull/349)
 - Document correct default setting by @adangel in [#350](https://github.com/ChuckJonas/vscode-apex-pmd/pull/350)
@@ -14,6 +37,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+- Error message for method naming was hardcoded to saying must start with lowercase by @dschach in [#458](https://github.com/ChuckJonas/vscode-apex-pmd/pull/458)
+
 ### Dependency updates
 - Bump prettier from 3.6.1 to 3.6.2 by @dependabot[bot] in [#343](https://github.com/ChuckJonas/vscode-apex-pmd/pull/343)
 - Bump typescript-eslint from 8.35.0 to 8.35.1 by @dependabot[bot] in [#355](https://github.com/ChuckJonas/vscode-apex-pmd/pull/355)

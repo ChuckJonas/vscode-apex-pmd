@@ -42,16 +42,17 @@ To start the command you can click in the menu on `Help/Show All Commands` or pr
 - `commandBufferSize` Size of buffer used to collect PMD command output (MB), may need to be increased for very large projects
 - `jrePath` (Optional) Path to JRE (Folder that contains which contains `bin/java`)
 - `apexRootDirectory` (optional, since 0.9.0): Whether and how to set `PMD_APEX_ROOT_DIRECTORY` env variable. This
-   variable should point to the sfdx project directory, which contains the file `sfdx-project.json`.  
-   
-   This is needed for the rule [UnusedMethod](https://docs.pmd-code.org/latest/pmd_rules_apex_design.html#unusedmethod)
-   which utilizes [Apex Language Server](https://github.com/apex-dev-tools/apex-ls) which needs a well-formed sfdx
-   project.  
-   * off = Do not set `PMD_APEX_ROOT_DIRECTORY` at all
-   * automatic = (default) Automatically find the nearest `sfdx-project.json` file in a parent directory and use
-     that directory
-   * custom = Use a custom location for `PMD_APEX_ROOT_DIRECTORY` provided by "customValue". It should point to the
-     directory where the `sfdx-project.json` file is located. This is only used, if the "mode"=="custom".
+  variable should point to the sfdx project directory, which contains the file `sfdx-project.json`.
+
+  This is needed for the rule [UnusedMethod](https://docs.pmd-code.org/latest/pmd_rules_apex_design.html#unusedmethod)
+  which utilizes [Apex Language Server](https://github.com/apex-dev-tools/apex-ls) which needs a well-formed sfdx
+  project.
+  - off = Do not set `PMD_APEX_ROOT_DIRECTORY` at all
+  - automatic = (default) Automatically find the nearest `sfdx-project.json` file in a parent directory and use
+    that directory
+  - custom = Use a custom location for `PMD_APEX_ROOT_DIRECTORY` provided by "customValue". It should point to the
+    directory where the `sfdx-project.json` file is located. This is only used, if the "mode"=="custom".
+
 - `enableDebugOutput`: Logs PMD's debug messages to help troubleshooting.
 
 ### Defining your own "Ruleset"
@@ -64,9 +65,11 @@ You can also mention the default ruleset in `apexPMD.rulesets`. To do this add `
 
 [Apex Ruleset Reference](https://docs.pmd-code.org/latest/pmd_rules_apex.html)
 
-NOTE: If you move away from the default ruleset in an sfdx project, make sure to exclude the `.sfdx` generated classes by keeping this line:
+NOTE: If you move away from the default ruleset in an sfdx project, make sure to exclude the `.sfdx` and `.sf` generated classes by keeping these lines:
 
 `<exclude-pattern>.*/.sfdx/.*</exclude-pattern>`
+
+`<exclude-pattern>.*/.sf/.*</exclude-pattern>`
 
 ### Using custom rules written in Java
 
@@ -75,8 +78,7 @@ If you want to use your own [custom rules](https://docs.pmd-code.org/latest/pmd_
 ## Troubleshooting
 
 The plugin creates an own output channel "Apex PMD" in the output view. This shows the output of the PMD command that is executed in the background.
-In case of any problem, this output channel might contain the underlying error. When reporting an issue, please include any error messages from
-this output channel.
+In case of any problem, this output channel might contain the underlying error. When reporting an issue, please include any error messages from this output channel.
 
 ## Developing/Contributing
 

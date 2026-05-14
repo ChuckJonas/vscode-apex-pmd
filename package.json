@@ -223,7 +223,7 @@
     }
   },
   "config": {
-    "pmdVersion": "7.15.0"
+    "pmdVersion": "7.24.0"
   },
   "scripts": {
     "postinstall": "pmd-packager/upgrade.sh",
@@ -262,7 +262,7 @@
     "webpack-cli": "^6.0.1"
   },
   "dependencies": {
-    "csv-parse": "^6.1.0",
+    "csv-parse": "^6.2.1",
     "debounce": "^2.2.0"
   }
 }
