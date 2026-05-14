@@ -45,6 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Error message for method naming was hardcoded to saying must start with lowercase by @dschach in [#458](https://github.com/ChuckJonas/vscode-apex-pmd/pull/458)
+- Fix linting and prettier by @adangel in [#460](https://github.com/ChuckJonas/vscode-apex-pmd/pull/460)
 
 ### Dependency updates
 
