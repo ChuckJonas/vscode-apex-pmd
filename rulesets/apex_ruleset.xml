@@ -2,9 +2,9 @@
 <ruleset
 	xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	name="Default ruleset used by the CodeClimate Engine for Salesforce.com Apex"
+	name="Default ruleset for vscode-apex-pmd"
 	xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
-   <description>Quickstart configuration of PMD for ApexPMD</description>
+   <description>Default ruleset for vscode-apex-pmd</description>
 	<exclude-pattern>.*/.sfdx/.*</exclude-pattern>
 	<exclude-pattern>.*/.sf/.*</exclude-pattern>
 
