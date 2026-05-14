@@ -263,6 +263,6 @@
   },
   "dependencies": {
     "csv-parse": "^6.2.1",
-    "debounce": "^2.2.0"
+    "debounce": "^3.0.0"
   }
 }
