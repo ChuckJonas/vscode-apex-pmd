@@ -135,7 +135,7 @@ export class ApexPmd {
 
     const classPath = [path.join(workspaceRootPath, '*'), ...additionalClassPaths].join(CLASSPATH_DELM);
 
-    let env: NodeJS.ProcessEnv = {};
+    const env: NodeJS.ProcessEnv = {};
     if (this.config.jrePath) {
       env['PATH'] = `${path.join(this.config.jrePath, 'bin')}`;
     }
@@ -228,7 +228,7 @@ export class ApexPmd {
     const { priorityErrorThreshold, priorityWarnThreshold } = this.config;
     const lineNum = parseInt(result.line) - 1;
     let uri = '';
-    const msg = `${result.description} (rule: ${result.ruleSet}-${result.rule})`;
+    const msg = `Sev ${result.priority}: ${result.description} (rule: ${result.ruleSet}-${result.rule})`;
     const externalURL = result.externalURL;
     if (externalURL != undefined) {
       uri = externalURL.startsWith('http') ? externalURL : 'https://' + externalURL;
@@ -280,7 +280,7 @@ export class ApexPmd {
       return true;
     }
     vscode.window.showErrorMessage(
-      `No Ruleset not found at ${rulesetPath}. Ensure configuration correct or change back to the default.`
+      `Ruleset not found at ${rulesetPath}. Ensure configuration correct or change back to the default.`
     );
     return false;
   }

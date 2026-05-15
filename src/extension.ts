@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import { ApexPmd } from './lib/apexPmd';
 import { Config } from './lib/config';
 import { AppStatus } from './lib/appStatus';
-import * as debounce from 'debounce';
+import debounce from 'debounce';
 import { getRootWorkspacePath } from './lib/utils';
 export { ApexPmd };
 
@@ -14,7 +14,7 @@ const isSupportedLanguage = (langCode: string) => 0 <= supportedLanguageCodes.in
 const appName = 'Apex PMD';
 const settingsNamespace = 'apexPMD';
 const collection = vscode.languages.createDiagnosticCollection('apex-pmd');
-const outputChannel = vscode.window.createOutputChannel(appName, {log: true});
+const outputChannel = vscode.window.createOutputChannel(appName, { log: true });
 
 export function activate(context: vscode.ExtensionContext) {
   //setup config

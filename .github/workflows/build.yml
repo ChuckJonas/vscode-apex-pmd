@@ -22,10 +22,10 @@ jobs:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
           cache: 'npm'
       - name: Install npm dependencies
         run: npm ci
@@ -36,7 +36,7 @@ jobs:
         if: runner.os != 'Linux'
         run: npm test
       - name: Upload test logs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: success() || failure()
         with:
           name: vscode-test-logs-${{ matrix.os }}
@@ -45,8 +45,44 @@ jobs:
         if: runner.os == 'Linux'
         run: npm run vscode:package
       - name: Upload extension
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: runner.os == 'Linux'
         with:
           name: vscode-apex-pmd
           path: apex-pmd-*.vsix
+
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+      - name: Install npm dependencies
+        run: npm ci
+      - name: Run eslint
+        run: npm run lint
+
+  prettier:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+      - name: Install npm dependencies
+        run: npm ci
+      - name: Run prettier
+        run: npm run prettier
+      - name: Fail build if there are changes
+        run: |
+          git status
+          git diff --quiet && git diff --cached --quiet || (echo "Workspace is dirty"; exit 1)
