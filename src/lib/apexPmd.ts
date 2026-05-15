@@ -5,7 +5,6 @@ import { Config } from './config';
 import { AppStatus } from './appStatus';
 import * as os from 'os';
 import { fileExists, dirExists, findSfdxProject } from './utils';
-import { parsePmdCsv } from './pmdCsvParser';
 
 //setup OS constants
 const CLASSPATH_DELM = os.platform() === 'win32' ? ';' : ':';
@@ -127,7 +126,7 @@ export class ApexPmd {
 
     const cacheKey = enableCache ? `--cache "${cachePath}"` : '--no-cache';
     const noProgressBar = '--no-progress';
-    const formatKey = `-f csv`;
+    const formatKey = `-f json`;
     const targetPathKey = `-d "${targetPath}"`;
     const rulesetsKey = `-R "${rulesetsArg}"`;
     const debugMode = this.config.enableDebugOutput ? '--debug' : '';
@@ -198,33 +197,27 @@ export class ApexPmd {
     return pmdPromise;
   }
 
-  parseProblems(csv: string): Map<string, Array<vscode.Diagnostic>> {
-    const results = parsePmdCsv(csv, this.outputChannel);
+  parseProblems(jsonString: string): Map<string, Array<vscode.Diagnostic>> {
+    const results = this.mapPmdToResult(jsonString);
 
     const problemsMap = new Map<string, Array<vscode.Diagnostic>>();
     let problemCount = 0;
 
-    for (let i = 1; i < results.length; i++) {
-      try {
-        const result = results[i];
-        if (!results[i]) continue;
+    for (let i = 0; i < results.length; i++) {
+      const result = results[i];
+      if (!result) continue;
 
-        //skip .sfdx files
-        if (result.file.includes('.sfdx')) {
-          continue;
-        }
+      // skip .sfdx files
+      if (result.file.endsWith('.sfdx')) continue;
 
-        const problem = this.createDiagnostic(result);
-        if (!problem) continue;
+      const problem = this.createDiagnostic(result);
+      if (!problem) continue;
 
-        problemCount++;
-        if (problemsMap.has(result.file)) {
-          problemsMap.get(result.file).push(problem);
-        } else {
-          problemsMap.set(result.file, [problem]);
-        }
-      } catch (ex) {
-        this.outputChannel.error(ex);
+      problemCount++;
+      if (problemsMap.has(result.file)) {
+        problemsMap.get(result.file)!.push(problem);
+      } else {
+        problemsMap.set(result.file, [problem]);
       }
     }
     this.outputChannel.info(`${problemCount} issue(s) found`);
@@ -234,17 +227,9 @@ export class ApexPmd {
   createDiagnostic(result: PmdResult): vscode.Diagnostic {
     const { priorityErrorThreshold, priorityWarnThreshold } = this.config;
     const lineNum = parseInt(result.line) - 1;
-
-    const uri = `https://pmd.github.io/latest/pmd_rules_apex_${result.ruleSet
-      .split(' ')
-      .join('')
-      .toLowerCase()}.html#${result.rule.toLowerCase()}`;
     const msg = `Sev ${result.priority}: ${result.description} (rule: ${result.ruleSet}-${result.rule})`;
-
+    const externalURL = result.externalURL;
     const priority = parseInt(result.priority);
-    if (isNaN(lineNum)) {
-      return null;
-    }
 
     let level: vscode.DiagnosticSeverity;
     if (priority <= priorityErrorThreshold) {
@@ -260,7 +245,11 @@ export class ApexPmd {
       msg,
       level
     );
-    problem.code = { target: vscode.Uri.parse(uri), value: result.rule };
+    if (externalURL) {
+      problem.code = { target: vscode.Uri.parse(externalURL), value: result.rule };
+    } else {
+      problem.code = result.rule;
+    }
     problem.source = 'apex pmd';
     return problem;
   }
@@ -286,5 +275,29 @@ export class ApexPmd {
       `Ruleset not found at ${rulesetPath}. Ensure configuration correct or change back to the default.`
     );
     return false;
+  }
+
+  mapPmdToResult(jsonString: string): PmdResult[] {
+    const report: PmdReport = JSON.parse(jsonString);
+
+    const results: PmdResult[] = [];
+
+    report.files.forEach((file) => {
+      file.violations.forEach((violation) => {
+        results.push({
+          problem: violation.rule,
+          package: '',
+          file: file.filename,
+          priority: violation.priority.toString(),
+          line: violation.beginline.toString(),
+          description: violation.description,
+          ruleSet: violation.ruleset,
+          rule: violation.rule,
+          externalURL: violation.externalInfoUrl,
+        });
+      });
+    });
+
+    return results;
   }
 }

@@ -261,7 +261,6 @@
     "webpack-cli": "^6.0.1"
   },
   "dependencies": {
-    "csv-parse": "^6.2.1",
     "debounce": "^3.0.0"
   }
 }
