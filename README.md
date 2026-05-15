@@ -1,10 +1,9 @@
 # vscode Apex Pmd
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/chuckjonas.apex-pmd) ![Visual Studio Marketplace Installs - Azure DevOps Extension](https://img.shields.io/visual-studio-marketplace/azure-devops/installs/total/chuckjonas.apex-pmd)](https://marketplace.visualstudio.com/items?itemName=chuckjonas.apex-pmd)
+[![Visual Studio Marketplace Version](https://vsmarketplacebadges.dev/version-short/chuckjonas.apex-pmd.png) ![Visual Studio Marketplace Installs - Azure DevOps Extension](https://vsmarketplacebadges.dev/installs-short/chuckjonas.apex-pmd.png)](https://marketplace.visualstudio.com/items?itemName=chuckjonas.apex-pmd)
 [![Open VSX Version](https://img.shields.io/open-vsx/v/pmd/apex-pmd)](https://open-vsx.org/extension/pmd/apex-pmd)
 [![Open VSX Downloads](https://img.shields.io/open-vsx/dt/pmd/apex-pmd)](https://open-vsx.org/extension/pmd/apex-pmd)
 [![build](https://github.com/ChuckJonas/vscode-apex-pmd/actions/workflows/build.yml/badge.svg)](https://github.com/ChuckJonas/vscode-apex-pmd/actions/workflows/build.yml)
-[![Build Status](https://travis-ci.org/ChuckJonas/vscode-apex-pmd.svg?branch=master)](https://travis-ci.org/ChuckJonas/vscode-apex-pmd)
 
 Allows you to run [Apex Static Analysis](https://pmd.github.io/latest/index.html) directly in vscode on Apex, VisualForce & other XML metadata files.
 

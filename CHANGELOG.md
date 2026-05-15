@@ -19,7 +19,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### New Contributors
 
-**Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.11.0...HEAD
+**Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.11.1...HEAD
+
+## [0.11.1] - 2026-05-15
+
+Only updates the badges in README.md. No other changes. This is the version, that is
+available from Microsoft's Visual Studio Marketplace.
+
+**Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.11.0...v0.11.1
 
 ## [0.11.0] - 2026-05-15
 
