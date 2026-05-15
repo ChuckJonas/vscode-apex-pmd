@@ -281,7 +281,7 @@ suite('Apex PMD Tests', () => {
       });
   });
 
-  test('test custom externalInfoUrl (#162)', function(done) {
+  test('test custom externalInfoUrl (#162)', function (done) {
     this.timeout(100000);
     const workspaceRootPath = path.join(TEST_ASSETS_PATH, 'project4_custom-rule-externalInfoUrl');
     const rulesetPath = path.join(workspaceRootPath, 'custom-ruleset.xml');
@@ -309,20 +309,30 @@ suite('Apex PMD Tests', () => {
         assert.ok(errs !== undefined);
         assert.strictEqual(errs.length, 2);
 
-        assertDiagnostic(errs[0], 'AvoidGlobalModifier', /^https:\/\/.+\/pmd_rules_apex_bestpractices\.html#avoidglobalmodifier$/);
-        assertDiagnostic(errs[1], 'CustomUnusedLocalVariable', /^https:\/\/example\.org\/apexrules\/doc\/CustomUnusedLocalVariable$/);
+        assertDiagnostic(
+          errs[0],
+          'AvoidGlobalModifier',
+          /^https:\/\/.+\/pmd_rules_apex_bestpractices\.html#avoidglobalmodifier$/
+        );
+        assertDiagnostic(
+          errs[1],
+          'CustomUnusedLocalVariable',
+          /^https:\/\/example\.org\/apexrules\/doc\/CustomUnusedLocalVariable$/
+        );
 
         done();
       })
       .catch((e) => {
         done(e);
       });
-
   });
 
   function assertDiagnostic(diagnostic: vscode.Diagnostic, ruleName: string, infoUrl: RegExp) {
-        const code = diagnostic.code as { target: vscode.Uri, value: string };
-        assert.strictEqual(code.value, ruleName, "Wrong rule name");
-        assert.ok(infoUrl.test(code.target.toString()), `externalInfoUrl did not match.\nExpected: ${infoUrl.toString()}\nActual: ${code.target.toString()}`);
+    const code = diagnostic.code as { target: vscode.Uri; value: string };
+    assert.strictEqual(code.value, ruleName, 'Wrong rule name');
+    assert.ok(
+      infoUrl.test(code.target.toString()),
+      `externalInfoUrl did not match.\nExpected: ${infoUrl.toString()}\nActual: ${code.target.toString()}`
+    );
   }
 });
