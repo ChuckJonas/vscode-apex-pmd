@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   name="Test ruleset" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+   <description>Test ruleset</description>
+   <exclude-pattern>.*/.sfdx/.*</exclude-pattern>
+
+  <!-- This uses the default PMD rule - it just references it -->
+  <rule ref="category/apex/bestpractices.xml/AvoidGlobalModifier">
+    <priority>1</priority>
+  </rule>
+
+  <!-- instead of referencing the default PMD rule, we'll redefine it here
+       with a custom externalInfoURL. This simulates a custom rule,
+       without the need to actually implement and deploy a custom rule 
+       <rule ref="category/apex/bestpractices.xml/UnusedLocalVariable" />
+       See https://github.com/pmd/pmd/blob/b02c0f11bf1e4d403899cbd014854af87baeee15/pmd-apex/src/main/resources/category/apex/bestpractices.xml#L390-L409
+  -->
+  <rule name="CustomUnusedLocalVariable"
+        since="6.23.0"
+        language="apex"
+        message="Variable ''{0}'' defined but not used"
+        class="net.sourceforge.pmd.lang.apex.rule.bestpractices.UnusedLocalVariableRule"
+        externalInfoUrl="https://example.org/apexrules/doc/CustomUnusedLocalVariable">
+      <description>
+Detects when a local variable is declared and/or assigned but not used.
+      </description>
+      <priority>1</priority>
+      <example>
+<![CDATA[
+  public Boolean bar(String z) {
+      String x = 'some string'; // not used
+
+      String y = 'some other string'; // used in the next line
+      return z.equals(y);
+  }
+]]>
+      </example>
+    </rule>
+
+</ruleset>

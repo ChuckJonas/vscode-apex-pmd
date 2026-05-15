@@ -280,4 +280,49 @@ suite('Apex PMD Tests', () => {
         done(e);
       });
   });
+
+  test('test custom externalInfoUrl (#162)', function(done) {
+    this.timeout(100000);
+    const workspaceRootPath = path.join(TEST_ASSETS_PATH, 'project4_custom-rule-externalInfoUrl');
+    const rulesetPath = path.join(workspaceRootPath, 'custom-ruleset.xml');
+
+    const apexClassFile = path.join(workspaceRootPath, 'example.cls');
+
+    const collection = vscode.languages.createDiagnosticCollection('apex-pmd-test');
+
+    const config = new Config();
+    config.pmdBinPath = PMD_PATH;
+    config.rulesets = [rulesetPath];
+    config.priorityErrorThreshold = 3;
+    config.priorityWarnThreshold = 1;
+    config.workspaceRootPath = workspaceRootPath;
+    config.additionalClassPaths = [];
+    config.commandBufferSize = 64000000;
+
+    const pmd = new ApexPmd(outputChannel, config);
+
+    const testApexUri = vscode.Uri.file(apexClassFile);
+    pmd
+      .run(apexClassFile, collection)
+      .then(() => {
+        const errs = collection.get(testApexUri);
+        assert.ok(errs !== undefined);
+        assert.strictEqual(errs.length, 2);
+
+        assertDiagnostic(errs[0], 'AvoidGlobalModifier', /^https:\/\/.+\/pmd_rules_apex_bestpractices\.html#avoidglobalmodifier$/);
+        assertDiagnostic(errs[1], 'CustomUnusedLocalVariable', /^https:\/\/example\.org\/apexrules\/doc\/CustomUnusedLocalVariable$/);
+
+        done();
+      })
+      .catch((e) => {
+        done(e);
+      });
+
+  });
+
+  function assertDiagnostic(diagnostic: vscode.Diagnostic, ruleName: string, infoUrl: RegExp) {
+        const code = diagnostic.code as { target: vscode.Uri, value: string };
+        assert.strictEqual(code.value, ruleName, "Wrong rule name");
+        assert.ok(infoUrl.test(code.target.toString()), `externalInfoUrl did not match.\nExpected: ${infoUrl.toString()}\nActual: ${code.target.toString()}`);
+  }
 });
