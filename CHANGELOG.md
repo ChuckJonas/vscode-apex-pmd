@@ -38,10 +38,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Document correct default setting by @adangel in [#350](https://github.com/ChuckJonas/vscode-apex-pmd/pull/350)
 - Update changelog for 0.10.0 with updated dependencies by @adangel in [#351](https://github.com/ChuckJonas/vscode-apex-pmd/pull/351)
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - Error message for method naming was hardcoded to saying must start with lowercase by @dschach in [#458](https://github.com/ChuckJonas/vscode-apex-pmd/pull/458)
@@ -49,6 +45,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use externalInfoUrl for custom rules reported by @nicolas1bruno in [#162](https://github.com/ChuckJonas/vscode-apex-pmd/issues/162) and fixed by @Voronezshkyi in [#404](https://github.com/ChuckJonas/vscode-apex-pmd/pull/404)
 
 ### Dependency updates
+
+<details>
+  <summary>64 dependency updates</summary>
 
 - Bump prettier from 3.6.1 to 3.6.2 by @dependabot[bot] in [#343](https://github.com/ChuckJonas/vscode-apex-pmd/pull/343)
 - Bump typescript-eslint from 8.35.0 to 8.35.1 by @dependabot[bot] in [#355](https://github.com/ChuckJonas/vscode-apex-pmd/pull/355)
@@ -67,8 +66,61 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump typescript-eslint from 8.37.0 to 8.38.0 by @dependabot[bot] in [#382](https://github.com/ChuckJonas/vscode-apex-pmd/pull/382)
 - Bump webpack from 5.100.2 to 5.101.0 by @dependabot[bot] in [#385](https://github.com/ChuckJonas/vscode-apex-pmd/pull/385)
 - Bump eslint from 9.31.0 to 9.32.0 by @dependabot[bot] in [#386](https://github.com/ChuckJonas/vscode-apex-pmd/pull/386)
+- Bump @<!-- -->types/node from 24.1.0 to 24.2.0 by @dependabot[bot] in [#387](https://github.com/ChuckJonas/vscode-apex-pmd/pull/387)
+- Bump typescript from 5.8.3 to 5.9.2 by @dependabot[bot] in [#388](https://github.com/ChuckJonas/vscode-apex-pmd/pull/388)
+- Bump typescript-eslint from 8.38.0 to 8.39.0 by @dependabot[bot] in [#390](https://github.com/ChuckJonas/vscode-apex-pmd/pull/390)
+- Bump eslint-plugin-prettier from 5.5.3 to 5.5.4 by @dependabot[bot] in [#392](https://github.com/ChuckJonas/vscode-apex-pmd/pull/392)
+- Bump eslint from 9.32.0 to 9.33.0 by @dependabot[bot] in [#393](https://github.com/ChuckJonas/vscode-apex-pmd/pull/393)
+- Bump @<!-- -->types/node from 24.2.0 to 24.2.1 by @dependabot[bot] in [#395](https://github.com/ChuckJonas/vscode-apex-pmd/pull/395)
+- Bump typescript-eslint from 8.39.0 to 8.39.1 by @dependabot[bot] in [#398](https://github.com/ChuckJonas/vscode-apex-pmd/pull/398)
+- Bump webpack from 5.101.0 to 5.101.2 by @dependabot[bot] in [#400](https://github.com/ChuckJonas/vscode-apex-pmd/pull/400)
+- Bump @<!-- -->types/node from 24.2.1 to 24.3.0 by @dependabot[bot] in [#401](https://github.com/ChuckJonas/vscode-apex-pmd/pull/401)
+- Bump webpack from 5.101.2 to 5.101.3 by @dependabot[bot] in [#402](https://github.com/ChuckJonas/vscode-apex-pmd/pull/402)
+- Bump ts-loader from 9.5.2 to 9.5.4 by @dependabot[bot] in [#406](https://github.com/ChuckJonas/vscode-apex-pmd/pull/406)
+- Bump eslint from 9.33.0 to 9.35.0 by @dependabot[bot] in [#410](https://github.com/ChuckJonas/vscode-apex-pmd/pull/410)
+- Bump typescript-eslint from 8.39.1 to 8.43.0 by @dependabot[bot] in [#412](https://github.com/ChuckJonas/vscode-apex-pmd/pull/412)
+- Bump mocha from 11.7.1 to 11.7.2 by @dependabot[bot] in [#413](https://github.com/ChuckJonas/vscode-apex-pmd/pull/413)
+- Bump @<!-- -->types/node from 24.3.0 to 24.3.1 by @dependabot[bot] in [#414](https://github.com/ChuckJonas/vscode-apex-pmd/pull/414)
+- Bump typescript-eslint from 8.43.0 to 8.44.0 by @dependabot[bot] in [#416](https://github.com/ChuckJonas/vscode-apex-pmd/pull/416)
+- Bump @<!-- -->types/node from 24.3.1 to 24.5.2 by @dependabot[bot] in [#419](https://github.com/ChuckJonas/vscode-apex-pmd/pull/419)
+- Bump eslint from 9.35.0 to 9.36.0 by @dependabot[bot] in [#420](https://github.com/ChuckJonas/vscode-apex-pmd/pull/420)
+- Bump typescript-eslint from 8.44.0 to 8.44.1 by @dependabot[bot] in [#422](https://github.com/ChuckJonas/vscode-apex-pmd/pull/422)
+- Bump webpack from 5.101.3 to 5.102.0 by @dependabot[bot] in [#423](https://github.com/ChuckJonas/vscode-apex-pmd/pull/423)
+- Bump @<!-- -->types/node from 24.5.2 to 24.6.0 by @dependabot[bot] in [#424](https://github.com/ChuckJonas/vscode-apex-pmd/pull/424)
+- Bump typescript-eslint from 8.44.1 to 8.45.0 by @dependabot[bot] in [#425](https://github.com/ChuckJonas/vscode-apex-pmd/pull/425)
+- Bump typescript from 5.9.2 to 5.9.3 by @dependabot[bot] in [#428](https://github.com/ChuckJonas/vscode-apex-pmd/pull/428)
+- Bump mocha from 11.7.2 to 11.7.4 by @dependabot[bot] in [#430](https://github.com/ChuckJonas/vscode-apex-pmd/pull/430)
+- Bump @<!-- -->types/node from 24.6.0 to 24.7.0 by @dependabot[bot] in [#432](https://github.com/ChuckJonas/vscode-apex-pmd/pull/432)
+- Bump eslint from 9.36.0 to 9.37.0 by @dependabot[bot] in [#433](https://github.com/ChuckJonas/vscode-apex-pmd/pull/433)
+- Bump @<!-- -->types/node from 24.7.0 to 24.7.1 by @dependabot[bot] in [#434](https://github.com/ChuckJonas/vscode-apex-pmd/pull/434)
+- Bump typescript-eslint from 8.45.0 to 8.46.0 by @dependabot[bot] in [#435](https://github.com/ChuckJonas/vscode-apex-pmd/pull/435)
+- Bump webpack from 5.102.0 to 5.102.1 by @dependabot[bot] in [#436](https://github.com/ChuckJonas/vscode-apex-pmd/pull/436)
+- Bump eslint from 9.37.0 to 9.38.0 by @dependabot[bot] in [#441](https://github.com/ChuckJonas/vscode-apex-pmd/pull/441)
+- Bump typescript-eslint from 8.46.0 to 8.46.2 by @dependabot[bot] in [#442](https://github.com/ChuckJonas/vscode-apex-pmd/pull/442)
+- Bump @<!-- -->types/node from 24.7.1 to 24.9.1 by @dependabot[bot] in [#443](https://github.com/ChuckJonas/vscode-apex-pmd/pull/443)
+- Bump @<!-- -->types/node from 24.9.1 to 24.9.2 by @dependabot[bot] in [#444](https://github.com/ChuckJonas/vscode-apex-pmd/pull/444)
+- Bump debounce from 2.2.0 to 3.0.0 by @dependabot[bot] in [#446](https://github.com/ChuckJonas/vscode-apex-pmd/pull/446)
+- Bump @<!-- -->types/node from 24.9.2 to 24.10.0 by @dependabot[bot] in [#448](https://github.com/ChuckJonas/vscode-apex-pmd/pull/448)
+- Bump typescript-eslint from 8.46.2 to 8.46.3 by @dependabot[bot] in [#449](https://github.com/ChuckJonas/vscode-apex-pmd/pull/449)
+- Bump eslint from 9.38.0 to 9.39.1 by @dependabot[bot] in [#451](https://github.com/ChuckJonas/vscode-apex-pmd/pull/451)
+- Bump glob from 11.1.0 to 12.0.0 by @dependabot[bot] in [#459](https://github.com/ChuckJonas/vscode-apex-pmd/pull/459)
+- Bump picomatch from 2.3.1 to 2.3.2 by @dependabot[bot] in [#462](https://github.com/ChuckJonas/vscode-apex-pmd/pull/462)
+- Bump minimatch from 3.1.2 to 10.2.5 by @dependabot[bot] in [#464](https://github.com/ChuckJonas/vscode-apex-pmd/pull/464)
+- Bump webpack from 5.102.1 to 5.106.2 by @dependabot[bot] in [#463](https://github.com/ChuckJonas/vscode-apex-pmd/pull/463)
+- Bump actions/upload-artifact from 4 to 7 by @dependabot[bot] in [#465](https://github.com/ChuckJonas/vscode-apex-pmd/pull/465)
+- Bump typescript-eslint from 8.46.3 to 8.59.3 by @dependabot[bot] in [#466](https://github.com/ChuckJonas/vscode-apex-pmd/pull/466)
+- Bump @<!-- -->types/node from 24.10.0 to 25.8.0 by @dependabot[bot] in [#467](https://github.com/ChuckJonas/vscode-apex-pmd/pull/467)
+- Bump flatted from 3.3.2 to 3.4.2 by @dependabot[bot] in [#468](https://github.com/ChuckJonas/vscode-apex-pmd/pull/468)
+- Bump glob from 12.0.0 to 13.0.0 by @dependabot[bot] in [#470](https://github.com/ChuckJonas/vscode-apex-pmd/pull/470)
+- Bump js-yaml from 3.14.1 to 4.1.1 by @dependabot[bot] in [#471](https://github.com/ChuckJonas/vscode-apex-pmd/pull/471)
+
+</details>
 
 ### New Contributors
+
+- @Voronezshkyi
+- @dschach
+- @nicolas1bruno
 
 **Full Changelog**: https://github.com/ChuckJonas/vscode-apex-pmd/compare/v0.10.0...HEAD
 
