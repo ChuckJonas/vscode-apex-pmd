@@ -197,8 +197,8 @@ export class ApexPmd {
     return pmdPromise;
   }
 
-  parseProblems(csv: string): Map<string, Array<vscode.Diagnostic>> {
-    const results = this.mapPmdToResult(csv);
+  parseProblems(jsonString: string): Map<string, Array<vscode.Diagnostic>> {
+    const results = this.mapPmdToResult(jsonString);
 
     const problemsMap = new Map<string, Array<vscode.Diagnostic>>();
     let problemCount = 0;
@@ -227,21 +227,9 @@ export class ApexPmd {
   createDiagnostic(result: PmdResult): vscode.Diagnostic {
     const { priorityErrorThreshold, priorityWarnThreshold } = this.config;
     const lineNum = parseInt(result.line) - 1;
-    let uri = '';
     const msg = `Sev ${result.priority}: ${result.description} (rule: ${result.ruleSet}-${result.rule})`;
     const externalURL = result.externalURL;
-    if (externalURL != undefined) {
-      uri = externalURL.startsWith('http') ? externalURL : 'https://' + externalURL;
-    } else {
-      uri = `https://pmd.github.io/latest/pmd_rules_apex_${result.ruleSet
-        .split(' ')
-        .join('')
-        .toLowerCase()}.html#${result.rule.toLowerCase()}`;
-    }
     const priority = parseInt(result.priority);
-    if (isNaN(lineNum)) {
-      return null;
-    }
 
     let level: vscode.DiagnosticSeverity;
     if (priority <= priorityErrorThreshold) {
@@ -257,7 +245,11 @@ export class ApexPmd {
       msg,
       level
     );
-    problem.code = { target: vscode.Uri.parse(uri), value: result.rule };
+    if (externalURL) {
+      problem.code = { target: vscode.Uri.parse(externalURL), value: result.rule };
+    } else {
+      problem.code = result.rule;
+    }
     problem.source = 'apex pmd';
     return problem;
   }
