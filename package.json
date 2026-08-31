@@ -258,7 +258,7 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.68.0",
     "webpack": "^5.109.2",
-    "webpack-cli": "^7.2.2"
+    "webpack-cli": "^7.2.3"
   },
   "dependencies": {
     "debounce": "^3.0.0"
