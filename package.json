@@ -261,6 +261,6 @@
     "webpack-cli": "^7.3.1"
   },
   "dependencies": {
-    "debounce": "^3.0.0"
+    "debounce": "^4.0.0"
   }
 }
